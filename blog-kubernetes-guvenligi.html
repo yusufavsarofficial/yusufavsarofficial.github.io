@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Kubernetes'te Policy as Code Hataları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Kubernetes'te Policy as Code'u Kyverno ile Uygularken Yaptığım 3 Büyük Hata</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 05 Ağustos 2024 · 9 dakika okuma</p>
+                
+                <h3>Giriş: PaC: Yönetişimin Zorunluluğu</h3>
+                <p>Kubernetes, modern altyapının bel kemiğidir. Ancak esnekliği aynı zamanda büyük bir risk de taşır: Bir geliştirici yanlışlıkla bir Pod'u root yetkisiyle veya hassas bir Volume montajıyla dağıttığında, tüm küme tehlikeye girebilir. İşte bu noktada Policy as Code (PaC) devreye girer.</p>
+                <p>Kyverno (veya OPA Gatekeeper), politikalarımızı YAML dosyalarına yazarak, güvensiz konfigürasyonların kümeye girmesini engeller (admission control). Ben de PaC'yi DevSecOps süreçlerime entegre ederken, projeleri yavaşlatan, hatta Production ortamını bozan birkaç kritik hata yaptım. Bu hataları sizinle paylaşıyorum ki, siz bu zorlu süreci daha hızlı ve hatasız atlatın.</p>
+
+                <h3>I. Hata 1: Sonsuza Dek Denetim Modunda (Audit Mode) Kalmak</h3>
+                <p>Policy as Code uygulamasına başlarken, yeni politikaları hemen uygulamak yerine önce "Audit Mode" (Denetim Modu) açarız. Bu modda politika, ihlalleri kaydeder ama dağıtımı engellemez. Amaç, yan etkileri görmektir.</p>
+                <p><strong>Problem:</strong> Genellikle Denetim Modu, bir anlık geçici önlem olarak başlar ve kalıcı bir durum haline gelir. Aylar sonra, yüzlerce ihlal uyarısıyla dolu bir Denetim Raporunuz olur, ancak bunların hiçbiri engellenmez. Politika etkisiz kalır.</p>
+                <p><strong>Öğrenilen Ders:</strong> Her yeni politika için net bir Audit Süresi belirleyin (Örn: 2 hafta). Bu süre sonunda, hata oranları kabul edilebilir seviyeye düştüğünde, politikayı hızla Enforce (Zorlama) moduna geçirin. Politika uygulamak, sadece uyarı almak değildir; güvenlik kararı aldırmaktır.</p>
+
+                <h3>II. Hata 2: Çok Geniş Kapsamlı (Catch-All) Politikalar Yazmak</h3>
+                <p>Güvenlik ekipleri genellikle "Tüm Namespace'lerdeki tüm Pod'lar bu kurala uymalı" diyerek en geniş kapsamlı politikaları yazmak ister.</p>
+                <p><strong>Problem:</strong> Bu, tüm uygulamaların kırılmasına yol açar. Örneğin, kube-system gibi kritik sistem Namespace'leri veya eski, güncellenmesi zor bir uygulama, zorunlu güvenlik kurallarına uymayabilir. Sonuç: Ekipler, kuralı esnetmek yerine, en kötü senaryoda tüm politikayı devre dışı bırakmayı talep eder.</p>
+                <p><strong>Öğrenilen Ders:</strong> Politikaları Namespace veya Label (Etiket) bazında hassasça hedefleyin. Kritik sistem Namespace'lerini (Örn: kube-system, monitoring) her zaman özel istisna (exception) listesine alın. Yeni politikaları önce sadece Geliştirme Namespace'lerine uygulayarak kademeli dağıtım yapın.</p>
+
+                <h3>III. Hata 3: Policy-as-Code'u Kod Olarak Görmemek</h3>
+                <p>Kyverno veya OPA politikalarını oluşturmak için kullanılan YAML dosyaları, basit konfigürasyon dosyaları değildir; bunlar altyapınızı yöneten koddur.</p>
+                <p><strong>Problem:</strong> Çoğu ekip, bu YAML dosyalarını Git'te versiyonlamaz veya basit bir kubectl apply ile kümeye gönderir. Politikalar, diğer uygulamalar gibi otomatik test edilmez. Hatalı bir kural, tüm kümenin yeni dağıtımlara kapanmasına neden olabilir.</p>
+                <p><strong>Öğrenilen Ders:</strong> Politika dosyalarını, uygulama kodunuzla aynı CI/CD boru hattından geçirin. Dağıtımdan önce, politikanın beklenen davranışları sergilediğini doğrulamak için birim testleri (unit tests) yazın. Politika CI/CD'si, en az uygulama CI/CD'si kadar önemlidir.</p>
+
+                <h3>Sonuç: Governance'ı Kodla Sağlamak</h3>
+                <p>Policy as Code, sadece bir güvenlik aracı değil, aynı zamanda büyük ekiplerde altyapı yönetimini ve uyumluluğu (Compliance) sağlayan en güçlü Governance mekanizmasıdır. Bu hataları bilerek yola çıktığınızda, Kyverno entegrasyonunuz sadece uyarı vermekle kalmaz, aynı zamanda kümenizin kalitesini ve güvenliğini zorlar.</p>
+                <p>Kubernetes ortamınızı bu tarz ileri düzey PaC pratikleriyle güçlendirmek ve DevSecOps boru hattınızın bir parçası haline getirmek için <a href="faaliyetlerim.html">Otomatikleştirilmiş DevSecOps Altyapısı Faaliyetleri</a> alanında benimle çalışabilirsiniz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">98,112 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 98112;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

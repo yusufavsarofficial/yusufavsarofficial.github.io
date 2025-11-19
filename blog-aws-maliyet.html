@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - AWS Faturaları ve Güvenlik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>AWS Faturaları Neden Yüksek Gelir? Serverless Güvenliği ve Maliyet Optimizasyonu</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 11 Ocak 2025 · 7 dakika okuma</p>
+                
+                <h3>Giriş: Bulut'un Çifte Tuzağı</h3>
+                <p>Buluta geçişin iki büyük vaadi vardı: Sınırsız ölçeklenme ve kullandığın kadar ödeme. Ancak birçok şirket, her ay beklenenden yüksek AWS faturasıyla ve yanlış yapılandırma kaynaklı güvenlik açıklarıyla karşılaşıyor. Bu iki sorun birbiriyle doğrudan ilişkilidir: <strong>En uygun maliyetli yapılandırma, genellikle en güvenli olandır.</strong></p>
+
+                <h3>Maliyet ve Güvenlik İlişkisi</h3>
+                <div class="activity-item">
+                    <h4>Gereksiz Yetkilendirme (IAM Tuzağı)</h4>
+                    <p>Geniş ve gevşek IAM politikaları (Örn: Bir Lambda fonksiyonunun tüm S3 kovalarına erişim izni olması), hem güvenlik riskidir hem de maliyet riskidir. Fazla yetkilendirme, bir saldırganın sisteminizde hareket etme alanını genişletir. En Az Ayrıcalık (Least Privilege) prensibi uygulandığında, servisler sadece ihtiyacı olan kaynakları kullanır, bu da gereksiz kaynak tüketimini önler.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Kullanılmayan Kaynaklar (Maliyet)</h4>
+                    <p>Yanlış boyutlandırılmış (over-provisioned) EC2 veya RDS örnekleri, sürekli yüksek fatura demektir. Bu, aynı zamanda yama yapılmamış ve izlenmeyen potansiyel saldırı yüzeyleri yaratır. CloudFin Optimizer gibi araçlarla bu kaynakların tespiti hem maliyet hem de güvenlik açısından kritiktir.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Serverless Mimarisi ve Gizli Maliyetler</h4>
+                    <p>Serverless (Örn: Lambda, DynamoDB), doğru yapılandırılmazsa patlayıcı maliyetler yaratabilir. Ancak doğru yapılandırıldığında (Örn: Maksimum bellek ayarının minimuma çekilmesi), hem maliyet hem de saldırı yüzeyi minimuma iner.</p>
+                </div>
+
+                <h3>Sonuç</h3>
+                <p>AWS faturasını düşürmek, sadece bir finansal optimizasyon projesi değildir; aynı zamanda DevSecOps yaklaşımının zorunlu kıldığı bir güvenlik sertleştirmesidir. Terraform ile IaC (Altyapıyı Kod Olarak) kullanarak hem maliyeti hem de güvenlik riskini temelden optimize edebiliriz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">65,140 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 65140;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

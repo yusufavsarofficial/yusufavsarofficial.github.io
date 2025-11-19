@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Makaleler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="makaleler.html" class="active">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container">
+                <h2>Teknik Makaleler: Analitik Derinlik</h2>
+                <div class="post-list">
+                    <!-- Makale 1 -->
+                    <a href="makale-mikroservis.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                        <div class="post-card-content">
+                            <h3>Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h3>
+                            <span class="post-card-meta">14 Kasım 2023 · 15 dakika okuma</span>
+                            <p class="post-card-excerpt">Sıfır Güven (Zero Trust) modelini esas alan, Service Mesh (mTLS) ve Policy as Code (PaC) gibi ileri düzey teknikleri analiz eden kapsamlı bir mimari tasarım metodolojisi.</p>
+                        </div>
+                    </a>
+                    <!-- Makale 2 -->
+                    <a href="makale-performans.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                        <div class="post-card-content">
+                            <h3>DevSecOps’ta Uçtan Uca Otomasyon: SentinelPipe Çerçevesi</h3>
+                            <span class="post-card-meta">19 Nisan 2024 · 18 dakika okuma</span>
+                            <p class="post-card-excerpt">Güvenlik Borçlanması (Security Debt) riskini minimize etmek için tasarlanmış, Kod, Derleme, Dağıtım ve Çalışma Zamanı aşamalarını otomatikleştiren bir DevSecOps çerçevesi.</p>
+                        </div>
+                    </a>
+                    <!-- Makale 3 -->
+                    <a href="makale-go-api.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                        <div class="post-card-content">
+                            <h3>Hassas Veri Yönetiminde Kriptografik İlkeler ve Uygulamalar</h3>
+                            <span class="post-card-meta">08 Haziran 2025 · 16 dakika okuma</span>
+                            <p class="post-card-excerpt">KVKK/GDPR uyumu için Zarf Şifreleme, Anahtar Yönetimi (KMS) ve Tokenizasyon gibi ileri düzey kriptografik ilkelerin mimari uygulamaları üzerine analitik bir inceleme.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

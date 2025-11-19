@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Güvenli CI/CD Kontrol Listesi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi)</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 22 Haziran 2024 · 8 dakika okuma</p>
+                
+                <h3>Giriş: Güvenlik, Hızı Kesmemeli</h3>
+                <p>Modern yazılım geliştirme dünyasında hız esastır. Hızla geliştirir, hızla test eder ve hızla dağıtırız. Ancak bu hız, güvenlikten ödün vermek anlamına gelmemeli. CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım) boru hattı, bir güvenlik duvarının ötesinde, savunma katmanlarının otomatikleştirildiği en kritik kontrol noktasıdır.</p>
+                <p>Sizlere, yüzlerce dağıtımda uyguladığım ve kritik bir zafiyetin Production ortamına sızmasını engelleyen, "Son 5 Dakika Güvenlik Kontrol Listesi" stratejisini sunuyorum. Bu kontrol listesi, CI/CD adımlarınıza entegre edildiğinde, manuel güvenlik incelemesi beklemeden otomatik koruma sağlar.</p>
+
+                <h3>I. 1. Aşama (2 Dakika): Kodun Kendisini Kontrol Et</h3>
+                <p>Bu aşamada, henüz uygulama çalışmaya başlamadan, kod ve bağımlılıkları incelenir.</p>
+                <ul>
+                    <li><strong>Statik Uygulama Güvenlik Testi (SAST):</strong> Kodu çalıştırmadan, potansiyel güvenlik açıklarını (SQLi, XSS, Hardcoded Secrets) otomatik olarak tarayın. Eşik kuralı belirleyin: Yüksek veya Kritik seviyedeki bulgular pipeline'ı durdurmalıdır.</li>
+                    <li><strong>Yazılım Bileşen Analizi (SCA):</strong> Projenizin kullandığı tüm üçüncü parti kütüphaneleri ve bağımlılıkları tarayın (npm, pip, go mod). Bilinen zafiyetleri (CVE'ler) olan kütüphanelerin dağıtımını engelleyin.</li>
+                </ul>
+
+                <h3>II. 2. Aşama (1 Dakika): Konteyner Güvenliğini İncele</h3>
+                <p>Uygulama kodunuz temiz olabilir, ancak onu barındıran Docker imajı güvensiz olabilir.</p>
+                <ul>
+                    <li><strong>Temel İmaj Zafiyet Taraması:</strong> Kullanılan Docker imajlarının (Örn: node:latest veya alpine:3.15) temel işletim sistemi katmanındaki zafiyetleri tarayın (Örn: Trivy, Clair ile). Zafiyet yoğunluğu yüksek olan imajların dağıtımını engelleyin.</li>
+                    <li><strong>En Az Ayrıcalık Kontrolü:</strong> İmajın root kullanıcısı yerine, özel, düşük yetkili bir kullanıcı ile çalışıp çalışmadığını (USER komutu) kontrol edin.</li>
+                </ul>
+
+                <h3>III. 3. Aşama (1 Dakika): Altyapı Güvenliğini Doğrula (Policy as Code)</h3>
+                <p>Uygulama ve konteyner güvenliyse, sırada onu barındıracak ortamın güvenliği var. Bu adım, özellikle Kubernetes ve Terraform kullananlar için hayati önem taşır.</p>
+                <ul>
+                    <li><strong>IaC Güvenlik Kuralı Kontrolü:</strong> Terraform veya CloudFormation kodunuzu tarayın. (Örn: SentinelPipe prensipleriyle): Açık S3 kovası var mı? Güvenlik grupları her yerden SSH erişimine izin veriyor mu?</li>
+                    <li><strong>Kubernetes Policy Check:</strong> Dağıtılacak Pod tanımının, küme politikalarınıza uyup uymadığını kontrol edin. OPA Gatekeeper veya Kyverno kullanarak, yetkisiz Pod'ların veya Volume montajlarına izin veren dağıtımları otomatik olarak reddedin.</li>
+                </ul>
+
+                <h3>IV. 4. Aşama (1 Dakika): Kritik Çevresel Kontroller</h3>
+                <p>Bu, son, genellikle gözden kaçan güvenlik katmanıdır.</p>
+                <ul>
+                    <li><strong>Gizli Bilgi (Secrets) Kontrolü:</strong> Yapılandırma dosyalarında, ortam değişkenlerinde veya kodda hardcoded parola, API anahtarı veya token olup olmadığını kontrol edin. Hardcoded bilginin buluşması durumunda pipeline anında durdurulmalıdır.</li>
+                    <li><strong>Çevre Değişkeni İncelemesi:</strong> Üretim ortamında olması gerekmeyen (Örn: DEBUG=TRUE, ENV=DEV) değişkenlerin yanlışlıkla Production'a gönderilmediğinden emin olun.</li>
+                </ul>
+
+                <h3>Sonuç: Güvenlik Hızı Artırır</h3>
+                <p>Bu 5 dakikalık otomasyon stratejisi, geliştiriciye güvenlik onayı bekleme zorunluluğunu ortadan kaldırır. Güvenliği, dağıtım sürecinin doğal bir parçası haline getirerek hem hızı artırır hem de hata yapma olasılığını sıfıra yaklaştırır.</p>
+                <p>CI/CD boru hatlarınıza bu tür ileri düzey güvenlik otomasyonlarını entegre etmek ve SentinelPipe prensiplerini uygulamak için <a href="faaliyetlerim.html">Otomatikleştirilmiş DevSecOps Altyapısı Faaliyetleri</a> alanımda benimle iletişime geçebilirsiniz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">112,670 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 112670;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

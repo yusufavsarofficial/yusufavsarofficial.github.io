@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - DevSecOps’ta Uçtan Uca Otomasyon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container about-manifesto" style="max-width: 900px;">
+                <h2 style="text-align: center; font-size: 2.2rem;">DevSecOps’ta Uçtan Uca Otomasyon: SentinelPipe Çerçevesi</h2>
+                <p style="text-align: center; font-size: 1.2rem; opacity: 0.8; margin-top: -1rem;">Metodolojik ve Analitik Kılavuz</p>
+                
+                <blockquote style="border-left: 4px solid var(--secondary-color); padding-left: 1rem; margin: 2rem 0; font-style: italic;">
+                    <strong>ÖZET (ABSTRACT):</strong> Bu makale, geleneksel CI/CD süreçlerinde sıklıkla oluşan Güvenlik Borçlanması (Security Debt) riskini minimize etmek için tasarlanmış SentinelPipe DevSecOps Çerçevesi'ni detaylandırmaktadır. Çerçeve, Otomasyon Yoluyla Zorunluluk (Enforcement via Automation) ilkesini merkeze alır ve güvenlik kontrollerini Kod, Derleme, Dağıtım ve Çalışma Zamanı (Runtime) olmak üzere dört aşamaya ayırır. Analitik incelemeler, SentinelPipe'ın entegrasyonunun, yazılım teslimat hızını koruyarak Ortalama Tespit Süresini (MTTD) ve Ortalama Onarım Süresini (MTTR) kritik ölçüde düşürdüğünü göstermektedir.
+                </blockquote>
+
+                <div class="manifesto-section">
+                    <h3>I. GİRİŞ: SÜREKLİ GÜVENLİK MODELİNİN ZORUNLULUĞU</h3>
+                    <p>Mikroservis mimarileri ve bulut bilişim, dağıtım hızını artırmış, ancak güvenlik süreçlerini karmaşıklaştırmıştır. Güvenlik testlerini bir sonraki aşamaya ertelemek, maliyetleri üstel olarak artırır. SentinelPipe metodolojisi, güvenliği sürecin soluna (Shift Left) taşıyarak değil, her aşamayı otomatize edilmiş, geçilmesi zorunlu bir Güvenlik Kapısı olarak kodlamayı teklif eder.</p>
+                    <h4>1.1. SentinelPipe Metodolojisinin Temelleri</h4>
+                    <p>SentinelPipe, Security as Code (SaC) ve Hata Kılavuzu (Fail Fast) ilkeleri üzerine kurulmuştur: Politika Zorunluluğu, Hata Geri Beslemesi ve Ölçülebilir Güvenlik.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>II. AŞAMA I: KOD VE BAĞIMLILIK KONTROLÜ (SHIFT LEFT)</h3>
+                    <p>Bu aşama, zafiyetin henüz oluşmaya başladığı kaynak kodu ve kullanılan üçüncü taraf kütüphanelerini hedefler.</p>
+                    <h4>2.1. Statik Uygulama Güvenliği Testi (SAST) Otomasyonu</h4>
+                    <p>SAST araçları (Örn: SonarQube, Bandit), kodun mantığını çalıştırmadan analiz eder. SentinelPipe, SAST’ı CI/CD öncesi ve Pull Request (PR) aşamasına taşır. PR'lar, SAST aracından gelen Kritik ve Yüksek riskli bulgular sıfırlanmadan birleştirilemez.</p>
+                    <h4>2.2. Yazılım Bileşen Analizi (SCA) ve Lisans Kontrolü</h4>
+                    <p>Açık kaynak bağımlılıkları, modern zafiyetlerin büyük çoğunluğunun kaynağıdır. Her commit sonrası SCA araçları (Örn: Snyk, Dependency-Check), kullanılan kütüphanelerin bilinen CVE'ler ile eşleşmesini kontrol eder. Belirli bir zafiyet skorunun (Örn: CVSS ≥ 7.0) üzerindeki kütüphanelerle derleme yapılması engellenir. [1]</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>III. AŞAMA II: DERLEME VE KONTEYNER SERTLEŞTİRMESİ</h3>
+                    <p>Uygulamanın çalışacağı ortamın (Docker İmajı) güvenliğinin kodlanması.</p>
+                    <h4>3.1. Güvenli Konteyner İmajı Standardı</h4>
+                    <p>SentinelPipe, tüm imajların En Az Ayrıcalık Prensibi'ne uymasını PaC ile zorunlu kılar: Minimal dağıtımları (Distroless, Alpine) kullanmak, non-root kullanıcı ile çalıştırmak ve imajları Clair veya Trivy ile taramak.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>IV. AŞAMA III: DAĞITIM ZORUNLULUĞU (POLICY AS THE GATE)</h3>
+                    <p>Bu aşama, SentinelPipe'ın en önemli güvenlik katmanıdır ve Yapılandırma Güvenliğini garanti eder.</p>
+                    <h4>4.1. Policy as Code (PaC) ile Kubernetes Kabul Kontrolü</h4>
+                    <p>Kubernetes Admission Controller'ları (Kyverno, OPA Gatekeeper) kullanılarak, kümeye giren tüm manifestolara (YAML) zorunlu güvenlik politikaları uygulanır. Örnek kurallar: <code>allowPrivilegeEscalation: false</code>, <code>runAsNonRoot: true</code> zorunluluğu.</p>
+                    <h4>4.2. Altyapıyı Kod Olarak (IaC) Güvenlik Doğrulaması</h4>
+                    <p>Terraform veya CloudFormation kodları, dağıtımdan önce Checkov veya tfsec gibi araçlarla taranır. SentinelPipe, S3 kovalarının herkese açık olması gibi bulut yanlış yapılandırmalarını dağıtım gerçekleşmeden önce engeller.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>V. AŞAMA IV: ÇALIŞMA ZAMANI KORUMASI VE TEPKİ (RUNTIME)</h3>
+                    <p>Tüm önleyici tedbirlere rağmen, bir ihlal varsayılır. Bu aşama, hızlı tespit ve otomatik yanıt üzerine kuruludur.</p>
+                    <h4>5.1. Çalışma Zamanı Koruması (Runtime Protection)</h4>
+                    <p>Falco gibi araçlar, Pod içindeki beklenmedik sistem çağrılarını izler (Örn: Bir Nginx web sunucusu Pod'unun aniden dışarıya SSH bağlantısı başlatması). Bu anormallikler, gerçek zamanlı tehdit tespiti sağlar ve MTTD'yi saniyelere düşürür.</p>
+                    <h4>5.2. Otomatik Yanıt ve Adli Analiz</h4>
+                    <p>Kritik bir Falco uyarısı, SOAR (Security Orchestration, Automation and Response) aracını tetikler. Bu araç, ihlalin kaynağı olan Pod'u kümeden otomatik olarak izole edebilir ve adli analiz için konteyner görüntüsünü (snapshot) alabilir.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>VI. ANALİTİK DEĞERLENDİRME VE SONUÇ</h3>
+                    <h4>6.1. Metrik İyileştirmesi (MTTR ve MTTD)</h4>
+                    <table class="skills-table">
+                        <thead><tr><th>Metrik</th><th>Geleneksel Süreç (Manuel)</th><th>SentinelPipe (Otomatik)</th><th>İyileşme Oranı</th></tr></thead>
+                        <tbody>
+                            <tr><td>MTTD (Ort. Tespit Süresi)</td><td>Haftalar/Aylar</td><td>Dakikalar (Runtime)</td><td>99%+</td></tr>
+                            <tr><td>MTTR (Ort. Onarım Süresi)</td><td>Günler/Haftalar</td><td>Saatler (Geri besleme ile)</td><td>90%+</td></tr>
+                            <tr><td>Zafiyet Yoğunluğu</td><td>Yüksek</td><td>Minimum</td><td>~0 Hedefi</td></tr>
+                        </tbody>
+                    </table>
+                    <h4>6.2. Sonuç: Güvenlik Zorunluluktur</h4>
+                    <p>SentinelPipe Çerçevesi, güvenliği bir opsiyonel adım olmaktan çıkarıp, yazılım yaşam döngüsünün zorunlu ve otomatik bir bileşeni haline getirir. Bu metodoloji, kurumların çevikliklerini koruyarak güvenlik borçlanması riskini sistematik olarak elimine etmelerini sağlar.</p>
+                </div>
+
+                <div class="manifesto-section" style="border-bottom: none; padding-bottom: 0;">
+                    <h3>KAYNAKÇALAR (REFERENCES)</h3>
+                    <ol style="text-align: left; line-height: 1.8;">
+                        <li>OWASP Software Assurance Maturity Model (SAMM). (v2.0).</li>
+                        <li>NIST Special Publication 800-190. (2017). Application Container Security Guide.</li>
+                        <li>Cloud Native Computing Foundation (CNCF) Security Whitepaper. (2020).</li>
+                        <li>Kyverno Documentation / OPA Rego Policy Language.</li>
+                        <li>Palo Alto Networks / Unit 42. Cloud Threat Reports.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    </script>
+
+</body>
+</html>

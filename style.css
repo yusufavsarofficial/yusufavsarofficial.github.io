@@ -1,0 +1,744 @@
+/* --- Genel Stiller --- */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --card-bg-color: #ffffff;
+    --header-height: 60px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding-top: var(--header-height); /* Sabit header için boşluk */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+/* --- Header ve Navigasyon --- */
+header {
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--header-height);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Logoyu kaldırınca menüyü ortalamak için */
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 1.5rem; /* Linkler arası boşluk azaltıldı */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--secondary-color);
+    background-color: #ecf0f1;
+}
+
+/* --- Hero (Ana Karşılama) Bölümü --- */
+#hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+    color: white;
+    height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.hero-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.hero-btn:hover {
+    background-color: #2980b9;
+}
+
+/* --- Anasayfa İçerik Bölümleri --- */
+.home-section {
+    padding: 4rem 0;
+}
+
+.home-section:nth-of-type(odd) {
+    background-color: var(--card-bg-color);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+/* Uzmanlık Alanları */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.expertise-card {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.expertise-card h3 {
+    margin-top: 0;
+    color: var(--secondary-color);
+}
+
+/* Vaka Çalışması */
+.case-study-container {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+}
+.case-study-container h2, .case-study-container h3 {
+    color: white;
+}
+.case-study-container h3 {
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.secondary-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.6rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* --- Genel Sayfa İçerik Stili --- */
+.page-content {
+    background-color: #fff;
+    min-height: calc(100vh - var(--header-height) - 180px); /* Footer ve padding için boşluk */
+}
+
+.page-content .container {
+    max-width: 900px;
+}
+
+/* --- Hakkımda Sayfası --- */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+}
+.about-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.skills-section {
+    margin-top: 3rem;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+.skill-item {
+    background: var(--background-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* --- Hakkımda Sayfası (Manifesto) --- */
+.about-manifesto {
+    text-align: left;
+    line-height: 1.8;
+}
+.manifesto-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--background-color);
+}
+.manifesto-section:last-of-type {
+    border-bottom: none;
+    text-align: center;
+}
+.about-manifesto h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+.about-manifesto h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Faaliyetlerim Sayfası --- */
+.activity-item {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--secondary-color);
+    transition: box-shadow 0.3s ease;
+}
+.activity-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+.activity-item h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+/* --- Teknik Yetkinlikler Sayfası (Tablo) --- */
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.skills-table th, .skills-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.skills-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+}
+
+.skills-table tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.skills-table td:first-child {
+    font-weight: bold;
+    width: 25%;
+}
+
+.skills-table td:nth-child(2) {
+    width: 25%;
+    font-style: italic;
+}
+
+.skills-table strong {
+    color: var(--primary-color);
+}
+
+/* --- Proje Filtre Butonları --- */
+.filter-buttons {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+/* --- Projeler Bölümü --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card.hide {
+    display: none;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.project-card-content {
+    padding: 1.5rem;
+}
+
+.project-card h3 {
+    margin-top: 0;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* --- İletişim Bölümü --- */
+.contact-container {
+    text-align: center;
+}
+
+.social-links a {
+    font-size: 2rem;
+    margin: 0 1rem;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- Blog/Makale Kartları --- */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.post-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.post-card-meta {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+.post-card-excerpt {
+    flex-grow: 1;
+}
+
+/* Beğeni Butonu Stilleri */
+.like-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--background-color);
+}
+
+.like-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.like-btn.liked, .like-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.like-count {
+    font-weight: 500;
+}
+
+/* --- İletişim Formu --- */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+    text-align: left;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #2980b9;
+}
+
+/* --- SSS Bölümü --- */
+.faq-item {
+    background: var(--card-bg-color);
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.faq-item summary {
+    font-weight: bold;
+    padding: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+.faq-item div {
+    padding: 0 1rem 1rem 1rem;
+    border-top: 1px solid var(--background-color);
+}
+
+/* --- Ürünler Sayfası --- */
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card-content p {
+    flex-grow: 1;
+}
+
+.product-pricing {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.price-tag {
+    display: inline-block;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.buy-btn {
+    background-color: var(--secondary-color);
+    color: white !important; /* a etiketinin rengini ezer */
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.buy-btn:hover {
+    background-color: #2980b9;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.footer-links {
+    margin-top: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--background-color);
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+/* --- Çerez Banner Stilleri --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    display: none; /* JS ile gösterilecek */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    z-index: 2000;
+}
+
+.cookie-banner p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.cookie-banner a {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.cookie-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* --- Mobil Uyum (Responsive) --- */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute; /* Hamburger menüyü sağa sabitlemek için */
+        right: 1.5rem;
+    }
+
+    .nav-links {
+        position: fixed;
+        left: -100%; /* Başlangıçta ekranın dışında */
+        top: var(--header-height);
+        flex-direction: column;
+        background-color: var(--card-bg-color);
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        text-align: center;
+        transition: left 0.3s ease;
+        padding-top: 2rem;
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        left: 0; /* Menüyü ekrana getir */
+    }
+
+    /* Responsive Hakkımda */
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    /* Responsive Blog Kartları */
+    .post-card {
+    }
+
+    #hero {
+        height: 70vh;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    /* Responsive Tablolar */
+    .skills-table thead {
+        display: none;
+    }
+
+    .skills-table, .skills-table tbody, .skills-table tr, .skills-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .skills-table tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .skills-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .skills-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        text-align: left;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cookie-buttons {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

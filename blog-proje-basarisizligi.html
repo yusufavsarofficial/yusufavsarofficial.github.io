@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Bir Projenin Başarısız Olacağı Nasıl Anlaşılır?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Bir Projenin Başarısız Olacağı Nasıl Anlaşılır? (Mimari ve Güvenlik İşaretleri)</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 25 Mart 2025 · 8 dakika okuma</p>
+                
+                <h3>Giriş: Başarısızlığı Önceden Görmek</h3>
+                <p>Bir projenin aylar sonra başarısızlığa sürükleneceğini anlamak için sihirli bir küreye ihtiyacınız yoktur. Siber güvenlik liderliği ve yazılım mimarisi tecrübesi, size daha projenin ilk sprintlerinde tehlike sinyallerini okuma yeteneği verir. İşte, kod kalitesinden takım kültürüne kadar, bir projenin teknik ve kültürel olarak başarısızlığa mahkûm olduğunu gösteren en kritik işaretler:</p>
+
+                <h3>I. Kritik Mimari ve Teknik İşaretler</h3>
+                <ul>
+                    <li><strong>Gözetim Eksikliği:</strong> Uygulamanın kritik logları yoksa veya merkezi bir yere (ELK/Splunk) toplanmıyorsa. (Logları kim okuyor? maddesi). Sorun çıktığında körsünüzdür.</li>
+                    <li><strong>State (Durum) Yönetimi Kaosu:</strong> Uygulama durumunun (state), global değişkenler, Singleton'lar veya statik sınıflar içinde yönetilmesi. Bu, sistemi eşzamanlılık hatalarına ve ölçeklenme sorunlarına mahkûm eder.</li>
+                    <li><strong>Tek Bir Başarısızlık Noktası (Single Point of Failure):</strong> Veritabanı veya kritik bir mikroservis önünde yük dengeleyici olmaması, yedekliliğin ihmal edilmesi. Bu hem süreklilik (Continuity) hem de güvenlik riskidir.</li>
+                </ul>
+
+                <h3>II. Kültürel ve Süreç İşaretleri</h3>
+                <ul>
+                    <li><strong>Güvenliğin "Son İş" Olması:</strong> Güvenlik testlerinin sadece dağıtımdan hemen önce yapılması veya yama yapılması. Güvenlik, projenin en başından (Threat Modeling) itibaren tasarlanmamışsa, başarısızlık kaçınılmazdır.</li>
+                    <li><strong>TDD veya Otomatik Test Eksikliği:</strong> Yeni özelliklerin test edilmeden direkt deploy edilmesi. Bu, hızlı ilerliyor hissi verir ancak teknik borcu katlanarak artırır.</li>
+                    <li><strong>"Kullanıcı Aptaldır" Zihniyeti:</strong> Geliştiricilerin, uygulamanın hatalı veya kötü niyetli kullanıcı girdilerine karşı dayanıklılığını test etmemesi. (BOLA ve Saldırgan Zihniyeti ihmali).</li>
+                </ul>
+
+                <h3>Sonuç: Hata Yapmak Değil, Hatayı Görmezden Gelmek Riskli</h3>
+                <p>Başarılı projeler, hata yapmayanlar değil; yukarıdaki işaretleri görüp erken aksiyon alanlardır. Hibrit Liderlik rolümde, bu işaretleri erkenden tespit edip düzeltmek, büyük ölçekli kayıpları engellemiştir. Projenizin potansiyel risklerini analiz etmek ve bu işaretleri gidermek için <a href="faaliyetlerim.html">Analitik Çözümleme ve Kurumsal Liderlik</a> faaliyetlerimle sizinle çalışmaya hazırım.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">45,990 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 45990;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

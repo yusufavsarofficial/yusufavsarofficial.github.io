@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - GoLang vs. Python: Eşzamanlılıkta Geçiş</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>GoLang ile Eşzamanlılıkta (Concurrency) Python'a Geçiş: Neden Değdi ve Nasıl Yaptım?</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 18 Eylül 2024 · 10 dakika okuma</p>
+                
+                <h3>Giriş: Performansın Ölçüsü Milisaniyelerle İfade Ediliyorsa</h3>
+                <p>Python, veri bilimi, güvenlik otomasyonu ve hızlı prototipleme için bir numaralı tercihimdir. Gücü inanılmaz bir ekosistem ve okunabilirliğinden gelir. Ancak finansal sistemler, yüksek hacimli E-ticaret sepetleri veya düşük gecikmeli (low-latency) veri akışları söz konusu olduğunda, Python'ın doğal bir zayıflığıyla yüzleşiriz: <strong>Global Interpreter Lock (GIL)</strong>.</p>
+                <p>GIL, Python'ın aynı anda birden fazla CPU çekirdeğini etkin bir şekilde kullanmasını engeller, eşzamanlı işlemleri kilitler. Mimarimin saniyede binlerce işlemi minimum gecikmeyle yönetmesi gerektiği bir noktada, yollarımızı ayırdık ve çözümü Golang'de (Go) buldum. İşte bu geçişin neden gerekli olduğu ve nasıl gerçekleştiği.</p>
+
+                <h3>I. Karar Noktası: Eşzamanlılık Modeli Farkı</h3>
+                <p>Golang, eşzamanlılığı dilin çekirdeğine yerleştirerek Python'dan radikal bir şekilde ayrılır:</p>
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th>Özellik</th>
+                            <th>Python (Thread)</th>
+                            <th>Golang (Goroutine)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Özellik"><strong>Paralellik</strong></td>
+                            <td data-label="Python (Thread)">Sınırlı (GIL Kilidi): IO (Giriş/Çıkış) tabanlı işlerde başarılı, CPU yoğun işlerde başarısız.</td>
+                            <td data-label="Golang (Goroutine)">Tam Paralellik: Birden fazla CPU çekirdeğini aynı anda etkin kullanır.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Özellik"><strong>Kaynak Tüketimi</strong></td>
+                            <td data-label="Python (Thread)">Ağır (İşletim Sistemi İpliği - OS Thread)</td>
+                            <td data-label="Golang (Goroutine)">Çok Hafif (Kullanıcı Alanı İpliği): Birkaç KB hafıza tüketir, yüzbinlerce Goroutine oluşturulabilir.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Özellik"><strong>İletişim Metodu</strong></td>
+                            <td data-label="Python (Thread)">Paylaşılan Hafıza (Kilitler ve Semaphore'lar)</td>
+                            <td data-label="Golang (Goroutine)">Kanallar (Channels): Paylaşılan hafızayı kilitlemek yerine, iletişim için kanalları kullanır. (Golang Felsefesi: Paylaşılan hafıza ile iletişim kurma, iletişim ile hafızayı paylaş.)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>II. Hız ve Hafıza: Metriklerdeki Değişim</h3>
+                <p>Golang'a geçiş, sadece teorik bir tercih değildi; metriklerde çarpıcı sonuçlar verdi.</p>
+                <ul>
+                    <li><strong>Gecikme Süresinde Azalma:</strong> Golang, milisaniye düzeyinde yanıt süresi garantili API'ler oluşturmamızı sağladı. CPU yükü altında bile, Goroutine'ler, Python Thread'lerine kıyasla çok daha hızlı bir şekilde oluşturulup sonlandırılabilir.</li>
+                    <li><strong>Daha Az Kaynak, Daha Çok İş:</strong> Python'a kıyasla, aynı iş yükünü yöneten Golang servisi, çok daha az RAM ve CPU kullanır. Bu, özellikle AWS Lambda veya Kubernetes gibi bulut ortamlarında maliyet optimizasyonu anlamına gelir.</li>
+                    <li><strong>Önyükleme (Startup) Hızı:</strong> Golang, derlenmiş (compiled) bir dil olduğu için, Python yorumlayıcısının aksine, çok hızlı bir şekilde başlar. Bu, özellikle mikroservislerin hızlıca ölçeklenmesi (scaling up) gerektiğinde hayati bir avantajdır.</li>
+                </ul>
+
+                <h3>III. Pratik Geçiş: Odaklanılması Gerekenler</h3>
+                <p>Python'dan Golang'a geçişi planlarken, sadece sözdizimini (syntax) öğrenmek yetmez. Zihniyet değişikliğine odaklanılmalıdır:</p>
+                <ul>
+                    <li><strong>Goroutine'leri Düşünmek:</strong> Her bağımsız görev için yeni bir Goroutine başlatmak (önüne sadece <code>go</code> eklemek) çok kolaydır. Ancak asıl zorluk, bunların birbirleriyle nasıl güvenli iletişim kuracağını anlamaktır.</li>
+                    <li><strong>Kanalları Kabul Etmek:</strong> Golang'ın kanalları, Goroutine'ler arasındaki iletişimi senkronize etmenin en güvenli yoludur. Paylaşılan değişkenler (shared memory) ve kilitler yerine, veriyi kanallar üzerinden güvenli bir şekilde göndermeyi öğrenmek kritik öneme sahiptir.</li>
+                    <li><strong>Hata Yönetimi (Error Handling):</strong> Python'ın exception tabanlı modelinden farklı olarak Golang, return değeri tabanlı hatayı zorlar. Bu, daha açık, ancak ilk başta daha fazla kod yazmanızı gerektiren bir disiplindir.</li>
+                </ul>
+
+                <h3>Sonuç: Hız ve Güvenlik Birlikte</h3>
+                <p>Golang'a geçiş, sadece teknik bir tercih değil, iş gereksinimlerine dayalı bir güvenlik kararıydı. Yüksek performans ve düşük gecikme garantisi, Golang'ın güçlü tip sistemi ve derlenmiş doğasıyla birleştiğinde, hem hızlı hem de güvenli sistemler geliştirmemi sağladı.</p>
+                <p>Yüksek performans gerektiren finansal sistemler veya E-ticaret API'leri geliştirmek istiyorsanız, sunduğum <a href="faaliyetlerim.html">Low-Latency API Geliştirme</a> faaliyetleri ile Go'nun gücünü projenize taşıyabiliriz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">175,320 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 175320;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

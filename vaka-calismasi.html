@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Vaka Çalışması: API Güvenliği</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Vaka Çalışması: Kritik API Zafiyetinde Veri Sızıntısının Önlenmesi</h2>
+                
+                <h3>Özet</h3>
+                <p>Yüksek trafikli bir e-ticaret platformunun API katmanında, yetkisiz veri erişimine olanak tanıyan kritik bir "Broken Access Control" zafiyeti tespit edildi. Bu vaka çalışması, zafiyetin nasıl bulunduğunu, potansiyel etkilerini ve Golang ile geliştirilen Test Odaklı (TDD) bir yetkilendirme servisi ile nasıl kalıcı olarak çözüldüğünü detaylandırmaktadır.</p>
+
+                <h3>Problem: Broken Access Control Zafiyeti</h3>
+                <p>Platformun sipariş detaylarını getiren <code>/api/v2/orders/{orderId}</code> endpoint'i, sadece isteği yapan kullanıcının kendi siparişini getirmesi gerekirken, farklı bir kullanıcıya ait <code>orderId</code> ile istek yapıldığında o kullanıcının sipariş bilgilerini de ifşa ediyordu. Bu durum, Kişisel Verilerin Korunması Kanunu (KVKK) açısından ciddi bir ihlal ve veri sızıntısı riski taşıyordu.</p>
+
+                <h3>Çözüm: Golang ile Merkezi Yetkilendirme Servisi</h3>
+                <p>Mevcut mimariyi bozmadan, performansı koruyarak ve güvenliği en üst düzeye çıkararak bir çözüm geliştirildi:</p>
+                <ol>
+                    <li><strong>Test Odaklı Geliştirme (TDD):</strong> İlk olarak, zafiyeti yeniden üreten ve başarısız olan birim testler (unit tests) yazıldı.</li>
+                    <li><strong>Merkezi Middleware:</strong> Golang kullanılarak, gelen her API isteğini yakalayan ve JWT (JSON Web Token) içerisindeki kullanıcı kimliği ile talep edilen kaynağın (örneğin siparişin) sahibini karşılaştıran bir yetkilendirme middleware'i geliştirildi.</li>
+                    <li><strong>Performans:</strong> Servis, minimum gecikme (latency) ile çalışacak şekilde optimize edildi ve mevcut sistemin hızını etkilemedi.</li>
+                    <li><strong>Entegrasyon:</strong> Geliştirilen servis, CI/CD boru hattına entegre edilerek tüm API gateway'in önüne konumlandırıldı.</li>
+                </ol>
+
+                <h3>Sonuç</h3>
+                <p>Uygulanan çözüm sayesinde, platformun hızını ve kullanıcı deneyimini korurken tüm kullanıcı veri erişimi kesin olarak izole edildi. Veri sızıntısı riski tamamen ortadan kaldırıldı ve platformun yasal uyumluluğu sağlandı. Yazılan testler, gelecekte benzer regresyonların oluşmasını proaktif olarak engellemektedir.</p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    </script>
+
+</body>
+</html>

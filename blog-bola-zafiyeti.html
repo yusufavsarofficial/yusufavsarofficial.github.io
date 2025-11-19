@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - API Güvenliğinde BOLA Zafiyeti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>API Güvenliğinde BOLA Zafiyeti: Neden Herkes SQL Injection'ı Unutmalı?</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 02 Ocak 2024 · 7 dakika okuma</p>
+                
+                <h3>Giriş: Güvenlik Tarihinin Tekrarı</h3>
+                <p>Siber güvenlik, sürekli bir evrim alanıdır. 2000'lerin başında SQL Injection (SQLi), uygulama dünyasının bir numaralı kâbusuydu. Bugün ise modern frameworkler, ORM'ler ve otomatik güvenlik araçları sayesinde SQLi'yi büyük ölçüde kontrol altına aldık. Ancak bu başarı bizi rehavete sürükledi.</p>
+                <p>Günümüzde uygulamaların büyük çoğunluğu, mobil, Front-End ve mikroservisler arasında veri alışverişi yapan API’ler üzerine kurulu. Saldırganların odağı da buraya kaydı. Karşımızdaki yeni canavar ise OWASP API Top 10 listesinin zirvesinden inmeyen: <strong>BOLA (Broken Object Level Authorization)</strong>.</p>
+
+                <h3>SQL Injection Neden Geçmişte Kaldı?</h3>
+                <p>SQLi'nin temel mantığı, kullanıcının girdiği verinin, uygulamanın beklediği veri yerine bir komut olarak algılanmasıydı. Çözüm basit ve genelleştirilebilirdi: Giriş Doğrulama (Input Validation) ve Parametreli Sorgular (Prepared Statements) kullanmak. Bu, kod seviyesinde standart bir uygulama haline geldi.</p>
+
+                <h3>BOLA Nedir ve Neden Çok Daha Tehlikeli?</h3>
+                <p>BOLA (Bozuk Nesne Düzeyi Yetkilendirme) zafiyeti, basitçe bir kullanıcının, yetkili olduğu oturumu kullanarak, normalde erişmemesi gereken bir kaynağa (nesneye) ulaşmasıdır.</p>
+                <p>Bu zafiyet, güvenlik mekanizmasının doğru kullanıcıyı doğruladığı (authentication), ancak kullanıcının doğru nesneye erişip erişmediğini (authorization) kontrol etmeyi atladığı durumlarda ortaya çıkar.</p>
+                
+                <h4>Gerçek Dünya Örneği: ID Değiştirmek</h4>
+                <p><strong>Normal İstek (Yusuf'un Hesabı):</strong> <code>GET /api/v1/hesap/12345</code> (Sunucu, 12345 ID'li hesabı döndürür.)</p>
+                <p><strong>Saldırgan İstek (BOLA Denemesi):</strong> <code>GET /api/v1/hesap/12346</code> (Saldırgan oturumu hâlâ geçerli. Eğer sunucu, bu oturumun sadece 12345 ID'li hesaba ait olduğunu kontrol etmezse, 12346 ID'li hesabı da döndürür.)</p>
+                <p>BOLA, SQLi'den çok daha tehlikelidir çünkü:</p>
+                <ul>
+                    <li><strong>Kodda Gizlidir:</strong> Parametreleri manipüle etmek saldırı için yeterlidir, herhangi bir kötü niyetli karakter (' veya --) gerektirmez.</li>
+                    <li><strong>Basit Mantık Hatasıdır:</strong> Saldırganların yetkilerini yükseltmek yerine, yalnızca API adresindeki bir rakamı değiştirmeleri yeterlidir.</li>
+                    <li><strong>Otomatik Tespiti Zordur:</strong> Statik kod analiz araçları (SAST), bu tür mantık hatalarını nadiren yakalar.</li>
+                </ul>
+
+                <h3>Geliştirici Olarak BOLA'yı Nasıl Önleriz?</h3>
+                <p>BOLA'nın çözümü, katı bir "Nesne Sahipliği Kontrolü" uygulamaktan geçer.</p>
+                <div class="activity-item">
+                    <h4>Nesne Sahipliğini Kontrol Et (Owner Check)</h4>
+                    <p>API'ye bir kaynak ID'si geldiğinde, sunucu her zaman kullanıcının oturum ID'si ile istenen nesnenin sahip ID'sini karşılaştırmalıdır. Örn: <code>GET /hesap/{id}</code> isteği geldiğinde, veritabanına sadece <code>SELECT * FROM hesaplar WHERE id = {id} AND sahip_id = {oturum_id}</code> sorgusu gönderilmelidir.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>API Gateway'de Politika Uygulama</h4>
+                    <p>Kubernetes (OPA/Kyverno) veya API Gateway seviyesinde Policy as Code (Kod Olarak Politika) araçlarını kullanarak, ID'lerin manipülasyona açık olup olmadığını denetleyen kurallar oluşturun.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Global Yetkilendirme Fonksiyonları</h4>
+                    <p>Her iş mantığına girmeden önce çalışacak, merkezi ve zorunlu bir Yetkilendirme Middleware'i yazın. Tek bir yerde hata yapmak yerine, yetkilendirme logic'ini tek bir güvenilir fonksiyona emanet edin.</p>
+                </div>
+
+                <h3>Sonuç: Zihniyetimizi Güncelleyelim</h3>
+                <p>SQLi'ye karşı aldığımız ders, bize güvenlik mekanizmalarının sürekli gelişmesi gerektiğini gösterdi. Artık API'lerimizin her bir endpoint'ini (uç noktasını) potansiyel bir BOLA zafiyeti adayı olarak görmeliyiz.</p>
+                <p>API'lerinizde Güvenlik ve Performans arasında denge kurmak için daha derinlemesine analizlere ihtiyacınız varsa, sunduğum <a href="faaliyetlerim.html">Proaktif Siber Savunma Faaliyetleri</a> ile sistemlerinizi saldırganın gözünden denetleyebiliriz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">142,841 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 142841;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

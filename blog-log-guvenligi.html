@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Güvenlikte En Çok İhmal Edilen Şey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Bir Geliştiricinin Gözünden: Güvenlikte En Çok İhmal Edilen Şey Loglarınızı Kim Okuyor?</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 28 Mart 2024 · 6 dakika okuma</p>
+                
+                <h3>Giriş: Başarısızlığın Sessiz Tanıkları</h3>
+                <p>Bir sistemin güvenliği, sadece harika bir Güvenlik Duvarı (WAF) veya kusursuz bir Kubernetes politikası ile sağlanmaz. Gerçek güvenlik, bir saldırı veya zafiyet başarılı olduğunda ne kadar hızlı tepki verebildiğinizle ölçülür. İşte bu noktada, uygulamanızın sessiz ama hayati önem taşıyan kayıtları devreye girer: <strong>Loglar</strong>.</p>
+                <p>Ne yazık ki, çoğu kurumda loglar sadece bir "debugging" (hata ayıklama) aracı olarak görülür. Binlerce satırlık, okunaksız metin yığınları halinde bir S3 klasöründe veya sunucunun kuytu köşesinde birikir. Bir siber güvenlik lideri olarak size şunu söyleyebilirim: Kullanılmayan, okunmayan loglar, güvenlik zafiyetinin ta kendisidir.</p>
+
+                <h3>I. Geliştirici Penceresi: Loglama Neden İhmal Edilir?</h3>
+                <p>Geliştiriciler olarak loglamayı ihmal etmemizin ana nedenleri genellikle zaman kısıtlamaları ve loglamayı ikinci planda görmemizdir.</p>
+                <ul>
+                    <li><strong>Baskı:</strong> Hata ayıklama dışındaki loglama tipleri (örneğin, yetkilendirme logları) genellikle "vakit kaybı" olarak görülür.</li>
+                    <li><strong>Format:</strong> Logları düz metin ("Hata: Kullanıcı X bağlantı kuramadı.") olarak yazmak kolaydır, ancak bu, güvenlik araçları için kullanışsızdır.</li>
+                </ul>
+                <p>Oysa loglar, bir geliştiricinin ürüne bıraktığı son savunma izleridir. Başarılı bir DevSecOps kültüründe, kod yazarken logları da güvenlik ve denetim amacıyla tasarlamak esastır.</p>
+
+                <h3>II. Güvenlik Penceresi: Loglarda Ne Aramalıyız?</h3>
+                <p>Siber güvenlik perspektifinden, loglar adli (forensic) kanıttır. Güvenlik analistleri, sadece sistem çöktüğünde değil, saldırı devam ederken de logları okumalıdır. Her kritik uygulama, şu logları açıkça ve yapısal olarak kaydetmelidir:</p>
+                <ul>
+                    <li><strong>Kimlik ve Yetkilendirme Başarısızlıkları:</strong> Başarısız oturum açma denemeleri, yetki yükseltme denemeleri. (Sözlük saldırılarını veya yetki ihlallerini tespit etmek için.)</li>
+                    <li><strong>API ve Kaynak Erişimi:</strong> Hassas API uç noktalarına yapılan tüm başarılı ve başarısız istekler. (BOLA veya mantık zafiyetlerinin izini sürmek için.)</li>
+                    <li><strong>Veri Değişiklikleri:</strong> Veritabanında kritik veri üzerinde (Örn: Parola sıfırlama, rol değiştirme) yapılan tüm işlemler.</li>
+                    <li><strong>Sistem Konfigürasyonu:</strong> Güvenlik politikalarında yapılan değişiklikler (Örn: Bir firewall kuralının açılması).</li>
+                </ul>
+
+                <h3>III. İhmalin Maliyeti ve Pratik Çözüm</h3>
+                <p>Gartner'a göre, bir siber saldırıyı tespit etme süresi (Mean Time To Detect - MTTD) ne kadar uzarsa, ortalama maliyet katlanarak artar. Kötü loglar, bu süreyi uzatan en büyük faktördür. Bu sorunu DevSecOps yaklaşımıyla nasıl çözeriz?</p>
+                <div class="activity-item">
+                    <h4>Yapısal Loglama Standardı</h4>
+                    <p>Düz metin yerine, logları JSON gibi yapısal bir formatta yazmayı zorunlu kılın. Bu, analitik araçların (SIEM, Splunk) veriyi kolayca ayrıştırmasını sağlar.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Merkezi Gözetim Platformu</h4>
+                    <p>Logları tek bir yerde toplayın. ELK Stack (Elasticsearch, Logstash, Kibana) veya Splunk gibi merkezi platformlar kullanarak tüm sistemlerin loglarını toplayın ve bu platformlar üzerinde gerçek zamanlı korelasyon kuralları yazın.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Policy as Code ile Log Zorunluluğu</h4>
+                    <p>(SentinelPipe yaklaşımı.) Kubernetes politikalarınızla, loglamayı standartlara uygun yapmayan yeni bir mikroservisin dağıtımını engelleyin. Loglama, artık isteğe bağlı değil, dağıtım politikası olmalıdır.</p>
+                </div>
+
+                <h3>Sonuç: Loglarınızı Savunmaya Dönüştürün</h3>
+                <p>Loglar, sadece bir geliştirme aracı değil, aynı zamanda siber güvenlik ekibinin elindeki en güçlü savunma ve adli analiz aracıdır. Bu hibrit bakış açısını benimsemek, MTTD sürenizi düşürür ve sisteminizi proaktif bir kaleye dönüştürür.</p>
+                <p>Loglama altyapınızı kurumsal güvenlik standartlarına yükseltmek, kurallarını yazmak ve DevSecOps boru hattına entegre etmek için <a href="faaliyetlerim.html">Bulut ve DevSecOps Faaliyetleri</a> alanımda benimle iletişime geçebilirsiniz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">89,530 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 89530;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

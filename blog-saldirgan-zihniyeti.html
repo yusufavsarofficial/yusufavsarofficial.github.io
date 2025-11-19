@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Saldırgan Zihniyetine Sahip Olmak</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                <h2>Saldırgan Zihniyetine Sahip Olmak: Yeni Nesil Geliştiricilerin Tek İhtiyacı Olan Yetenek</h2>
+                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 10 Mayıs 2024 · 7 dakika okuma</p>
+                
+                <h3>Giriş: Pazardaki Asıl Fark</h3>
+                <p>Yazılım dünyası, her gün binlerce yeni kütüphane ve programlama dili öğrenmeye çalışan geliştiricilerle dolu. Ancak bir siber güvenlik lideri olarak size şunu söyleyebilirim: Bir geliştiricinin değerini, bildiği kütüphane sayısı değil, kodunu hangi zihniyetle yazdığı belirler.</p>
+                <p>En iyi mimarlar ve geliştiriciler, kodun ne yapacağını değil, <strong>kodun ne yapmaması gerektiğini</strong> anlayanlardır. Bu kavrayışa ise sadece tek bir yolla ulaşılır: <strong>Saldırgan Zihniyeti (Attacker Mindset)</strong>.</p>
+                <p>Peki, bu zihniyet nedir ve neden Python/Golang bilmekten daha kritik bir yetenektir?</p>
+
+                <h3>I. Saldırgan Zihniyeti Nedir?</h3>
+                <p>Saldırgan zihniyeti, kötü niyetli olmak demek değildir. Bu, bir geliştiricinin, kendi yazdığı koda karşı sürekli bir şüphe ve merak beslemesidir. Bu zihniyet, şu temel soruyu sormayı zorunlu kılar:</p>
+                <blockquote style="border-left: 4px solid var(--secondary-color); padding-left: 1rem; margin-left: 1rem; font-style: italic;">
+                    “Kullanıcının veriyi beklediğim gibi girmediği, tam tersini yaptığı ya da kasten sistemi zorladığı durumda kodum ne yapacak?”
+                </blockquote>
+                <p>Bu zihniyet, uygulamanın normal akışını takip etmez; istisnai durumları, sınırları ve iş mantığı açıklarını (BOLA gibi) arar.</p>
+
+                <h3>II. Neden Bu Zihniyet, En Yeni Teknolojiden Daha Kritik?</h3>
+                <p>Daha önce konuştuğumuz gibi, günümüzün en kritik zafiyetleri (BOLA, Logic Flaws, Insecure Direct Object Reference) otomasyon araçları tarafından tespit edilemez.</p>
+                <ul>
+                    <li><strong>Araçların Kör Noktası:</strong> SAST/DAST araçları, kusursuz kodlama yapısını denetler, ancak iş mantığının bütünlüğünü anlayamaz. Örneğin, bir kullanıcının sepetindeki ürün sayısını eksiye düşürmeye çalışmak, bir araç için mantıklı bir güvenlik açığı değildir; bu, yalnızca bir insan zihnine ait bir mantık denemesidir.</li>
+                    <li><strong>Dayanıklı Kodlama:</strong> Saldırgan zihniyetiyle kod yazmak, TDD (Test Odaklı Geliştirme) sürecine yeni bir katman ekler: Güvenlik Odaklı Testler. Bu, kodun sadece çalıştığını değil, aynı zamanda kırılamadığını da garanti eden bir kalite mührüdür.</li>
+                </ul>
+
+                <h3>III. Uygulamada Bu Zihniyet Nasıl Kazanılır?</h3>
+                <p>Bu bir felsefe olsa da, geliştiricilerin bu zihniyeti kazanması için pratik yollar mevcuttur:</p>
+                <div class="activity-item">
+                    <h4>Zorunlu Negatif Test</h4>
+                    <p>TDD yaparken, sadece başarılı senaryoları değil, kullanıcının en kötü niyetle yapabileceği senaryoları da test senaryolarına ekleyin. (Örn: Parola sıfırlama talebini 1000 kez göndermek.)</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Güvenlik CTF'lerine Katılım</h4>
+                    <p>Ekibinizi, Capture The Flag (CTF) yarışmalarına veya Bug Bounty programlarına katılmaya teşvik edin. Bu, "kırma" eylemini güvenli ve eğitici bir oyun ortamına taşır.</p>
+                </div>
+                <div class="activity-item">
+                    <h4>Kendi Kendini Denetleme (Code Review)</h4>
+                    <p>Kod incelemeleri sırasında sadece clean code prensiplerine değil, aynı zamanda "Bu API'yi bir saldırgan kullanmaya çalışsa, ne yapabilir?" sorusuna odaklanın.</p>
+                </div>
+
+                <h3>Sonuç: En Güçlü Savunma, Saldırıyı Bilmektir</h3>
+                <p>Bir siber güvenlik lideri olarak edindiğim tecrübe, yazılım mimarisini savunmanın en iyi yolunun, onu en başta saldırgan bir gözle inşa etmek olduğunu kanıtladı. Saldırgan zihniyetine sahip geliştiriciler, sadece kod yazmaz; geleceğin zafiyetlerini önceden tahmin eden mimarlar olurlar.</p>
+                <p>Ekibinizin bu hayati zihniyeti kazanmasını sağlamak ve onları kodlama becerileriyle güvenlik liderliğini birleştiren Hibrit Geliştiricilere dönüştürmek isterseniz, sunduğum <a href="faaliyetlerim.html">Takım Mentörlüğü ve Teknik Kültür Değişimi</a> faaliyetleri hakkında konuşabiliriz.</p>
+
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">181,200 beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Beğeni Butonu Fonksiyonu
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
+
+        let initialLikes = 181200;
+        let liked = localStorage.getItem(pageId + '_liked') === 'true';
+
+        if (liked) {
+            likeBtn.classList.add('liked');
+            likeBtn.textContent = 'Beğenildi';
+            initialLikes++;
+        }
+        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            localStorage.setItem(pageId + '_liked', liked);
+            initialLikes += liked ? 1 : -1;
+            likeBtn.classList.toggle('liked');
+            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
+            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
+        });
+    </script>
+
+</body>
+</html>

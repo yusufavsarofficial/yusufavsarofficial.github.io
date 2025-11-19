@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Avşar - Hassas Veri Yönetiminde Kriptografik İlkeler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="hakkimda.html">Hakkımda</a></li>
+                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
+                <li><a href="urunlerim.html">Ürünlerim</a></li>
+                <li><a href="projelerim.html">Projelerim</a></li>
+                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="makaleler.html">Makaleler</a></li>
+                <li><a href="sss.html">SSS</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-content">
+            <div class="container about-manifesto" style="max-width: 900px;">
+                <h2 style="text-align: center; font-size: 2.2rem;">Hassas Veri Yönetiminde Kriptografik İlkeler ve Uygulamalar</h2>
+                <p style="text-align: center; font-size: 1.2rem; opacity: 0.8; margin-top: -1rem;">KVKK/GDPR Uyumu için Teknik Bir Analiz</p>
+                
+                <blockquote style="border-left: 4px solid var(--secondary-color); padding-left: 1rem; margin: 2rem 0; font-style: italic;">
+                    <strong>ÖZET (ABSTRACT):</strong> Bu makale, modern dağıtık sistemlerdeki Hassas Veri (PII) yönetiminin güvenlik ve uyum zorunluluklarını (KVKK, GDPR) ele almaktadır. Odak noktası, verinin yaşam döngüsü boyunca korunmasını sağlayan ileri düzey kriptografik ilkeler ve bunların mimari uygulamalarıdır. Makalede, AES-256 GCM gibi endüstriyel şifreleme algoritmalarının seçimi, Anahtar Yönetim Hizmetlerinin (KMS) zorunluluğu ve Zarf Şifreleme (Envelope Encryption) modeli detaylıca analiz edilmiş, ayrıca Tokenizasyon ve Anonimleştirme gibi veri gizleme teknikleri ele alınmıştır.
+                </blockquote>
+
+                <div class="manifesto-section">
+                    <h3>I. GİRİŞ: VERİ ODAKLI GÜVENLİK (DATA-CENTRIC SECURITY)</h3>
+                    <p>Veri, bir kurumun en değerli ve en çok hedeflenen varlığıdır. KVKK ve GDPR gibi regülasyonlar, verinin sadece erişimini değil, aynı zamanda depolanmasını, işlenmesini ve yaşam döngüsü boyunca korunmasını zorunlu kılmaktadır. Kriptografi, bu korumanın temel taşıdır.</p>
+                    <h4>1.1. Hassas Veri Kategorizasyonu ve Risk Analizi</h4>
+                    <p>Hassas veriler, risk ve uyum düzeyine göre kategorize edilmelidir: PII (Kişisel Kimlik Bilgileri), Finansal Veriler ve Özel Nitelikli Kişisel Veriler. Güvenlik mimarisinin amacı, bu veriler için yetkisiz erişim durumunda dahi kullanılamazlık sağlamaktır.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>II. KRİPTOGRAFİK İLKELER VE ALGORİTMA SEÇİMİ</h3>
+                    <h4>2.1. Şifreleme Standartları ve Simetrik Seçim</h4>
+                    <p>Yüksek hacimli veri depolama için en yaygın yöntem Simetrik Şifrelemedir. Endüstri standardı olan AES (Advanced Encryption Standard) ve özellikle AES'in GCM (Galois/Counter Mode) modu kullanılmalıdır. GCM, sadece gizlilik değil, aynı zamanda şifrelenmiş verinin bütünlüğünü ve kimliğini de garantiler.</p>
+                    <h4>2.2. Kriptografik Anahtar Yönetimi (KMS) Zorunluluğu</h4>
+                    <p>Kriptografinin güvenliği, anahtarların gizliliğine bağlıdır. Ana Anahtarlar (Master Key) $ K_{master}$ mutlaka KMS (AWS KMS, Azure Key Vault) veya FIPS 140-2 Seviye 3 sertifikalı HSM (Hardware Security Module) içinde yönetilmelidir.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>III. KRİTİK UYGULAMA MİMARİSİ: ZARF ŞİFRELEME (ENVELOPE ENCRYPTION)</h3>
+                    <p>Veri güvenliğini performansla dengelemek için Zarf Şifreleme modeli kullanılır. Bu modelde, her veri bloğu için rastgele bir Veri Şifreleme Anahtarı ($K_{data}$) oluşturulur. Veri, bu anahtarla şifrelenir. Ardından, $K_{data}$'nın kendisi, KMS'te saklanan Ana Anahtar ($K_{master}$) ile şifrelenir. Depolama birimine şifrelenmiş veri ile birlikte şifrelenmiş $K_{data}$ kaydedilir. Bu, uygulamanın Ana Anahtar'a doğrudan erişmesini engeller.</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>IV. VERİ GİZLEME VE UYUM TEKNİKLERİ</h3>
+                    <p>Geliştirme ve test ortamlarında veri maskeleme zorunludur.</p>
+                    <h4>4.1. Anonimleştirme ve Sözde Anonimleştirme (Pseudonymization)</h4>
+                    <p>Sözde Anonimleştirme, KVKK ve GDPR'da güçlü bir uyum aracıdır. PII, kolayca geri döndürülemeyen bir takma ad/değer (token) ile değiştirilir. Tokenizasyon ise özellikle PCI DSS uyumunda kullanılır.</p>
+                    <h4>4.2. Anahtar Rotasyonu ve İptali (Key Rotation and Revocation)</h4>
+                    <p>Anahtarların sonsuza dek kullanılması, ihlal riskini artırır. Tüm anahtarlar, güvenlik politikalarına uygun olarak düzenli olarak değiştirilmeli (rotasyon) ve bir ihlal durumunda derhal iptal edilmelidir (revocation).</p>
+                </div>
+
+                <div class="manifesto-section">
+                    <h3>V. ANALİZ VE HUKUKİ UYUM (COMPLIANCE)</h3>
+                    <h4>5.1. Uyum Risk Skoru Düşüşü</h4>
+                    <p>Kapsamlı kriptografik kontrolün uygulanması, regülasyonlar (KVKK, GDPR) karşısındaki idari ve teknik risk skorunu $R_{uyum}$ düşürür. Bir ihlal durumunda dahi, verinin şifrelenmiş olması, regülatörler nezdinde cezai yaptırımın hafiflemesine neden olabilecek bir mitigasyon faktörüdür. [4]</p>
+                    <h4>5.2. Performans Etkisi ve Optimizasyon</h4>
+                    <p>AES-256 GCM şifreleme, modern CPU'ların donanım hızlandırması (AES-NI) sayesinde oldukça hızlıdır. Zarf Şifreleme modeliyle, tek yavaş nokta olan KMS çağrısı (τ<sub>KMS</sub>) sadece periyodik olarak gerçekleşir, bu da toplam sistem gecikmesine etkisini minimalize eder.</p>
+                </div>
+
+                <div class="manifesto-section" style="border-bottom: none;">
+                    <h3>SONUÇ VE TAVSİYELER</h3>
+                    <p>Hassas veri yönetimi, salt bir teknik görev değil, kurumun hukuki ve finansal sürekliliğinin güvencesidir. KMS kullanımı, Zarf Şifreleme ve düzenli Anahtar Rotasyonu, modern, uyumlu bir mimarinin temel direkleridir.</p>
+                </div>
+
+                <div class="manifesto-section" style="border-bottom: none; padding-bottom: 0;">
+                    <h3>KAYNAKÇALAR (REFERENCES)</h3>
+                    <ol style="text-align: left; line-height: 1.8;">
+                        <li>NIST Special Publication 800-57 Part 1 Rev. 5. (2020). Recommendation for Key Management.</li>
+                        <li>PCI Security Standards Council. (v3.2.1). Data Security Standard (DSS).</li>
+                        <li>ISO/IEC 27001. (2022). Information security management systems.</li>
+                        <li>GDPR (General Data Protection Regulation). (Article 32 & Recital 83).</li>
+                        <li>ACSC (Australian Cyber Security Centre). Data Encryption and Cryptography Best Practices.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    </script>
+
+</body>
+</html>

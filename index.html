@@ -126,26 +126,6 @@
         </div>
     </div>
 
-    <!-- AI Asistan -->
-    <button class="ai-assistant-btn" id="aiAssistantBtn">🤖</button>
-    <div class="ai-chat-window" id="aiChatWindow">
-        <div class="ai-chat-header">AVSARTECH</div>
-        <div class="ai-chat-body" id="aiChatBody">
-            <div class="ai-chat-message assistant">Merhaba! Ben AVSARTECH, Yusuf Avşar'ın dijital asistanıyım. Siber güvenlik, DevSecOps veya yüksek performanslı API mimarileri hakkında bir sorun mu var? 'Faaliyetler' veya 'projeler' yazarak başlayabilirsin.</div>
-        </div>
-        <div class="ai-suggestions" id="aiSuggestions">
-            <span class="ai-suggestion-chip" data-question="Faaliyetlerin neler?">Faaliyetlerin neler?</span>
-            <span class="ai-suggestion-chip" data-question="Hangi teknolojileri kullanıyorsun?">Teknolojilerin</span>
-            <span class="ai-suggestion-chip" data-question="SentinelPipe nedir?">SentinelPipe nedir?</span>
-            <span class="ai-suggestion-chip" data-question="İletişim kurmak istiyorum">İletişim</span>
-        </div>
-        <div class="ai-chat-input-area">
-            <input type="text" id="aiChatInput" placeholder="Bir soru sorun...">
-            <button class="hero-btn" id="aiChatSendBtn" style="border-radius: 5px; padding: 0.8rem 1rem;">Gönder</button>
-        </div>
-    </div>
-    <!-- AI Asistan Sonu -->
-
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
@@ -192,85 +172,7 @@
                 return false;
             }
         });
-
-       const knowledgeBase = {
-            // Genel
-            'hakkında': 'Yusuf Avşar, kodlama ve siber güvenliği birleştiren bir <strong>Hibrit Lider</strong> ve <strong>Güvenlik Odaklı Geliştirme Mimarıdır</strong>. Felsefesi, sistemleri sadece inşa etmek değil, aynı zamanda bir saldırganın zihniyetiyle analiz ederek proaktif olarak savunmaktır. Detaylı manifestosunu <a href="hakkimda.html" target="_blank">Hakkımda</a> sayfasında okuyabilirsiniz.',
-            'faaliyet': 'Faaliyetleri 4 ana başlıkta toplanır: <br>1) <strong>Proaktif Siber Savunma</strong> (API Sızma Testi, Tehdit Modellemesi) <br>2) <strong>Kritik Back-End Mimarisi</strong> (Go ile Low-Latency API) <br>3) <strong>Otomatikleştirilmiş DevSecOps</strong> (SentinelPipe ile CI/CD) <br>4) <strong>Kurumsal Liderlik</strong>. <br>Tüm faaliyetlerin listesi için <a href="faaliyetlerim.html" target="_blank">Faaliyetlerim</a> sayfasına göz atın.',
-            'ürün': 'Başlıca tescilli ürünleri arasında, CI/CD güvenliğini otomatikleştiren <strong>SentinelPipe</strong>, API atak simülatörü olan <strong>RedTeam Fuzzer</strong> ve KVKK/GDPR uyumu için geliştirilen <strong>DataMask</strong> bulunmaktadır. Tam listeyi <a href="urunlerim.html" target="_blank">Ürünlerim</a> sayfasında bulabilirsiniz.',
-            'sentinelpipe': '<strong>SentinelPipe</strong>, kodun üretim ortamına ulaşmadan önce dört temel güvenlik kapısından (SAST, SCA, Policy as Code, Container Hardening) otomatik olarak geçmesini sağlayan, tescilli, uçtan uca bir DevSecOps metodolojisidir. Amacı, güvenlik borcunu (security debt) oluşmadan engellemektir.',
-            'proje': 'Uygulamalı çalışmaları arasında, Python ile geliştirdiği <strong>Otomatik Zafiyet Keşif Motoru</strong>, Golang ile inşa ettiği <strong>Kriptografik Anahtar Yönetim Sistemi (KMS)</strong> ve Terraform ile kodladığı <strong>Güvenli AWS Altyapısı Şablonu</strong> gibi projeler yer alıyor. <a href="projelerim.html" target="_blank">Projelerim</a> sayfasından daha fazlasını görebilirsiniz.',
-            'teknoloji': 'Başlıca uzmanlıkları: <br>• <strong>Programlama:</strong> Golang (uzman), Python (uzman), Node.js <br>• <strong>Bulut & DevSecOps:</strong> AWS, Kubernetes, Terraform, Ansible, CI/CD <br>• <strong>Siber Güvenlik:</strong> Sızma Testi, Exploit Geliştirme, Tehdit Modelleme, SIEM/SOAR. <br>Tam listeyi <a href="uzmanligim.html" target="_blank">Uzmanlığım</a> sayfasında bulabilirsiniz.',
-            'sertifika': 'OSEE, GXPN, GSE ve CISSP-ISSAP gibi sektördeki en nadir ve ileri düzey siber güvenlik sertifikalarına sahiptir. Bu sertifikalar, exploit geliştirme, Red Team operasyonları ve güvenlik mimarisi tasarımı gibi konularda derin uzmanlığı belgeler. Detaylar <a href="uzmanligim.html" target="_blank">Uzmanlığım</a> sayfasında.',
-            'iletişim': 'Yusuf Avşar ile bir proje, danışmanlık veya işbirliği hakkında görüşmek için <a href="iletisim.html" target="_blank">İletişim</a> sayfasındaki formu doldurarak doğrudan bağlantı kurabilirsiniz.',
-            'teklif': 'Bir proje veya danışmanlık teklifi için lütfen <a href="iletisim.html" target="_blank">İletişim</a> sayfasını kullanın. Projenizin kapsamını ve hedeflerinizi belirterek daha hızlı geri dönüş alabilirsiniz.',
-            'fiyat': 'Danışmanlık ve proje ücretleri, projenin kapsamına, süresine ve karmaşıklığına göre belirlenir. Net bir fiyat teklifi almak için lütfen <a href="iletisim.html" target="_blank">İletişim</a> sayfasından projenizin detaylarıyla birlikte ulaşın.',
-            'teşekkür': 'Yardımcı olabildiğime sevindim! Başka bir sorun varsa çekinme.',
-            // Blog Yazıları
-            'bola': 'BOLA (Bozuk Nesne Düzeyi Yetkilendirme), bir kullanıcının yetkisi olmayan bir nesneye (örneğin başka bir kullanıcının profiline) erişebilmesi zafiyetidir. OWASP API Top 10 listesinin zirvesindedir. Detaylı bilgi için <a href="blog-bola-zafiyeti.html" target="_blank">"API Güvenliğinde BOLA Zafiyeti"</a> başlıklı blog yazısını okuyabilirsiniz.',
-            'sızma testi': 'Bir sızma testi ekibini yönetmek, sadece teknik komutlar vermek değil; doğru zihniyeti aşılamak, süreçleri netleştirmek ve teknik bulguları kurumsal eyleme dönüştürmektir. Bu konuda daha fazla bilgi için <a href="blog-pentest-yonetimi.html" target="_blank">"Sızma Testi Ekibi Nasıl Yönetilir?"</a> yazısına bakabilirsiniz.',
-            'log': 'Loglar, sadece bir geliştirme aracı değil, aynı zamanda siber güvenlik ekibinin elindeki en güçlü savunma ve adli analiz aracıdır. Yapısal loglama ve merkezi gözetim, saldırıyı tespit etme süresini (MTTD) düşürür. Detaylar için <a href="blog-log-guvenligi.html" target="_blank">"Güvenlikte En Çok İhmal Edilen Şey"</a> yazısını okuyun.',
-            'saldırgan zihniyeti': 'Saldırgan zihniyeti, bir geliştiricinin kendi yazdığı koda karşı sürekli şüphe ve merak beslemesidir. Bu, "kodum kötüye kullanılırsa ne olur?" sorusunu sormaktır ve modern güvenlik açıklarını (BOLA, Logic Flaws) önlemenin en etkili yoludur. <a href="blog-saldirgan-zihniyeti.html" target="_blank">İlgili blog yazısını</a> okuyabilirsiniz.',
-            'ci/cd': 'Güvenli bir CI/CD boru hattı, kodu üretime göndermeden önce SAST, SCA, Konteyner Taraması ve Policy as Code gibi otomatik kontrollerden geçirmelidir. Bu, güvenlik onaylarını bekleme zorunluluğunu ortadan kaldırır ve hızı artırır. <a href="blog-ci-cd-kontrol-listesi.html" target="_blank">"Güvenli CI/CD Kontrol Listesi"</a> yazısında detayları bulabilirsiniz.',
-            'kubernetes': 'Kubernetes güvenliğinde Policy as Code (PaC) uygularken yapılan en büyük hatalar; denetim modunda takılı kalmak, çok geniş kapsamlı politikalar yazmak ve politika kodunu versiyonlamamaktır. Bu hatalardan kaçınmak için <a href="blog-kubernetes-guvenligi.html" target="_blank">ilgili yazıyı</a> okuyabilirsiniz.',
-            'golang': 'Golang, yerleşik Goroutine ve kanal (channel) yapıları sayesinde Python\'a göre çok daha üstün bir eşzamanlılık (concurrency) performansı sunar. Bu, onu düşük gecikmeli (low-latency) ve yüksek hacimli API\'ler için ideal kılar. Geçişin detayları için <a href="blog-golang-vs-python.html" target="_blank">"GoLang vs Python"</a> yazısına göz atın.',
-            'tdd': 'Test-Driven Development (TDD), sadece kod kalitesini artırmaz, aynı zamanda proaktif bir güvenlik aracıdır. Sınır koşullarını zorlayarak ve yeniden düzenleme (refactoring) güvenliği sağlayarak zafiyetleri daha oluşmadan engeller. <a href="blog-tdd-guvenlik.html" target="_blank">"TDD\'nin Gizli Güvenlik Avantajları"</a> yazısında daha fazlasını bulabilirsiniz.',
-            'aws': 'Yüksek AWS faturaları genellikle yanlış yapılandırma ve gereksiz yetkilendirme gibi güvenlik açıklarıyla doğrudan ilişkilidir. En uygun maliyetli yapılandırma, genellikle en güvenli olandır. Bu konuda daha fazla bilgi için <a href="blog-aws-maliyet.html" target="_blank">"AWS Faturaları Neden Yüksek Gelir?"</a> yazısını okuyun.',
-            'başarısızlık': 'Bir projenin başarısız olacağını gösteren işaretler arasında gözetim eksikliği, durum yönetimi kaosu ve güvenliğin "son iş" olarak görülmesi gibi mimari ve kültürel sorunlar vardır. Bu tehlike sinyallerini <a href="blog-proje-basarisizligi.html" target="_blank">bu yazıda</a> öğrenebilirsiniz.',
-        };
-
-        function getResponse(userInput) {
-            const lowerCaseInput = userInput.toLowerCase();
-            for (const keyword in knowledgeBase) {
-                if (lowerCaseInput.includes(keyword)) {
-                    return knowledgeBase[keyword];
-                }
-            }
-            return 'Üzgünüm, bu soruya şu an yanıt veremiyorum. Lütfen farklı bir şekilde sormayı deneyin veya detaylı bilgi için <a href="iletisim.html" target="_blank">iletişime geçin</a>.';
-        }
-
-        function addMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('ai-chat-message', sender);
-            messageDiv.innerHTML = text; // innerHTML kullanarak linkleri aktif hale getiriyoruz
-            aiChatBody.appendChild(messageDiv);
-            aiChatBody.scrollTop = aiChatBody.scrollHeight;
-        }
-
-        function handleSend() {
-            const userInput = aiChatInput.value.trim();
-            if (userInput === '') return;
-
-            addMessage(userInput, 'user');
-            aiChatInput.value = '';
-            aiSuggestions.style.display = 'none';
-
-            setTimeout(() => {
-                const response = getResponse(userInput);
-                addMessage(response, 'assistant');
-            }, 500); // Yapay bir gecikme
-        }
-
-        aiChatSendBtn.addEventListener('click', handleSend);
-        aiChatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleSend();
-            }
-        });
-
-        aiChatInput.addEventListener('focus', () => {
-            aiSuggestions.style.display = 'block';
-        });
-
-        document.querySelectorAll('.ai-suggestion-chip').forEach(chip => {
-            chip.addEventListener('click', () => {
-                const question = chip.getAttribute('data-question');
-                aiChatInput.value = question;
-                handleSend();
-            });
-        });
     </script>
 
 </body>
-
 </html>

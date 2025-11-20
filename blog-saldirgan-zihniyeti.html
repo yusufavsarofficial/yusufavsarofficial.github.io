@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - Saldırgan Zihniyetine Sahip Olmak</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog-components.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
@@ -24,11 +25,11 @@
                 <li><a href="sss.html">SSS</a></li>
                 <li><a href="iletisim.html">İletişim</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -93,35 +94,7 @@
         </div>
     </footer>
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-
-        // Beğeni Butonu Fonksiyonu
-        const likeBtn = document.getElementById('likeBtn');
-        const likeCountSpan = document.getElementById('likeCount');
-        const pageId = window.location.pathname; // Her sayfa için benzersiz bir ID
-
-        let initialLikes = 181200;
-        let liked = localStorage.getItem(pageId + '_liked') === 'true';
-
-        if (liked) {
-            likeBtn.classList.add('liked');
-            likeBtn.textContent = 'Beğenildi';
-            initialLikes++;
-        }
-        likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
-
-        likeBtn.addEventListener('click', () => {
-            liked = !liked;
-            localStorage.setItem(pageId + '_liked', liked);
-            initialLikes += liked ? 1 : -1;
-            likeBtn.classList.toggle('liked');
-            likeBtn.textContent = liked ? 'Beğenildi' : 'Beğen';
-            likeCountSpan.textContent = initialLikes.toLocaleString('tr-TR') + ' beğeni';
-        });
-    </script>
+    <script src="main.js" defer></script>
 
 </body>
 </html>

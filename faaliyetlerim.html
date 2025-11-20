@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - Faaliyetlerim</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog-components.css">
 </head>
 <body>
 
@@ -22,11 +23,11 @@
                 <li><a href="sss.html">SSS</a></li>
                 <li><a href="iletisim.html">İletişim</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </header>
 
@@ -136,13 +137,7 @@
         </div>
     </footer>
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
+    <script src="main.js" defer></script>
 
 </body>
 </html>

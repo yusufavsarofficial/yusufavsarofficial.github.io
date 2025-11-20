@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - Projelerim</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog-components.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
@@ -242,43 +243,7 @@
         </div>
     </footer>
 
-    <script>
-        // Hamburger Menu
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Proje Filtreleme
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelector('.filter-btn.active').classList.remove('active');
-                button.classList.add('active');
-                const filter = button.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                });
-            });
-        });
-
-        // Proje linklerine tıklandığında sayfa yenilenmesini engelle
-        const projectLinks = document.querySelectorAll('.project-card a');
-        projectLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                alert('Proje detay sayfası henüz hazır değil. Yakında eklenecektir.');
-            });
-        });
-    </script>
+    <script src="main.js" defer></script>
 
 </body>
 </html>

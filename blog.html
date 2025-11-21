@@ -6,40 +6,33 @@
     <title>Yusuf Avşar - Blog</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blog-components.css">
+    <!-- Font Awesome İkon Kütüphanesi -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <header>
-        <div class="navbar">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="hakkimda.html">Hakkımda</a></li>
-                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-                <li><a href="urunlerim.html">Ürünlerim</a></li>
-                <li><a href="projelerim.html">Projelerim</a></li>
-                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="makaleler.html">Makaleler</a></li>
-                <li><a href="sss.html">SSS</a></li>
-                <li><a href="iletisim.html">İletişim</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+    <!-- Header buraya dinamik olarak yüklenecek -->
+    <div id="header-placeholder"></div>
 
     <main>
         <section class="page-content">
             <div class="container">
                 <h2>Blog: Sektörden Gözlemler ve Analizler</h2>
+
+                <!-- Filtre Butonları -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Tümü</button>
+                    <button class="filter-btn" data-filter="guvenlik">Siber Güvenlik</button>
+                    <button class="filter-btn" data-filter="gelistirme">Yazılım Geliştirme</button>
+                    <button class="filter-btn" data-filter="devsecops">DevSecOps & Bulut</button>
+                    <button class="filter-btn" data-filter="yonetim">Yönetim & Liderlik</button>
+                </div>
+
                 <div class="post-list">
                     <!-- Yazı 1 -->
-                    <a href="blog-proje-basarisizligi.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-proje-basarisizligi.html" class="post-card" data-category="yonetim" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Bir Projenin Başarısız Olacağı Nasıl Anlaşılır? (Mimari ve Güvenlik İşaretleri)</h3>
                             <span class="post-card-meta">25 Mart 2025 · 8 dakika okuma</span>
@@ -47,7 +40,7 @@
                         </div>
                     </a>
                     <!-- Yazı 2 -->
-                    <a href="blog-aws-maliyet.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-aws-maliyet.html" class="post-card" data-category="devsecops" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>AWS Faturaları Neden Yüksek Gelir? Serverless Güvenliği ve Maliyet Optimizasyonu</h3>
                             <span class="post-card-meta">11 Ocak 2025 · 7 dakika okuma</span>
@@ -55,7 +48,7 @@
                         </div>
                     </a>
                     <!-- Yazı 3 -->
-                    <a href="blog-tdd-guvenlik.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-tdd-guvenlik.html" class="post-card" data-category="gelistirme" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Test-Driven Development (TDD) İle Yazılan Kodun Gizli Güvenlik Avantajları</h3>
                             <span class="post-card-meta">30 Ekim 2024 · 6 dakika okuma</span>
@@ -63,7 +56,7 @@
                         </div>
                     </a>
                     <!-- Yazı 4 -->
-                    <a href="blog-golang-vs-python.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-golang-vs-python.html" class="post-card" data-category="gelistirme" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>GoLang ile Eşzamanlılıkta Python'a Geçiş: Neden Değdi ve Nasıl Yaptım?</h3>
                             <span class="post-card-meta">18 Eylül 2024 · 10 dakika okuma</span>
@@ -71,7 +64,7 @@
                         </div>
                     </a>
                     <!-- Yazı 5 -->
-                    <a href="blog-kubernetes-guvenligi.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-kubernetes-guvenligi.html" class="post-card" data-category="devsecops" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Kubernetes'te Policy as Code'u Kyverno ile Uygularken Yaptığım 3 Büyük Hata</h3>
                             <span class="post-card-meta">05 Ağustos 2024 · 9 dakika okuma</span>
@@ -79,7 +72,7 @@
                         </div>
                     </a>
                     <!-- Yazı 6 -->
-                    <a href="blog-ci-cd-kontrol-listesi.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-ci-cd-kontrol-listesi.html" class="post-card" data-category="devsecops" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi)</h3>
                             <span class="post-card-meta">22 Haziran 2024 · 8 dakika okuma</span>
@@ -87,7 +80,7 @@
                         </div>
                     </a>
                     <!-- Yazı 7 -->
-                    <a href="blog-saldirgan-zihniyeti.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-saldirgan-zihniyeti.html" class="post-card" data-category="gelistirme" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Saldırgan Zihniyetine Sahip Olmak: Yeni Nesil Geliştiricilerin Tek İhtiyacı Olan Yetenek</h3>
                             <span class="post-card-meta">10 Mayıs 2024 · 7 dakika okuma</span>
@@ -95,7 +88,7 @@
                         </div>
                     </a>
                     <!-- Yazı 8 -->
-                    <a href="blog-log-guvenligi.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-log-guvenligi.html" class="post-card" data-category="guvenlik" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Bir Geliştiricinin Gözünden: Güvenlikte En Çok İhmal Edilen Şey</h3>
                             <span class="post-card-meta">28 Mart 2024 · 6 dakika okuma</span>
@@ -103,7 +96,7 @@
                         </div>
                     </a>
                     <!-- Yazı 9 -->
-                    <a href="blog-pentest-yonetimi.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-pentest-yonetimi.html" class="post-card" data-category="yonetim" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>Sızma Testi Ekibi Nasıl Yönetilir? Bir Lider Yardımcısının Gözlemleri</h3>
                             <span class="post-card-meta">15 Şubat 2024 · 8 dakika okuma</span>
@@ -111,7 +104,7 @@
                         </div>
                     </a>
                     <!-- Yazı 10 -->
-                    <a href="blog-bola-zafiyeti.html" class="post-card" style="border-left: 5px solid var(--secondary-color);">
+                    <a href="blog-bola-zafiyeti.html" class="post-card" data-category="guvenlik" style="border-left: 5px solid var(--secondary-color);">
                         <div class="post-card-content">
                             <h3>API Güvenliğinde BOLA Zafiyeti: Neden Herkes SQL Injection'ı Unutmalı?</h3>
                             <span class="post-card-meta">02 Ocak 2024 · 7 dakika okuma</span>
@@ -123,14 +116,8 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
-            <div class="footer-links">
-                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer buraya dinamik olarak yüklenecek -->
+    <div id="footer-placeholder"></div>
 
     <script src="main.js" defer></script>
 

@@ -2,36 +2,31 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Yusuf Avşar ile projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçları hakkında iletişime geçin.">
+    <meta name="keywords" content="Yusuf Avşar, İletişim, Ulaşım, Proje, Teklif, Danışmanlık">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yusufavsarofficial.github.io/iletisim.html">
+    <meta property="og:title" content="İletişim - Yusuf Avşar">
+    <meta property="og:description" content="Projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçları hakkında iletişime geçin.">
+    <meta property="og:image" content="https://yusufavsarofficial.github.io/images/social-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - İletişim</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blog-components.css">
+    <!-- Font Awesome İkon Kütüphanesi -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <header>
-        <div class="navbar">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="hakkimda.html">Hakkımda</a></li>
-                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-                <li><a href="urunlerim.html">Ürünlerim</a></li>
-                <li><a href="projelerim.html">Projelerim</a></li>
-                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="makaleler.html">Makaleler</a></li>
-                <li><a href="sss.html">SSS</a></li>
-                <li><a href="iletisim.html" class="active">İletişim</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+    <!-- Header buraya dinamik olarak yüklenecek -->
+    <div id="header-placeholder"></div>
 
     <main>
         <section class="page-content">
@@ -39,7 +34,7 @@
                 <h2>İletişime Geçin</h2>
                 <p>Aşağıdaki formu doldurarak benimle iletişime geçebilirsiniz.</p>
                 
-                <form action="https://formspree.io/f/BURAYA_FORMPSREE_KODUNU_YAPISTIR" method="POST" class="contact-form">
+                <form action="https://formspree.io/f/BURAYA_FORMPSREE_KODUNU_YAPISTIR" method="POST" class="contact-form" id="contact-form">
                     <div class="form-group">
                         <label for="name">Adınız Soyadınız</label>
                         <input type="text" id="name" name="name" required>
@@ -55,18 +50,15 @@
                     <button type="submit" class="btn-submit">Gönder</button>
                 </form>
 
+                <!-- Form gönderim durumu mesajı için yer tutucu -->
+                <div id="form-status"></div>
+
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
-            <div class="footer-links">
-                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer buraya dinamik olarak yüklenecek -->
+    <div id="footer-placeholder"></div>
 
     <script src="main.js" defer></script>
 

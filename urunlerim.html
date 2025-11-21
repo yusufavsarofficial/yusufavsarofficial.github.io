@@ -5,148 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - Ürünlerim</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="blog-components.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <header>
-        <div class="navbar">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="hakkimda.html">Hakkımda</a></li>
-                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-                <li><a href="urunlerim.html" class="active">Ürünlerim</a></li>
-                <li><a href="projelerim.html">Projelerim</a></li>
-                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="makaleler.html">Makaleler</a></li>
-                <li><a href="sss.html">SSS</a></li>
-                <li><a href="iletisim.html">İletişim</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-content">
+        <section>
             <div class="container">
-                <h2 style="margin-bottom: 3rem;">Ürünlerim: Tescilli Çözümler</h2>
+                <h2 class="section-title scroll-reveal">Ürünlerim: Tescilli Çözümler</h2>
                 
                 <div class="projects-grid">
                     <!-- Ürün 1: SecurCore -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal">
                         <div class="product-card-content">
                             <h3>SecurCore Zafiyet Denetçisi</h3>
                             <p>Python/Golang tabanlı, simüle edilmiş saldırı vektörlerini kullanarak kod ve ağ zafiyetlerini arayan tescilli bir denetim motorudur.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=SecurCore" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=SecurCore" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 2: ApexGo -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 100ms;">
                         <div class="product-card-content">
                             <h3>ApexGo Konkuren Çekirdek</h3>
                             <p>Özellikle FinTech ve yüksek trafikli platformlar için Golang ile geliştirilmiş, JWT entegreli, performans odaklı minimalist bir API çatısıdır.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Geliştirici & Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=ApexGo" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=ApexGo" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 3: SentinelPipe -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 200ms;">
                         <div class="product-card-content">
                             <h3>SentinelPipe Otomasyon Çerçevesi</h3>
                             <p>Terraform, Ansible ve Kubernetes Politika Yönetimi bileşenlerini birleştiren, altyapı risklerini sıfırlayan tescilli bir DevSecOps otomasyon çözümüdür.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Danışmanlık & Entegrasyon</span>
-                            </div>
-                            <a href="iletisim.html?product=SentinelPipe" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=SentinelPipe" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 4: FinAnom -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal">
                         <div class="product-card-content">
                             <h3>FinAnom Analitik Motoru</h3>
                             <p>Makine Öğrenimi ve Derin Öğrenme destekli NLP kullanarak piyasa duyarlılığını ölçen ve Borsa verilerindeki anormal sapmaları tespit eden Python tabanlı analitik bir motordur.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">API Erişimi & Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=FinAnom" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=FinAnom" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 5: DataMask -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 100ms;">
                         <div class="product-card-content">
                             <h3>DataMask Uyumluluk Çözümü</h3>
                             <p>Geliştirme/test ortamlarında PII riskini sıfırlamak için tokenizasyon ve karıştırma tekniklerini uygulayan, veritabanı ile entegre Python/SQL tabanlı otomasyon aracıdır.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=DataMask" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=DataMask" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 6: RedTeam Fuzzer -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 200ms;">
                         <div class="product-card-content">
                             <h3>RedTeam Fuzzer (API Atak Simülatörü)</h3>
                             <p>REST ve gRPC API'lerini hedef alan, Golang ile geliştirilmiş yüksek performanslı bir atak simülasyon aracıdır. Karmaşık input doğrulama hatalarını tespit eder.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=RedTeamFuzzer" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=RedTeamFuzzer" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 7: HostGuard Hardener -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal">
                         <div class="product-card-content">
                             <h3>HostGuard Hardener (Sunucu Sertleştirme Aracı)</h3>
                             <p>Farklı işletim sistemlerindeki sunucuların güvenlik konfigürasyonunu otomatikleştirmek için Ansible playbook'larını çalıştıran merkezi bir yönetim arayüzüdür.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Danışmanlık & Entegrasyon</span>
-                            </div>
-                            <a href="iletisim.html?product=HostGuard" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=HostGuard" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 8: LivePulse Messenger -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 100ms;">
                         <div class="product-card-content">
                             <h3>LivePulse Messenger</h3>
                             <p>E-ticaret, oyun veya sosyal uygulamalar için tasarlanmış, Node.js/Socket.IO ve Redis Pub/Sub mimarisi üzerine kurulu bağımsız bir mesajlaşma sunucusudur.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">API Erişimi & Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=LivePulse" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=LivePulse" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 9: DataLens -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal" style="transition-delay: 200ms;">
                         <div class="product-card-content">
                             <h3>DataLens Veri Bütünlüğü Motoru</h3>
                             <p>Büyük veri akışlarında (loglar, finansal kayıtlar) siber güvenlik veya operasyonel hatalardan kaynaklanan veri bütünlüğü sorunlarını ve anormallikleri tespit eden, Python tabanlı sürekli bir izleme aracıdır.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Kurumsal Lisans</span>
-                            </div>
-                            <a href="iletisim.html?product=DataLens" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=DataLens" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                     <!-- Ürün 10: CloudFin Optimizer -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal">
                         <div class="product-card-content">
                             <h3>CloudFin Optimizer</h3>
                             <p>Kurumların AWS ve Azure bulut faturalarını analiz eden ve aynı zamanda güvenlik risklerini tespit eden hibrit bir denetim aracıdır.</p>
-                            <div class="product-pricing">
-                                <span class="price-tag">Danışmanlık & Entegrasyon</span>
-                            </div>
-                            <a href="iletisim.html?product=CloudFin" class="buy-btn">Teklif Al &rarr;</a>
+                            <a href="iletisim.html?product=CloudFin" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -154,16 +101,9 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
-            <div class="footer-links">
-                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script src="main.js" defer></script>
+    <script src="app.js" defer></script>
 
 </body>
 </html>

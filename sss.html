@@ -6,32 +6,15 @@
     <title>Yusuf Avşar - Sıkça Sorulan Sorular</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blog-components.css">
+    <!-- Font Awesome İkon Kütüphanesi -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <header>
-        <div class="navbar">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="hakkimda.html">Hakkımda</a></li>
-                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-                <li><a href="urunlerim.html">Ürünlerim</a></li>
-                <li><a href="projelerim.html">Projelerim</a></li>
-                <li><a href="uzmanligim.html">Uzmanlığım</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="makaleler.html">Makaleler</a></li>
-                <li><a href="sss.html" class="active">SSS</a></li>
-                <li><a href="iletisim.html">İletişim</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+    <!-- Header buraya dinamik olarak yüklenecek -->
+    <div id="header-placeholder"></div>
 
     <main>
         <section class="page-content">
@@ -42,15 +25,11 @@
                     <h3>Genel Yaklaşım ve Uzmanlık</h3>
                     <details class="faq-item">
                         <summary>Sizin uzmanlığınızın geleneksel bir danışmandan farkı nedir?</summary>
-                        <div>
-                            <p>Ben sadece bir danışman değil, <strong>Hibrit Lider</strong>'im. Geleneksel danışmanlar teorik bilgi sunarken, ben hem Golang ile düşük gecikmeli API'ler yazabilen bir Geliştirici hem de kapsamlı sızma testleri yönetebilen bir Siber Güvenlik Lideri tecrübesini birleştiriyorum. Sunduğum çözümler, sadece "güvenli" değil, aynı zamanda hızlı, ölçeklenebilir ve operasyonel olarak uygulanabilir çözümlerdir.</p>
-                        </div>
+                        <p class="faq-answer">Ben sadece bir danışman değil, <strong>Hibrit Lider</strong>'im. Geleneksel danışmanlar teorik bilgi sunarken, ben hem Golang ile düşük gecikmeli API'ler yazabilen bir Geliştirici hem de kapsamlı sızma testleri yönetebilen bir Siber Güvenlik Lideri tecrübesini birleştiriyorum. Sunduğum çözümler, sadece "güvenli" değil, aynı zamanda hızlı, ölçeklenebilir ve operasyonel olarak uygulanabilir çözümlerdir.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Çalışma şeklinizde en kritik odak noktanız nedir?</summary>
-                        <div>
-                            <p>Odak noktamız <strong>Otomasyon Yoluyla Zorunluluktur (Enforcement via Automation)</strong>. Geliştiricilerin güvenlik kurallarını unutma riskini ortadan kaldırarak, DevSecOps süreçlerini kod, derleme ve dağıtım aşamalarında otomatik olarak zorlayan SentinelPipe çerçevesini kullanırım.</p>
-                        </div>
+                        <p class="faq-answer">Odak noktamız <strong>Otomasyon Yoluyla Zorunluluktur (Enforcement via Automation)</strong>. Geliştiricilerin güvenlik kurallarını unutma riskini ortadan kaldırarak, DevSecOps süreçlerini kod, derleme ve dağıtım aşamalarında otomatik olarak zorlayan SentinelPipe çerçevesini kullanırım.</p>
                     </details>
                 </div>
 
@@ -58,15 +37,11 @@
                     <h3>Hizmetler ve Çözümler</h3>
                     <details class="faq-item">
                         <summary>Başlıca hizmet alanlarınız nelerdir?</summary>
-                        <div>
-                            <p>Hizmetlerimi dört ana kategoriye ayırıyorum: DevSecOps ve Otomatikleştirilmiş Altyapı, Low-Latency Back-End Mimarisi, Siber Güvenlik Liderliği ve Penetrasyon Testi Yönetimi, Veri Uyumu ve Kriptografi.</p>
-                        </div>
+                        <p class="faq-answer">Hizmetlerimi dört ana kategoriye ayırıyorum: DevSecOps ve Otomatikleştirilmiş Altyapı, Low-Latency Back-End Mimarisi, Siber Güvenlik Liderliği ve Penetrasyon Testi Yönetimi, Veri Uyumu ve Kriptografi.</p>
                     </details>
                     <details class="faq-item">
                         <summary>SentinelPipe Çerçevesi tam olarak nedir?</summary>
-                        <div>
-                            <p>SentinelPipe, kodun üretim ortamına ulaşmadan önce dört temel güvenlik kapısından (SAST, SCA, Policy as Code, Container Hardening) otomatik olarak geçmesini sağlayan, tescilli, uçtan uca bir DevSecOps metodolojisidir. Amacı, MTTD (Ortalama Tespit Süresi) süresini minimize etmektir.</p>
-                        </div>
+                        <p class="faq-answer">SentinelPipe, kodun üretim ortamına ulaşmadan önce dört temel güvenlik kapısından (SAST, SCA, Policy as Code, Container Hardening) otomatik olarak geçmesini sağlayan, tescilli, uçtan uca bir DevSecOps metodolojisidir. Amacı, MTTD (Ortalama Tespit Süresi) süresini minimize etmektir.</p>
                     </details>
                 </div>
 
@@ -74,15 +49,11 @@
                     <h3>Metodoloji ve Süreç</h3>
                     <details class="faq-item">
                         <summary>Bir projeye başlarken ilk adımlarınız neler olur?</summary>
-                        <div>
-                            <p>Projeye her zaman <strong>Tehdit Modellemesi (Threat Modeling)</strong> ile başlarım. Amacım, kodu analiz etmeden önce, mimarideki potansiyel risk noktalarını ve iş mantığı zafiyetlerini (Örn: BOLA) belirlemektir. Bunu takiben, Saldırgan Zihniyeti ile güvenlik kontrolleri tasarlanır.</p>
-                        </div>
+                        <p class="faq-answer">Projeye her zaman <strong>Tehdit Modellemesi (Threat Modeling)</strong> ile başlarım. Amacım, kodu analiz etmeden önce, mimarideki potansiyel risk noktalarını ve iş mantığı zafiyetlerini (Örn: BOLA) belirlemektir. Bunu takiben, Saldırgan Zihniyeti ile güvenlik kontrolleri tasarlanır.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Mevcut bir geliştirici ekibine nasıl katkı sağlarsınız?</summary>
-                        <div>
-                            <p>Ekibinizi, sadece kod yazan bireylerden, güvenliği tasarlayan <strong>Hibrit Geliştiricilere</strong> dönüştürmeyi hedeflerim. Bu, TDD (Test Odaklı Geliştirme) prensiplerine güvenlik senaryolarını entegre eden mentorluk programları ve pratik atölyelerle gerçekleşir.</p>
-                        </div>
+                        <p class="faq-answer">Ekibinizi, sadece kod yazan bireylerden, güvenliği tasarlayan <strong>Hibrit Geliştiricilere</strong> dönüştürmeyi hedeflerim. Bu, TDD (Test Odaklı Geliştirme) prensiplerine güvenlik senaryolarını entegre eden mentorluk programları ve pratik atölyelerle gerçekleşir.</p>
                     </details>
                 </div>
 
@@ -90,15 +61,11 @@
                     <h3>Müşteri Profili ve İşbirliği</h3>
                     <details class="faq-item">
                         <summary>Hizmetleriniz kimler için en uygundur?</summary>
-                        <div>
-                            <p>Hizmetlerim, özellikle yüksek büyüme potansiyeli olan Start-Up'lar, FinTech (Finansal Teknoloji) şirketleri ve hızlı dağıtım yapan Teknoloji Departmanları için uygundur. Başta CTO'lar, Teknoloji Direktörleri ve Güvenlik Liderleri olmak üzere, hız, ölçek ve güvenliği aynı anda isteyen karar vericilerle çalışırım.</p>
-                        </div>
+                        <p class="faq-answer">Hizmetlerim, özellikle yüksek büyüme potansiyeli olan Start-Up'lar, FinTech (Finansal Teknoloji) şirketleri ve hızlı dağıtım yapan Teknoloji Departmanları için uygundur. Başta CTO'lar, Teknoloji Direktörleri ve Güvenlik Liderleri olmak üzere, hız, ölçek ve güvenliği aynı anda isteyen karar vericilerle çalışırım.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Danışmanlık süreci ne kadar sürer?</summary>
-                        <div>
-                            <p>Süreç, projenin kapsamına ve ihtiyaca göre değişir. Kısa süreli, odaklanmış bir Mimari Güvenlik Denetimi (2-4 hafta) yapabilir ya da uzun vadeli DevSecOps Kültür Dönüşümü (6+ ay) programları yürütebilirim. İlk adım her zaman kapsam belirleme toplantısıdır.</p>
-                        </div>
+                        <p class="faq-answer">Süreç, projenin kapsamına ve ihtiyaca göre değişir. Kısa süreli, odaklanmış bir Mimari Güvenlik Denetimi (2-4 hafta) yapabilir ya da uzun vadeli DevSecOps Kültür Dönüşümü (6+ ay) programları yürütebilirim. İlk adım her zaman kapsam belirleme toplantısıdır.</p>
                     </details>
                 </div>
 
@@ -106,14 +73,8 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
-            <div class="footer-links">
-                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer buraya dinamik olarak yüklenecek -->
+    <div id="footer-placeholder"></div>
 
     <script src="main.js" defer></script>
 

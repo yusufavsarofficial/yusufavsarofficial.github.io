@@ -2,65 +2,48 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Yusuf Avşar ile projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçları hakkında iletişime geçin.">
-    <meta name="keywords" content="Yusuf Avşar, İletişim, Ulaşım, Proje, Teklif, Danışmanlık">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yusufavsarofficial.github.io/iletisim.html">
-    <meta property="og:title" content="İletişim - Yusuf Avşar">
-    <meta property="og:description" content="Projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçları hakkında iletişime geçin.">
-    <meta property="og:image" content="https://yusufavsarofficial.github.io/images/social-preview.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - İletişim</title>
+    <meta name="description" content="Yusuf Avşar ile projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçları hakkında iletişime geçin.">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="blog-components.css">
-    <!-- Font Awesome İkon Kütüphanesi -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Header buraya dinamik olarak yüklenecek -->
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-content">
-            <div class="container contact-container">
-                <h2>İletişime Geçin</h2>
-                <p>Aşağıdaki formu doldurarak benimle iletişime geçebilirsiniz.</p>
-                
-                <form action="https://formspree.io/f/BURAYA_FORMPSREE_KODUNU_YAPISTIR" method="POST" class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Adınız Soyadınız</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-posta Adresiniz</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mesajınız</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Gönder</button>
-                </form>
+        <section>
+            <div class="container">
+                <div style="text-align: center;">
+                    <h2 class="section-title scroll-reveal">İletişime Geçin</h2>
+                    <p class="subsection-description scroll-reveal" style="transition-delay: 100ms;">Projenizin güvenlik, geliştirme veya DevSecOps ihtiyaçlarını tartışmak için aşağıdaki formu doldurabilirsiniz.</p>
+                </div>
 
-                <!-- Form gönderim durumu mesajı için yer tutucu -->
-                <div id="form-status"></div>
-
+                <div class="glass-panel scroll-reveal" style="transition-delay: 200ms; max-width: 700px; margin: 0 auto;">
+                    <form action="https://formspree.io/f/BURAYA_FORMPSREE_KODUNU_YAPISTIR" method="POST" class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Adınız Soyadınız</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta Adresiniz</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Mesajı Gönder</button>
+                    </form>
+                    <div id="form-status"></div>
+                    </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer buraya dinamik olarak yüklenecek -->
     <div id="footer-placeholder"></div>
 
-    <script src="main.js" defer></script>
+    <script src="app.js" defer></script>
 
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makale Başlığı - Yusuf Avşar</title>
+    <meta name="description" content="Makalenin kısa bir özeti buraya gelecek.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <div class="blog-layout">
+                <!-- İçindekiler Kenar Çubuğu -->
+                <aside class="toc-sidebar">
+                    <div class="toc-sticky-wrapper">
+                        <span class="toc-title">İÇİNDEKİLER</span>
+                        <ul id="toc-list" class="toc-list">
+                            <!-- İçerik JavaScript ile dinamik olarak doldurulacak -->
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Blog İçeriği -->
+                <article class="blog-post-content">
+                    <header class="blog-header">
+                        <h1>Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h1>
+                        <p class="blog-meta">14 Kasım 2023 · 15 dakika okuma</p>
+                    </header>
+
+                    <blockquote class="blog-blockquote">
+                        <strong>ÖZET:</strong> Bu makale, modern dağıtık sistemlerdeki artan saldırı yüzeyine yanıt olarak, Sıfır Güven (Zero Trust) modelini esas alan, kapsamlı bir mikroservis mimarisi tasarım metodolojisini sunmaktadır.
+                    </blockquote>
+
+                    <h2 id="giris">I. GİRİŞ: MİMARİ RİSKİN DEĞİŞEN MANZARASI</h2>
+                    <p>Mikroservisler, çevikliği ve ölçeklenebilirliği getirse de, iki kritik risk alanı yarattı: Yatay Hareket (Lateral Movement) ve Bozuk Yetkilendirme Mantığı (BOLA). Geleneksel mimaride, başarılı bir dış ihlal sonrası saldırgan içeride "güvenli bölgeye" girerdi. Mikroservislerde ise, her servis arasındaki iletişimin şifrelenmemesi ve yetkilendirilmemesi, bir servisin ihlali durumunda saldırganın içeride hızla yayılmasına olanak tanır.</p>
+
+                    <h2 id="ag-katmani">II. AĞ KATMANI GÜVENLİĞİ: SIFIR GÜVEN VE SERVICE MESH ANALİZİ</h2>
+                    <p>Sıfır Güven modelinin temel taşı mTLS uygulamasıdır. Her servisin sadece geçerli bir sertifikaya sahip olan diğer servislerle iletişim kurması zorunlu kılınır. Service Mesh (Istio, Linkerd) bu süreci otomatikleştirir.</p>
+                    
+                    <h3 id="mtls-performans">2.1. mTLS Uygulamasının Teknik Derinliği ve Performans Kaygıları</h3>
+                    <p>mTLS şifreleme ve şifre çözme işlemleri CPU yükü ve gecikme (latency) yaratır. Endüstri analizlerine göre, Sidecar'ların yarattığı gecikme, ek yükü optimize etmek için Go veya Rust ile yazılmış proxy'ler (Envoy) kullanılarak genellikle 1-5 milisaniye (τmTLS) aralığında tutulur.</p>
+
+                    <h2 id="yetkilendirme">III. YETKİLENDİRME VE UYGULAMA MANTIĞI KONTROLÜ</h2>
+                    <p>API Gateway'de üretilen JWT'ler, servislere ulaştığında sadece varlığı değil, içeriği ve kullanım amacı doğrulanmalıdır. Servisler, token'ı alıp sadece imzayı (HMACsig) kontrol etmekle kalmamalı, aynı zamanda algoritma, süre (exp) ve hedef kitle (aud) gibi kriterleri de doğrulamalıdır.</p>
+                    
+                    <h3 id="bola-onleme">3.1. BOLA Önleme Pseudosu</h3>
+                    <p>Aşağıdaki Go kodu, bir kaynağa erişim talebi geldiğinde, isteği yapan kullanıcının o kaynağın sahibi olup olmadığını nasıl kontrol ettiğini gösterir:</p>
+
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-go">
+func CheckAuthorization(req *http.Request, resourceID int) error {
+    // JWT'den gelen kullanıcı kimliğini al
+    claims, ok := req.Context().Value("claims").(*MyClaims)
+    if !ok {
+        return ErrUnauthorized
+    }
+    userID := claims.Subject
+
+    // Veritabanından kaynağın sahibini getir
+    ownerID, err := db.GetResourceOwner(resourceID)
+    if err != nil {
+        return err
+    }
+    
+    // Sahiplik kontrolü yap
+    if userID != ownerID {
+        // Kritik güvenlik olayını logla ve erişimi reddet
+        log.Printf("SECURITY ALERT: User %s tried to access resource %d owned by %s", userID, resourceID, ownerID)
+        return ErrForbidden
+    }
+
+    return nil
+}
+                        </code></pre>
+                        <button class="copy-btn">Kopyala</button>
+                    </div>
+
+                    <h2 id="sonuc">IV. SONUÇ VE ÖNERİLER</h2>
+                    <p>Siber güvenlik odaklı mikroservis mimarisi, geleneksel yöntemlerin ötesinde kriptografik kesinlik, minimum yetki ve zorunlu otomasyon gerektirir. Bu makalede sunulan mTLS, PaC ve sıkı yetkilendirme prensipleri, mimarinizi saldırganların yatay hareketine ve mantık zafiyetlerine karşı dayanıklı hale getirecektir.</p>
+
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="app.js" defer></script>
+
+</body>
+</html>

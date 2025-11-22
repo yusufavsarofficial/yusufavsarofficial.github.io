@@ -174,6 +174,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  6. BLOG SAYFASI ÖZELLİKLERİ
+     * ------------------------------------------------------------------------
+     * İçindekiler (TOC) oluşturma, aktif başlığı izleme ve kod kopyalama
+     * işlevlerini yönetir.
+     */
+    const handleBlogPostFeatures = () => {
+        const tocList = document.getElementById('toc-list');
+        const postContent = document.querySelector('.blog-post-content');
+
+        if (!tocList || !postContent) return; // Sadece blog sayfalarında çalışır
+
+        // 1. İçindekiler (TOC) Oluşturma
+        const headings = postContent.querySelectorAll('h2, h3');
+        const tocItems = [];
+
+        headings.forEach(heading => {
+            const id = heading.getAttribute('id');
+            if (!id) return;
+
+            const text = heading.textContent;
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.setAttribute('href', `#${id}`);
+            a.textContent = text;
+            li.appendChild(a);
+            tocList.appendChild(li);
+            tocItems.push(a);
+        });
+
+        // 2. Aktif Başlığı İzleme
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = tocList.querySelector(`a[href="#${id}"]`);
+                
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    // Önce tüm aktif class'ları temizle
+                    tocItems.forEach(item => item.classList.remove('active'));
+                    // Sonra ilgili linke ekle
+                    if(tocLink) tocLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: "0px 0px -50% 0px", threshold: 0.5 });
+
+        headings.forEach(heading => observer.observe(heading));
+
+        // 3. Kod Kopyalama Butonları
+        const codeBlocks = document.querySelectorAll('.code-block-wrapper');
+        codeBlocks.forEach(wrapper => {
+            const copyButton = wrapper.querySelector('.copy-btn');
+            const codeElement = wrapper.querySelector('code');
+
+            if (copyButton && codeElement) {
+                copyButton.addEventListener('click', () => {
+                    navigator.clipboard.writeText(codeElement.innerText).then(() => {
+                        copyButton.textContent = 'Kopyalandı!';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Kopyala';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Kopyalama başarısız oldu:', err);
+                        copyButton.textContent = 'Hata';
+                    });
+                });
+            }
+        });
+    };
+
+
+    /**
+     * ------------------------------------------------------------------------
      *  UYGULAMA BAŞLATMA
      * ------------------------------------------------------------------------
      */
@@ -190,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handleContactForm();
         handleProjectFiltering();
         setActiveNavLink();
+        handleBlogPostFeatures();
         // Gelecekteki Firebase Auth veya diğer modüller buraya eklenebilir.
     };
 

@@ -669,4 +669,282 @@ footer {
     border: none;
     transition: transform 0.3s ease, opacity 0.3s ease, height 0.3s 0.1s, padding 0.3s 0.1s, margin 0.3s 0.1s;
 }
+
+/* --- BLOG DETAY SAYFASI --- */
+.blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 250px; /* İçerik ve Kenar Çubuğu */
+    gap: var(--spacing-xl);
+    align-items: flex-start;
+}
+
+.blog-post-content {
+    max-width: 720px;
+    width: 100%;
+}
+
+.blog-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.blog-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.blog-meta {
+    color: var(--color-text-secondary);
+}
+
+.blog-post-content h2 {
+    font-size: 1.8rem;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-xs);
+}
+
+.blog-post-content h3 {
+    font-size: 1.4rem;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    text-align: left;
+    color: var(--color-text-secondary);
+}
+
+.blog-post-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+}
+
+.blog-blockquote {
+    border-left: 3px solid var(--color-cyber-cyan);
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+/* Kod Blokları */
+.code-block-wrapper {
+    position: relative;
+    margin: var(--spacing-lg) 0;
+}
+
+.code-block-wrapper pre {
+    background-color: var(--color-void-black);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    overflow-x: auto;
+}
+
+.code-block-wrapper code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.copy-btn {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background-color: var(--color-border);
+    color: var(--color-text-secondary);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.code-block-wrapper:hover .copy-btn {
+    opacity: 1;
+}
+
+/* İçindekiler (Table of Contents) */
+.toc-sidebar {
+    width: 250px;
+}
+
+.toc-sticky-wrapper {
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-lg));
+}
+
+.toc-title {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--color-border);
+}
+
+.toc-list a {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    border-left: 1px solid transparent;
+    margin-left: -1px;
+}
+
+.toc-list a:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-glass-panel);
+}
+
+.toc-list a.active {
+    color: var(--color-cyber-cyan);
+    border-left-color: var(--color-cyber-cyan);
+    transform: translateX(5px);
+}
+
+/* Blog Mobil Uyumu */
+@media (max-width: 1024px) {
+    .blog-layout {
+        grid-template-columns: 1fr; /* Tek sütuna düşür */
+    }
+    .toc-sidebar {
+        display: none; /* Mobilde içindekiler bölümünü gizle */
+    }
+    .blog-post-content {
+        max-width: 100%;
+    }
+}
+
+/* --- İLETİŞİM SAYFASI ÖZEL DÜZEN --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+}
+
+.contact-alternatives {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contact-card {
+    background: var(--color-glass-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: var(--glow-cyan);
+}
+
+.contact-card i {
+    font-size: 2rem;
+    color: var(--color-cyber-cyan);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-card h3 {
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.contact-card p {
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 0.9rem;
+}
+
+.contact-card a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+@media (max-width: 960px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- ÜRÜN KARTI ÖZEL STİLLERİ --- */
+.product-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.product-card-header i {
+    font-size: 1.2rem;
+    color: var(--color-cyber-cyan);
+    text-shadow: var(--glow-cyan);
+}
+
+.product-category {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    background-color: rgba(148, 163, 184, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.project-card h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-card h3 a:hover {
+    text-decoration: underline;
+}
+
+/* --- TEKNİK TABLO STİLLERİ (Vaka Çalışması vb. için) --- */
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    background-color: rgba(15, 15, 17, 0.5); /* Hafif transparan zemin */
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Köşelerin yuvarlak kalması için */
+}
+
+.skills-table th,
+.skills-table td {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.2rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.skills-table th {
+    font-family: var(--font-mono);
+    color: var(--color-cyber-cyan);
+    background-color: rgba(0, 229, 255, 0.05);
+    font-weight: 700;
+}
+
+.skills-table tr:last-child td {
+    border-bottom: none;
+}
+}
 }

@@ -6,8 +6,8 @@
     <title>Yusuf Avşar - GoLang vs. Python: Eşzamanlılıkta Geçiş</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blog-components.css">
-    <!-- Font Awesome İkon Kütüphanesi -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
@@ -44,18 +44,18 @@
                     <tbody>
                         <tr>
                             <td data-label="Özellik"><strong>Paralellik</strong></td>
-                            <td data-label="Python (Thread)">Sınırlı (GIL Kilidi): IO (Giriş/Çıkış) tabanlı işlerde başarılı, CPU yoğun işlerde başarısız.</td>
-                            <td data-label="Golang (Goroutine)">Tam Paralellik: Birden fazla CPU çekirdeğini aynı anda etkin kullanır.</td>
+                            <td data-label="Python">Sınırlı (GIL Kilidi): IO (Giriş/Çıkış) tabanlı işlerde başarılı, CPU yoğun işlerde başarısız.</td>
+                            <td data-label="Golang">Tam Paralellik: Birden fazla CPU çekirdeğini aynı anda etkin kullanır.</td>
                         </tr>
                         <tr>
                             <td data-label="Özellik"><strong>Kaynak Tüketimi</strong></td>
-                            <td data-label="Python (Thread)">Ağır (İşletim Sistemi İpliği - OS Thread)</td>
-                            <td data-label="Golang (Goroutine)">Çok Hafif (Kullanıcı Alanı İpliği): Birkaç KB hafıza tüketir, yüzbinlerce Goroutine oluşturulabilir.</td>
+                            <td data-label="Python">Ağır (İşletim Sistemi İpliği - OS Thread)</td>
+                            <td data-label="Golang">Çok Hafif (Kullanıcı Alanı İpliği): Birkaç KB hafıza tüketir, yüzbinlerce Goroutine oluşturulabilir.</td>
                         </tr>
                         <tr>
                             <td data-label="Özellik"><strong>İletişim Metodu</strong></td>
-                            <td data-label="Python (Thread)">Paylaşılan Hafıza (Kilitler ve Semaphore'lar)</td>
-                            <td data-label="Golang (Goroutine)">Kanallar (Channels): Paylaşılan hafızayı kilitlemek yerine, iletişim için kanalları kullanır. (Golang Felsefesi: Paylaşılan hafıza ile iletişim kurma, iletişim ile hafızayı paylaş.)</td>
+                            <td data-label="Python">Paylaşılan Hafıza (Kilitler ve Semaphore'lar)</td>
+                            <td data-label="Golang">Kanallar (Channels): Paylaşılan hafızayı kilitlemek yerine, iletişim için kanalları kullanır. (Golang Felsefesi: Paylaşılan hafıza ile iletişim kurma, iletişim ile hafızayı paylaş.)</td>
                         </tr>
                     </tbody>
                 </table>

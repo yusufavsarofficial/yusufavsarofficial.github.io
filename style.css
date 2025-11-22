@@ -516,6 +516,38 @@ footer {
     .btn-filter {
         padding: 0.6rem 1.2rem;
     }
+
+    /* --- Mobil Uyumlu Tablolar --- */
+    .skills-table thead {
+        display: none; /* Tablo başlığını mobilde gizle */
+    }
+    .skills-table, .skills-table tbody, .skills-table tr, .skills-table td {
+        display: block;
+        width: 100%;
+    }
+    .skills-table tr {
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+    }
+    .skills-table td {
+        text-align: right; /* İçeriği sağa hizala */
+        padding-left: 50%; /* Başlık için yer aç */
+        position: relative;
+        border-bottom: 1px solid var(--color-border);
+    }
+    .skills-table td:last-child {
+        border-bottom: none;
+    }
+    .skills-table td::before {
+        content: attr(data-label); /* data-label'dan başlığı al */
+        position: absolute;
+        left: var(--spacing-md);
+        width: calc(50% - var(--spacing-lg));
+        text-align: left;
+        font-weight: bold;
+        color: var(--color-text-primary);
+    }
 }
 
 /* --- ALT BAŞLIK STİLLERİ (Faaliyetlerim sayfası için) --- */

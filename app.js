@@ -329,9 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     /**
      * ------------------------------------------------------------------------
-     *  X. İNTERAKTİF SİMÜLASYONLAR
+     *  7. İNTERAKTİF SİMÜLASYONLAR (GELİŞMİŞ)
      * ------------------------------------------------------------------------
-     * `simulasyon.html` sayfasındaki interaktif terminalleri yönetir.
+     * Her bir simülasyonu kendi içinde interaktif ve "hack" temalı hale getirir.
      */
     const handleSimulations = () => {
         // Yardımcı fonksiyon: Terminale animasyonlu log yazar
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         btn.disabled = false;
                     });
                 });
-            });
+            }
         }
     };
 

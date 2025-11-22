@@ -6,6 +6,9 @@
     <title>Teknik Rapor: BOLA Zafiyeti Mitigasyonu - Yusuf Avşar</title>
     <meta name="description" content="Teknik Rapor: Dağıtık e-ticaret mimarilerinde BOLA (IDOR) zafiyetinin TDD ve Golang Middleware yaklaşımıyla mitigasyonu.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog-components.css">
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
@@ -131,10 +134,10 @@ func AuthorizeOrderAccess(next http.Handler, db *sql.DB) http.Handler {
                         <tr><th>Metrik</th><th>Öncesi (Güvensiz)</th><th>Sonrası (Golang Middleware)</th><th>Değişim</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Ortalama Gecikme (Latency)</td><td>145 ms</td><td>153 ms</td><td>+8 ms (İhmal Edilebilir)</td></tr>
-                        <tr><td>99. Yüzdelik (P99)</td><td>210 ms</td><td>225 ms</td><td>Stabil</td></tr>
-                        <tr><td>CPU Kullanımı</td><td>%45</td><td>%48</td><td>+%3</td></tr>
-                        <tr><td>Güvenlik Skoru</td><td>F (Kritik)</td><td>A+ (Güvenli)</td><td>Tam Mitigasyon</td></tr>
+                        <tr><td data-label="Metrik">Ortalama Gecikme (Latency)</td><td data-label="Öncesi">145 ms</td><td data-label="Sonrası">153 ms</td><td data-label="Değişim">+8 ms (İhmal Edilebilir)</td></tr>
+                        <tr><td data-label="Metrik">99. Yüzdelik (P99)</td><td data-label="Öncesi">210 ms</td><td data-label="Sonrası">225 ms</td><td data-label="Değişim">Stabil</td></tr>
+                        <tr><td data-label="Metrik">CPU Kullanımı</td><td data-label="Öncesi">%45</td><td data-label="Sonrası">%48</td><td data-label="Değişim">+%3</td></tr>
+                        <tr><td data-label="Metrik">Güvenlik Skoru</td><td data-label="Öncesi">F (Kritik)</td><td data-label="Sonrası">A+ (Güvenli)</td><td data-label="Değişim">Tam Mitigasyon</td></tr>
                     </tbody>
                 </table>
                 <p style="margin-top: var(--spacing-md);">Gecikmedeki 8ms'lik artış, veritabanı bağlantı havuzlama (Connection Pooling) ve Redis önbellekleme (Caching) stratejileri sayesinde kullanıcı tarafından hissedilmeyecek seviyede tutulmuştur.</p>

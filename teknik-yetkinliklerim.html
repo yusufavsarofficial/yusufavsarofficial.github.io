@@ -10,27 +10,13 @@
 </head>
 <body>
 
-    <header>
-        <div class="navbar">
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="hakkimda.html">Hakkımda</a></li>
-                <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-                <li><a href="urunlerim.html">Ürünlerim</a></li>
-                <li><a href="projelerim.html">Projelerim</a></li>
-                <li><a href="teknik-yetkinliklerim.html" class="active">Teknik Yetkinliklerim</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="makaleler.html">Makaleler</a></li>
-                <li><a href="sss.html">SSS</a></li>
-                <li><a href="iletisim.html">İletişim</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </header>
+    <!-- Nirvana İyileştirmeleri (Fare Efekti) -->
+    <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
+    <div class="cursor cursor-dot"></div>
+    <div class="cursor cursor-outline"></div>
+
+    <!-- Header buraya dinamik olarak yüklenecek -->
+    <div id="header-placeholder"></div>
 
     <main>
         <section class="page-content">
@@ -97,22 +83,10 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 - 2025 Yusuf Avşar. Tüm hakları saklıdır.</p>
-            <div class="footer-links">
-                <a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="telif-hakki.html">Telif Hakkı</a><a href="cerez-politikasi.html">Çerez Politikası</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer buraya dinamik olarak yüklenecek -->
+    <div id="footer-placeholder"></div>
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
+    <script src="app.js" defer></script>
 
 </body>
 </html>

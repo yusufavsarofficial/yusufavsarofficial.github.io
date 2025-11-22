@@ -1,3 +1,15 @@
+/**
+ * YUSUF AVSAR - app.js
+ * ------------------------------------------------------------------------
+ * Bu dosya, sitenin tüm interaktif özelliklerini yönetir.
+ * - Dinamik component yükleyici (Header/Footer)
+ * - Mobil navigasyon
+ * - Scroll animasyonları
+ * - İletişim formu yönetimi
+ * - Proje filtreleme
+ * - Blog sayfası özellikleri (İçindekiler, kod kopyalama vb.)
+ * - Gelişmiş UI özellikleri (Özel imleç, preloader)
+ */
 document.addEventListener('DOMContentLoaded', () => {
     
     /**
@@ -16,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const text = await response.text();
                 element.innerHTML = text;
             } catch (error) {
-                console.error(`Error loading component ${componentId}:`, error);
+                console.error(`[ComponentLoader] Error loading ${componentId}:`, error);
                 element.innerHTML = `<p style="color:red; text-align:center;">Error loading ${componentId}.</p>`;
             }
         }
@@ -37,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleMenu = () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            // Menü açıkken body'nin kaymasını engelle
+            // Menü açıkken body'nin kaydırılmasını engelle
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         };
 
@@ -67,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Animasyon bir kez çalışsın
+                    observer.unobserve(entry.target); // Animasyon sadece bir kez çalışsın
                 }
             });
         }, {
@@ -103,10 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     form.style.display = 'none';
-                    statusDiv.innerHTML = `<h3 style="color: var(--color-success-green);">Teşekkürler!</h3><p>Mesajınız başarıyla gönderildi. En kısa sürede size geri dönüş yapacağım.</p>`;
+                    statusDiv.innerHTML = `<div class="form-success"><h3 style="color: var(--color-success-green);">Teşekkürler!</h3><p>Mesajınız başarıyla gönderildi. En kısa sürede size geri dönüş yapacağım.</p></div>`;
                 } else {
                     const responseData = await response.json();
-                    const errorMessage = responseData.errors ? responseData.errors.map(error => error.message).join(', ') : 'Bir hata oluştu.';
+                    const errorMessage = responseData.errors ? responseData.errors.map(error => error.message).join(', ') : 'Bilinmeyen bir hata oluştu.';
                     statusDiv.innerHTML = `<p style="color: #ff4d4d;">Hata: ${errorMessage} Lütfen daha sonra tekrar deneyin.</p>`;
                 }
             } catch (error) {
@@ -138,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     *  5. PROJE FİLTRELEME YÖNETİMİ
+     *  6. PROJE/BLOG FİLTRELEME YÖNETİMİ
      * ------------------------------------------------------------------------
      * Projelerim sayfasındaki butonlara tıklandığında proje kartlarını
      * kategorilere göre filtreler ve akıcı bir animasyonla gösterir/gizler.
@@ -148,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!filterContainer) return;
 
         const filterButtons = filterContainer.querySelectorAll('.btn-filter');
-        const projectCards = document.querySelectorAll('.projects-grid .project-card');
+        const filterableCards = document.querySelectorAll('.projects-grid .project-card');
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const filterValue = button.getAttribute('data-filter');
 
-                projectCards.forEach(card => {
+                filterableCards.forEach(card => {
                     const cardCategory = card.getAttribute('data-category');
                     
                     // Kartı gizle veya göster
@@ -174,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     *  6. BLOG SAYFASI ÖZELLİKLERİ
+     *  7. BLOG YAZISI SAYFASI ÖZELLİKLERİ
      * ------------------------------------------------------------------------
      * İçindekiler (TOC) oluşturma, aktif başlığı izleme ve kod kopyalama
      * işlevlerini yönetir.
@@ -240,6 +252,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  8. BLOG YAZILARINDA BEĞENİ BUTONU
+     * ------------------------------------------------------------------------
+     * Beğeni butonuna tıklandığında sayıyı artırır ve localStorage'da saklar.
+     */
+    const handleLikeButton = () => {
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCountSpan = document.getElementById('likeCount');
+        if (!likeBtn || !likeCountSpan) return;
+
+        const pageId = window.location.pathname;
+        let likeCount = parseInt(localStorage.getItem(`likes_${pageId}`) || likeCountSpan.textContent.replace(/\D/g, '')) || 89530;
+        
+        const updateLikeCount = () => {
+            likeCountSpan.textContent = `${likeCount.toLocaleString('tr-TR')} beğeni`;
+        };
+
+        likeBtn.addEventListener('click', () => {
+            likeCount++;
+            localStorage.setItem(`likes_${pageId}`, likeCount);
+            updateLikeCount();
+            likeBtn.disabled = true; // Tekrar tıklamayı engelle
+            likeBtn.textContent = "Beğenildi!";
+        });
+
+        updateLikeCount(); // Sayfa yüklendiğinde sayıyı güncelle
     };
 
     /**
@@ -402,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     *  8. NIRVANA İYİLEŞTİRMELERİ
+     *  9. NIRVANA İYİLEŞTİRMELERİ (GELİŞMİŞ UI)
      * ------------------------------------------------------------------------
      * Özel imleç ve sayfa ön yükleyici gibi "High-End" özellikleri yönetir.
      */
@@ -433,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { duration: 500, fill: 'forwards' });
             });
 
-            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button');
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button, summary, .faq-item');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursorOutline.classList.add('cursor-grow');
@@ -459,18 +500,19 @@ document.addEventListener('DOMContentLoaded', () => {
             loadComponent('header-placeholder', 'header.html'),
             loadComponent('footer-placeholder', 'footer.html')
         ]);
-        
+
         // Component'ler yüklendikten sonra çalışacak fonksiyonlar
         handleMobileNavigation();
-        handleThemeSwitcher(); // Tema değiştiriciyi burada başlat
-        handleFAQ(); // SSS akordiyonunu burada başlat
+        setActiveNavLink();
+        handleThemeSwitcher();
+
         handleScrollAnimations();
         handleContactForm();
-        handleProjectFiltering();
-        setActiveNavLink();
+        handleProjectFiltering(); // Proje ve Blog filtreleme
         handleBlogPostFeatures();
         handleSimulations();
-        // Gelecekteki Firebase Auth veya diğer modüller buraya eklenebilir.
+        handleLikeButton(); // Beğeni butonunu aktifleştir
+        handleFAQ(); // SSS akordiyonunu burada başlat
     };
 
     initApp();

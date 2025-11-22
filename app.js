@@ -242,6 +242,208 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    /**
+     * ------------------------------------------------------------------------
+     *  X. TEMA DEĞİŞTİRİCİ (DARK/LIGHT MODE)
+     * ------------------------------------------------------------------------
+     * Kullanıcının tema tercihini yönetir ve localStorage'da saklar.
+     */
+    const handleThemeSwitcher = () => {
+        const themeSwitcher = document.getElementById('theme-switcher');
+        if (!themeSwitcher) return;
+
+        const body = document.body;
+
+        // Sayfa yüklendiğinde kayıtlı temayı uygula
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeSwitcher.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            // Kullanıcının tercihini kaydet
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  Y. SSS AKORDİYON YÖNETİMİ
+     * ------------------------------------------------------------------------
+     * SSS sayfasında, aynı anda sadece bir sorunun açık kalmasını sağlar.
+     */
+    const handleFAQ = () => {
+        const faqItems = document.querySelectorAll('.faq-item');
+        if (!faqItems.length) return;
+
+        faqItems.forEach(item => {
+            const summary = item.querySelector('summary');
+            summary.addEventListener('click', (e) => {
+                e.preventDefault(); // Tarayıcının varsayılan davranışını engelle
+                const isOpen = item.hasAttribute('open');
+                faqItems.forEach(otherItem => otherItem.removeAttribute('open'));
+                if (!isOpen) item.setAttribute('open', '');
+            });
+        });
+    };
+    /**
+     * ------------------------------------------------------------------------
+     *  7. İNTERAKTİF SİMÜLASYONLAR (GELİŞMİŞ)
+     * ------------------------------------------------------------------------
+     * Her bir simülasyonu kendi içinde interaktif ve "hack" temalı hale getirir.
+     */
+    const handleSimulations = () => {
+        const typeLog = (logElement, messages, onComplete) => {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < messages.length) {
+                    const li = document.createElement('li');
+                    li.className = messages[i].class;
+                    li.innerHTML = messages[i].text;
+                    logElement.appendChild(li);
+                    logElement.scrollTop = logElement.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    if (onComplete) onComplete();
+                }
+            }, messages[i]?.delay || 300);
+        };
+
+        // --- Simülasyon 1: Programlama & Derleme ---
+        const compileBtn = document.getElementById('compile-code-btn');
+        if (compileBtn) {
+            const runBtn = document.getElementById('run-code-btn');
+            const compileLog = document.getElementById('compile-log');
+            const codeToType = `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("SYSTEM BREACHED: ACCESS GRANTED")\n}`;
+            
+            new Typed('#code-simulation-output', { strings: [codeToType.trim()], typeSpeed: 25, showCursor: true, cursorChar: '_' });
+
+            compileBtn.addEventListener('click', () => {
+                compileBtn.disabled = true;
+                runBtn.disabled = true;
+                compileLog.innerHTML = '';
+                typeLog(compileLog, [
+                    { text: '$ go build -o exploit.bin', class: 'log-command' },
+                    { text: 'Parsing source code...', class: 'log-info' },
+                    { text: 'Linking dependencies...', class: 'log-info' },
+                    { text: '[+] Compilation successful. Binary `exploit.bin` created.', class: 'log-success' }
+                ], () => {
+                    runBtn.disabled = false;
+                });
+            });
+
+            runBtn.addEventListener('click', () => {
+                runBtn.disabled = true;
+                typeLog(compileLog, [
+                    { text: '$ ./exploit.bin', class: 'log-command' },
+                    { text: '> SYSTEM BREACHED: ACCESS GRANTED', class: 'log-highlight', delay: 1000 }
+                ], () => {
+                    compileBtn.disabled = false;
+                });
+            });
+        }
+
+        // --- Simülasyon 2: Ağ Zafiyet Taraması ---
+        const runScanBtn = document.getElementById('run-scan-btn');
+        if (runScanBtn) {
+            const scanLog = document.getElementById('scan-log');
+            const scanInput = document.getElementById('scan-target-input');
+
+            runScanBtn.addEventListener('click', () => {
+                runScanBtn.disabled = true;
+                scanLog.innerHTML = '';
+                typeLog(scanLog, [
+                    { text: `$ nmap -p- -sV ${scanInput.value}`, class: 'log-command' },
+                    { text: 'Starting SecurCore Network Scanner...', class: 'log-info' },
+                    { text: 'Scanning 192.168.1.1...', class: 'log-info' },
+                    { text: 'Scanning 192.168.1.2...', class: 'log-info' },
+                    { text: 'Host: 192.168.1.32', class: 'log-info' },
+                    { text: '  PORT 22/tcp   open  ssh      OpenSSH 8.2p1', class: 'log-success' },
+                    { text: '  PORT 80/tcp   closed http', class: 'log-fail' },
+                    { text: '  PORT 443/tcp  closed https', class: 'log-fail' },
+                    { text: 'Host: 192.168.1.55', class: 'log-info' },
+                    { text: '  PORT 8080/tcp open  http-proxy', class: 'log-success' },
+                    { text: '  [!] VULNERABILITY DETECTED: Apache Log4j (CVE-2021-44228)', class: 'log-highlight', delay: 500 },
+                    { text: 'Scan complete. 1 critical vulnerability found.', class: 'log-info' }
+                ], () => {
+                    runScanBtn.disabled = false;
+                });
+            });
+        }
+
+        // --- Simülasyon 3: Kriptografi & Veri Sızıntısı ---
+        const decryptBtn = document.getElementById('decrypt-btn');
+        if (decryptBtn) {
+            const encryptedBlock = document.getElementById('encrypted-data-block');
+            const decryptLog = document.getElementById('decrypt-log');
+            const secretData = "LAUNCH_CODES=ALPHA-DELTA-9;TARGET=MAIN_SERVER;USER=ADMIN";
+            const encryptedData = "5A6F5A584A6C4367523256306157356A623230675957356B5A584A304C6D4E766253493D";
+            
+            encryptedBlock.textContent = encryptedData;
+
+            decryptBtn.addEventListener('click', () => {
+                decryptBtn.disabled = true;
+                decryptLog.innerHTML = '';
+                typeLog(decryptLog, [
+                    { text: 'Initializing AES-256-GCM decryptor...', class: 'log-info' },
+                    { text: 'Brute-forcing key space... (Simulated)', class: 'log-info' },
+                    { text: 'Attempting key: 0x...a1f3', class: 'log-fail' },
+                    { text: 'Attempting key: 0x...c4b8', class: 'log-fail' },
+                    { text: '[+] Key Found: `sIlEnT_gUaRdIaN_kEy`', class: 'log-success', delay: 800 },
+                    { text: 'Decrypting data packet...', class: 'log-info' },
+                    { text: `[+] DECRYPTION SUCCESSFUL: ${secretData}`, class: 'log-highlight', delay: 1000 }
+                ], () => {
+                    decryptBtn.disabled = false;
+                });
+            });
+        }
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  8. NIRVANA İYİLEŞTİRMELERİ
+     * ------------------------------------------------------------------------
+     * Özel imleç ve sayfa ön yükleyici gibi "High-End" özellikleri yönetir.
+     */
+    const handleNirvanaFeatures = () => {
+        // --- Sayfa Ön Yükleyici (Preloader) ---
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+            window.addEventListener('load', () => {
+                preloader.classList.add('loaded');
+            });
+        }
+
+        // --- Özel İmleç (Custom Cursor) ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: 'forwards' });
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('cursor-grow');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('cursor-grow');
+                });
+            });
+        }
+    };
 
     /**
      * ------------------------------------------------------------------------
@@ -249,6 +451,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * ------------------------------------------------------------------------
      */
     const initApp = async () => {
+        // Nirvana özelliklerini en başta çalıştır
+        handleNirvanaFeatures();
+
         // Önce component'leri yükle, sonra diğer script'leri çalıştır
         await Promise.all([
             loadComponent('header-placeholder', 'header.html'),
@@ -257,11 +462,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Component'ler yüklendikten sonra çalışacak fonksiyonlar
         handleMobileNavigation();
+        handleThemeSwitcher(); // Tema değiştiriciyi burada başlat
+        handleFAQ(); // SSS akordiyonunu burada başlat
         handleScrollAnimations();
         handleContactForm();
         handleProjectFiltering();
         setActiveNavLink();
         handleBlogPostFeatures();
+        handleSimulations();
         // Gelecekteki Firebase Auth veya diğer modüller buraya eklenebilir.
     };
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İnteraktif Simülasyonlar - Yusuf Avşar</title>
+    <meta name="description" content="Yusuf Avşar'ın programlama, siber güvenlik ve kriptografi yeteneklerini sergileyen interaktif simülasyon merkezi.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section>
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <h2 class="section-title scroll-reveal">İnteraktif Simülasyon Merkezi</h2>
+                    <p class="subsection-description scroll-reveal" style="transition-delay: 100ms;">Teoriyi pratiğe dönüştürün. Yeteneklerimi canlı olarak deneyimleyin.</p>
+                </div>
+
+                <!-- Simülasyon 1: Programlama & Derleme -->
+                <div class="simulation-wrapper scroll-reveal" style="transition-delay: 200ms;">
+                    <h3 class="simulation-title"><i class="fa-solid fa-code"></i> Programlama & Derleme Simülasyonu</h3>
+                    <div class="glass-panel simulation-terminal">
+                        <div class="terminal-header">// GOLANG_COMPILER_V1.3_</div>
+                        <div class="terminal-body">
+                            <pre><code id="code-simulation-output" class="language-go"></code></pre>
+                            <ul class="mission-log" id="compile-log"></ul>
+                        </div>
+                        <div class="terminal-footer">
+                            <button id="compile-code-btn" class="btn btn-secondary">Derle</button>
+                            <button id="run-code-btn" class="btn btn-primary" disabled>Çalıştır</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simülasyon 2: Ağ Zafiyet Taraması -->
+                <div class="simulation-wrapper scroll-reveal">
+                    <h3 class="simulation-title"><i class="fa-solid fa-shield-virus"></i> Ağ Zafiyet Tarama Simülasyonu</h3>
+                    <div class="glass-panel simulation-terminal">
+                        <div class="terminal-header">// SECURCORE_NETWORK_SCANNER_V4.1_</div>
+                        <div class="terminal-body">
+                            <div class="scan-input-wrapper">
+                                <span class="scan-prompt">$</span>
+                                <input type="text" id="scan-target-input" class="scan-input" value="192.168.1.0/24" placeholder="Hedef IP aralığı girin...">
+                            </div>
+                            <ul class="mission-log" id="scan-log"></ul>
+                        </div>
+                        <div class="terminal-footer">
+                            <button id="run-scan-btn" class="btn btn-primary">Ağ Taramasını Başlat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simülasyon 3: Kriptografi & Veri Sızıntısı -->
+                <div class="simulation-wrapper scroll-reveal">
+                    <h3 class="simulation-title"><i class="fa-solid fa-key"></i> Kriptografi & Veri Sızıntısı Simülasyonu</h3>
+                    <div class="glass-panel simulation-terminal">
+                        <div class="terminal-header">// DATA_BREACH_DECRYPTOR_V2.0_</div>
+                        <div class="terminal-body">
+                            <p class="mission-briefing">Ele geçirilen şifreli veri paketi:</p>
+                            <div id="encrypted-data-block" class="encrypted-data"></div>
+                            <ul class="mission-log" id="decrypt-log"></ul>
+                        </div>
+                        <div class="terminal-footer">
+                            <button id="decrypt-btn" class="btn btn-primary">Şifreyi Kır</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="app.js" defer></script>
+    
+    </body>
+    </html>

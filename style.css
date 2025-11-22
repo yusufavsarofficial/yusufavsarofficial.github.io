@@ -946,5 +946,250 @@ footer {
 .skills-table tr:last-child td {
     border-bottom: none;
 }
+
+/* --- SİMÜLASYON SAYFASI --- */
+.simulation-wrapper {
+    margin-bottom: var(--spacing-xl);
+}
+
+.simulation-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.simulation-title i {
+    margin-right: var(--spacing-sm);
+    color: var(--color-cyber-cyan);
+}
+
+.simulation-terminal {
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.terminal-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.terminal-body {
+    padding: var(--spacing-lg);
+    min-height: 150px;
+    font-family: var(--font-mono);
+}
+
+.terminal-body pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.terminal-footer {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.simulation-result {
+    font-family: var(--font-mono);
+    color: var(--color-success-green);
+}
+
+/* Kod Yazma Simülasyonu */
+.typed-cursor {
+    color: var(--color-cyber-cyan);
+    animation: blink 1s infinite;
+}
+
+/* Zafiyet Tarama Simülasyonu */
+.scan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scan-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-secondary);
+}
+
+.scan-status {
+    font-weight: 700;
+}
+
+.scan-status.scanning { color: var(--color-text-secondary); }
+.scan-status.secure { color: var(--color-success-green); }
+.scan-status.vulnerable { color: #ff4d4d; }
+
+.scan-status i {
+    margin-right: var(--spacing-xs);
+}
+
+/* Kriptografi Simülasyonu */
+.crypto-textarea {
+    width: 100%;
+    background-color: var(--color-void-black);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: var(--spacing-md);
+}
+
+.crypto-textarea:focus {
+    outline: none;
+    border-color: var(--color-cyber-cyan);
+    box-shadow: var(--glow-cyan);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- NIRVANA SEVİYESİ İYİLEŞTİRMELER --- */
+
+/* 1. Özel İmleç (Custom Cursor) */
+.cursor {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-cyber-cyan);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 229, 255, 0.5);
+    transition-duration: 0.3s; /* Daha yavaş takip için */
+}
+
+/* Etkileşimli elemanların üzerine gelince imleç büyümesi */
+.cursor-grow {
+    transform: scale(2.5);
+    background-color: rgba(0, 229, 255, 0.2);
+    border: none;
+}
+
+/* Varsayılan imleci gizle */
+* {
+    cursor: none;
+}
+
+/* 2. Sayfa Ön Yükleyici (Preloader) */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-void-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader .logo {
+    opacity: 0;
+    animation: fadeInLogo 1.5s ease forwards;
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- GELİŞMİŞ SİMÜLASYON STİLLERİ --- */
+.mission-briefing {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+}
+
+.mission-log {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.mission-log li {
+    line-height: 1.6;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+}
+
+.log-success { color: var(--color-success-green); }
+.log-fail { color: #ff4d4d; }
+.log-info { color: var(--color-text-secondary); }
+.log-highlight { color: var(--color-cyber-cyan); }
+.log-command { color: var(--color-text-primary); }
+
+.log-highlight i {
+    animation: fa-beat 1s infinite;
+}
+
+.scan-input-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+.scan-prompt { font-family: var(--font-mono); color: var(--color-cyber-cyan); margin-right: var(--spacing-sm); }
+.scan-input { background: none; border: none; color: var(--color-text-primary); font-family: var(--font-mono); width: 100%; }
+.scan-input:focus { outline: none; }
+
+.encrypted-data {
+    background-color: rgba(0,0,0,0.2);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    word-break: break-all;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    border: 1px dashed var(--color-border);
+}
+}
+
 }
 }

@@ -329,12 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     /**
      * ------------------------------------------------------------------------
-     *  7. İNTERAKTİF SİMÜLASYONLAR (GELİŞMİŞ)
+     *  X. İNTERAKTİF SİMÜLASYONLAR
      * ------------------------------------------------------------------------
-     * Her bir simülasyonu kendi içinde interaktif ve "hack" temalı hale getirir.
+     * `simulasyon.html` sayfasındaki interaktif terminalleri yönetir.
      */
     const handleSimulations = () => {
+        // Yardımcı fonksiyon: Terminale animasyonlu log yazar
         const typeLog = (logElement, messages, onComplete) => {
+            if (!logElement) return;
+            logElement.innerHTML = '';
             let i = 0;
             const interval = setInterval(() => {
                 if (i < messages.length) {
@@ -346,96 +349,94 @@ document.addEventListener('DOMContentLoaded', () => {
                     i++;
                 } else {
                     clearInterval(interval);
-                    if (onComplete) onComplete();
+                    if (onComplete) setTimeout(onComplete, 500);
                 }
-            }, messages[i]?.delay || 300);
+            }, messages[i]?.delay || 150);
         };
 
-        // --- Simülasyon 1: Programlama & Derleme ---
-        const compileBtn = document.getElementById('compile-code-btn');
-        if (compileBtn) {
-            const runBtn = document.getElementById('run-code-btn');
-            const compileLog = document.getElementById('compile-log');
-            const codeToType = `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("SYSTEM BREACHED: ACCESS GRANTED")\n}`;
-            
-            new Typed('#code-simulation-output', { strings: [codeToType.trim()], typeSpeed: 25, showCursor: true, cursorChar: '_' });
+        // Simülasyonları ve senaryolarını tanımla
+        const simulations = {
+            'run-sqli-btn': {
+                logId: 'sqli-log',
+                scenario: [
+                    { text: '$ sqlmap -u "http://example.com/login" --data="user=admin&pass=*"', class: 'log-command' },
+                    { text: 'Testing connection to the target URL...', class: 'log-info' },
+                    { text: 'Testing for SQL injection on parameter `user`...', class: 'log-info' },
+                    { text: `[+] Found payload: <span class="log-highlight">' OR '1'='1' --</span>`, class: 'log-success', delay: 500 },
+                    { text: 'Injecting payload...', class: 'log-info' },
+                    { text: '[CRITICAL] Authentication Bypass Successful!', class: 'log-fail', delay: 800 },
+                    { text: '[+] Access Granted as <span class="log-highlight">admin</span>', class: 'log-success' }
+                ]
+            },
+            'run-log-analysis-btn': {
+                logId: 'log-analysis-log',
+                scenario: [
+                    { text: '$ tail -f /var/log/auth.log | grep "Failed"', class: 'log-command' },
+                    { text: 'Listening for failed login attempts...', class: 'log-info' },
+                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 1000 },
+                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 500 },
+                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 300 },
+                    { text: '[ALERT] Brute-force attempt detected from IP <span class="log-highlight">192.168.1.10</span>', class: 'log-fail', delay: 500 },
+                    { text: '[ACTION] IP <span class="log-highlight">192.168.1.10</span> has been blocked by firewall.', class: 'log-success' }
+                ]
+            },
+            'run-db-migration-btn': {
+                logId: 'db-migration-log',
+                scenario: [
+                    { text: '$ alembic upgrade head', class: 'log-command' },
+                    { text: 'INFO  [alembic.runtime.migration] Context impl PostgreSQLImpl.', class: 'log-info' },
+                    { text: 'INFO  [alembic.runtime.migration] Will assume transactional DDL.', class: 'log-info' },
+                    { text: 'INFO  [alembic.runtime.migration] Running upgrade -> e1a2b3c4d5, Add `users` table', class: 'log-info', delay: 500 },
+                    { text: 'INFO  [alembic.runtime.migration] Running upgrade e1a2b3c4d5 -> f6g7h8i9j0, Add `email_verified` column to `users`', class: 'log-info', delay: 800 },
+                    { text: '[+] Migration complete.', class: 'log-success' }
+                ]
+            },
+            'run-git-merge-btn': {
+                logId: 'git-merge-log',
+                scenario: [
+                    { text: '$ git checkout main', class: 'log-command' },
+                    { text: 'Switched to branch \'main\'', class: 'log-info' },
+                    { text: '$ git merge feature/new-login', class: 'log-command' },
+                    { text: 'Auto-merging login.js', class: 'log-info', delay: 500 },
+                    { text: '[CONFLICT] Merge conflict in login.js', class: 'log-fail', delay: 800 },
+                    { text: 'Automatic merge failed; fix conflicts and then commit the result.', class: 'log-highlight' }
+                ]
+            },
+            'run-goroutine-btn': {
+                logId: 'goroutine-log',
+                scenario: [
+                    { text: '$ go run main.go', class: 'log-command' },
+                    { text: 'Initializing 10,000 Goroutines...', class: 'log-info' },
+                    { text: 'Worker 1 started...', class: 'log-info', delay: 50 },
+                    { text: 'Worker 5,231 started...', class: 'log-info', delay: 50 },
+                    { text: 'Worker 9,999 started...', class: 'log-info', delay: 50 },
+                    { text: '[+] All 10,000 tasks completed in <span class="log-highlight">89ms</span>', class: 'log-success', delay: 1000 }
+                ]
+            },
+            'run-cicd-btn': {
+                logId: 'cicd-log',
+                scenario: [
+                    { text: 'Starting SentinelPipe v2.1...', class: 'log-info' },
+                    { text: '[GATE 1/4] Running SAST Scan...', class: 'log-info' },
+                    { text: '[+] SAST Scan: PASSED', class: 'log-success', delay: 800 },
+                    { text: '[GATE 2/4] Running SCA Scan for dependencies...', class: 'log-info' },
+                    { text: '[CRITICAL] Vulnerability found: `log4j` (CVE-2021-44228)', class: 'log-fail', delay: 1000 },
+                    { text: '[!] PIPELINE FAILED. Deployment aborted.', class: 'log-highlight' }
+                ]
+            }
+        };
 
-            compileBtn.addEventListener('click', () => {
-                compileBtn.disabled = true;
-                runBtn.disabled = true;
-                compileLog.innerHTML = '';
-                typeLog(compileLog, [
-                    { text: '$ go build -o exploit.bin', class: 'log-command' },
-                    { text: 'Parsing source code...', class: 'log-info' },
-                    { text: 'Linking dependencies...', class: 'log-info' },
-                    { text: '[+] Compilation successful. Binary `exploit.bin` created.', class: 'log-success' }
-                ], () => {
-                    runBtn.disabled = false;
-                });
-            });
-
-            runBtn.addEventListener('click', () => {
-                runBtn.disabled = true;
-                typeLog(compileLog, [
-                    { text: '$ ./exploit.bin', class: 'log-command' },
-                    { text: '> SYSTEM BREACHED: ACCESS GRANTED', class: 'log-highlight', delay: 1000 }
-                ], () => {
-                    compileBtn.disabled = false;
-                });
-            });
-        }
-
-        // --- Simülasyon 2: Ağ Zafiyet Taraması ---
-        const runScanBtn = document.getElementById('run-scan-btn');
-        if (runScanBtn) {
-            const scanLog = document.getElementById('scan-log');
-            const scanInput = document.getElementById('scan-target-input');
-
-            runScanBtn.addEventListener('click', () => {
-                runScanBtn.disabled = true;
-                scanLog.innerHTML = '';
-                typeLog(scanLog, [
-                    { text: `$ nmap -p- -sV ${scanInput.value}`, class: 'log-command' },
-                    { text: 'Starting SecurCore Network Scanner...', class: 'log-info' },
-                    { text: 'Scanning 192.168.1.1...', class: 'log-info' },
-                    { text: 'Scanning 192.168.1.2...', class: 'log-info' },
-                    { text: 'Host: 192.168.1.32', class: 'log-info' },
-                    { text: '  PORT 22/tcp   open  ssh      OpenSSH 8.2p1', class: 'log-success' },
-                    { text: '  PORT 80/tcp   closed http', class: 'log-fail' },
-                    { text: '  PORT 443/tcp  closed https', class: 'log-fail' },
-                    { text: 'Host: 192.168.1.55', class: 'log-info' },
-                    { text: '  PORT 8080/tcp open  http-proxy', class: 'log-success' },
-                    { text: '  [!] VULNERABILITY DETECTED: Apache Log4j (CVE-2021-44228)', class: 'log-highlight', delay: 500 },
-                    { text: 'Scan complete. 1 critical vulnerability found.', class: 'log-info' }
-                ], () => {
-                    runScanBtn.disabled = false;
-                });
-            });
-        }
-
-        // --- Simülasyon 3: Kriptografi & Veri Sızıntısı ---
-        const decryptBtn = document.getElementById('decrypt-btn');
-        if (decryptBtn) {
-            const encryptedBlock = document.getElementById('encrypted-data-block');
-            const decryptLog = document.getElementById('decrypt-log');
-            const secretData = "LAUNCH_CODES=ALPHA-DELTA-9;TARGET=MAIN_SERVER;USER=ADMIN";
-            const encryptedData = "5A6F5A584A6C4367523256306157356A623230675957356B5A584A304C6D4E766253493D";
-            
-            encryptedBlock.textContent = encryptedData;
-
-            decryptBtn.addEventListener('click', () => {
-                decryptBtn.disabled = true;
-                decryptLog.innerHTML = '';
-                typeLog(decryptLog, [
-                    { text: 'Initializing AES-256-GCM decryptor...', class: 'log-info' },
-                    { text: 'Brute-forcing key space... (Simulated)', class: 'log-info' },
-                    { text: 'Attempting key: 0x...a1f3', class: 'log-fail' },
-                    { text: 'Attempting key: 0x...c4b8', class: 'log-fail' },
-                    { text: '[+] Key Found: `sIlEnT_gUaRdIaN_kEy`', class: 'log-success', delay: 800 },
-                    { text: 'Decrypting data packet...', class: 'log-info' },
-                    { text: `[+] DECRYPTION SUCCESSFUL: ${secretData}`, class: 'log-highlight', delay: 1000 }
-                ], () => {
-                    decryptBtn.disabled = false;
+        // Her butona kendi senaryosunu bağla
+        for (const btnId in simulations) {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    const { logId, scenario } = simulations[btnId];
+                    const logEl = document.getElementById(logId);
+                    btn.disabled = true;
+                    typeLog(logEl, scenario, () => {
+                        btn.disabled = false;
+                    });
                 });
             });
         }

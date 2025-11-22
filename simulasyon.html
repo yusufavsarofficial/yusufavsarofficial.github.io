@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome ikonları için -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -26,52 +28,89 @@
                     <p class="subsection-description scroll-reveal" style="transition-delay: 100ms;">Teoriyi pratiğe dönüştürün. Yeteneklerimi canlı olarak deneyimleyin.</p>
                 </div>
 
-                <!-- Simülasyon 1: Programlama & Derleme -->
-                <div class="simulation-wrapper scroll-reveal" style="transition-delay: 200ms;">
-                    <h3 class="simulation-title"><i class="fa-solid fa-code"></i> Programlama & Derleme Simülasyonu</h3>
-                    <div class="glass-panel simulation-terminal">
-                        <div class="terminal-header">// GOLANG_COMPILER_V1.3_</div>
-                        <div class="terminal-body">
-                            <pre><code id="code-simulation-output" class="language-go"></code></pre>
-                            <ul class="mission-log" id="compile-log"></ul>
-                        </div>
-                        <div class="terminal-footer">
-                            <button id="compile-code-btn" class="btn btn-secondary">Derle</button>
-                            <button id="run-code-btn" class="btn btn-primary" disabled>Çalıştır</button>
-                        </div>
-                    </div>
-                </div>
+                <div class="projects-grid scroll-reveal" style="transition-delay: 200ms; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
 
-                <!-- Simülasyon 2: Ağ Zafiyet Taraması -->
-                <div class="simulation-wrapper scroll-reveal">
-                    <h3 class="simulation-title"><i class="fa-solid fa-shield-virus"></i> Ağ Zafiyet Tarama Simülasyonu</h3>
-                    <div class="glass-panel simulation-terminal">
-                        <div class="terminal-header">// SECURCORE_NETWORK_SCANNER_V4.1_</div>
-                        <div class="terminal-body">
-                            <div class="scan-input-wrapper">
-                                <span class="scan-prompt">$</span>
-                                <input type="text" id="scan-target-input" class="scan-input" value="192.168.1.0/24" placeholder="Hedef IP aralığı girin...">
+                    <!-- Simülasyon 1: SQL Injection Saldırısı -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// SQL_INJECTION_ATTACK_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">Kullanıcı girişi zafiyet için test ediliyor...</p>
+                                <ul class="mission-log" id="sqli-log"></ul>
                             </div>
-                            <ul class="mission-log" id="scan-log"></ul>
-                        </div>
-                        <div class="terminal-footer">
-                            <button id="run-scan-btn" class="btn btn-primary">Ağ Taramasını Başlat</button>
+                            <div class="terminal-footer">
+                                <button id="run-sqli-btn" class="btn btn-primary">Saldırıyı Başlat</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Simülasyon 3: Kriptografi & Veri Sızıntısı -->
-                <div class="simulation-wrapper scroll-reveal">
-                    <h3 class="simulation-title"><i class="fa-solid fa-key"></i> Kriptografi & Veri Sızıntısı Simülasyonu</h3>
-                    <div class="glass-panel simulation-terminal">
-                        <div class="terminal-header">// DATA_BREACH_DECRYPTOR_V2.0_</div>
-                        <div class="terminal-body">
-                            <p class="mission-briefing">Ele geçirilen şifreli veri paketi:</p>
-                            <div id="encrypted-data-block" class="encrypted-data"></div>
-                            <ul class="mission-log" id="decrypt-log"></ul>
+                    <!-- Simülasyon 2: Canlı Log Analizi -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// LIVE_LOG_ANALYSIS_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">Sistem logları anomali tespiti için izleniyor...</p>
+                                <ul class="mission-log" id="log-analysis-log"></ul>
+                            </div>
+                            <div class="terminal-footer">
+                                <button id="run-log-analysis-btn" class="btn btn-primary">İzlemeyi Başlat</button>
+                            </div>
                         </div>
-                        <div class="terminal-footer">
-                            <button id="decrypt-btn" class="btn btn-primary">Şifreyi Kır</button>
+                    </div>
+
+                    <!-- Simülasyon 3: Veritabanı Geçişi -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// DB_MIGRATION_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">Veritabanı şeması güncelleniyor...</p>
+                                <ul class="mission-log" id="db-migration-log"></ul>
+                            </div>
+                            <div class="terminal-footer">
+                                <button id="run-db-migration-btn" class="btn btn-primary">Geçişi Uygula</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simülasyon 4: Git Versiyon Kontrolü -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// GIT_VERSION_CONTROL_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">`feature` branch'i `main` ile birleştiriliyor...</p>
+                                <ul class="mission-log" id="git-merge-log"></ul>
+                            </div>
+                            <div class="terminal-footer">
+                                <button id="run-git-merge-btn" class="btn btn-primary">Birleştirmeyi Dene</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simülasyon 5: GoLang Eşzamanlılık -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// GOLANG_CONCURRENCY_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">10,000 eşzamanlı istek Goroutine'ler ile işleniyor...</p>
+                                <ul class="mission-log" id="goroutine-log"></ul>
+                            </div>
+                            <div class="terminal-footer">
+                                <button id="run-goroutine-btn" class="btn btn-primary">İşlemi Başlat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simülasyon 6: Güvenli CI/CD Pipeline -->
+                    <div class="project-card">
+                        <div class="simulation-terminal">
+                            <div class="terminal-header">// SECURE_CICD_PIPELINE_</div>
+                            <div class="terminal-body">
+                                <p class="mission-briefing">Kod, güvenlik kapılarından geçiriliyor...</p>
+                                <ul class="mission-log" id="cicd-log"></ul>
+                            </div>
+                            <div class="terminal-footer">
+                                <button id="run-cicd-btn" class="btn btn-primary">Dağıtımı Başlat</button>
+                            </div>
                         </div>
                     </div>
                 </div>

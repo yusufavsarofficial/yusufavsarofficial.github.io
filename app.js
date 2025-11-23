@@ -489,6 +489,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  11. SOSYAL MEDYA PAYLAŞIM BUTONLARI
+     * ------------------------------------------------------------------------
+     * Blog yazılarının sonunda yer alan paylaşım butonlarının işlevselliğini
+     * yönetir.
+     */
+    const handleShareButtons = () => {
+        const shareSection = document.querySelector('.share-section');
+        if (!shareSection) return;
+
+        const pageUrl = window.location.href;
+        const pageTitle = document.title;
+        const textToShare = `${pageTitle} - Yusuf Avşar`;
+
+        const twitterBtn = document.getElementById('share-twitter');
+        const linkedinBtn = document.getElementById('share-linkedin');
+        const copyLinkBtn = document.getElementById('copy-link-btn');
+
+        if (twitterBtn) {
+            twitterBtn.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(textToShare)}`;
+        }
+
+        if (linkedinBtn) {
+            linkedinBtn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(pageTitle)}`;
+        }
+
+        if (copyLinkBtn) {
+            copyLinkBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(pageUrl).then(() => {
+                    const originalIcon = copyLinkBtn.innerHTML;
+                    copyLinkBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                    setTimeout(() => {
+                        copyLinkBtn.innerHTML = originalIcon;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Bağlantı kopyalanamadı:', err);
+                });
+            });
+        }
+    };
+
+    /**
+     * ------------------------------------------------------------------------
      *  10. GÜVENLİ İÇERİK KORUMASI
      * ------------------------------------------------------------------------
      * Belirli sayfalardaki içeriğin kopyalanmasını ve ekran görüntüsü
@@ -544,6 +586,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  12. GELİŞTİRİCİ ARAÇLARI ENGELLEME (ANTI-DEBUGGING)
+     * ------------------------------------------------------------------------
+     * Kullanıcının tarayıcı geliştirici araçlarını açmasını zorlaştırır.
+     * Not: Bu %100 engellenemez, sadece caydırıcı bir önlemdir.
+     */
+    const handleAntiDebugging = () => {
+        // Sağ tık menüsünü tamamen engelle
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Geliştirici araçlarını açan klavye kısayollarını engelle
+        document.addEventListener('keydown', (e) => {
+            // F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+                e.preventDefault();
+            }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.key.toUpperCase() === 'U') {
+                e.preventDefault();
+            }
+        });
+
+        // Geliştirici araçları açıldığında sürekli debugger tetikle
+        const checkDevTools = () => {
+            // Bu fonksiyonun içine debugger koymak, araçlar açıldığında kodu duraklatır.
+            debugger;
+        };
+
+        setInterval(checkDevTools, 1000); // Her saniye kontrol et
+    };
+
+    /**
+     * ------------------------------------------------------------------------
      *  UYGULAMA BAŞLATMA
      * ------------------------------------------------------------------------
      */
@@ -570,6 +648,8 @@ document.addEventListener('DOMContentLoaded', () => {
         handleLikeButton(); // Beğeni butonunu aktifleştir
         handleFAQ(); // SSS akordiyonunu burada başlat
         handleSecureContent(); // Güvenli içerik korumasını başlat
+        handleShareButtons(); // Paylaşım butonlarını başlat
+        handleAntiDebugging(); // Geliştirici araçları engellemesini başlat
     };
 
     initApp();

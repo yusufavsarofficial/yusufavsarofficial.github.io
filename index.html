@@ -6,6 +6,8 @@
     <title>Yusuf Avşar - Güvenlik Odaklı Geliştirme Lideri</title>
     <meta name="description" content="Python, Golang ve Bulut Teknolojileri ile hızlı, ölçeklenebilir ve güvenlik odaklı uygulamalar. Sınır tanımayan savunma hattı.">
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
@@ -22,10 +24,18 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h1 class="scroll-reveal">Sınır Tanımayan Savunma Hattı</h1>
+                <h1 class="scroll-reveal wavy-headline">
+                    <span>S</span><span>ı</span><span>n</span><span>ı</span><span>r</span>
+                    <span class="space">&nbsp;</span>
+                    <span>T</span><span>a</span><span>n</span><span>ı</span><span>m</span><span>a</span><span>y</span><span>a</span><span>n</span>
+                    <span class="space">&nbsp;</span>
+                    <span>S</span><span>a</span><span>v</span><span>u</span><span>n</span><span>m</span><span>a</span>
+                    <span class="space">&nbsp;</span>
+                    <span>H</span><span>a</span><span>t</span><span>t</span><span>ı</span>
+                </h1>
                 <p class="scroll-reveal" style="transition-delay: 100ms;">Python, Golang ve Bulut Teknolojileri ile hızlı, ölçeklenebilir ve güvenlik odaklı uygulamalar geliştiriyorum. Amacım, işlevselliği en yüksek seviyede tutarken sistemlerinizi risklere karşı proaktif olarak korumaktır.</p>
                 <div class="scroll-reveal" style="transition-delay: 200ms;">
-                    <a href="iletisim.html" class="btn btn-primary">Projenizi Tartışalım</a>
+                    <a href="iletisim.html#contact-form" class="btn btn-primary">Projenizi Tartışalım</a>
                     <a href="projelerim.html" class="btn btn-secondary">Çalışmalarıma Göz Atın</a>
                     <a href="simulasyon.html" class="btn btn-secondary">Simülasyonları Gör</a>
                 </div>
@@ -37,15 +47,24 @@
                 <h2 class="section-title scroll-reveal">Uzmanlık Alanları: Savunma, Kodlama ve Altyapı</h2>
                 <div class="projects-grid">
                     <div class="project-card scroll-reveal">
-                        <h3>1. Proaktif Zafiyet Avcılığı ve Risk Azaltma</h3>
+                        <div class="expertise-header">
+                            <i class="fa-solid fa-shield-virus"></i>
+                            <h3>Proaktif Zafiyet Avcılığı</h3>
+                        </div>
                         <p>İleri düzey Penetrasyon Testi (Pentest) metodolojileri ile web, mobil ve API katmanlarında derinlemesine zafiyet analizi ve exploit geliştirme.</p>
                     </div>
                     <div class="project-card scroll-reveal" style="transition-delay: 100ms;">
-                        <h3>2. Ölçeklenebilir, Güvenli ve Sürdürülebilir Mimari</h3>
+                        <div class="expertise-header">
+                            <i class="fa-solid fa-sitemap"></i>
+                            <h3>Güvenli Mimari Tasarımı</h3>
+                        </div>
                         <p>Mikroservis ve sunucusuz (serverless) mimarilerde Python ve Golang kullanarak gecikmeyi minimuma indiren, bakımı kolay Back-End sistemleri inşa etme.</p>
                     </div>
                     <div class="project-card scroll-reveal" style="transition-delay: 200ms;">
-                        <h3>3. DevSecOps ve Altyapı Kodlama (IaC)</h3>
+                        <div class="expertise-header">
+                            <i class="fa-solid fa-gears"></i>
+                            <h3>Otomatikleştirilmiş DevSecOps</h3>
+                        </div>
                         <p>Terraform ve Ansible kullanarak güvenli CI/CD boru hatlarının oluşturulması ve bulut (AWS/Azure) altyapısının otomasyonu.</p>
                     </div>
                 </div>
@@ -54,7 +73,7 @@
 
         <section>
             <div class="container">
-                <div class="glass-panel scroll-reveal" style="text-align: center;">
+                <div class="glass-panel case-study-panel scroll-reveal" style="text-align: center;">
                     <h2>Öne Çıkan Vaka Çalışması</h2>
                     <h3 style="color: var(--color-text-secondary); font-family: var(--font-body); font-weight: 500;">Kritik API Zafiyetinde Veri Sızıntısının Önlenmesi</h3>
                     <p style="max-width: 700px; margin: var(--spacing-sm) auto var(--spacing-lg) auto; color: var(--color-text-secondary);">Yüksek trafikli bir e-ticaret platformunun API katmanında veri sızıntısına yol açan Broken Access Control zafiyeti tespit ettim. Golang ve Test Odaklı Geliştirme (TDD) kullanarak yeni bir yetkilendirme doğrulama servisi geliştirdim. Bu çözüm, platformun hızını korurken tüm kullanıcı veri erişimini kesin olarak izole etti ve yasal uyumluluğunu sağladı.</p>

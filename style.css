@@ -224,6 +224,30 @@ header {
     margin: 0 auto var(--spacing-lg) auto;
 }
 
+/* Ana başlık dalgalanma efekti */
+.wavy-headline span {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    animation: wave-down 0.5s ease;
+}
+
+.wavy-headline:hover span {
+    animation: wave-up 0.5s ease forwards;
+}
+
+@keyframes wave-up {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes wave-down {
+    from { transform: translateY(-10px); }
+    to { transform: translateY(0); }
+}
+
+
 /* --- BUTONLAR --- */
 .btn {
     display: inline-block; 
@@ -284,9 +308,62 @@ header {
     box-shadow: var(--glow-cyan);
 }
 
+/* Vaka Çalışması Paneli için özel arka plan deseni */
+.case-study-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 1px 1px, rgba(0, 229, 255, 0.3) 1px, transparent 0);
+    background-size: 25px 25px;
+    opacity: 0;
+    z-index: -1;
+    animation: pan-dots 90s linear infinite;
+    transition: opacity 0.5s ease;
+}
+
+.case-study-panel:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes pan-dots { from { background-position: 0 0; } to { background-position: 500px 500px; } }
+
+.expertise-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.expertise-header i {
+    font-size: 1.5rem;
+    color: var(--color-cyber-cyan);
+    min-width: 24px; /* İkonların hizalı durması için */
+}
+
 .project-card h3 {
     color: var(--color-cyber-cyan);
     margin-bottom: var(--spacing-sm);
+    position: relative; /* Alt çizgi için konumlandırma referansı */
+    display: inline-block; /* Alt çizginin başlık genişliğinde olmasını sağlar */
+}
+
+/* Blog kartı başlıkları için alt çizgi efekti */
+a.project-card h3::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-cyber-cyan);
+    transition: width var(--transition-smooth);
+}
+a.project-card:hover h3::after {
+    width: 100%;
 }
 
 .project-card p {
@@ -982,12 +1059,39 @@ footer {
 
 .terminal-header {
     background-color: rgba(0, 0, 0, 0.2);
-    padding: var(--spacing-sm) var(--spacing-lg); 
+    padding: var(--spacing-sm); 
     font-family: var(--font-mono);
     color: var(--color-text-secondary);
     border-bottom: 1px solid var(--color-border);
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+    position: absolute;
+    left: var(--spacing-md);
+}
+
+.control-btn {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.control-btn.close { background-color: #ff5f56; }
+.control-btn.minimize { background-color: #ffbd2e; }
+.control-btn.maximize { background-color: #27c93f; }
+
+.terminal-title-text {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 var(--spacing-lg); /* Kontrollerin üzerini kaplamaması için */
 }
 
 .terminal-body {
@@ -1007,6 +1111,15 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Simülasyon butonları için özel parlama efekti */
+.simulation-terminal .btn-primary:hover:not(:disabled) {
+    box-shadow: 
+        0 0 5px var(--color-cyber-cyan),
+        0 0 15px var(--color-cyber-cyan),
+        0 0 30px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 5px var(--color-cyber-cyan);
 }
 
 .simulation-result {

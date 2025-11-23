@@ -347,112 +347,159 @@ document.addEventListener('DOMContentLoaded', () => {
      * Her bir simülasyonu kendi içinde interaktif ve "hack" temalı hale getirir.
      */
     const handleSimulations = () => {
-        // Yardımcı fonksiyon: Terminale animasyonlu log yazar
-        const typeLog = (logElement, messages, onComplete) => {
-            if (!logElement) return;
-            logElement.innerHTML = '';
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < messages.length) {
-                    const li = document.createElement('li');
-                    li.className = messages[i].class;
-                    li.innerHTML = messages[i].text;
-                    logElement.appendChild(li);
-                    logElement.scrollTop = logElement.scrollHeight;
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    if (onComplete) setTimeout(onComplete, 500);
-                }
-            }, messages[i]?.delay || 150);
+        const mainLogEl = document.getElementById('main-simulation-log');
+        const mainStatusEl = document.getElementById('main-simulation-status');
+        const mainSpinner = document.getElementById('main-spinner');
+        const commandButtons = document.querySelectorAll('.btn-command');
+        if (!mainLogEl || !mainStatusEl || !commandButtons.length) return;
+
+        const typeLog = async (messages, onComplete, commandName) => {
+            const logEl = mainLogEl;
+            const statusEl = mainStatusEl;
+            const spinner = mainSpinner;
+            logEl.innerHTML = '';
+
+            const typeCharacter = (element, text, speed) => {
+                return new Promise(resolve => {
+                    let i = 0;
+                    // HTML etiketlerini atlamak için basit bir kontrol
+                    let isTag = false;
+                    const typing = () => {
+                        if (i < text.length) {
+                            const char = text.charAt(i);
+                            if (char === '<') isTag = true;
+                            if (!isTag) {
+                                element.innerHTML += char;
+                            } else {
+                                // Etiketi doğrudan ekle
+                                const tagEnd = text.indexOf('>', i);
+                                if (tagEnd !== -1) {
+                                    element.innerHTML += text.substring(i, tagEnd + 1);
+                                    i = tagEnd;
+                                }
+                            }
+                            if (char === '>') isTag = false;
+
+                            i++;
+                            setTimeout(typing, speed);
+                        } else {
+                            resolve();
+                        }
+                    };
+                    typing();
+                });
+            };
+
+            // Simülasyon başlangıcı
+            statusEl.textContent = 'ÇALIŞIYOR...';
+            statusEl.className = 'simulation-result log-info';
+            if(spinner) spinner.style.display = 'block';
+            const commandMessage = { text: `$ ./run-op ${commandName}`, class: 'log-command', delay: 100 };
+            messages.unshift(commandMessage);
+
+            for (const message of messages) {
+                const li = document.createElement('li');
+                logEl.appendChild(li);
+                await typeCharacter(li, message.text, 15); // Yazma hızı
+                li.className = message.class; // Stili en son uygula
+
+                logEl.scrollTop = logEl.scrollHeight;
+                await new Promise(resolve => setTimeout(resolve, message.delay || 50));
+            }
+
+            // Simülasyon sonu
+            const lastMessage = messages[messages.length - 1];
+            if (lastMessage.class.includes('log-fail') || lastMessage.class.includes('log-highlight')) {
+                statusEl.textContent = 'BAŞARISIZ/UYARI';
+                statusEl.className = 'simulation-result log-fail';
+            } else {
+                statusEl.textContent = 'TAMAMLANDI';
+                statusEl.className = 'simulation-result log-success';
+            }
+            if(spinner) spinner.style.display = 'none';
+            if (onComplete) onComplete();
         };
 
-        // Simülasyonları ve senaryolarını tanımla
         const simulations = {
             'run-sqli-btn': {
-                logId: 'sqli-log',
+                name: 'sql_injection_attack',
                 scenario: [
-                    { text: '$ sqlmap -u "http://example.com/login" --data="user=admin&pass=*"', class: 'log-command' },
-                    { text: 'Testing connection to the target URL...', class: 'log-info' },
-                    { text: 'Testing for SQL injection on parameter `user`...', class: 'log-info' },
-                    { text: `[+] Found payload: <span class="log-highlight">' OR '1'='1' --</span>`, class: 'log-success', delay: 500 },
-                    { text: 'Injecting payload...', class: 'log-info' },
-                    { text: '[CRITICAL] Authentication Bypass Successful!', class: 'log-fail', delay: 800 },
-                    { text: '[+] Access Granted as <span class="log-highlight">admin</span>', class: 'log-success' }
+                    { text: 'INFO: Hedef URL bağlantısı test ediliyor...', class: 'log-info' },
+                    { text: 'INFO: `user` parametresinde SQL Injection test ediliyor...', class: 'log-info' },
+                    { text: `SUCCESS: Zafiyetli payload bulundu: <span class="log-highlight">' OR '1'='1' --</span>`, class: 'log-success', delay: 500 },
+                    { text: 'INFO: Payload enjekte ediliyor...', class: 'log-info' },
+                    { text: 'CRITICAL: Kimlik Doğrulama Atlatıldı!', class: 'log-fail', delay: 800 },
+                    { text: 'SUCCESS: <span class="log-highlight">admin</span> olarak erişim sağlandı.', class: 'log-success' }
                 ]
             },
             'run-log-analysis-btn': {
-                logId: 'log-analysis-log',
+                name: 'live_log_analysis',
                 scenario: [
-                    { text: '$ tail -f /var/log/auth.log | grep "Failed"', class: 'log-command' },
-                    { text: 'Listening for failed login attempts...', class: 'log-info' },
-                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 1000 },
-                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 500 },
-                    { text: 'Failed password for root from 192.168.1.10 port 22', class: 'log-info', delay: 300 },
-                    { text: '[ALERT] Brute-force attempt detected from IP <span class="log-highlight">192.168.1.10</span>', class: 'log-fail', delay: 500 },
-                    { text: '[ACTION] IP <span class="log-highlight">192.168.1.10</span> has been blocked by firewall.', class: 'log-success' }
+                    { text: 'INFO: Başarısız giriş denemeleri dinleniyor...', class: 'log-info' },
+                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 1000 },
+                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 500 },
+                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 300 },
+                    { text: 'ALERT: <span class="log-highlight">192.168.1.10</span> IP\'sinden Brute-force saldırısı tespit edildi!', class: 'log-fail', delay: 500 },
+                    { text: 'ACTION: IP <span class="log-highlight">192.168.1.10</span> güvenlik duvarı tarafından engellendi.', class: 'log-success' }
                 ]
             },
             'run-db-migration-btn': {
-                logId: 'db-migration-log',
+                name: 'db_migration',
                 scenario: [
-                    { text: '$ alembic upgrade head', class: 'log-command' },
-                    { text: 'INFO  [alembic.runtime.migration] Context impl PostgreSQLImpl.', class: 'log-info' },
-                    { text: 'INFO  [alembic.runtime.migration] Will assume transactional DDL.', class: 'log-info' },
-                    { text: 'INFO  [alembic.runtime.migration] Running upgrade -> e1a2b3c4d5, Add `users` table', class: 'log-info', delay: 500 },
-                    { text: 'INFO  [alembic.runtime.migration] Running upgrade e1a2b3c4d5 -> f6g7h8i9j0, Add `email_verified` column to `users`', class: 'log-info', delay: 800 },
-                    { text: '[+] Migration complete.', class: 'log-success' }
+                    { text: 'INFO: [alembic.runtime.migration] Context impl PostgreSQLImpl.', class: 'log-info' },
+                    { text: 'INFO: [alembic.runtime.migration] İşlemsel DDL varsayılacak.', class: 'log-info' },
+                    { text: 'INFO: [alembic.runtime.migration] Yükseltme çalıştırılıyor -> e1a2b3c4d5, `users` tablosu ekleniyor', class: 'log-info', delay: 500 },
+                    { text: 'INFO: [alembic.runtime.migration] Yükseltme çalıştırılıyor e1a2b3c4d5 -> f6g7h8i9j0, `users` tablosuna `email_verified` sütunu ekleniyor', class: 'log-info', delay: 800 },
+                    { text: 'SUCCESS: Geçiş tamamlandı.', class: 'log-success' }
                 ]
             },
             'run-git-merge-btn': {
-                logId: 'git-merge-log',
+                name: 'git_version_control',
                 scenario: [
-                    { text: '$ git checkout main', class: 'log-command' },
-                    { text: 'Switched to branch \'main\'', class: 'log-info' },
-                    { text: '$ git merge feature/new-login', class: 'log-command' },
-                    { text: 'Auto-merging login.js', class: 'log-info', delay: 500 },
-                    { text: '[CONFLICT] Merge conflict in login.js', class: 'log-fail', delay: 800 },
-                    { text: 'Automatic merge failed; fix conflicts and then commit the result.', class: 'log-highlight' }
+                    { text: 'INFO: `main` branch\'ine geçildi.', class: 'log-info' },
+                    { text: 'COMMAND: $ git merge feature/new-login', class: 'log-command' },
+                    { text: 'INFO: login.js otomatik birleştiriliyor...', class: 'log-info', delay: 500 },
+                    { text: 'CONFLICT: login.js dosyasında birleştirme çakışması var.', class: 'log-fail', delay: 800 },
+                    { text: 'HINT: Otomatik birleştirme başarısız; çakışmaları çözüp sonucu commit edin.', class: 'log-highlight' }
                 ]
             },
             'run-goroutine-btn': {
-                logId: 'goroutine-log',
+                name: 'go_concurrency_test',
                 scenario: [
-                    { text: '$ go run main.go', class: 'log-command' },
-                    { text: 'Initializing 10,000 Goroutines...', class: 'log-info' },
-                    { text: 'Worker 1 started...', class: 'log-info', delay: 50 },
-                    { text: 'Worker 5,231 started...', class: 'log-info', delay: 50 },
-                    { text: 'Worker 9,999 started...', class: 'log-info', delay: 50 },
-                    { text: '[+] All 10,000 tasks completed in <span class="log-highlight">89ms</span>', class: 'log-success', delay: 1000 }
+                    { text: 'INFO: 10,000 Goroutine başlatılıyor...', class: 'log-info' },
+                    { text: 'WORKER: İşçi 1 başladı...', class: 'log-info', delay: 50 },
+                    { text: 'WORKER: İşçi 5,231 başladı...', class: 'log-info', delay: 50 },
+                    { text: 'WORKER: İşçi 9,999 başladı...', class: 'log-info', delay: 50 },
+                    { text: 'SUCCESS: 10,000 görevin tamamı <span class="log-highlight">89ms</span> içinde tamamlandı.', class: 'log-success', delay: 1000 }
                 ]
             },
             'run-cicd-btn': {
-                logId: 'cicd-log',
+                name: 'secure_cicd_pipeline',
                 scenario: [
-                    { text: 'Starting SentinelPipe v2.1...', class: 'log-info' },
-                    { text: '[GATE 1/4] Running SAST Scan...', class: 'log-info' },
-                    { text: '[+] SAST Scan: PASSED', class: 'log-success', delay: 800 },
-                    { text: '[GATE 2/4] Running SCA Scan for dependencies...', class: 'log-info' },
-                    { text: '[CRITICAL] Vulnerability found: `log4j` (CVE-2021-44228)', class: 'log-fail', delay: 1000 },
-                    { text: '[!] PIPELINE FAILED. Deployment aborted.', class: 'log-highlight' }
+                    { text: 'INFO: SentinelPipe v2.1 başlatılıyor...', class: 'log-info' },
+                    { text: 'GATE 1/4: SAST Taraması çalıştırılıyor...', class: 'log-info' },
+                    { text: 'SUCCESS: SAST Taraması: GEÇTİ', class: 'log-success', delay: 800 },
+                    { text: 'GATE 2/4: Bağımlılıklar için SCA Taraması çalıştırılıyor...', class: 'log-info' },
+                    { text: 'CRITICAL: Zafiyet bulundu: `log4j` (CVE-2021-44228)', class: 'log-fail', delay: 1000 },
+                    { text: 'ABORTED: PIPELINE BAŞARISIZ. Dağıtım iptal edildi.', class: 'log-highlight' }
                 ]
             }
         };
 
-        // Her butona kendi senaryosunu bağla
-        for (const btnId in simulations) {
-            const btn = document.getElementById(btnId);
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    const { logId, scenario } = simulations[btnId];
-                    const logEl = document.getElementById(logId);
-                    btn.disabled = true;
-                    typeLog(logEl, scenario, () => {
-                        btn.disabled = false;
-                    });
-                });
-            }
-        }
+        commandButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sim = simulations[btn.id];
+                if (!sim) return;
+
+                // Bir simülasyon çalışırken diğerlerini devre dışı bırak
+                commandButtons.forEach(b => b.disabled = true);
+
+                typeLog(sim.scenario, () => {
+                    // Simülasyon bittiğinde tüm butonları tekrar aktif et
+                    commandButtons.forEach(b => b.disabled = false);
+                }, sim.name);
+            });
+        });
     };
 
     /**
@@ -488,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { duration: 500, fill: 'forwards' });
             });
 
-            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button, summary, .faq-item');
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button, summary, .faq-item, .scan-input');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursorOutline.classList.add('cursor-grow');
@@ -662,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handleFAQ(); // SSS akordiyonunu burada başlat
         handleSecureContent(); // Güvenli içerik korumasını başlat
         handleShareButtons(); // Paylaşım butonlarını başlat
-        handleAntiDebugging(); // Geliştirici araçları engellemesini başlat
+        // handleAntiDebugging(); // Geliştirici araçları engellemesini başlat - Geliştirme sırasında kapalı tutulabilir
     };
 
     initApp();

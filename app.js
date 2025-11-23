@@ -47,10 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!hamburger || !navLinks) return;
 
         const toggleMenu = () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            // Menü açıkken body'nin kaydırılmasını engelle
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            // Erişilebilirlik için ARIA durumunu güncelle
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            
+            // --- MODERN KAYDIRMA ENGELLEME YÖNTEMİ ---
+            // Menü aktif olduğunda hem <html> hem de <body> etiketlerine bir sınıf ekleyerek kaydırmayı engelle
+            document.documentElement.classList.toggle('no-scroll', navLinks.classList.contains('active'));
+            document.body.classList.toggle('no-scroll', navLinks.classList.contains('active'));
         };
 
         hamburger.addEventListener('click', toggleMenu);
@@ -115,14 +121,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     form.style.display = 'none';
-                    statusDiv.innerHTML = `<div class="form-success"><h3 style="color: var(--color-success-green);">Teşekkürler!</h3><p>Mesajınız başarıyla gönderildi. En kısa sürede size geri dönüş yapacağım.</p></div>`;
+                    // Güvenli DOM oluşturma
+                    statusDiv.innerHTML = ''; // Önce temizle
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'form-success';
+                    successDiv.innerHTML = `<h3 style="color: var(--color-success-green);">Teşekkürler!</h3><p>Mesajınız başarıyla gönderildi. En kısa sürede size geri dönüş yapacağım.</p>`;
+                    statusDiv.appendChild(successDiv);
                 } else {
                     const responseData = await response.json();
                     const errorMessage = responseData.errors ? responseData.errors.map(error => error.message).join(', ') : 'Bilinmeyen bir hata oluştu.';
-                    statusDiv.innerHTML = `<p style="color: #ff4d4d;">Hata: ${errorMessage} Lütfen daha sonra tekrar deneyin.</p>`;
+                    statusDiv.innerHTML = ''; // Temizle
+                    const errorP = document.createElement('p');
+                    errorP.style.color = '#ff4d4d';
+                    errorP.textContent = `Hata: ${errorMessage} Lütfen daha sonra tekrar deneyin.`;
+                    statusDiv.appendChild(errorP);
                 }
             } catch (error) {
-                statusDiv.innerHTML = `<p style="color: #ff4d4d;">Bir ağ hatası oluştu. Lütfen daha sonra tekrar deneyin.</p>`;
+                statusDiv.innerHTML = ''; // Temizle
+                statusDiv.innerHTML = `<p style="color: #ff4d4d;">Bir ağ hatası oluştu. Lütfen daha sonra tekrar deneyin.</p>`; // Bu statik olduğu için güvenli
             }
         });
     };
@@ -361,35 +377,46 @@ document.addEventListener('DOMContentLoaded', () => {
             logEl.innerHTML = '';
 
             const typeCharacter = (element, text, speed) => {
-                return new Promise(resolve => {
-                    let i = 0;
-                    // HTML etiketlerini atlamak için basit bir kontrol
-                    let isTag = false;
-                    const typing = () => {
-                        if (i < text.length) {
-                            const char = text.charAt(i);
-                            if (char === '<') isTag = true;
-                            if (!isTag) {
-                                element.innerHTML += char;
-                            } else {
-                                // Etiketi doğrudan ekle
-                                const tagEnd = text.indexOf('>', i);
-                                if (tagEnd !== -1) {
-                                    element.innerHTML += text.substring(i, tagEnd + 1);
-                                    i = tagEnd;
-                                }
-                            }
-                            if (char === '>') isTag = false;
-
-                            i++;
-                            setTimeout(typing, speed);
-                        } else {
-                            resolve();
-                        }
-                    };
-                    typing();
-                });
-            };
+                 return new Promise(resolve => {
+                     let i = 0;
+                     const typing = () => {
+                         if (i < text.length) {
+                             const char = text.charAt(i);
+                             let part;
+ 
+                             if (char === '<') {
+                                 // HTML etiketini bul ve atla
+                                 const tagEnd = text.indexOf('>', i);
+                                 if (tagEnd !== -1) {
+                                     part = text.substring(i, tagEnd + 1);
+                                     i = tagEnd;
+                                 } else {
+                                     // Kapanmayan etiket, metin olarak işle
+                                     part = document.createTextNode(char);
+                                 }
+                             } else {
+                                 // Normal metin karakteri, güvenli hale getir
+                                 part = document.createTextNode(char);
+                             }
+ 
+                             // Oluşturulan bölümü (HTML etiketi veya güvenli metin) ekle
+                             if (typeof part === 'string') {
+                                 // Bu, HTML etiketi olduğu anlamına gelir
+                                 element.innerHTML += part;
+                             } else {
+                                 // Bu, bir TextNode olduğu anlamına gelir
+                                 element.appendChild(part);
+                             }
+ 
+                             i++;
+                             setTimeout(typing, speed);
+                         } else {
+                             resolve();
+                         }
+                     };
+                     typing();
+                 });
+             };
 
             // Simülasyon başlangıcı
             statusEl.textContent = 'ÇALIŞIYOR...';
@@ -616,6 +643,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
+        // Sadece fare destekleyen cihazlarda imleç efektini çalıştır
+        const isPointerDevice = window.matchMedia('(pointer: fine)').matches;
+        if (!isPointerDevice) return;
+
         if (cursorDot && cursorOutline) {
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
@@ -717,6 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Dinamik Filigranı fareyi takip ettir
         if (watermark) {
+            // Sadece fare destekleyen cihazlarda filigranı çalıştır
+            const isPointerDevice = window.matchMedia('(pointer: fine)').matches;
+            if (!isPointerDevice) return;
+
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
                 const posY = e.clientY;
@@ -727,13 +762,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Ekran görüntüsü almayı zorlaştırmak için bulanıklaştırma
         window.addEventListener('blur', () => {
-            // Sadece bu sayfada blur efekti uygula
-            if (document.querySelector('.secure-content')) {
+            // Sadece .secure-content elementine sahip sayfalarda blur efekti uygula
+            if (secureElement) {
                 document.body.classList.add('content-blurred');
             }
         });
         window.addEventListener('focus', () => {
-            if (document.querySelector('.secure-content')) {
+            if (secureElement) {
                 document.body.classList.remove('content-blurred');
             }
         });
@@ -784,11 +819,31 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleWavyHeadline = () => {
         const wavyHeadline = document.querySelector('.wavy-headline');
-        if (!wavyHeadline) return;
+        if (!wavyHeadline) return; // Element yoksa çık
 
-        wavyHeadline.querySelectorAll('span:not(.space)').forEach((span, index) => {
-            span.style.animationDelay = `${index * 0.05}s`;
-        });
+        const animationHasRun = sessionStorage.getItem('wavyAnimationHasRun');
+
+        if (!animationHasRun) {
+            // Animasyon daha önce çalışmadıysa, class'ı ekle ve gecikmeleri ayarla
+            wavyHeadline.classList.add('initial-animation');
+            wavyHeadline.querySelectorAll('span:not(.space)').forEach((span, index) => {
+                span.style.animationDelay = `${index * 0.05}s`;
+            });
+            // Animasyonun çalıştığını oturum için işaretle
+            sessionStorage.setItem('wavyAnimationHasRun', 'true');
+        }
+    };
+    /**
+     * ------------------------------------------------------------------------
+     *  14. FOOTER'DA DİNAMİK YIL
+     * ------------------------------------------------------------------------
+     * Footer'daki telif hakkı yılını otomatik olarak günceller.
+     */
+    const handleDynamicYear = () => {
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
     };
     /**
      * ------------------------------------------------------------------------
@@ -808,6 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Component'ler yüklendikten sonra çalışacak fonksiyonlar
         handleMobileNavigation();
         setActiveNavLink();
+        handleDynamicYear(); // Dinamik yılı ayarla
         handleThemeSwitcher();
         handleWavyHeadline(); // Dalga animasyonunu başlat
 

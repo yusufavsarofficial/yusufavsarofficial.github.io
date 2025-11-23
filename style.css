@@ -225,10 +225,10 @@ header {
 }
 
 /* Ana başlık dalgalanma efekti */
-.wavy-headline span {
+.wavy-headline.initial-animation span {
     position: relative;
     display: inline-block;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; - Bu satır hover animasyonu için gereksiz */
     animation: wave-down 0.5s ease;
 }
 
@@ -1460,5 +1460,16 @@ button:disabled {
     to { transform: rotate(1turn); }
 }
 
+}
+}
+
+/* --- MODERN MOBİL MENÜ KAYDIRMA ENGELLEME --- */
+/* Menü açıkken hem <html> hem de <body> etiketlerinde kaydırmayı engeller. */
+/* `padding-right` eklemesi, kaydırma çubuğu kaybolduğunda sayfanın "zıplamasını" önler. */
+html.no-scroll,
+body.no-scroll {
+    overflow: hidden;
+    /* Kaydırma çubuğu genişliğini hesaplayıp boşluk olarak ekle (zıplamayı önler) */
+    padding-right: calc(100vw - 100%);
 }
 }

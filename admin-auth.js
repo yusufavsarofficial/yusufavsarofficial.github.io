@@ -204,6 +204,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const cancelEditBtn = document.getElementById('cancel-edit-btn');
             const importInput = document.getElementById('import-json-input');
             const downloadAllBtn = document.getElementById('download-all-btn');
+            
+            // --- ERİŞİLEBİLİRLİK VE DOĞRULAMA İYİLEŞTİRMELERİ ---
+            const setupFormValidation = () => {
+                const form = document.getElementById('blog-editor-form'); // Formun ID'si bu olmalı
+                if(form) form.setAttribute('novalidate', '');
+
+                postTitleInput.setAttribute('required', '');
+                postTitleInput.setAttribute('aria-required', 'true');
+                postTitleInput.setAttribute('maxlength', '120');
+
+                postSlugInput.setAttribute('required', '');
+                postSlugInput.setAttribute('aria-required', 'true');
+                postSlugInput.setAttribute('pattern', '^[a-z0-9\\-]+$');
+                postSlugInput.setAttribute('aria-label', 'URL için geçerli slug');
+
+                postContentInput.setAttribute('required', '');
+                postContentInput.setAttribute('aria-required', 'true');
+            };
+            // --- BİTİŞ ---
+
 
             // Başlıktan otomatik slug oluşturma
             postTitleInput.addEventListener('keyup', () => {
@@ -272,17 +292,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     postListEl.innerHTML = '<tr><td colspan="3" style="text-align: center;">Henüz yazı bulunmuyor.</td></tr>';
                     return;
                 }
-                let tableRowsHTML = '';
                 posts.forEach(post => {
-                    tableRowsHTML += `
-                        <tr>
-                            <td>${post.title}</td>
-                            <td>${post.category}</td>
-                            <td style="text-align: right;"><button class="btn-edit" data-id="${post.id}">Düzenle</button></td>
-                        </tr>
-                    `;
+                    const tr = document.createElement('tr');
+                    
+                    const tdTitle = document.createElement('td');
+                    tdTitle.textContent = post.title;
+                    
+                    const tdCategory = document.createElement('td');
+                    tdCategory.textContent = post.category;
+
+                    const tdActions = document.createElement('td');
+                    tdActions.style.textAlign = 'right';
+                    tdActions.innerHTML = `<button class="btn-edit" data-id="${escapeHTML(post.id)}">Düzenle</button>`;
+
+                    tr.appendChild(tdTitle);
+                    tr.appendChild(tdCategory);
+                    tr.appendChild(tdActions);
+                    postListEl.appendChild(tr);
                 });
-                postListEl.innerHTML = tableRowsHTML;
             };
 
             // İstatistikleri güncelle
@@ -360,50 +387,52 @@ document.addEventListener('DOMContentLoaded', () => {
              * @param {HTMLElement} buttonElement - İşlem sırasında devre dışı bırakılacak buton.
              */
             const updateContentOnGitHub = async (contentToCommit, commitMessage, buttonElement) => {
-                const githubToken = prompt("Değişiklikleri GitHub'a göndermek için lütfen GitHub Personal Access Token'ınızı girin:", "");
-                if (!githubToken) {
-                    alert("GitHub token girilmedi. Değişiklikler sadece yerel olarak kaydedildi. Kalıcı hale getirmek için 'Manuel Yedekleme' bölümünü kullanın.");
-                    return;
+                // --- GÜVENLİK İYİLEŞTİRMESİ v3 ---
+                // Kullanıcıya `confirm` ile seçenek sunarak doğrudan ZIP indirme işlemi başlatılır.
+                // Token isteme tamamen kaldırıldı.
+                const msg = [
+                    'Güvenlik Uyarısı: Tarayıcıdan kişisel erişim token (PAT) girilmesi risklidir.',
+                    'Öneriler:',
+                    '- Değişiklikleri manuel .zip olarak indirip yerel olarak push edin.',
+                    '- Veya GitHub Actions gibi bir CI/CD ile sunucu taraflı token kullanarak dağıtım kurun.',
+                    '',
+                    'Devam etmek isterseniz "Tamam" ile ZIP indirme işlemini başlatabilirsiniz.'
+                ].join('\n');
+
+                if (confirm(msg)) {
+                    if (typeof downloadAllContent === 'function') {
+                        downloadAllContent();
+                    } else {
+                        alert('Export fonksiyonu bulunamadı. Lütfen README.md içindeki CI yönergelerini takip edin.');
+                    }
+                } else {
+                    alert('İndirme işlemi iptal edildi. Değişiklikleriniz kaydedildi ancak kalıcı hale getirilmedi. "Manuel Yedekleme" bölümünden istediğiniz zaman indirebilirsiniz.');
                 }
 
-                const originalButtonText = buttonElement.textContent;
-                buttonElement.disabled = true;
-                buttonElement.innerHTML = '<div class="spinner-sm"></div> Gönderiliyor...';
-
-                try {
-                    const repoOwner = 'yusufavsarofficial';
-                    const repoName = 'yusufavsarofficial.github.io-main';
-                    const filePath = 'content.json';
-                    const branch = 'main';
-
-                    const fileResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`, {
-                        headers: { 'Authorization': `token ${githubToken}` }
-                    });
-                    const fileData = await fileResponse.json();
-                    const sha = fileData.sha;
-
-                    const updatedContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(contentToCommit, null, 4))));
-
-                    const updateResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-                        method: 'PUT',
-                        headers: { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: commitMessage, content: updatedContentBase64, sha: sha, branch: branch })
-                    });
-
-                    if (!updateResponse.ok) throw new Error(`GitHub API Hatası: ${updateResponse.statusText}`);
-                    alert('Değişiklikler başarıyla GitHub\'a gönderildi! Sitenizin güncellenmesi birkaç dakika sürebilir.');
-                } catch (error) {
-                    alert(`GitHub'a gönderilirken bir hata oluştu: ${error.message}\nDeğişiklikleriniz kaydedildi, 'Manuel Yedekleme' butonu ile manuel olarak indirebilirsiniz.`);
-                } finally {
-                    buttonElement.disabled = false;
-                    buttonElement.innerHTML = originalButtonText;
-                }
+                // Butonun durumunu sıfırla (eğer bir "loading" durumu varsa)
+                const originalButtonText = buttonElement.dataset.originalText || 'Kaydet';
+                buttonElement.disabled = false;
+                buttonElement.innerHTML = originalButtonText;
             };
 
             // Değişiklikleri kaydet (artık GitHub'a gönderecek)
             const savePost = async () => {
+                const form = document.getElementById('blog-editor');
+                // Formun içindeki inputları manuel olarak kontrol et
+                if (!postTitleInput.checkValidity()) {
+                    postTitleInput.reportValidity();
+                    alert('Lütfen formdaki zorunlu alanları doğru bir şekilde doldurun.');
+                    return;
+                }
+
+                if (form && !form.checkValidity()) {
+                    form.reportValidity();
+                    alert('Lütfen formdaki zorunlu alanları doğru bir şekilde doldurun.');
+                    return;
+                }
+
                 const id = postIdInput.value ? parseInt(postIdInput.value, 10) : null;
-                const content = easyMDE.value(); // İçeriği EasyMDE'den al
+                const content = easyMDE ? easyMDE.value() : document.getElementById('post-content').value; // İçeriği EasyMDE'den al
                 const wordCount = content.split(/\s+/).filter(Boolean).length;
                 const readingTime = Math.ceil(wordCount / 200); // Ortalama 200 kelime/dakika
                 const tags = postTagsInput.value.split(',').map(tag => tag.trim()).filter(Boolean); // Virgülle ayrılmış etiketleri diziye çevir
@@ -411,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const updatedPost = {
                     id: id || Date.now(),
                     title: postTitleInput.value,
-                    slug: postSlugInput.value,
+                    slug: document.getElementById('post-slug') ? document.getElementById('post-slug').value : '', // Slug inputu varsa al
                     author: 'Yusuf Avşar',
                     date: postDateInput.value,
                     category: postCategoryInput.value,
@@ -576,6 +605,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Başlangıç
             loadContent();
+            setupFormValidation(); // Blog formu niteliklerini ayarla
+            setupProjectFormValidation(); // Proje formu niteliklerini ayarla
         }
 
          // --- PROJE YÖNETİMİ MANTIĞI (blogEditor scope'u içinde olmalı) ---
@@ -594,6 +625,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectLinkInput = document.getElementById('project-link');
             const projectLinkTextInput = document.getElementById('project-link-text');
 
+            // Proje formu için doğrulama niteliklerini ayarla
+            const setupProjectFormValidation = () => {
+                const form = document.getElementById('project-editor');
+                if(form) form.setAttribute('novalidate', '');
+                projectTitleInput.setAttribute('required', '');
+                projectTitleInput.setAttribute('aria-required', 'true');
+                projectDescriptionInput.setAttribute('required', '');
+            };
+
             const renderProjectList = () => {
                 projectListBody.innerHTML = '';
                 const projects = siteContent.projects || [];
@@ -601,17 +641,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     projectListBody.innerHTML = '<tr><td colspan="3" style="text-align: center;">Henüz proje bulunmuyor.</td></tr>';
                     return;
                 }
-                let tableRowsHTML = '';
                 projects.forEach(project => {
-                    tableRowsHTML += `
-                        <tr>
-                            <td>${project.title || 'Başlıksız'}</td>
-                            <td>${project.category || 'Genel'}</td>
-                            <td style="text-align: right;"><button class="btn-edit" data-id="${project.id}">Düzenle</button></td>
-                        </tr>
-                    `;
+                    const tr = document.createElement('tr');
+
+                    const tdTitle = document.createElement('td');
+                    tdTitle.textContent = project.title || 'Başlıksız';
+
+                    const tdCategory = document.createElement('td');
+                    tdCategory.textContent = project.category || 'Genel';
+
+                    const tdActions = document.createElement('td');
+                    tdActions.style.textAlign = 'right';
+                    tdActions.innerHTML = `<button class="btn-edit" data-id="${escapeHTML(project.id)}">Düzenle</button>`;
+
+                    tr.appendChild(tdTitle);
+                    tr.appendChild(tdCategory);
+                    tr.appendChild(tdActions);
+                    projectListBody.appendChild(tr);
                 });
-                projectListBody.innerHTML = tableRowsHTML;
             };
 
             const openProjectEditor = (project) => {
@@ -630,6 +677,14 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const saveProject = async () => {
+                // İstemci tarafı doğrulama
+                const form = document.getElementById('project-editor');
+                if (form && !form.checkValidity()) {
+                    form.reportValidity();
+                    alert('Lütfen proje formundaki zorunlu alanları doldurun.');
+                    return;
+                }
+
                 const id = projectIdInput.value ? parseInt(projectIdInput.value, 10) : Date.now();
                 const updatedProject = {
                     id: id,

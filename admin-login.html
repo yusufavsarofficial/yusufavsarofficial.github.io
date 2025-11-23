@@ -6,7 +6,8 @@
     <title>Yönetici Girişi</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome yerel olarak eklendi -->
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 </head>
 <body class="login-page-body">
 
@@ -23,11 +24,11 @@
                         <p class="subsection-description">Erişim için kimlik bilgileri gereklidir.</p>
                     </div>
 
-                    <form id="login-form" class="contact-form">
+                    <form id="login-form" class="contact-form" novalidate>
                         <div class="form-group">
                             <label for="password">Parola</label>
                             <div class="password-wrapper">
-                                <input type="password" id="password" name="password" required autocomplete="current-password">
+                                <input type="password" id="password" name="password" required aria-required="true" autocomplete="current-password" aria-label="Parola">
                                 <button type="button" id="toggle-password" class="password-toggle-btn" aria-label="Parolayı göster">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>

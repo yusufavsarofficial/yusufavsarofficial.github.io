@@ -1,22 +1,19 @@
 <header>
-    <div class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Ana site navigasyonu">
         <div class="logo">
-            <a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a>
+            <a href="index.html" aria-label="Yusuf Avşar ana sayfa">YUSUF AVŞAR<span class="cursor">_</span></a>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Ana Sayfa</a></li>
-            <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="faaliyetlerim.html">Faaliyetlerim</a></li>
-            <li><a href="urunlerim.html">Ürünlerim</a></li>
-            <li><a href="projelerim.html">Projelerim</a></li>
-            <li><a href="simulasyon.html">Simülasyon</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
+        <ul class="nav-links" id="nav-links" role="menubar">
+            <li role="none"><a role="menuitem" href="index.html">Ana Sayfa</a></li>
+            <li role="none"><a role="menuitem" href="hakkimda.html">Hakkımda</a></li>
+            <li role="none"><a role="menuitem" href="faaliyetlerim.html">Faaliyetlerim</a></li>
+            <li role="none"><a role="menuitem" href="urunlerim.html">Ürünlerim</a></li>
+            <li role="none"><a role="menuitem" href="projelerim.html">Projelerim</a></li>
+            <li role="none"><a role="menuitem" href="simulasyon.html">Simülasyon</a></li>
+            <li role="none"><a role="menuitem" href="blog.html">Blog</a></li>
+            <li role="none"><a role="menuitem" href="iletisim.html">İletişim</a></li>
         </ul>
-        <button class="hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-    </div>
+        <!-- Erişilebilirlik için `aria-controls` ve `aria-expanded` eklendi -->
+        <button class="hamburger" id="hamburger" aria-label="Menüyü aç/kapat" aria-controls="nav-links" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
 </header>

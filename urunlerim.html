@@ -26,10 +26,20 @@
                     <h2 class="section-title scroll-reveal">Ürünlerim: Tescilli Çözümler</h2>
                     <p class="subsection-description scroll-reveal" style="transition-delay: 100ms;">Güvenlik, performans ve otomasyonu bir araya getiren, sahada test edilmiş özel yazılım çözümleri.</p>
                 </div>
+
+                <!-- Filtre Butonları -->
+                <div class="filter-buttons scroll-reveal" style="transition-delay: 200ms;">
+                    <button class="btn btn-filter active" data-filter="all">Tümü</button>
+                    <button class="btn btn-filter" data-filter="security">Kurumsal Güvenlik</button>
+                    <button class="btn btn-filter" data-filter="dev-tools">Geliştirici Araçları</button>
+                    <button class="btn btn-filter" data-filter="infra">Altyapı & Otomasyon</button>
+                    <button class="btn btn-filter" data-filter="data">Veri & Analitik</button>
+                    <button class="btn btn-filter" data-filter="consulting">Stratejik Danışmanlık</button>
+                </div>
                 
-                <div class="projects-grid">
-                    <!-- Ürün 1: SecurCore -->
-                    <div class="project-card scroll-reveal">
+                <div class="projects-grid scroll-reveal" style="transition-delay: 300ms;">
+                    <!-- Kurumsal Güvenlik -->
+                    <div class="project-card" data-category="security">
                         <div class="product-card-content">
                             <div class="product-card-header"><i class="fa-solid fa-shield-virus"></i> <span class="product-category">Güvenlik Denetimi</span></div>
                             <h3>SecurCore Zafiyet Denetçisi</h3>
@@ -37,8 +47,81 @@
                             <a href="iletisim.html?product=SecurCore" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
-                    <!-- Ürün 2: ApexGo -->
-                    <div class="project-card scroll-reveal">
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-user-secret"></i> <span class="product-category">API Güvenliği</span></div>
+                            <h3>API Sentinel Gateway</h3>
+                            <p>BOLA, kısıt aşımı ve enjeksiyon saldırılarını önleyen, Go tabanlı, yüksek performanslı, bulut-bağımsız API güvenlik ağ geçidi.</p>
+                            <a href="iletisim.html?product=APISentinel" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-cloud-shield"></i> <span class="product-category">Bulut Güvenliği</span></div>
+                            <h3>CloudGuard CSPM</h3>
+                            <p>AWS, Azure ve GCP ortamlarındaki yanlış yapılandırmaları ve uyumluluk ihlallerini sürekli izleyen Bulut Güvenliği Duruş Yönetimi platformu.</p>
+                            <a href="iletisim.html?product=CloudGuard" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-brain-circuit"></i> <span class="product-category">Tehdit İstihbaratı</span></div>
+                            <h3>ThreatMatrix CTI Platformu</h3>
+                            <p>Yapay zeka destekli, sektöre özel siber tehdit istihbaratı toplayan, analiz eden ve proaktif savunma önerileri sunan analitik platform.</p>
+                            <a href="iletisim.html?product=ThreatMatrix" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-masks-theater"></i> <span class="product-category">Veri Uyumu</span></div>
+                            <h3>DataMask Uyumluluk Çözümü</h3>
+                            <p>Geliştirme/test ortamlarında PII riskini sıfırlamak için tokenizasyon ve karıştırma tekniklerini uygulayan, veritabanı ile entegre Python/SQL tabanlı otomasyon aracıdır.</p>
+                            <a href="iletisim.html?product=DataMask" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-bug-slash"></i> <span class="product-category">Saldırı Simülasyonu</span></div>
+                            <h3>RedTeam Fuzzer (API Atak Simülatörü)</h3>
+                            <p>REST ve gRPC API'lerini hedef alan, Golang ile geliştirilmiş yüksek performanslı bir atak simülasyon aracıdır. Karmaşık input doğrulama hatalarını tespit eder.</p>
+                            <a href="iletisim.html?product=RedTeamFuzzer" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-key"></i> <span class="product-category">Sır Yönetimi</span></div>
+                            <h3>VaultGuard KMS Entegratörü</h3>
+                            <p>HashiCorp Vault'u kurumsal uygulamalara ve CI/CD süreçlerine güvenli bir şekilde entegre eden, anahtar rotasyonunu otomatikleştiren çözüm.</p>
+                            <a href="iletisim.html?product=VaultGuard" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-user-shield"></i> <span class="product-category">Kimlik Yönetimi</span></div>
+                            <h3>AuthZero IAM Çekirdeği</h3>
+                            <p>OAuth 2.0 ve OIDC standartlarında, MFA ve biyometrik entegrasyonu destekleyen, mikroservisler için tasarlanmış merkezi kimlik ve erişim yönetimi çözümü.</p>
+                            <a href="iletisim.html?product=AuthZero" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-tower-broadcast"></i> <span class="product-category">Olay Yanıtı</span></div>
+                            <h3>Aegis SOAR Platformu</h3>
+                            <p>SIEM uyarılarını zenginleştiren, oyun kitapları (playbooks) ile tehditlere otomatik yanıt veren Güvenlik Orkestrasyonu ve Otomasyonu platformu.</p>
+                            <a href="iletisim.html?product=AegisSOAR" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="security">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-file-shield"></i> <span class="product-category">Uç Nokta Güvenliği</span></div>
+                            <h3>Endpoint Sentinel EDR</h3>
+                            <p>Davranış analizi ve makine öğrenimi kullanarak zararlı yazılımları ve sıfır gün saldırılarını tespit eden yeni nesil Uç Nokta Tespiti ve Yanıtı çözümü.</p>
+                            <a href="iletisim.html?product=EndpointSentinel" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Geliştirici Araçları -->
+                    <div class="project-card" data-category="dev-tools">
                         <div class="product-card-content">
                             <div class="product-card-header"><i class="fa-solid fa-bolt"></i> <span class="product-category">API Çatısı</span></div>
                             <h3>ApexGo Konkuren Çekirdek</h3>
@@ -46,8 +129,81 @@
                             <a href="iletisim.html?product=ApexGo" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
-                    <!-- Ürün 3: SentinelPipe -->
-                    <div class="project-card scroll-reveal">
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-brands fa-python"></i> <span class="product-category">API Çatısı</span></div>
+                            <h3>Pythonic Core Framework</h3>
+                            <p>FastAPI üzerine inşa edilmiş, TDD ve temiz mimari prensiplerini zorunlu kılan, güvenlik odaklı, tak-çalıştır Python API iskeleti.</p>
+                            <a href="iletisim.html?product=PythonicCore" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-vials"></i> <span class="product-category">Test Otomasyonu</span></div>
+                            <h3>TestGrid E2E</h3>
+                            <p>Playwright ve Pytest kullanarak, karmaşık kullanıcı senaryolarını test eden, görsel regresyon analizi yapabilen uçtan uca test otomasyon çerçevesi.</p>
+                            <a href="iletisim.html?product=TestGrid" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-book-open"></i> <span class="product-category">Dokümantasyon</span></div>
+                            <h3>DocuGen AI</h3>
+                            <p>Kod yorumlarından ve API şemalarından (OpenAPI) otomatik olarak kullanıcı dostu, interaktif ve her zaman güncel dokümantasyon üreten yapay zeka aracı.</p>
+                            <a href="iletisim.html?product=DocuGenAI" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-database"></i> <span class="product-category">Veritabanı</span></div>
+                            <h3>SchemaMigrator</h3>
+                            <p>Farklı veritabanı sistemleri (PostgreSQL, MySQL, MongoDB) arasında şema ve veri geçişini otomatikleştiren, veri kaybını önleyen CLI aracı.</p>
+                            <a href="iletisim.html?product=SchemaMigrator" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-cogs"></i> <span class="product-category">Kod Kalitesi</span></div>
+                            <h3>LintGuard</h3>
+                            <p>Özelleştirilebilir kurallarla, kodun güvenlik ve stil standartlarına uyumunu CI sürecinde zorunlu kılan merkezi kod analiz ve denetim aracı.</p>
+                            <a href="iletisim.html?product=LintGuard" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-rocket"></i> <span class="product-category">Performans</span></div>
+                            <h3>ProfilerX</h3>
+                            <p>Python ve Go uygulamalarındaki performans darboğazlarını, bellek sızıntılarını ve verimsiz sorguları tespit eden derinlemesine profil oluşturma aracı.</p>
+                            <a href="iletisim.html?product=ProfilerX" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-comments"></i> <span class="product-category">Gerçek Zamanlı</span></div>
+                            <h3>LivePulse Messenger</h3>
+                            <p>WebSockets ve Redis Pub/Sub kullanarak, milyonlarca eşzamanlı bağlantıyı destekleyen, ölçeklenebilir sohbet ve bildirim altyapısı.</p>
+                            <a href="iletisim.html?product=LivePulse" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-wand-magic-sparkles"></i> <span class="product-category">Kod Üretimi</span></div>
+                            <h3>ScaffoldPro</h3>
+                            <p>Yeni bir mikroservis projesi için gerekli olan tüm temel yapılandırmayı, klasör yapısını ve CI/CD dosyasını saniyeler içinde oluşturan CLI aracı.</p>
+                            <a href="iletisim.html?product=ScaffoldPro" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="dev-tools">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-object-group"></i> <span class="product-category">UI Kütüphanesi</span></div>
+                            <h3>CyberUI Kit</h3>
+                            <p>React için tasarlanmış, siber güvenlik temalı, erişilebilir ve modüler, yeniden kullanılabilir UI bileşenleri kütüphanesi.</p>
+                            <a href="iletisim.html?product=CyberUI" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Altyapı & Otomasyon -->
+                    <div class="project-card" data-category="infra">
                         <div class="product-card-content">
                             <div class="product-card-header"><i class="fa-solid fa-gears"></i> <span class="product-category">DevSecOps</span></div>
                             <h3>SentinelPipe Otomasyon Çerçevesi</h3>
@@ -55,8 +211,81 @@
                             <a href="iletisim.html?product=SentinelPipe" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
-                    <!-- Ürün 4: FinAnom -->
-                    <div class="project-card scroll-reveal" style="transition-delay: 100ms;">
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-brands fa-docker"></i> <span class="product-category">Konteyner</span></div>
+                            <h3>KubeArmor Policy Engine</h3>
+                            <p>Kyverno ve OPA Gatekeeper kullanarak, Kubernetes kümeleri için güvenlik ve uyumluluk standartlarını zorunlu kılan Politika Kodlama (PaC) çözümü.</p>
+                            <a href="iletisim.html?product=KubeArmor" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-server"></i> <span class="product-category">Konfigürasyon</span></div>
+                            <h3>HostGuard Hardener</h3>
+                            <p>Ansible tabanlı, yüzlerce sunucunun konfigürasyonunu, güvenlik güncellemelerini ve CIS standartlarına göre sertleştirilmesini otomatikleştiren çözüm.</p>
+                            <a href="iletisim.html?product=HostGuard" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-binoculars"></i> <span class="product-category">Gözetim</span></div>
+                            <h3>Observer Stack</h3>
+                            <p>Prometheus, Grafana ve Loki'yi bir araya getiren, mikroservisler için metrik, log ve izleme (tracing) sağlayan, tek komutla kurulabilen gözetim paketi.</p>
+                            <a href="iletisim.html?product=ObserverStack" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-cloud-arrow-up"></i> <span class="product-category">IaC</span></div>
+                            <h3>Terraform Modules Library</h3>
+                            <p>Güvenlik ve en iyi pratikler düşünülerek hazırlanmış, AWS ve Azure için yeniden kullanılabilir, modüler Terraform modülleri kütüphanesi.</p>
+                            <a href="iletisim.html?product=TerraformModules" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-money-bill-trend-up"></i> <span class="product-category">FinOps</span></div>
+                            <h3>CloudFin Optimizer</h3>
+                            <p>AWS faturalarını analiz ederek kullanılmayan kaynakları, yanlış boyutlandırılmış servisleri ve maliyet tasarrufu fırsatlarını tespit eden FinOps aracı.</p>
+                            <a href="iletisim.html?product=CloudFin" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-asterisk"></i> <span class="product-category">Serverless</span></div>
+                            <h3>LambdaForge</h3>
+                            <p>AWS Lambda fonksiyonları için geliştirme, test, dağıtım ve izleme süreçlerini standartlaştıran ve otomatikleştiren Serverless Framework şablonu.</p>
+                            <a href="iletisim.html?product=LambdaForge" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-network-wired"></i> <span class="product-category">Ağ Otomasyonu</span></div>
+                            <h3>NetAutomate</h3>
+                            <p>Python ve Ansible kullanarak, karmaşık ağ cihazlarının (switch, router, firewall) yapılandırmasını ve yedeklemesini otomatikleştiren çözüm.</p>
+                            <a href="iletisim.html?product=NetAutomate" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-triangle-exclamation"></i> <span class="product-category">Kaos Mühendisliği</span></div>
+                            <h3>ChaosMaster</h3>
+                            <p>Sistemlerin dayanıklılığını test etmek için kontrollü hatalar (örneğin, ağ gecikmesi, pod silme) enjekte eden kaos mühendisliği platformu.</p>
+                            <a href="iletisim.html?product=ChaosMaster" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="infra">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-box-archive"></i> <span class="product-category">Yedekleme</span></div>
+                            <h3>ChronoBackup</h3>
+                            <p>Veritabanları ve kritik dosya sistemleri için felaket kurtarma senaryolarına uygun, şifreli ve zamanlanmış yedekleme ve geri yükleme otomasyonu.</p>
+                            <a href="iletisim.html?product=ChronoBackup" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Veri & Analitik -->
+                    <div class="project-card" data-category="data">
                         <div class="product-card-content">
                             <div class="product-card-header"><i class="fa-solid fa-chart-line"></i> <span class="product-category">Veri Analizi</span></div>
                             <h3>FinAnom Analitik Motoru</h3>
@@ -64,22 +293,118 @@
                             <a href="iletisim.html?product=FinAnom" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
-                    <!-- Ürün 5: DataMask -->
-                    <div class="project-card scroll-reveal" style="transition-delay: 200ms;">
+                    <div class="project-card" data-category="data">
                         <div class="product-card-content">
-                            <div class="product-card-header"><i class="fa-solid fa-mask"></i> <span class="product-category">Veri Uyumu</span></div>
-                            <h3>DataMask Uyumluluk Çözümü</h3>
-                            <p>Geliştirme/test ortamlarında PII riskini sıfırlamak için tokenizasyon ve karıştırma tekniklerini uygulayan, veritabanı ile entegre Python/SQL tabanlı otomasyon aracıdır.</p>
-                            <a href="iletisim.html?product=DataMask" class="action-btn">Teklif Al &rarr;</a>
+                            <div class="product-card-header"><i class="fa-solid fa-magnifying-glass-chart"></i> <span class="product-category">Dolandırıcılık Tespiti</span></div>
+                            <h3>FraudLens</h3>
+                            <p>Finansal işlemlerdeki anormal kalıpları ve dolandırıcılık girişimlerini gerçek zamanlı olarak tespit eden makine öğrenimi tabanlı sistem.</p>
+                            <a href="iletisim.html?product=FraudLens" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
-                    <!-- Ürün 6: RedTeam Fuzzer -->
-                    <div class="project-card scroll-reveal" style="transition-delay: 300ms;">
+                    <div class="project-card" data-category="data">
                         <div class="product-card-content">
-                            <div class="product-card-header"><i class="fa-solid fa-bug-slash"></i> <span class="product-category">Saldırı Simülasyonu</span></div>
-                            <h3>RedTeam Fuzzer (API Atak Simülatörü)</h3>
-                            <p>REST ve gRPC API'lerini hedef alan, Golang ile geliştirilmiş yüksek performanslı bir atak simülasyon aracıdır. Karmaşık input doğrulama hatalarını tespit eder.</p>
-                            <a href="iletisim.html?product=RedTeamFuzzer" class="action-btn">Teklif Al &rarr;</a>
+                            <div class="product-card-header"><i class="fa-solid fa-stream"></i> <span class="product-category">Veri Hattı</span></div>
+                            <h3>DataFlow ETL</h3>
+                            <p>Farklı kaynaklardan gelen verileri toplayan, dönüştüren ve veri ambarlarına yükleyen (ETL), Python ve Airflow tabanlı ölçeklenebilir veri işleme hattı.</p>
+                            <a href="iletisim.html?product=DataFlowETL" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-robot"></i> <span class="product-category">NLP</span></div>
+                            <h3>SentimentAI</h3>
+                            <p>Müşteri geri bildirimlerini, sosyal medya yorumlarını ve destek taleplerini analiz ederek duygu (pozitif, negatif, nötr) ve anahtar konu tespiti yapan NLP motoru.</p>
+                            <a href="iletisim.html?product=SentimentAI" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-eye"></i> <span class="product-category">Görüntü İşleme</span></div>
+                            <h3>VisionCraft CV</h3>
+                            <p>Görüntülerdeki nesneleri, yüzleri veya metinleri tespit etmek ve sınıflandırmak için kullanılan, TensorFlow ve OpenCV tabanlı bilgisayarlı görü kütüphanesi.</p>
+                            <a href="iletisim.html?product=VisionCraft" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-crystal-ball"></i> <span class="product-category">Tahminleme</span></div>
+                            <h3>ForecastEngine</h3>
+                            <p>Zaman serisi verilerini (örneğin, satışlar, talep) analiz ederek geleceğe yönelik tahminler üreten, LSTM ve Prophet modellerini kullanan tahminleme motoru.</p>
+                            <a href="iletisim.html?product=ForecastEngine" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-search"></i> <span class="product-category">Arama Motoru</span></div>
+                            <h3>SearchSphere</h3>
+                            <p>Elasticsearch üzerine kurulu, yazım hatalarını düzelten, filtreleme ve sıralama özelliklerine sahip, yüksek performanslı, özelleştirilebilir arama motoru çözümü.</p>
+                            <a href="iletisim.html?product=SearchSphere" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid-fa-sitemap"></i> <span class="product-category">Veri Yönetişimi</span></div>
+                            <h3>DataGov Suite</h3>
+                            <p>KVKK ve GDPR uyumluluğu için veri envanteri oluşturan, veri erişimini yöneten ve veri saklama politikalarını uygulayan yönetişim platformu.</p>
+                            <a href="iletisim.html?product=DataGov" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-table-cells"></i> <span class="product-category">Veri Görselleştirme</span></div>
+                            <h3>VizDash</h3>
+                            <p>Karmaşık veri setlerini, yöneticilerin kolayca anlayabileceği interaktif ve gerçek zamanlı panolara (dashboards) dönüştüren React tabanlı görselleştirme çözümü.</p>
+                            <a href="iletisim.html?product=VizDash" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="data">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-person-chalkboard"></i> <span class="product-category">Öneri Sistemleri</span></div>
+                            <h3>Recommendo AI</h3>
+                            <p>Kullanıcı davranışlarını analiz ederek kişiselleştirilmiş ürün veya içerik önerileri sunan, işbirlikçi filtreleme (collaborative filtering) tabanlı öneri motoru.</p>
+                            <a href="iletisim.html?product=Recommendo" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Stratejik Danışmanlık -->
+                    <div class="project-card" data-category="consulting">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-chess-king"></i> <span class="product-category">Liderlik</span></div>
+                            <h3>Hibrit Liderlik Atölyesi</h3>
+                            <p>Teknik ekiplerinize güvenlik ve iş zihniyeti kazandıran, DevSecOps kültürünü benimseten, uygulamalı liderlik ve takım mentorluğu programı.</p>
+                            <a href="iletisim.html?product=LeadershipWorkshop" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="consulting">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-drafting-compass"></i> <span class="product-category">Mimari Denetim</span></div>
+                            <h3>Mimari Güvenlik Denetimi</h3>
+                            <p>Mevcut veya planlanan yazılım mimarinizin tehdit modellemesini çıkaran, tek başarısızlık noktalarını ve güvenlik risklerini tespit eden yoğunlaştırılmış denetim hizmeti.</p>
+                            <a href="iletisim.html?product=ArchAudit" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="consulting">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-graduation-cap"></i> <span class="product-category">Eğitim</span></div>
+                            <h3>Güvenli Kodlama Bootcamp</h3>
+                            <p>Geliştiriciler için OWASP Top 10, BOLA, güvenli API tasarımı ve TDD prensiplerini kapsayan, uygulamalı ve yoğunlaştırılmış eğitim programı.</p>
+                            <a href="iletisim.html?product=SecureCodingBootcamp" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="consulting">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-fire-extinguisher"></i> <span class="product-category">Kriz Yönetimi</span></div>
+                            <h3>Siber Kriz Simülasyonu</h3>
+                            <p>Yönetim ve teknik ekipler için, gerçekçi bir siber saldırı senaryosu üzerinden kriz anında karar verme ve iletişim becerilerini test eden masa başı tatbikatı.</p>
+                            <a href="iletisim.html?product=CrisisSimulation" class="action-btn">Teklif Al &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="consulting">
+                        <div class="product-card-content">
+                            <div class="product-card-header"><i class="fa-solid fa-file-signature"></i> <span class="product-category">Uyum Danışmanlığı</span></div>
+                            <h3>KVKK/GDPR Teknik Uyum Paketi</h3>
+                            <p>Teknik altyapınızın KVKK ve GDPR'a uyumluluğunu değerlendiren, veri haritalama, risk analizi ve gerekli teknik kontrollerin uygulanmasını sağlayan danışmanlık hizmeti.</p>
+                            <a href="iletisim.html?product=CompliancePackage" class="action-btn">Teklif Al &rarr;</a>
                         </div>
                     </div>
                 </div>

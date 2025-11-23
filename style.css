@@ -279,7 +279,7 @@ header {
 }
 
  .project-card:hover, .glass-panel:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.03);
     border-color: rgba(0, 229, 255, 0.3);
     box-shadow: var(--glow-cyan);
 }

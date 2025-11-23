@@ -45,6 +45,129 @@
                     <p>Bir güvenlik açığı keşfedildiğinde (Örn: BOLA), hatayı düzelttikten sonra bu durumu bir güvenlik birim testine dönüştürmek, o zafiyetin gelecekteki sürümlerde asla tekrarlanmamasını garantiler.</p>
                 </div>
 
+                <h3>Geliştiriciler İçin 100 Ek Bilgi ve Faaliyet</h3>
+                <p>TDD'nin ötesinde, bir geliştirici olarak bilginizi ve pratiğinizi artıracak bazı gerçekler ve faaliyetler:</p>
+                
+                <h4 class="activity-group-title">Bölüm 1: Temel Güvenlik ve Otomasyon</h4>
+                <div class="activity-item"><h4>1. Statik Kod Analizi (SAST) araçlarını CI/CD pipeline'ınıza entegre edin.</h4></div>
+                <div class="activity-item"><h4>2. Dinamik Kod Analizi (DAST) araçlarıyla çalışan uygulamanızı test edin.</h4></div>
+                <div class="activity-item"><h4>3. Bağımlılıklarınızı (dependencies) düzenli olarak tarayarak bilinen zafiyetleri kontrol edin (SCA).</h4></div>
+                <div class="activity-item"><h4>4. OWASP Top 10 listesini inceleyin ve projelerinizde bu zafiyetlere karşı önlem alın.</h4></div>
+                <div class="activity-item"><h4>5. "Least Privilege" (En Az Ayrıcalık) prensibini uygulayın.</h4></div>
+                <div class="activity-item"><h4>6. Tüm kullanıcı girdilerini (input) sunucu tarafında doğrulayın.</h4></div>
+                <div class="activity-item"><h4>7. SQL Injection'a karşı parametreli sorgular (prepared statements) kullanın.</h4></div>
+                <div class="activity-item"><h4>8. XSS'e karşı çıktılarınızı doğru şekilde kodlayın (output encoding).</h4></div>
+                <div class="activity-item"><h4>9. CSRF tokenları kullanarak Siteler Arası İstek Sahteciliği'ni önleyin.</h4></div>
+                <div class="activity-item"><h4>10. Güvenli HTTP başlıkları (Headers) kullanın: CSP, HSTS, X-Frame-Options.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 2: Kimlik Doğrulama, Veri Koruma ve Güvenli SDLC</h4>
+                <div class="activity-item"><h4>11. Parolaları asla düz metin olarak saklamayın; bcrypt gibi güçlü hash algoritmaları kullanın.</h4></div>
+                <div class="activity-item"><h4>12. Çok Faktörlü Kimlik Doğrulama (MFA) desteği ekleyin.</h4></div>
+                <div class="activity-item"><h4>13. API anahtarları ve parolalar gibi sırları kod içinde saklamayın; environment variables veya secret manager kullanın.</h4></div>
+                <div class="activity-item"><h4>14. Hata mesajlarında hassas bilgi sızdırmaktan kaçının.</h4></div>
+                <div class="activity-item"><h4>15. Oturum (session) yönetimini güvenli hale getirin; session ID'leri düzenli olarak yenileyin.</h4></div>
+                <div class="activity-item"><h4>16. "Defense in Depth" (Derinlemesine Savunma) stratejisini benimseyin.</h4></div>
+                <div class="activity-item"><h4>17. Kodunuzu düzenli olarak "refactor" ederek karmaşıklığı azaltın. Temiz kod daha güvenlidir.</h4></div>
+                <div class="activity-item"><h4>18. Birim testleri (unit tests) sadece "mutlu yolu" değil, hata durumlarını ve sınır koşullarını da kapsamalıdır.</h4></div>
+                <div class="activity-item"><h4>19. Entegrasyon testleri ile bileşenlerin birbiriyle güvenli bir şekilde etkileşimde bulunduğunu doğrulayın.</h4></div>
+                <div class="activity-item"><h4>20. "Threat Modeling" (Tehdit Modellemesi) yaparak potansiyel güvenlik risklerini projenin başında belirleyin.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 3: Altyapı Güvenliği ve Yaygın Zafiyetler</h4>
+                <div class="activity-item"><h4>21. Docker imajlarınızı güvenilir kaynaklardan (base image) oluşturun ve düzenli olarak güncelleyin.</h4></div>
+                <div class="activity-item"><h4>22. Sunucu ve veritabanı yapılandırmalarınızı "hardening" (sıkılaştırma) işleminden geçirin.</h4></div>
+                <div class="activity-item"><h4>23. Erişim loglarını ve uygulama loglarını merkezi bir yerde toplayıp analiz edin.</h4></div>
+                <div class="activity-item"><h4>24. Rate limiting (istek sınırlama) ile brute-force ve DoS saldırılarını yavaşlatın.</h4></div>
+                <div class="activity-item"><h4>25. Dosya yükleme (file upload) fonksiyonlarında dosya tipini ve boyutunu sıkı bir şekilde kontrol edin.</h4></div>
+                <div class="activity-item"><h4>26. Yüklenen dosyaları web root dizini dışındaki bir yerde saklayın.</h4></div>
+                <div class="activity-item"><h4>27. JWT (JSON Web Tokens) kullanıyorsanız, `alg` başlığını `none` olarak kabul etmediğinizden emin olun.</h4></div>
+                <div class="activity-item"><h4>28. XML ayrıştırıcılarında XXE (XML External Entity) zafiyetine karşı önlem alın.</h4></div>
+                <div class="activity-item"><h4>29. Güvensiz "deserialization" zafiyetlerine karşı dikkatli olun.</h4></div>
+                <div class="activity-item"><h4>30. Her "pull request" için bir kod inceleme (code review) süreci işletin.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 4: İleri Seviye Test ve Mimari Prensipler</h4>
+                <div class="activity-item"><h4>31. Güvenlik odaklı bir "linter" yapılandırması kullanın.</h4></div>
+                <div class="activity-item"><h4>32. Açık kaynak kütüphanelerin lisans uyumluluğunu kontrol edin.</h4></div>
+                <div class="activity-item"><h4>33. "Zero Trust" (Sıfır Güven) mimarisinin temel prensiplerini öğrenin.</h4></div>
+                <div class="activity-item"><h4>34. API'lerinizde Insecure Direct Object References (IDOR/BOLA) zafiyetini önlemek için yetkilendirme kontrolleri yapın.</h4></div>
+                <div class="activity-item"><h4>35. Veritabanı şifrelemesi (encryption at rest) kullanın.</h4></div>
+                <div class="activity-item"><h4>36. İletişim kanallarında TLS'in güncel versiyonlarını kullanarak veriyi şifreleyin (encryption in transit).</h4></div>
+                <div class="activity-item"><h4>37. "Red-Green-Refactor" döngüsü TDD'nin temelidir.</h4></div>
+                <div class="activity-item"><h4>38. Test kapsamı (test coverage) %100 olsa bile bu, kodun %100 güvenli olduğu anlamına gelmez.</h4></div>
+                <div class="activity-item"><h4>39. "Mutation testing" ile testlerinizin kalitesini ölçün.</h4></div>
+                <div class="activity-item"><h4>40. "Property-based testing" ile rastgele veriler üreterek beklenmedik hataları yakalayın.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 5: Kod Kalitesi, Dağıtım Stratejileri ve Gelecek Teknolojiler</h4>
+                <div class="activity-item"><h4>41. SOLID prensipleri daha test edilebilir ve sürdürülebilir kod yazmanıza yardımcı olur.</h4></div>
+                <div class="activity-item"><h4>42. "Single Responsibility Principle" (Tek Sorumluluk Prensibi) sayesinde bileşenleri izole edip test etmek kolaylaşır.</h4></div>
+                <div class="activity-item"><h4>43. "Dependency Injection" (Bağımlılık Enjeksiyonu) kullanarak testlerde "mock" nesneler oluşturmayı kolaylaştırın.</h4></div>
+                <div class="activity-item"><h4>44. Bir güvenlik açığı bulduğunuzda, önce bu açığı tekrarlayan bir test yazın, sonra düzeltin.</h4></div>
+                <div class="activity-item"><h4>45. Git geçmişinizde hassas verilerin olmadığından emin olun. Gerekirse `git filter-branch` veya BFG Repo-Cleaner kullanın.</h4></div>
+                <div class="activity-item"><h4>46. "Feature flags" (özellik bayrakları) kullanarak yeni kodu production'da güvenli bir şekilde test edin.</h4></div>
+                <div class="activity-item"><h4>47. "Canary release" stratejisi ile güncellemeleri önce küçük bir kullanıcı grubuna açın.</h4></div>
+                <div class="activity-item"><h4>48. "Chaos engineering" ile sisteminizin beklenmedik durumlara karşı dayanıklılığını test edin.</h4></div>
+                <div class="activity-item"><h4>49. WebAssembly (WASM) güvenliği hakkında bilgi edinin.</h4></div>
+                <div class="activity-item"><h4>50. Post-quantum kriptografi alanındaki gelişmeleri takip edin.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 6: Gelişmiş Saldırı Vektörleri ve Savunma Teknikleri</h4>
+                <div class="activity-item"><h4>51. Subresource Integrity (SRI) kullanarak CDN'den yüklediğiniz script'lerin değiştirilmediğinden emin olun.</h4></div>
+                <div class="activity-item"><h4>52. DNSSEC ve DANE gibi teknolojilerle DNS güvenliğini artırın.</h4></div>
+                <div class="activity-item"><h4>53. E-postalarda SPF, DKIM ve DMARC kayıtlarını kullanarak sahteciliği önleyin.</h4></div>
+                <div class="activity-item"><h4>54. GraphQL API'lerinde sorgu derinliği ve karmaşıklığı limitleyerek DoS saldırılarını engelleyin.</h4></div>
+                <div class="activity-item"><h4>55. "Server-Side Request Forgery" (SSRF) zafiyetine karşı dış isteklere izin verilenler listesi (allow-list) uygulayın.</h4></div>
+                <div class="activity-item"><h4>56. "Race condition" hatalarını önlemek için kritik kod bölümlerinde kilitleme (locking) mekanizmaları kullanın.</h4></div>
+                <div class="activity-item"><h4>57. Zamanlama saldırılarına (timing attacks) karşı kriptografik işlemlerde sabit zamanlı karşılaştırmalar kullanın.</h4></div>
+                <div class="activity-item"><h4>58. Mobil uygulamalarda "certificate pinning" ile man-in-the-middle saldırılarını zorlaştırın.</h4></div>
+                <div class="activity-item"><h4>59. Uygulamanızın "memory safety" özelliklerini gözden geçirin (Örn: Rust gibi dillerin avantajları).</h4></div>
+                <div class="activity-item"><h4>60. Bir "bug bounty" programına katılarak veya kendi programınızı başlatarak güvenlik açıklarını keşfedin.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 7: Saldırgan Gibi Düşünmek ve Altyapıyı Kodlamak</h4>
+                <div class="activity-item"><h4>61. HackTheBox, TryHackMe gibi platformlarda pratik yaparak saldırgan gibi düşünmeyi öğrenin.</h4></div>
+                <div class="activity-item"><h4>62. "Fuzzing" testleri ile uygulamanıza beklenmedik girdiler göndererek çökme ve zafiyetleri arayın.</h4></div>
+                <div class="activity-item"><h4>63. "Infrastructure as Code" (IaC) kullanarak (örn: Terraform, Ansible) altyapınızın güvenliğini de kod gibi yönetin.</h4></div>
+                <div class="activity-item"><h4>64. IaC kodlarınız için `tfsec` veya `checkov` gibi statik analiz araçları kullanın.</h4></div>
+                <div class="activity-item"><h4>65. "Immutability" (değişmezlik) prensibini hem kodda hem altyapıda uygulayın.</h4></div>
+                <div class="activity-item"><h4>66. API'lerinizde versiyonlama yaparak eski ve güvensiz endpoint'leri kontrollü bir şekilde kullanımdan kaldırın.</h4></div>
+                <div class="activity-item"><h4>67. "Clickjacking" saldırılarını önlemek için `X-Frame-Options` veya `Content-Security-Policy: frame-ancestors` başlığını kullanın.</h4></div>
+                <div class="activity-item"><h4>68. Cookie'lerinizde `HttpOnly`, `Secure` ve `SameSite` bayraklarını ayarlayın.</h4></div>
+                <div class="activity-item"><h4>69. "Prototype Pollution" zafiyetine karşı JavaScript nesnelerini dikkatli kullanın.</h4></div>
+                <div class="activity-item"><h4>70. "Domain-Driven Design" (DDD) ile karmaşık iş mantığını daha güvenli ve yönetilebilir sınırlara ayırın.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 8: Modern Yazılım Geliştirme ve Güvenlik Kültürü</h4>
+                <div class="activity-item"><h4>71. "Event Sourcing" ve CQRS desenlerinin güvenlik üzerindeki etkilerini araştırın.</h4></div>
+                <div class="activity-item"><h4>72. Güvenlik bildirimleri için `security.txt` standardını projenize ekleyin.</h4></div>
+                <div class="activity-item"><h4>73. Kullandığınız framework'ün güvenlik rehberini okuyun ve uygulayın.</h4></div>
+                <div class="activity-item"><h4>74. "Side-channel" saldırıları hakkında bilgi edinin.</h4></div>
+                <div class="activity-item"><h4>75. Kriptografik anahtarları düzenli olarak ve otomatik bir şekilde döndürün (key rotation).</h4></div>
+                <div class="activity-item"><h4>76. "Behavior-Driven Development" (BDD), TDD'yi iş gereksinimleriyle daha yakından ilişkilendirir.</h4></div>
+                <div class="activity-item"><h4>77. "Acceptance Test-Driven Development" (ATDD) ile paydaşların kabul kriterlerini otomatize testlere dönüştürün.</h4></div>
+                <div class="activity-item"><h4>78. "Code signing" ile yazılımınızın bütünlüğünü ve kaynağını doğrulayın.</h4></div>
+                <div class="activity-item"><h4>79. "Binary hardening" tekniklerini (ASLR, DEP/NX, Stack Canaries) öğrenin.</h4></div>
+                <div class="activity-item"><h4>80. "Reverse engineering" temellerini öğrenerek uygulamanızın nasıl kırılabileceğini anlayın.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 9: API Güvenliği ve Modern Kimlik Doğrulama</h4>
+                <div class="activity-item"><h4>81. WebAuthn standardını kullanarak parolasız kimlik doğrulamayı destekleyin.</h4></div>
+                <div class="activity-item"><h4>82. "Credential stuffing" saldırılarına karşı bilinen sızdırılmış parola listelerini kontrol edin.</h4></div>
+                <div class="activity-item"><h4>83. CAPTCHA kullanarak bot aktivitelerini sınırlayın.</h4></div>
+                <div class="activity-item"><h4>84. API'lerinizde aşırı veri sunumunu (excessive data exposure) engelleyin. Sadece gereken veriyi döndürün.</h4></div>
+                <div class="activity-item"><h4>85. "Mass assignment" zafiyetlerine karşı DTO (Data Transfer Object) veya ViewModel desenleri kullanın.</h4></div>
+                <div class="activity-item"><h4>86. HTTP Public Key Pinning (HPKP) artık önerilmiyor, bunun yerine Certificate Transparency (CT) loglarını izleyin.</h4></div>
+                <div class="activity-item"><h4>87. "Serverless" fonksiyonların soğuk başlatma (cold start) sürelerini ve güvenlik yapılandırmalarını optimize edin.</h4></div>
+                <div class="activity-item"><h4>88. Her "serverless" fonksiyona sadece kendi işi için gereken minimum IAM rolünü atayın.</h4></div>
+                <div class="activity-item"><h4>89. "Service Mesh" (örn: Istio, Linkerd) kullanarak mikroservisler arası iletişimi güvenli hale getirin (mTLS).</h4></div>
+                <div class="activity-item"><h4>90. "Software Bill of Materials" (SBOM) oluşturarak uygulamanızdaki tüm bileşenlerin envanterini çıkarın.</h4></div>
+
+                <h4 class="activity-group-title">Bölüm 10: Operasyonel Güvenlik ve Geliştirici Disiplini</h4>
+                <div class="activity-item"><h4>91. "Open Redirect" zafiyetlerine karşı yönlendirme yapılacak URL'leri bir izin listesiyle kontrol edin.</h4></div>
+                <div class="activity-item"><h4>92. "Cache poisoning" saldırılarına karşı cache anahtarlarınızda `Host` gibi kullanıcı kontrollü başlıkları kullanmaktan kaçının.</h4></div>
+                <div class="activity-item"><h4>93. "Denial of Service" (DoS) saldırılarına karşı kaynak kullanımını izleyin ve alarmlar kurun.</h4></div>
+                <div class="activity-item"><h4>94. Bir güvenlik olayı (incident) yaşandığında müdahale etmek için bir "Incident Response Plan" hazırlayın.</h4></div>
+                <div class="activity-item"><h4>95. "Blue/Green Deployment" ile yeni versiyona geçişi anında geri alabilecek şekilde planlayın.</h4></div>
+                <div class="activity-item"><h4>96. "Pair programming" (ikili programlama) yaparak kod kalitesini ve bilgi paylaşımını artırın.</h4></div>
+                <div class="activity-item"><h4>97. "Code as documentation" felsefesini benimseyin; kodunuzun kendini anlatacak kadar temiz olmasını hedefleyin.</h4></div>
+                <div class="activity-item"><h4>98. "Boy Scout Rule" (İzci Kuralı) uygulayın: Her zaman kodu bulduğunuzdan biraz daha temiz bırakın.</h4></div>
+                <div class="activity-item"><h4>99. Düzenli olarak güvenlik odaklı podcast'leri dinleyin ve blogları okuyun.</h4></div>
+                <div class="activity-item"><h4>100. Öğrendiklerinizi takım arkadaşlarınızla paylaşarak bir güvenlik kültürü oluşturun.</h4></div>
+
                 <h3>Sonuç</h3>
                 <p>TDD, sadece temiz kod değil, aynı zamanda güvenlik testleriyle kapsanmış, kırılması zor kod anlamına gelir. Yazılım kültürünüzü TDD ile dönüştürmek, güvenlik maliyetlerinizi uzun vadede düşürmenin en kesin yoludur.</p>
 

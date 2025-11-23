@@ -314,16 +314,29 @@ document.addEventListener('DOMContentLoaded', () => {
      * SSS sayfasında, aynı anda sadece bir sorunun açık kalmasını sağlar.
      */
     const handleFAQ = () => {
-        const faqItems = document.querySelectorAll('.faq-item');
-        if (!faqItems.length) return;
+        // Hem sss.html hem de faaliyetlerim.html'deki akordiyonları hedefle
+        const accordions = document.querySelectorAll('.faq-item details');
+        if (!accordions.length) return;
 
-        faqItems.forEach(item => {
-            const summary = item.querySelector('summary');
-            summary.addEventListener('click', (e) => {
-                e.preventDefault(); // Tarayıcının varsayılan davranışını engelle
-                const isOpen = item.hasAttribute('open');
-                faqItems.forEach(otherItem => otherItem.removeAttribute('open'));
-                if (!isOpen) item.setAttribute('open', '');
+        accordions.forEach(accordion => {
+            accordion.addEventListener('toggle', (event) => {
+                // Sadece bir akordiyon açıldığında diğerlerini kapat
+                if (accordion.open) {
+                    accordions.forEach(otherAccordion => {
+                        if (otherAccordion !== accordion) {
+                            otherAccordion.open = false;
+                        }
+                    });
+                }
+            });
+
+            // Tarayıcının varsayılan animasyonunu korumak için summary'e tıklamayı yönet
+            const summary = accordion.querySelector('summary');
+            summary?.addEventListener('click', (e) => {
+                // Eğer zaten açıksa ve tekrar tıklanıyorsa, toggle olayı tetiklenmez. Manuel kapat.
+                if (accordion.open && document.activeElement === summary) {
+                    setTimeout(() => { accordion.open = false; }, 0);
+                }
             });
         });
     };

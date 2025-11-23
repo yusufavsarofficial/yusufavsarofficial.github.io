@@ -1472,4 +1472,15 @@ body.no-scroll {
     /* Kaydırma çubuğu genişliğini hesaplayıp boşluk olarak ekle (zıplamayı önler) */
     padding-right: calc(100vw - 100%);
 }
+
+/* --- ERİŞİLEBİLİRLİK İYİLEŞTİRMESİ: ODAKLANMA STİLİ --- */
+/* Sadece klavye ile gezinirken odaklanılan elemanlara belirgin bir stil verir. */
+/* Bu, fare ile tıklamalarda rahatsız edici dış çizgiyi göstermez. */
+:focus-visible {
+    outline: 3px solid var(--color-cyber-cyan);
+    outline-offset: 3px;
+    border-radius: var(--border-radius);
+    transition: outline 0.1s ease-in-out, outline-offset 0.1s ease-in-out;
+}
+
 }

@@ -1,20 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700&display=swap');
  
 /* ---
-Silent Guardian Design System
-Konsept: Minimalist, Güçlü, Siber-Profesyonel
+Yusuf Avşar - Design System
 --- */
 
 :root {
     /* Renk Paleti */
     --color-void-black: #030304;
     --color-glass-panel: rgba(15, 15, 17, 0.8);
-    --color-cyber-cyan: #00e5ff;
     --color-success-green: #22C55E;
     --color-text-primary: #E2E8F0;
     --color-text-secondary: #94A3B8;
     --color-border: rgba(226, 232, 240, 0.1);
 
+    /* Dinamik Tema Renkleri (Varsayılan: Siber Mavi) */
+    --color-accent: #00e5ff;
+    --glow-accent: 0 0 15px rgba(0, 229, 255, 0.3), 0 0 25px rgba(0, 229, 255, 0.2);
+}
+
+[data-theme="sunset-orange"] {
+    --color-accent: #ff8c00;
+    --glow-accent: 0 0 15px rgba(255, 140, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.3);
+}
+[data-theme="matrix-green"] {
+    --color-accent: #39ff14;
+    --glow-accent: 0 0 15px rgba(57, 255, 20, 0.4), 0 0 25px rgba(57, 255, 20, 0.3);
+}
+[data-theme="plasma-pink"] {
+    --color-accent: #ff00ff;
+    --glow-accent: 0 0 15px rgba(255, 0, 255, 0.4), 0 0 25px rgba(255, 0, 255, 0.3);
+}
+
+/* Eski değişkenleri yeni dinamik değişkenle değiştiriyoruz */
+:root {
     /* Tipografi */
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -33,7 +51,8 @@ Konsept: Minimalist, Güçlü, Siber-Profesyonel
     /* Efektler */
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-    --glow-cyan: 0 0 15px rgba(0, 229, 255, 0.3), 0 0 25px rgba(0, 229, 255, 0.2);
+    /* --glow-cyan değişkeni artık --glow-accent olarak kullanılacak */
+    --color-cyber-cyan: var(--color-accent);
 }
 
 html {
@@ -117,8 +136,8 @@ header {
 .logo .cursor {
     display: inline-block;
     width: 10px;
-    height: 1.2rem;
-    background: var(--color-cyber-cyan);
+    height: 1.2rem; 
+    background: var(--color-accent);
     margin-left: 4px;
     animation: blink 1s infinite;
 }
@@ -154,8 +173,8 @@ header {
 }
 
 .nav-links a.active {
-    text-shadow: 0 0 8px var(--color-cyber-cyan);
-    color: var(--color-cyber-cyan);
+    text-shadow: 0 0 8px var(--color-accent);
+    color: var(--color-accent);
 }
 
 /* --- HAMBURGER MENÜ --- */
@@ -261,15 +280,15 @@ header {
 }
 
 .btn-primary {
-    background-color: var(--color-cyber-cyan);
+    background-color: var(--color-accent);
     color: var(--color-void-black);
-    border-color: var(--color-cyber-cyan);
+    border-color: var(--color-accent);
 }
 
 .btn-primary:hover {
     background-color: var(--color-void-black);
-    color: var(--color-cyber-cyan);
-    box-shadow: var(--glow-cyan);
+    color: var(--color-accent);
+    box-shadow: var(--glow-accent);
 }
 
 .btn-secondary {
@@ -310,8 +329,8 @@ header {
 
  .project-card:hover, .glass-panel:hover {
     transform: translateY(-5px) scale(1.03);
-    border-color: rgba(0, 229, 255, 0.3);
-    box-shadow: var(--glow-cyan);
+    border-color: rgba(var(--color-accent-rgb, 0, 229, 255), 0.3);
+    box-shadow: var(--glow-accent);
 }
 
 /* Vaka Çalışması Paneli için özel arka plan deseni */
@@ -323,7 +342,7 @@ header {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 1px 1px, rgba(0, 229, 255, 0.3) 1px, transparent 0);
+        radial-gradient(circle at 1px 1px, rgba(var(--color-accent-rgb, 0, 229, 255), 0.3) 1px, transparent 0);
     background-size: 25px 25px;
     opacity: 0;
     z-index: -1;
@@ -346,12 +365,12 @@ header {
 
 .expertise-header i {
     font-size: 1.5rem;
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     min-width: 24px; /* İkonların hizalı durması için */
 }
 
 .project-card h3 {
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     margin-bottom: var(--spacing-sm);
     position: relative; /* Alt çizgi için konumlandırma referansı */
     display: inline-block; /* Alt çizginin başlık genişliğinde olmasını sağlar */
@@ -365,7 +384,7 @@ a.project-card h3::after {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: var(--color-cyber-cyan);
+    background-color: var(--color-accent);
     transition: width var(--transition-smooth);
 }
 a.project-card:hover h3::after {
@@ -407,8 +426,8 @@ a.project-card:hover h3::after {
 }
 
 .buy-btn, .action-btn {
-    background-color: transparent;
-    color: var(--color-cyber-cyan) !important;
+    background-color: transparent; 
+    color: var(--color-accent) !important;
     text-align: center;
     padding: 0.8rem;
     border-radius: var(--border-radius);
@@ -421,10 +440,10 @@ a.project-card:hover h3::after {
 }
 
 .buy-btn:hover, .action-btn:hover {
-    background-color: var(--color-cyber-cyan);
+    background-color: var(--color-accent);
     color: var(--color-void-black) !important;
-    border-color: var(--color-cyber-cyan);
-    box-shadow: var(--glow-cyan);
+    border-color: var(--color-accent);
+    box-shadow: var(--glow-accent);
 }
 
 /* --- FOOTER --- */
@@ -772,6 +791,13 @@ footer {
     font-weight: 700;
 }
 
+.filter-label {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-right: var(--spacing-sm);
+}
+
 .project-card.hide {
     transform: scale(0.8);
     opacity: 0;
@@ -835,7 +861,7 @@ footer {
 
 .blog-blockquote {
     border-left: 3px solid var(--color-cyber-cyan);
-    padding-left: var(--spacing-lg); 
+    padding-left: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
     font-style: italic;
     color: var(--color-text-secondary);
@@ -922,7 +948,7 @@ footer {
 }
 
 .toc-list a.active {
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     border-left-color: var(--color-cyber-cyan);
     transform: translateX(5px);
 }
@@ -958,7 +984,7 @@ footer {
 
 .contact-card i {
     font-size: 2rem;
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -988,8 +1014,8 @@ footer {
 
 .product-card-header i {
     font-size: 1.2rem;
-    color: var(--color-cyber-cyan);
-    text-shadow: var(--glow-cyan);
+    color: var(--color-accent);
+    text-shadow: var(--glow-accent);
 }
 
 .product-category {
@@ -1032,7 +1058,7 @@ footer {
 
 .skills-table th {
     font-family: var(--font-mono);
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     background-color: rgba(0, 229, 255, 0.05);
     font-weight: 700;
 }
@@ -1056,7 +1082,7 @@ footer {
 
 .simulation-title i {
     margin-right: var(--spacing-sm); 
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
 }
 
 .simulation-terminal {
@@ -1165,7 +1191,7 @@ footer {
 .main-log-panel.booting .terminal-body::after {
     content: '_';
     font-family: var(--font-mono);
-    color: var(--color-success-green);
+    color: var(--color-accent);
     animation: blink 1s infinite;
 }
 
@@ -1198,11 +1224,11 @@ footer {
 
 /* Simülasyon butonları için özel parlama efekti */
 .simulation-terminal .btn-primary:hover:not(:disabled) {
-    box-shadow: 
-        0 0 5px var(--color-cyber-cyan),
-        0 0 15px var(--color-cyber-cyan),
-        0 0 30px rgba(0, 229, 255, 0.5);
-    text-shadow: 0 0 5px var(--color-cyber-cyan);
+    box-shadow:  
+        0 0 5px var(--color-accent),
+        0 0 15px var(--color-accent),
+        0 0 30px rgba(var(--color-accent-rgb, 0, 229, 255), 0.5);
+    text-shadow: 0 0 5px var(--color-accent);
 }
 
 .simulation-result {
@@ -1212,7 +1238,7 @@ footer {
 
 /* Kod Yazma Simülasyonu */
  .typed-cursor {
-    color: var(--color-cyber-cyan);
+    color: var(--color-accent);
     animation: blink 1s infinite;
 }
 
@@ -1433,16 +1459,16 @@ button:disabled {
 
 /* Çalışan simülasyon kartı için animasyon */
 .simulation-card.running {
-    border-color: var(--color-cyber-cyan);
+    border-color: var(--color-accent);
     animation: pulse-glow 1.5s infinite alternate;
 }
 
 @keyframes pulse-glow {
     from {
-        box-shadow: 0 0 5px rgba(0, 229, 255, 0.2), 0 0 10px rgba(0, 229, 255, 0.1);
+        box-shadow: 0 0 5px rgba(var(--color-accent-rgb, 0, 229, 255), 0.2), 0 0 10px rgba(var(--color-accent-rgb, 0, 229, 255), 0.1);
     }
     to {
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.4);
+        box-shadow: 0 0 20px rgba(var(--color-accent-rgb, 0, 229, 255), 0.5), 0 0 30px rgba(var(--color-accent-rgb, 0, 229, 255), 0.4);
     }
 }
 
@@ -1490,36 +1516,58 @@ button:disabled {
 }
 
 .system-stats {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
+    display: grid;
+    gap: var(--spacing-md);
     font-family: var(--font-mono);
     font-size: 0.9rem;
 }
 
 .stat-item {
-    display: grid;
-    grid-template-columns: 40px 1fr 50px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: var(--spacing-sm);
 }
 
-.stat-label { color: var(--color-text-secondary); }
-.stat-value { color: var(--color-text-primary); text-align: right; }
+.stat-item-progress {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: var(--spacing-xs);
+    align-items: center;
+}
+
+.stat-label { 
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+.stat-value { 
+    color: var(--color-text-primary); 
+    text-align: right; 
+    font-weight: 700;
+}
 
 .stat-bar-wrapper {
     background-color: rgba(0,0,0,0.3);
     border-radius: 3px;
     overflow: hidden;
     height: 8px;
+    grid-column: 1 / -1; /* Tam genişlik kapla */
 }
 
 .stat-bar {
     height: 100%;
     width: 0%; /* JS ile güncellenecek */
-    background: linear-gradient(90deg, var(--color-success-green), var(--color-cyber-cyan));
+    background: linear-gradient(90deg, var(--color-accent), var(--color-success-green));
     border-radius: 3px;
     transition: width 0.5s ease-out;
+}
+
+.stat-item-progress .stat-value {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 }
 
 .service-status {
@@ -1563,99 +1611,48 @@ button:disabled {
     50% { opacity: 0.5; }
 }
 }
+
+/* --- YÖNETİM PANELİ (DASHBOARD) - DEVAM --- */
+
+/* details/summary elementleri için stiller */
+details.glass-panel {
+    padding: 0; /* İç padding'i summary ve content'e taşı */
 }
 
-/* --- YÖNETİM PANELİ (DASHBOARD) --- */
-.dashboard-section {
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+details.glass-panel > summary {
+    padding: var(--spacing-lg);
+    list-style: none; /* Varsayılan oku kaldır */
+    cursor: pointer;
 }
 
-.dashboard-title {
-    font-family: var(--font-mono);
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
+details.glass-panel > summary::-webkit-details-marker {
+    display: none; /* Varsayılan oku kaldır */
 }
 
-.system-stats {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
+.details-content {
+    padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    margin-top: -1px; /* Çift kenarlığı önle */
 }
 
-.stat-item {
-    display: grid;
-    grid-template-columns: 40px 1fr 50px;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-.stat-label { color: var(--color-text-secondary); }
-.stat-value { color: var(--color-text-primary); text-align: right; }
-
-.stat-bar-wrapper {
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 3px;
-    overflow: hidden;
-    height: 8px;
-}
-
-.stat-bar {
-    height: 100%;
-    width: 0%; /* JS ile güncellenecek */
-    background: linear-gradient(90deg, var(--color-success-green), var(--color-cyber-cyan));
-    border-radius: 3px;
-    transition: width 0.5s ease-out;
-}
-
-.service-status {
-    margin-top: var(--spacing-md);
-}
-
-.service-status-title {
-    font-family: var(--font-mono);
-    color: var(--color-text-secondary);
+/* Admin panelindeki küçük butonlar için */
+.btn-sm {
+    padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
-    margin-bottom: var(--spacing-sm);
 }
 
-.service-list {
-    list-style: none;
-    padding: 0; margin: 0;
-    font-size: 0.9rem;
+/* Admin panelindeki form alanları için daha iyi odaklanma stili */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    border-color: var(--color-accent);
+    box-shadow: var(--glow-accent);
 }
 
-.service-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-xs) 0;
-    color: var(--color-text-secondary);
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: pulse-dot 2s infinite;
-}
-
-.status-dot.online { background-color: var(--color-success-green); }
-.status-dot.warning { background-color: #ffbd2e; }
-.status-dot.offline { background-color: #ff5f56; }
-
-@keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
+/* Admin tablosu satırlarına hover efekti */
+.admin-table tbody tr:hover {
+    background-color: rgba(var(--color-accent-rgb, 0, 229, 255), 0.05);
+    cursor: pointer;
 }
 
 /* --- BAKIM MODU BANNER'I --- */
@@ -1736,6 +1733,38 @@ button:disabled {
   20%, 80% { transform: translate3d(2px, 0, 0); }
   30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
   40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* --- BLOG YAZISI ETİKETLERİ --- */
+.post-tags-wrapper {
+    margin: var(--spacing-lg) 0;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.post-tags-wrapper h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.post-tag {
+    background-color: var(--color-border);
+    color: var(--color-text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 15px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.post-tag:hover {
+    background-color: var(--color-accent);
+    color: var(--color-void-black);
 }
 
 

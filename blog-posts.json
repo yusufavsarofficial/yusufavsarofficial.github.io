@@ -8,6 +8,7 @@
         "category": "guvenlik",
         "featuredImage": "images/blog/siber-guvenlik-giris.jpg",
         "summary": "Bu yazıda siber güvenliğin temellerini ve neden önemli olduğunu ele alacağız. Bir siber güvenlik uzmanının bilmesi gereken temel kavramlar.",
+        "tags": ["siber güvenlik", "temeller", "pentest"],
         "readingTime": 5,
         "content": "Bu yazıda siber güvenliğin temellerini ve neden önemli olduğunu ele alacağız. **Markdown** formatı desteklenmektedir. Saldırı vektörleri, savunma mekanizmaları ve daha fazlası..."
     },
@@ -20,6 +21,7 @@
         "category": "gelistirme",
         "featuredImage": "images/blog/go-eszamanlilik.jpg",
         "summary": "Go dilinin en güçlü özelliklerinden biri olan `goroutine` ve `channel` yapılarını kullanarak yüksek performanslı uygulamalar geliştirmeyi öğrenin.",
+        "tags": ["golang", "programlama", "performans", "concurrency"],
         "readingTime": 8,
         "content": "Go dilinin en güçlü özelliklerinden biri olan `goroutine` ve `channel` yapılarını inceleyeceğiz.\n\n```go\nfunc main() {\n    fmt.Println(\"Merhaba, Go!\")\n}\n```\nBu örnek, Go'nun ne kadar basit ve güçlü olduğunu gösteriyor."
     }

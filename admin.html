@@ -44,17 +44,28 @@
                     <div class="glass-panel scroll-reveal" style="transition-delay: 200ms;">
                         <h4 class="dashboard-title"><i class="fa-solid fa-chart-pie"></i> Site İstatistikleri</h4>
                         <div class="system-stats">
-                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
-                                <span class="stat-label">Bugünkü Ziyaretçi</span>
-                                <span class="stat-value">1,234</span>
+                            <div class="stat-item">
+                                <span class="stat-label"><i class="fa-solid fa-users"></i> Bugünkü Ziyaretçi</span>
+                                <span id="today-visitors-stat" class="stat-value">--</span>
                             </div>
-                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
-                                <span class="stat-label">Toplam Makale</span>
+                            <div class="stat-item">
+                                <span class="stat-label"><i class="fa-solid fa-pen-to-square"></i> Toplam Makale</span>
                                 <span id="total-articles-stat" class="stat-value">--</span>
                             </div>
-                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
-                                <span class="stat-label">Aktif Simülasyon</span>
+                            <div class="stat-item">
+                                <span class="stat-label"><i class="fa-solid fa-briefcase"></i> Toplam Proje</span>
+                                <span id="total-projects-stat" class="stat-value">--</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label"><i class="fa-solid fa-terminal"></i> Aktif Simülasyon</span>
                                 <span id="total-simulations-stat" class="stat-value">--</span>
+                            </div>
+                            <div class="stat-item stat-item-progress">
+                                <span class="stat-label"><i class="fa-solid fa-image"></i> Görselli Yazı Oranı</span>
+                                <div class="stat-bar-wrapper">
+                                    <div id="posts-with-images-bar" class="stat-bar"></div>
+                                </div>
+                                <span id="posts-with-images-stat" class="stat-value">--%</span>
                             </div>
                         </div>
                     </div>
@@ -71,68 +82,226 @@
                         </div>
                         <div class="form-group" style="margin-top: var(--spacing-md);">
                             <label for="cache-clear">Önbelleği Temizle</label>
-                            <button class="btn btn-secondary" style="width: 100%;">Tüm Önbelleği Temizle</button>
+                            <button id="clear-cache-btn" class="btn btn-secondary" style="width: 100%;">Tüm Önbelleği Temizle</button>
+                        </div>
+                        <div class="form-group" style="margin-top: var(--spacing-md);">
+                            <label>Renk Paleti</label>
+                            <div id="color-palette-switcher" class="color-palette-switcher">
+                                <button class="palette-btn" data-theme="default" style="background: #00e5ff;" title="Varsayılan (Siber Mavi)"></button>
+                                <button class="palette-btn" data-theme="sunset-orange" style="background: #ff8c00;" title="Gün Batımı Turuncusu"></button>
+                                <button class="palette-btn" data-theme="matrix-green" style="background: #39ff14;" title="Matrix Yeşili"></button>
+                                <button class="palette-btn" data-theme="plasma-pink" style="background: #ff00ff;" title="Plazma Pembesi"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Blog Yönetimi Bölümü -->
-                <div class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 400ms;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h4 class="dashboard-title"><i class="fa-solid fa-pen-to-square"></i> Blog Yönetimi</h4>
-                        <div style="display: flex; gap: var(--spacing-sm);">
-                            <label for="import-json-input" class="btn btn-secondary" style="cursor: pointer;"><i class="fa-solid fa-upload"></i> JSON İçe Aktar</label>
-                            <input type="file" id="import-json-input" accept=".json" style="display: none;">
-                            <button id="new-post-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Yeni Yazı Ekle</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Yazı Listesi -->
-                    <ul id="blog-post-list" class="service-list" style="margin-top: var(--spacing-md);">
-                        <!-- JS ile doldurulacak -->
-                        <li>Yazılar yükleniyor...</li>
-                    </ul>
-
-                    <!-- Yazı Düzenleme Formu (Başlangıçta Gizli) -->
-                    <div id="blog-editor" class="contact-form" style="display: none; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
-                        <input type="hidden" id="post-id">
+                <!-- Sayfa İçerik Yönetimi -->
+                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 400ms;">
+                    <summary class="dashboard-title"><i class="fa-solid fa-file-lines"></i> Sayfa İçerik Yönetimi</summary>
+                    <div class="details-content">
                         <div class="form-group">
-                            <label for="post-title">Yazı Başlığı</label>
-                            <input type="text" id="post-title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="post-image">Öne Çıkan Görsel URL'si</label>
-                            <input type="text" id="post-image" placeholder="örn: images/blog/yazi-gorseli.jpg">
-                        </div>
-                        <div class="form-group">
-                            <label for="post-category">Kategori</label>
-                            <select id="post-category">
-                                <option value="guvenlik">Siber Güvenlik</option>
-                                <option value="gelistirme">Yazılım Geliştirme</option>
-                                <option value="devsecops">DevSecOps & Bulut</option>
-                                <option value="yonetim">Yönetim & Liderlik</option>
+                            <label for="page-selector">Düzenlenecek Sayfayı Seçin</label>
+                            <select id="page-selector">
+                                <option value="">-- Sayfa Seçin --</option>
+                                <option value="home">Ana Sayfa (Hero Alanı)</option>
+                                <option value="about">Hakkımda Sayfası</option>
+                                <option value="projects">Projelerim Sayfası</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="post-content">İçerik (Markdown destekler)</label>
-                            <textarea id="post-content" rows="10"></textarea>
+                        <div id="page-editor" class="contact-form" style="display: none; margin-top: var(--spacing-md);">
+                            <!-- JS ile doldurulacak -->
                         </div>
-                        <div style="display: flex; gap: var(--spacing-sm);">
-                            <button id="save-post-btn" class="btn btn-primary" style="flex-grow: 1;">Değişiklikleri Kaydet</button>
-                            <button id="delete-post-btn" class="btn btn-secondary" style="background-color: #ff4d4d; border-color: #ff4d4d; color: white;">Yazıyı Sil</button>
-                            <button id="cancel-edit-btn" class="btn btn-secondary">İptal</button>
+                        <div id="page-editor-actions" style="display: none; margin-top: var(--spacing-md);">
+                            <button id="save-page-btn" class="btn btn-primary" style="width: 100%;">Sayfa Değişikliklerini Kaydet</button>
                         </div>
-                        <p style="font-size: 0.8rem; color: var(--color-text-secondary); text-align: center; margin-top: var(--spacing-sm);">
-                            <i class="fa-solid fa-circle-info"></i> "Kaydet" butonuna bastıktan sonra güncellenmiş <code>blog-posts.json</code> dosyası indirilecektir. Sitenin güncellenmesi için bu dosyayı GitHub deponuza yüklemeniz gerekir.
-                        </p>
                     </div>
-                </div>
+                </details>
+
+                <!-- Proje Yönetimi Bölümü -->
+                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 500ms;" open>
+                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span><i class="fa-solid fa-briefcase"></i> Proje Yönetimi</span>
+                        <button id="new-project-btn" class="btn btn-primary btn-sm" onclick="event.stopPropagation()"><i class="fa-solid fa-plus"></i> Yeni Proje</button>
+                    </summary>
+                    <div class="details-content">
+                        <!-- Proje Listesi -->
+                        <div class="table-wrapper">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Proje Başlığı</th>
+                                        <th>Kategori</th>
+                                        <th style="text-align: right;">Eylemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="project-list">
+                                    <!-- JS ile doldurulacak -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Proje Düzenleme Formu (Başlangıçta Gizli) -->
+                        <div id="project-editor" class="contact-form" style="display: none; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
+                            <input type="hidden" id="project-id">
+                            <div class="form-group">
+                                <label for="project-title">Proje Başlığı</label>
+                                <input type="text" id="project-title" required placeholder="Örn: Güvenli API Gateway">
+                            </div>
+                            <div class="form-group">
+                                <label for="project-description">Açıklama</label>
+                                <textarea id="project-description" rows="3" placeholder="Projenin kısa bir açıklaması..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-category">Kategori</label>
+                                <select id="project-category">
+                                    <option value="python">Python</option>
+                                    <option value="golang">Golang</option>
+                                    <option value="devsecops">DevSecOps</option>
+                                    <option value="nodejs">Node.js</option>
+                                    <option value="react">React</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-link">Link (örn: vaka-calismasi.html)</label>
+                                <input type="text" id="project-link" placeholder="vaka-calismasi.html">
+                            </div>
+                            <div class="form-group">
+                                <label for="project-link-text">Link Metni (örn: Vaka Çalışmasını Oku)</label>
+                                <input type="text" id="project-link-text" placeholder="Vaka Çalışmasını Oku">
+                            </div>
+                            <div style="display: flex; gap: var(--spacing-sm);">
+                                <button id="save-project-btn" class="btn btn-primary" style="flex-grow: 1;">Projeyi Kaydet</button>
+                                <button id="delete-project-btn" class="btn btn-secondary" style="background-color: #ff4d4d; border-color: #ff4d4d; color: white;">Projeyi Sil</button>
+                                <button id="cancel-project-btn" class="btn btn-secondary">İptal</button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Uzmanlık Alanları Yönetimi -->
+                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 550ms;">
+                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span><i class="fa-solid fa-star"></i> Uzmanlık Alanları Yönetimi</span>
+                        <button id="new-expertise-btn" class="btn btn-primary btn-sm" onclick="event.stopPropagation()"><i class="fa-solid fa-plus"></i> Yeni Alan Ekle</button>
+                    </summary>
+                    <div class="details-content">
+                        <div class="table-wrapper">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Başlık</th>
+                                        <th style="text-align: right;">Eylemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expertise-list">
+                                    <!-- JS ile doldurulacak -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="expertise-editor" class="contact-form" style="display: none; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
+                            <input type="hidden" id="expertise-id">
+                            <div class="form-group">
+                                <label for="expertise-title">Başlık</label>
+                                <input type="text" id="expertise-title" required placeholder="Örn: Proaktif Zafiyet Avcılığı">
+                            </div>
+                            <div class="form-group">
+                                <label for="expertise-icon">İkon (Font Awesome Class)</label>
+                                <input type="text" id="expertise-icon" required placeholder="Örn: fa-solid fa-shield-virus">
+                            </div>
+                            <div class="form-group">
+                                <label for="expertise-description">Açıklama</label>
+                                <textarea id="expertise-description" rows="3" placeholder="Uzmanlık alanının kısa bir açıklaması..."></textarea>
+                            </div>
+                            <div style="display: flex; gap: var(--spacing-sm);">
+                                <button id="save-expertise-btn" class="btn btn-primary" style="flex-grow: 1;">Alanı Kaydet</button>
+                                <button id="delete-expertise-btn" class="btn btn-secondary" style="background-color: #ff4d4d; border-color: #ff4d4d; color: white;">Alanı Sil</button>
+                                <button id="cancel-expertise-btn" class="btn btn-secondary">İptal</button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Genel Kaydet Butonu -->
+                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 600ms; background-color: rgba(255, 140, 0, 0.1);">
+                    <summary class="dashboard-title"><i class="fa-solid fa-cloud-arrow-down"></i> Manuel Yedekleme (Tüm İçeriği İndir)</summary>
+                    <div class="details-content">
+                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0 0 var(--spacing-md) 0;">GitHub API entegrasyonu çalışmazsa veya manuel bir yedek almak isterseniz, aşağıdaki butonu kullanarak tüm site içeriğini (`content.json`) tek bir ZIP dosyası olarak indirebilirsiniz.</p>
+                        <button id="download-all-btn" class="btn btn-secondary" style="width: 100%;"><i class="fa-solid fa-file-zipper"></i> content.json'ı İndir (.zip)</button>
+                    </div>
+                </details>
+
+                <!-- Blog Yönetimi Bölümü -->
+                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 700ms;" open>
+                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span><i class="fa-solid fa-pen-to-square"></i> Blog Yönetimi</span>
+                        <div style="display: flex; gap: var(--spacing-sm);" onclick="event.stopPropagation()">
+                            <label for="import-json-input" class="btn btn-secondary btn-sm" style="cursor: pointer;"><i class="fa-solid fa-upload"></i> İçe Aktar</label>
+                            <input type="file" id="import-json-input" accept=".json" style="display: none;">
+                            <button id="new-post-btn" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Yeni Yazı</button>
+                        </div>
+                    </summary>
+                    <div class="details-content">
+                        <!-- Yazı Listesi -->
+                        <div class="table-wrapper">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Yazı Başlığı</th>
+                                        <th>Kategori</th>
+                                        <th style="text-align: right;">Eylemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="blog-post-list">
+                                    <!-- JS ile doldurulacak -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Yazı Düzenleme Formu (Başlangıçta Gizli) -->
+                        <div id="blog-editor" class="contact-form" style="display: none; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
+                            <input type="hidden" id="post-id">
+                            <div class="form-group">
+                                <label for="post-title">Yazı Başlığı</label>
+                                <input type="text" id="post-title" required placeholder="Blog yazınızın başlığı...">
+                            </div>
+                            <div class="form-group">
+                                <label for="post-image">Öne Çıkan Görsel URL'si</label>
+                                <input type="text" id="post-image" placeholder="assets/images/blog/yazi-gorseli.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label for="post-category">Kategori</label>
+                                <select id="post-category">
+                                    <option value="guvenlik">Siber Güvenlik</option>
+                                    <option value="gelistirme">Yazılım Geliştirme</option>
+                                    <option value="devsecops">DevSecOps & Bulut</option>
+                                    <option value="yonetim">Yönetim & Liderlik</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="post-tags">Etiketler (virgülle ayırın)</label>
+                                <input type="text" id="post-tags" placeholder="örn: golang, güvenlik, api">
+                            </div>
+                            <div class="form-group">
+                                <label for="post-content">İçerik (Markdown destekler)</label>
+                                <textarea id="post-content" rows="10"></textarea>
+                            </div>
+                            <div style="display: flex; gap: var(--spacing-sm);">
+                                <button id="save-post-btn" class="btn btn-primary" style="flex-grow: 1;">Yazıyı Kaydet</button>
+                                <button id="delete-post-btn" class="btn btn-secondary" style="background-color: #ff4d4d; border-color: #ff4d4d; color: white;">Yazıyı Sil</button>
+                                <button id="cancel-edit-btn" class="btn btn-secondary">İptal</button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
             </div>
         </section>
     </main>
 
     <div id="footer-placeholder"></div>
     <script src="app.js" defer></script>
+    <!-- JSZip kütüphanesi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="admin-auth.js" defer></script>
     <style>
         /* Toggle switch için stiller */
@@ -144,8 +313,42 @@
         input:focus + .slider { box-shadow: 0 0 1px var(--color-cyber-cyan); }
         input:checked + .slider:before { transform: translateX(26px); }
         .slider.round { border-radius: 34px; }
-        .slider.round:before { border-radius: 50%; }
-        .form-group { display: flex; justify-content: space-between; align-items: center; }
+        .slider.round:before { border-radius: 50%; }        
+        .color-palette-switcher { display: flex; gap: var(--spacing-sm); }
+        .palette-btn { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--color-border); cursor: pointer; transition: all var(--transition-fast); padding: 0; }
+        .palette-btn:hover { transform: scale(1.1); }
+        .palette-btn.active { border-color: white; box-shadow: 0 0 10px white; }
+        /* Form gruplarının hizalaması için genel kural */
+        .table-wrapper { overflow-x: auto; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: var(--spacing-md); }
+        .admin-table th, .admin-table td { padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid var(--color-border); }
+        .admin-table th { font-family: var(--font-mono); color: var(--color-text-secondary); font-size: 0.85rem; }
+        .admin-table td { color: var(--color-text-primary); font-size: 0.95rem; }
+        .admin-table .btn-edit { background: none; border: 1px solid var(--color-border); color: var(--color-text-secondary); padding: 0.3rem 0.8rem; font-size: 0.8rem; border-radius: 5px; cursor: pointer; transition: all var(--transition-fast); }
+        .admin-table .btn-edit:hover { background-color: var(--color-accent); color: var(--color-void-black); border-color: var(--color-accent); }
+        .admin-table tr:last-child td { border-bottom: none; }
+        .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+
+
+        /* Form gruplarının hizalaması için genel kural */
+        #admin-content .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Details/Summary için stiller */
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details > summary::before {
+            content: '\f078'; /* Font Awesome down arrow */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: var(--spacing-sm);
+            transition: transform var(--transition-fast);
+        }
+        details[open] > summary::before {
+            transform: rotate(-180deg);
+        }
     </style>
 </body>
 </html>

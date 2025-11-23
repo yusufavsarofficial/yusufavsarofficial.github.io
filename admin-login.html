@@ -14,29 +14,31 @@
     <div class="cursor cursor-outline"></div>
 
     <main>
-        <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <div class="container" style="max-width: 450px;">
+        <section class="login-section">
+            <div class="login-container">
                 <div id="login-panel" class="glass-panel">
-                    <div style="text-align: center; margin-bottom: var(--spacing-lg);">
-                        <div class="logo" style="font-size: 1.5rem; margin-bottom: var(--spacing-md);"><a href="index.html" style="pointer-events: none;">YUSUF AVŞAR<span class="cursor">_</span></a></div>
-                        <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: var(--spacing-xs);">Yönetim Paneli</h2>
-                        <p class="subsection-description" style="margin-bottom: 0;">Erişim için kimlik bilgileri gereklidir.</p>
+                    <div class="login-header">
+                        <div class="logo login-logo"><a href="index.html" style="pointer-events: none;">YUSUF AVŞAR<span class="cursor">_</span></a></div>
+                        <h2 class="section-title login-title">Yönetim Paneli</h2>
+                        <p class="subsection-description">Erişim için kimlik bilgileri gereklidir.</p>
                     </div>
 
                     <form id="login-form" class="contact-form">
                         <div class="form-group">
                             <label for="password">Parola</label>
-                            <div style="position: relative; display: flex; align-items: center;">
-                                <input type="password" id="password" name="password" required style="padding-right: 3rem;">
-                                <i id="toggle-password" class="fa-solid fa-eye" style="position: absolute; right: 1rem; cursor: pointer; color: var(--color-text-secondary);"></i>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" required autocomplete="current-password">
+                                <button type="button" id="toggle-password" class="password-toggle-btn" aria-label="Parolayı göster">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;" data-original-text="Giriş Yap">Giriş Yap</button>
+                        <button type="submit" class="btn btn-primary btn-full-width" data-original-text="Giriş Yap">Giriş Yap</button>
                     </form>
-                    <div id="login-status" style="text-align: center; margin-top: var(--spacing-md); color: #ff4d4d;"></div>
+                    <div id="login-status" class="login-status-message" aria-live="polite"></div>
                 </div>
-                <div style="text-align: center; margin-top: var(--spacing-lg);">
-                    <a href="index.html" class="footer-links" style="font-size: 0.9rem;">&larr; Ana Sayfaya Dön</a>
+                <div class="back-to-home">
+                    <a href="index.html" class="footer-links">&larr; Ana Sayfaya Dön</a>
                 </div>
             </div>
         </section>
@@ -58,4 +60,5 @@
     </script>
     <script src="admin-auth.js?v=1.1" defer></script>
 </body>
+
 </html>

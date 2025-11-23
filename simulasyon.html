@@ -35,7 +35,7 @@
                         <span>UYARI: KONTROLLÜ SİMÜLASYON ORTAMI</span>
                     </div>
                     <div class="alert-body">
-                        <p>Bu arayüz, siber güvenlik ve sistem operasyonları senaryolarını sergilemek için tasarlanmış, <strong>izole ve güvenli bir simülasyon ortamıdır.</strong> Gösterilen komutlar ve teknikler, yalnızca eğitim ve demonstrasyon amaçlıdır. Bu tekniklerin izinsiz olarak gerçek sistemler üzerinde kullanılması yasa dışıdır ve ciddi hukuki sonuçlar doğurabilir.</p>
+                        <p>Bu arayüz, siber güvenlik ve sistem operasyonları senaryolarını sergilemek için tasarlanmış, <strong>izole ve güvenli bir simülasyon ortamıdır.</strong> Burada gösterilen komutlar ve teknikler, yalnızca eğitim ve demonstrasyon amaçlıdır. Bu tekniklerin izinsiz olarak gerçek sistemler üzerinde kullanılması yasa dışıdır ve ciddi hukuki sonuçlar doğurabilir.</p>
                     </div>
                 </div>
 
@@ -49,10 +49,7 @@
                                 <span class="control-btn minimize"></span>
                                 <span class="control-btn maximize"></span>
                             </div>
-                            <span id="terminal-title" class="terminal-title-text">ANA OPERASYON KONSOLU</span>
-                            <div class="terminal-actions">
-                                <button id="clear-terminal-btn" class="terminal-action-btn" title="Konsolu Temizle"><i class="fa-solid fa-arrows-rotate"></i></button>
-                            </div>
+                            <span class="terminal-title-text">ANA OPERASYON KONSOLU</span>
                         </div>
                         <div class="terminal-body">
                             <ul class="mission-log" id="main-simulation-log">
@@ -67,54 +64,24 @@
 
                     <!-- Komut Paneli (Sağ) -->
                     <div class="command-panel glass-panel scroll-reveal" style="transition-delay: 300ms;">
-                        <!-- YÖNETİM PANELİ -->
-                        <div class="dashboard-section">
-                            <h4 class="dashboard-title"><i class="fa-solid fa-chart-line"></i> CANLI SİSTEM DURUMU</h4>
-                            <div class="system-stats">
-                                <div class="stat-item">
-                                    <span class="stat-label">CPU</span>
-                                    <div class="stat-bar-wrapper"><div id="cpu-stat-bar" class="stat-bar"></div></div>
-                                    <span id="cpu-stat-value" class="stat-value">--%</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">RAM</span>
-                                    <div class="stat-bar-wrapper"><div id="ram-stat-bar" class="stat-bar"></div></div>
-                                    <span id="ram-stat-value" class="stat-value">--%</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">AĞ</span>
-                                    <div class="stat-bar-wrapper"><div id="net-stat-bar" class="stat-bar"></div></div>
-                                    <span id="net-stat-value" class="stat-value">-- Kb/s</span>
-                                </div>
-                            </div>
-                            <div class="service-status">
-                                <h5 class="service-status-title">SERVİS DURUMU</h5>
-                                <ul class="service-list">
-                                    <li>Web Sunucusu (Apache) <span class="status-dot online"></span></li>
-                                    <li>Veritabanı (MySQL) <span class="status-dot online"></span></li>
-                                    <li>Güvenlik Duvarı (UFW) <span class="status-dot online"></span></li>
-                                    <li>SSH Servisi <span class="status-dot warning"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <h4 class="command-panel-title" style="margin-top: var(--spacing-lg);">SİMÜLASYON KATALOĞU</h4>
+                        <h4 class="command-panel-title">SİMÜLASYON KATALOĞU</h4>
+                        <p class="command-panel-description">Aşağıdaki senaryolardan birini seçerek ilgili operasyonu başlatın. Her simülasyon, belirli bir teknik yetkinliği sergilemek üzere tasarlanmıştır.</p>
                         
                         <div class="simulation-card">
                             <div class="card-header">
                                 <i class="fa-solid fa-database card-icon"></i>
                                 <h5 class="card-title">SQL Injection Saldırısı</h5>
                             </div>
-                            <p class="card-description">Güvenlik açığı bulunan bir PHP uygulamasına karşı SQL Injection saldırısı gerçekleştirerek MySQL veritabanından yetkisiz veri sızdırma.</p>
+                            <p class="card-description">Güvenlik açığı bulunan bir sisteme karşı SQL Injection saldırısı gerçekleştirerek veritabanından yetkisiz veri sızdırma senaryosu.</p>
                             <button id="run-sqli-btn" class="btn btn-command">Senaryoyu Başlat <i class="fa-solid fa-play"></i></button>
                         </div>
 
                         <div class="simulation-card">
                             <div class="card-header">
                                 <i class="fa-solid fa-shield-halved card-icon"></i>
-                                <h5 class="card-title">Log Analizi & İhlal Tespiti</h5>
+                                <h5 class="card-title">Brute-Force Tespiti</h5>
                             </div>
-                            <p class="card-description">Bir Python scripti ile Apache sunucu loglarını anlık analiz ederek Brute-Force saldırısını tespit etme ve Fail2Ban ile engelleme.</p>
+                            <p class="card-description">Sunucu loglarını analiz ederek anlık bir kaba kuvvet (Brute-Force) saldırısını tespit etme ve saldırgan IP'yi engelleme simülasyonu.</p>
                             <button id="run-log-analysis-btn" class="btn btn-command">Analizi Başlat <i class="fa-solid fa-play"></i></button>
                         </div>
 
@@ -123,7 +90,7 @@
                                 <i class="fa-solid fa-rocket card-icon"></i>
                                 <h5 class="card-title">Güvenli CI/CD Pipeline</h5>
                             </div>
-                            <p class="card-description">Docker ve Jenkins kullanılan bir projede kodun test, güvenlik taraması ve Kubernetes'e dağıtımını içeren otomatize CI/CD akışı.</p>
+                            <p class="card-description">Bir yazılım projesinde kodun test, güvenlik taraması ve dağıtım aşamalarından geçtiği otomatize edilmiş bir CI/CD akışı.</p>
                             <button id="run-cicd-btn" class="btn btn-command">Pipeline'ı Çalıştır <i class="fa-solid fa-play"></i></button>
                         </div>
 
@@ -134,15 +101,6 @@
                             </div>
                             <p class="card-description">Go dilinin gücünü gösteren, binlerce görevi "goroutine"ler aracılığıyla eş zamanlı olarak çalıştırarak performansı test etme.</p>
                             <button id="run-goroutine-btn" class="btn btn-command">Testi Başlat <i class="fa-solid fa-play"></i></button>
-                        </div>
-
-                        <div class="simulation-card">
-                            <div class="card-header">
-                                <i class="fa-solid fa-route card-icon"></i>
-                                <h5 class="card-title">DNS Zehirleme (Poisoning)</h5>
-                            </div>
-                            <p class="card-description">Bir Shell scripti ile Ettercap aracını tetikleyerek yerel ağdaki DNS önbelleğini zehirleme ve trafiği sahte bir sunucuya yönlendirme.</p>
-                            <button id="run-dns-poisoning-btn" class="btn btn-command">Saldırıyı Başlat <i class="fa-solid fa-play"></i></button>
                         </div>
                     </div>
                 </div>

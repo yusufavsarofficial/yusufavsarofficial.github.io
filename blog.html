@@ -29,17 +29,83 @@
                 <!-- Filtre Butonları -->
                 <div class="filter-buttons scroll-reveal" style="transition-delay: 200ms;">
                     <button class="btn btn-filter active" data-filter="all">Tümü</button>
-                    <!-- Kategori butonları buraya dinamik olarak yüklenecek -->
-                </div>
-                <!-- Etiket Filtre Butonları -->
-                <div id="tag-filter-buttons" class="filter-buttons scroll-reveal" style="transition-delay: 250ms; margin-top: var(--spacing-sm); border-top: 1px solid var(--color-border); padding-top: var(--spacing-sm);">
-                    <span class="filter-label">Popüler Etiketler:</span>
-                    <!-- Etiket butonları buraya dinamik olarak yüklenecek -->
+                    <button class="btn btn-filter" data-filter="guvenlik">Siber Güvenlik</button>
+                    <button class="btn btn-filter" data-filter="gelistirme">Yazılım Geliştirme</button>
+                    <button class="btn btn-filter" data-filter="devsecops">DevSecOps & Bulut</button>
+                    <button class="btn btn-filter" data-filter="yonetim">Yönetim & Liderlik</button>
                 </div>
 
-                <div id="blog-grid" class="projects-grid scroll-reveal" style="transition-delay: 300ms;">
-                    <!-- Blog yazıları buraya dinamik olarak yüklenecek -->
-                    <p style="text-align: center; color: var(--color-text-secondary); grid-column: 1 / -1;">Yazılar yükleniyor...</p>
+                <div class="projects-grid scroll-reveal" style="transition-delay: 300ms;">
+                    <!-- Yazı 1 -->
+                    <div class="project-card" data-category="yonetim">
+                        <span class="product-category">Yönetim & Liderlik</span>
+                        <h3><a href="blog-proje-basarisizligi.html">Bir Projenin Başarısız Olacağı Nasıl Anlaşılır?</a></h3>
+                        <p>Bir projenin aylar sonra başarısızlığa sürükleneceğini anlamak için sihirli bir küreye ihtiyacınız yok. İşte, daha ilk sprintlerde tehlike sinyallerini okumanızı sağlayacak kritik işaretler.</p>
+                        <a href="blog-proje-basarisizligi.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 2 -->
+                    <div class="project-card" data-category="devsecops">
+                        <span class="product-category">DevSecOps & Bulut</span>
+                        <h3><a href="blog-aws-maliyet.html">AWS Faturaları Neden Yüksek Gelir?</a></h3>
+                        <p>Yüksek AWS faturaları ve güvenlik açıkları aynı sorunun iki yüzüdür. En uygun maliyetli yapılandırmanın genellikle en güvenli olanı olduğunu keşfedin.</p>
+                        <a href="blog-aws-maliyet.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 3 -->
+                    <div class="project-card" data-category="gelistirme">
+                        <span class="product-category">Yazılım Geliştirme</span>
+                        <h3><a href="blog-tdd-guvenlik.html">TDD'nin Gizli Güvenlik Avantajları</a></h3>
+                        <p>TDD sadece kod kalitesini artırmaz, aynı zamanda en etkili proaktif güvenlik araçlarından biridir. Sınır koşullarını zorlama ve yeniden düzenleme güvenliği gibi gizli avantajlarını keşfedin.</p>
+                        <a href="blog-tdd-guvenlik.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 4 -->
+                    <div class="project-card" data-category="gelistirme">
+                        <span class="product-category">Yazılım Geliştirme</span>
+                        <h3><a href="blog-golang-vs-python.html">GoLang ile Eşzamanlılıkta Python'a Geçiş</a></h3>
+                        <p>Python'ın GIL kilidi performans darboğazı yarattığında, çözümü Golang'de buldum. Goroutine'ler, kanallar ve milisaniyelik gecikmeler... İşte bu kritik geçişin nedenleri ve sonuçları.</p>
+                        <a href="blog-golang-vs-python.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 5 -->
+                    <div class="project-card" data-category="devsecops">
+                        <span class="product-category">DevSecOps & Bulut</span>
+                        <h3><a href="blog-kubernetes-guvenligi.html">Kubernetes'te Policy as Code Hatalarım</a></h3>
+                        <p>Policy as Code, Kubernetes'te yönetişimin anahtarıdır. Ancak bu yolda yaptığım 3 büyük hata, projeleri yavaşlattı. Denetim modunda takılı kalmaktan, geniş kapsamlı politikalara ve CI/CD ihmaline kadar derslerimi paylaşıyorum.</p>
+                        <a href="blog-kubernetes-guvenligi.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 6 -->
+                    <div class="project-card" data-category="devsecops">
+                        <span class="product-category">DevSecOps & Bulut</span>
+                        <h3><a href="blog-ci-cd-kontrol-listesi.html">Güvenli CI/CD Kontrol Listesi</a></h3>
+                        <p>CI/CD boru hattı, en kritik savunma katmanıdır. İşte, kritik bir zafiyetin Production ortamına sızmasını engelleyen, "Son 5 Dakika Güvenlik Kontrol Listesi" stratejisi.</p>
+                        <a href="blog-ci-cd-kontrol-listesi.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 7 -->
+                    <div class="project-card" data-category="gelistirme">
+                        <span class="product-category">Yazılım Geliştirme</span>
+                        <h3><a href="blog-saldirgan-zihniyeti.html">Saldırgan Zihniyetine Sahip Olmak</a></h3>
+                        <p>Bir geliştiricinin değerini bildiği kütüphane sayısı değil, kodunu hangi zihniyetiyle yazdığı belirler. Peki, saldırgan zihniyeti nedir ve neden en kritik yetenektir?</p>
+                        <a href="blog-saldirgan-zihniyeti.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 8 -->
+                    <div class="project-card" data-category="guvenlik">
+                        <span class="product-category">Siber Güvenlik</span>
+                        <h3><a href="blog-log-guvenligi.html">Güvenlikte En Çok İhmal Edilen Şey</a></h3>
+                        <p>Loglar sadece hata ayıklama aracı değildir; en güçlü savunma mekanizmanızdır. Peki, loglarınızı kim okuyor ve bu ihmalin maliyeti ne?</p>
+                        <a href="blog-log-guvenligi.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 9 -->
+                    <div class="project-card" data-category="yonetim">
+                        <span class="product-category">Yönetim & Liderlik</span>
+                        <h3><a href="blog-pentest-yonetimi.html">Sızma Testi Ekibi Nasıl Yönetilir?</a></h3>
+                        <p>Bir sızma testi ekibinin başarısı sadece teknik yetenekle değil, doğru süreç, zihniyet ve iletişim yönetimiyle ölçülür. İşte bir lider yardımcısının gözlemleri...</p>
+                        <a href="blog-pentest-yonetimi.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
+                    <!-- Yazı 10 -->
+                    <div class="project-card" data-category="guvenlik">
+                        <span class="product-category">Siber Güvenlik</span>
+                        <h3><a href="blog-bola-zafiyeti.html">API Güvenliğinde BOLA Zafiyeti</a></h3>
+                        <p>Siber güvenlikte odak değişti. SQLi'yi büyük ölçüde çözdük, ancak şimdi API'lerimizin başındaki yeni bela BOLA zafiyeti. Nedir ve neden daha tehlikelidir?</p>
+                        <a href="blog-bola-zafiyeti.html" class="action-btn">Okumaya Devam Et &rarr;</a>
+                    </div>
                 </div>
             </div>
         </section>

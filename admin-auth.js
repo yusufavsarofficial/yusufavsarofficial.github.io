@@ -251,10 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         mainTitle: "Projelerim ve Vaka Çalışmaları",
                         subtitle: "Güvenlik, performans ve ölçeklenebilirlik odaklı çözümler."
                     };
-                    // Uzmanlık alanı verilerinin var olduğundan emin ol
-                    if (!siteContent.pages.home.expertiseAreas) siteContent.pages.home.expertiseAreas = [
-                        { id: 1, icon: "fa-solid fa-shield-virus", title: "Örnek Uzmanlık", description: "Bu bir örnek uzmanlık alanıdır." }
-                    ];
                     // Proje verilerinin var olduğundan emin ol
                     if (!siteContent.projects) siteContent.projects = [
                         { id: 1, title: "Örnek Proje", description: "Bu bir örnek projedir.", category: "python", link: "#", linkText: "İncele" }
@@ -582,100 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
             loadContent();
         }
 
-        // --- UZMANLIK ALANLARI YÖNETİMİ ---
-        const expertiseEditorEl = document.getElementById('expertise-editor');
-        if (expertiseEditorEl) {
-            const expertiseListBody = document.getElementById('expertise-list');
-            const newExpertiseBtn = document.getElementById('new-expertise-btn');
-            const saveExpertiseBtn = document.getElementById('save-expertise-btn');
-            const deleteExpertiseBtn = document.getElementById('delete-expertise-btn');
-            const cancelExpertiseBtn = document.getElementById('cancel-expertise-btn');
-
-            const expertiseIdInput = document.getElementById('expertise-id');
-            const expertiseTitleInput = document.getElementById('expertise-title');
-            const expertiseIconInput = document.getElementById('expertise-icon');
-            const expertiseDescriptionInput = document.getElementById('expertise-description');
-
-            const renderExpertiseList = () => {
-                expertiseListBody.innerHTML = '';
-                const areas = siteContent.pages.home.expertiseAreas || [];
-                if (areas.length === 0) {
-                    expertiseListBody.innerHTML = '<tr><td colspan="2" style="text-align: center;">Henüz uzmanlık alanı bulunmuyor.</td></tr>';
-                    return;
-                }
-                let tableRowsHTML = '';
-                areas.forEach(area => {
-                    tableRowsHTML += `
-                        <tr>
-                            <td><i class="${area.icon}" style="margin-right: 8px; color: var(--color-accent);"></i> ${area.title}</td>
-                            <td style="text-align: right;"><button class="btn-edit" data-id="${area.id}">Düzenle</button></td>
-                        </tr>
-                    `;
-                });
-                expertiseListBody.innerHTML = tableRowsHTML;
-            };
-
-            const openExpertiseEditor = (area) => {
-                expertiseIdInput.value = area ? area.id : '';
-                expertiseTitleInput.value = area ? area.title : '';
-                expertiseIconInput.value = area ? area.icon : 'fa-solid fa-star';
-                expertiseDescriptionInput.value = area ? area.description : '';
-                deleteExpertiseBtn.style.display = area ? 'block' : 'none';
-                expertiseEditorEl.style.display = 'block';
-            };
-
-            const closeExpertiseEditor = () => {
-                expertiseEditorEl.style.display = 'none';
-            };
-
-            const saveExpertise = async () => {
-                const id = expertiseIdInput.value ? parseInt(expertiseIdInput.value, 10) : Date.now();
-                const updatedArea = {
-                    id: id,
-                    title: expertiseTitleInput.value,
-                    icon: expertiseIconInput.value,
-                    description: expertiseDescriptionInput.value,
-                };
-
-                const existingIndex = siteContent.pages.home.expertiseAreas.findIndex(a => a.id === id);
-                if (existingIndex > -1) {
-                    siteContent.pages.home.expertiseAreas[existingIndex] = updatedArea;
-                } else {
-                    siteContent.pages.home.expertiseAreas.push(updatedArea);
-                }
-                
-                renderExpertiseList();
-                closeExpertiseEditor();
-
-                const commitMessage = `CMS: Uzmanlık alanı '${updatedArea.title}' güncellendi.`;
-                await updateContentOnGitHub(siteContent, commitMessage, saveExpertiseBtn);
-            };
-
-            newExpertiseBtn.addEventListener('click', () => openExpertiseEditor(null));
-            cancelExpertiseBtn.addEventListener('click', closeExpertiseEditor);
-            saveExpertiseBtn.addEventListener('click', saveExpertise);
-
-            expertiseListBody.addEventListener('click', e => {
-                if (e.target.classList.contains('btn-edit')) {
-                    const area = siteContent.pages.home.expertiseAreas.find(a => a.id === parseInt(e.target.dataset.id));
-                    openExpertiseEditor(area);
-                }
-            });
-
-            deleteExpertiseBtn.addEventListener('click', async () => {
-                if (confirm('Bu uzmanlık alanını silmek istediğinizden emin misiniz?')) {
-                    const id = parseInt(expertiseIdInput.value);
-                    const areaToDelete = siteContent.pages.home.expertiseAreas.find(a => a.id === id);
-                    siteContent.pages.home.expertiseAreas = siteContent.pages.home.expertiseAreas.filter(a => a.id !== id);
-                    renderExpertiseList();
-                    closeExpertiseEditor();
-
-                    const commitMessage = `CMS: Uzmanlık alanı '${areaToDelete.title}' silindi.`;
-                    await updateContentOnGitHub(siteContent, commitMessage, deleteExpertiseBtn);
-                }
-            });
-        }
-
          // --- PROJE YÖNETİMİ MANTIĞI (blogEditor scope'u içinde olmalı) ---
         const projectEditorEl = document.getElementById('project-editor');
         if (projectEditorEl) {
@@ -775,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // `loadContent` tamamlandığında bu fonksiyonu çağır
-            // Bu olay artık gereksiz, loadContent içinde doğrudan çağrılıyor.
+            // Bu olay artık gereksiz, loadContent içinde doğrudan çağrılıyor. renderProjectList();
         }
     }
 

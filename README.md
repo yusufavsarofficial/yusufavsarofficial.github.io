@@ -1,4 +1,4 @@
-# Yusuf Avşar - Kişisel Portfolyo ve Gelişmiş İçerik Yönetim Sistemi
+# Yusuf Avşar - Kişisel Portfolyo ve Blog
 
 Bu repo, siber güvenlik ve yazılım geliştirme alanlarında uzmanlaşmış Yusuf Avşar'ın kişisel portfolyo web sitesinin kaynak kodlarını içermektedir. Site, saf HTML, CSS ve JavaScript kullanılarak oluşturulmuş statik bir yapıya sahiptir ve GitHub Pages üzerinden yayınlanmaktadır.
 
@@ -9,14 +9,16 @@ Bu repo, siber güvenlik ve yazılım geliştirme alanlarında uzmanlaşmış Yu
 ## 🚀 Özellikler
 
 - **Manifesto ve Hakkımda:** Profesyonel felsefe ve biyografi.
-- **Dinamik İçerik:** Blog yazıları, projeler ve sayfa metinleri tek bir `content.json` dosyasından dinamik olarak yüklenir.
-- **Gelişmiş Yönetim Paneli (CMS):**
-  - **Otomatik GitHub Entegrasyonu:** "Kaydet" butonuna basıldığında, GitHub API'si aracılığıyla `content.json` dosyası otomatik olarak güncellenir ve site canlıya alınır.
-  - **Zengin Metin Editörü:** Markdown destekli (EasyMDE) editör ile kolayca blog yazıları oluşturma.
-  - **Kapsamlı Yönetim:** Blog, proje ve statik sayfa içeriklerini (Ana Sayfa, Hakkımda vb.) tek bir yerden yönetme.
-  - **Site Ayarları:** Bakım modu, renk paleti ve ziyaretçi önbelleğini temizleme gibi global ayarlar.
+- **Faaliyetler ve Ürünler:** Sunulan hizmetlerin ve geliştirilen tescilli ürünlerin detaylı açıklaması.
+- **Projeler:** Kategori bazında filtrelenebilir proje portfolyosu.
+- **Teknik Yetkinlikler:** Uzmanlık alanları ve kullanılan teknolojilerin listesi.
+- **Blog ve Makaleler:** Sektörle ilgili teknik yazılar.
+- **Etkileşimli Beğeni Sistemi:** Her yazı için kalıcı ve gerçek zamanlı beğeni sayacı (CountAPI entegrasyonu).
 - **Tamamen Duyarlı (Responsive) Tasarım:** Tüm cihazlarda (mobil, tablet, masaüstü) sorunsuz görüntüleme.
-- **Performans ve UX:** Preloader, özel imleç ve "scroll-reveal" animasyonları gibi modern kullanıcı deneyimi özellikleri.
+- **Güvenlik Odaklı:**
+  - **Content Security Policy (CSP):** Yetkisiz script ve kaynakların çalışmasını engeller.
+  - **Geliştirici Araçları Koruması:** Sağ tık menüsünü ve yaygın geliştirici kısayollarını devre dışı bırakır.
+- **Google AdSense Entegrasyonu:** Otomatik reklamlar ile gelir modeli.
 
 ---
 
@@ -28,9 +30,9 @@ Bu proje, modern web standartlarına uygun olarak, herhangi bir framework bağı
 - **CSS3:** Flexbox, Grid ve özel değişkenler (variables) kullanılarak oluşturulmuş modern ve duyarlı tasarım.
 - **Vanilla JavaScript (ES6+):** DOM manipülasyonu, olay dinleyicileri ve `fetch` API ile dinamik özellikler.
 - **Harici Servisler:**
-  - **GitHub API:** İçerik yönetimini otomatikleştirmek için.
-  - **EasyMDE:** Yönetim panelindeki zengin metin editörü.
-  - **JSZip:** Tüm site içeriğini manuel olarak yedeklemek için.
+  - **CountAPI:** Blog/Makale beğeni sayılarını kalıcı olarak saklamak için kullanılan ücretsiz bir sayaç servisi.
+  - **Formspree:** İletişim formunun backend işlemlerini yöneten sunucusuz bir form hizmeti.
+  - **Google AdSense:** Reklam gösterimi için.
 
 ---
 

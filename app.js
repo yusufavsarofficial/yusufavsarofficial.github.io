@@ -496,6 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleSecureContent = () => {
         const secureElement = document.querySelector('.secure-content');
+        const watermark = document.querySelector('.secure-watermark');
         if (!secureElement) return;
 
         // Fare ile kopyalama ve sağ tık menüsünü engelle
@@ -516,6 +517,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        // Dinamik Filigranı fareyi takip ettir
+        if (watermark) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                watermark.style.left = `${posX}px`;
+                watermark.style.top = `${posY}px`;
+            });
+        }
 
         // Ekran görüntüsü almayı zorlaştırmak için bulanıklaştırma
         window.addEventListener('blur', () => {

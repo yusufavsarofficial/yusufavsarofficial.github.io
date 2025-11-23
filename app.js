@@ -350,10 +350,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainLogEl = document.getElementById('main-simulation-log');
         const mainStatusEl = document.getElementById('main-simulation-status');
         const mainSpinner = document.getElementById('main-spinner');
+        const terminalTitleEl = document.getElementById('terminal-title');
         const commandButtons = document.querySelectorAll('.btn-command');
         if (!mainLogEl || !mainStatusEl || !commandButtons.length) return;
 
-        const typeLog = async (messages, onComplete, commandName) => {
+        const runSimulation = async (messages, onComplete, commandName) => {
             const logEl = mainLogEl;
             const statusEl = mainStatusEl;
             const spinner = mainSpinner;
@@ -394,6 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
             statusEl.textContent = 'ÇALIŞIYOR...';
             statusEl.className = 'simulation-result log-info';
             if(spinner) spinner.style.display = 'block';
+            if(terminalTitleEl) terminalTitleEl.textContent = `İŞLEM: ${commandName}`;
             const commandMessage = { text: `$ ./run-op ${commandName}`, class: 'log-command', delay: 100 };
             messages.unshift(commandMessage);
 
@@ -416,6 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusEl.textContent = 'TAMAMLANDI';
                 statusEl.className = 'simulation-result log-success';
             }
+            if(terminalTitleEl) terminalTitleEl.textContent = 'ANA OPERASYON KONSOLU';
             if(spinner) spinner.style.display = 'none';
             if (onComplete) onComplete();
         };
@@ -424,64 +427,96 @@ document.addEventListener('DOMContentLoaded', () => {
             'run-sqli-btn': {
                 name: 'sql_injection_attack',
                 scenario: [
-                    { text: 'INFO: Hedef URL bağlantısı test ediliyor...', class: 'log-info' },
-                    { text: 'INFO: `user` parametresinde SQL Injection test ediliyor...', class: 'log-info' },
-                    { text: `SUCCESS: Zafiyetli payload bulundu: <span class="log-highlight">' OR '1'='1' --</span>`, class: 'log-success', delay: 500 },
-                    { text: 'INFO: Payload enjekte ediliyor...', class: 'log-info' },
-                    { text: 'CRITICAL: Kimlik Doğrulama Atlatıldı!', class: 'log-fail', delay: 800 },
-                    { text: 'SUCCESS: <span class="log-highlight">admin</span> olarak erişim sağlandı.', class: 'log-success' }
+                    { text: 'INFO: Hedef sisteme bağlanılıyor: 10.0.2.15:80...', class: 'log-info' },
+                    { text: 'SUCCESS: Bağlantı kuruldu. HTTP 200 OK.', class: 'log-success', delay: 300 },
+                    { text: 'INFO: `login.php` üzerinde zafiyet taraması başlatılıyor...', class: 'log-info' },
+                    { text: 'INFO: Test payload\'u gönderiliyor: `user=\' AND 1=1 --`', class: 'log-info', delay: 800 },
+                    { text: 'SUCCESS: Sistemden geçerli yanıt alındı. Zafiyet doğrulandı!', class: 'log-success' },
+                    { text: 'INFO: Veritabanı sürümü çekiliyor: `UNION SELECT @@VERSION, NULL --`', class: 'log-info', delay: 500 },
+                    { text: 'SUCCESS: Veritabanı: <span class="log-highlight">MySQL 8.0.2</span>', class: 'log-success' },
+                    { text: 'INFO: Kullanıcı tablosu çekiliyor: `UNION SELECT table_name, NULL FROM information_schema.tables --`', class: 'log-info', delay: 1000 },
+                    { text: 'CRITICAL: Yetkisiz veri sızdırıldı: <span class="log-highlight">[users, passwords, sessions]</span>', class: 'log-fail', delay: 500 },
+                    { text: 'SUCCESS: Operasyon tamamlandı. <span class="log-highlight">admin</span> kimlik bilgileri ele geçirildi.', class: 'log-success' }
                 ]
             },
             'run-log-analysis-btn': {
                 name: 'live_log_analysis',
                 scenario: [
-                    { text: 'INFO: Başarısız giriş denemeleri dinleniyor...', class: 'log-info' },
-                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 1000 },
-                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 500 },
-                    { text: 'LOG: root için 192.168.1.10 port 22\'den başarısız parola.', class: 'log-info', delay: 300 },
-                    { text: 'ALERT: <span class="log-highlight">192.168.1.10</span> IP\'sinden Brute-force saldırısı tespit edildi!', class: 'log-fail', delay: 500 },
-                    { text: 'ACTION: IP <span class="log-highlight">192.168.1.10</span> güvenlik duvarı tarafından engellendi.', class: 'log-success' }
+                    { text: 'INFO: Canlı log akışı başlatıldı: `/var/log/auth.log`', class: 'log-info' },
+                    { text: 'LOG: [sshd:2154] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48122 ssh2', class: 'log-info', delay: 1000 },
+                    { text: 'LOG: [sshd:2156] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48128 ssh2', class: 'log-info', delay: 500 },
+                    { text: 'LOG: [sshd:2158] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48134 ssh2', class: 'log-info', delay: 300 },
+                    { text: 'LOG: [sshd:2160] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48140 ssh2', class: 'log-info', delay: 200 },
+                    { text: 'ALERT: [IDS] Tek bir IP\'den çok sayıda başarısız deneme tespit edildi. Potansiyel Brute-Force saldırısı!', class: 'log-fail', delay: 500 },
+                    { text: 'ACTION: [Fail2Ban] IP <span class="log-highlight">185.191.171.13</span> için `sshd` jail kuralı tetiklendi.', class: 'log-info' },
+                    { text: 'SUCCESS: [Firewall] IP <span class="log-highlight">185.191.171.13</span> kalıcı olarak engellendi.', class: 'log-success' }
                 ]
             },
             'run-db-migration-btn': {
                 name: 'db_migration',
                 scenario: [
-                    { text: 'INFO: [alembic.runtime.migration] Context impl PostgreSQLImpl.', class: 'log-info' },
-                    { text: 'INFO: [alembic.runtime.migration] İşlemsel DDL varsayılacak.', class: 'log-info' },
-                    { text: 'INFO: [alembic.runtime.migration] Yükseltme çalıştırılıyor -> e1a2b3c4d5, `users` tablosu ekleniyor', class: 'log-info', delay: 500 },
-                    { text: 'INFO: [alembic.runtime.migration] Yükseltme çalıştırılıyor e1a2b3c4d5 -> f6g7h8i9j0, `users` tablosuna `email_verified` sütunu ekleniyor', class: 'log-info', delay: 800 },
-                    { text: 'SUCCESS: Geçiş tamamlandı.', class: 'log-success' }
+                    { text: 'INFO: [Alembic] Veritabanı bağlantısı kuruluyor: `postgresql://user:***@prod-db`', class: 'log-info' },
+                    { text: 'INFO: [Alembic] Mevcut revizyon: `e1a2b3c4d5`', class: 'log-info' },
+                    { text: 'INFO: [Alembic] Hedef revizyon: `f6g7h8i9j0`', class: 'log-info', delay: 500 },
+                    { text: 'INFO: [Alembic] Yükseltme `e1a2b3c4d5` -> `f6g7h8i9j0` başlatılıyor...', class: 'log-info' },
+                    { text: 'SQL:   ALTER TABLE users ADD COLUMN email_verified BOOLEAN', class: 'log-info', delay: 800 },
+                    { text: 'SQL:   UPDATE users SET email_verified = false', class: 'log-info', delay: 400 },
+                    { text: 'SQL:   ALTER TABLE users ALTER COLUMN email_verified SET NOT NULL', class: 'log-info', delay: 400 },
+                    { text: 'INFO: [Alembic] Geçiş tamamlandı. Veritabanı şeması güncel.', class: 'log-success' }
                 ]
             },
             'run-git-merge-btn': {
                 name: 'git_version_control',
                 scenario: [
-                    { text: 'INFO: `main` branch\'ine geçildi.', class: 'log-info' },
-                    { text: 'COMMAND: $ git merge feature/new-login', class: 'log-command' },
-                    { text: 'INFO: login.js otomatik birleştiriliyor...', class: 'log-info', delay: 500 },
-                    { text: 'CONFLICT: login.js dosyasında birleştirme çakışması var.', class: 'log-fail', delay: 800 },
-                    { text: 'HINT: Otomatik birleştirme başarısız; çakışmaları çözüp sonucu commit edin.', class: 'log-highlight' }
+                    { text: 'COMMAND: $ git checkout main', class: 'log-command' },
+                    { text: 'INFO: Switched to branch \'main\'. Your branch is up to date with \'origin/main\'.', class: 'log-info', delay: 300 },
+                    { text: 'COMMAND: $ git merge feature/new-auth', class: 'log-command' },
+                    { text: 'INFO: Auto-merging src/auth.js', class: 'log-info', delay: 800 },
+                    { text: 'CONFLICT: (content): Merge conflict in <span class="log-highlight">src/auth.js</span>', class: 'log-fail', delay: 500 },
+                    { text: 'ERROR: Automatic merge failed; fix conflicts and then commit the result.', class: 'log-fail' },
+                    { text: 'HINT: Çakışmayı çözmek için `src/auth.js` dosyasını manuel olarak düzenleyin.', class: 'log-highlight' }
                 ]
             },
             'run-goroutine-btn': {
                 name: 'go_concurrency_test',
                 scenario: [
-                    { text: 'INFO: 10,000 Goroutine başlatılıyor...', class: 'log-info' },
-                    { text: 'WORKER: İşçi 1 başladı...', class: 'log-info', delay: 50 },
-                    { text: 'WORKER: İşçi 5,231 başladı...', class: 'log-info', delay: 50 },
-                    { text: 'WORKER: İşçi 9,999 başladı...', class: 'log-info', delay: 50 },
-                    { text: 'SUCCESS: 10,000 görevin tamamı <span class="log-highlight">89ms</span> içinde tamamlandı.', class: 'log-success', delay: 1000 }
+                    { text: 'COMMAND: $ go run main.go --workers=10000', class: 'log-command' },
+                    { text: 'INFO: Eşzamanlılık testi başlatılıyor...', class: 'log-info', delay: 200 },
+                    { text: 'INFO: 10,000 adet goroutine oluşturuluyor ve görev kuyruğuna ekleniyor...', class: 'log-info', delay: 500 },
+                    { text: 'WORKER: [Worker 345] Görev #8912 işleniyor...', class: 'log-info', delay: 50 },
+                    { text: 'WORKER: [Worker 8123] Görev #1234 işleniyor...', class: 'log-info', delay: 50 },
+                    { text: 'WORKER: [Worker 567] Görev #5678 işleniyor...', class: 'log-info', delay: 50 },
+                    { text: 'INFO: Tüm görevler tamamlandı. Sonuçlar toplanıyor...', class: 'log-info', delay: 1000 },
+                    { text: 'SUCCESS: 10,000 görevin tamamı <span class="log-highlight">89ms</span> gibi rekor bir sürede tamamlandı.', class: 'log-success' }
                 ]
             },
             'run-cicd-btn': {
                 name: 'secure_cicd_pipeline',
                 scenario: [
-                    { text: 'INFO: SentinelPipe v2.1 başlatılıyor...', class: 'log-info' },
-                    { text: 'GATE 1/4: SAST Taraması çalıştırılıyor...', class: 'log-info' },
-                    { text: 'SUCCESS: SAST Taraması: GEÇTİ', class: 'log-success', delay: 800 },
-                    { text: 'GATE 2/4: Bağımlılıklar için SCA Taraması çalıştırılıyor...', class: 'log-info' },
-                    { text: 'CRITICAL: Zafiyet bulundu: `log4j` (CVE-2021-44228)', class: 'log-fail', delay: 1000 },
-                    { text: 'ABORTED: PIPELINE BAŞARISIZ. Dağıtım iptal edildi.', class: 'log-highlight' }
+                    { text: 'INFO: [CI/CD] Pipeline `commit: a3f4d5e` için tetiklendi.', class: 'log-info' },
+                    { text: 'STAGE: [Build] Docker imajı oluşturuluyor... <span class="log-success">OK</span>', class: 'log-info', delay: 800 },
+                    { text: 'STAGE: [Test] Birim testleri çalıştırılıyor... %100 Kapsam. <span class="log-success">OK</span>', class: 'log-info', delay: 600 },
+                    { text: 'STAGE: [SAST] Statik kod analizi (SonarQube)...', class: 'log-info', delay: 1000 },
+                    { text: 'SUCCESS: [SAST] 0 Kritik, 2 Major, 5 Minor bulgu. Kalite eşiği: GEÇTİ.', class: 'log-success' },
+                    { text: 'STAGE: [SCA] Bağımlılık analizi (Snyk)...', class: 'log-info', delay: 1200 },
+                    { text: 'CRITICAL: [SCA] Yüksek riskli zafiyet bulundu: <span class="log-highlight">log4j:2.14.1 (CVE-2021-44228)</span>', class: 'log-fail' },
+                    { text: 'ABORTED: [CI/CD] GÜVENLİK EŞİĞİ AŞILDI. PIPELINE DURDURULDU.', class: 'log-fail', delay: 500 },
+                    { text: 'ACTION: Dağıtım iptal edildi. Geliştirici ekibine bildirim gönderildi.', class: 'log-highlight' }
+                ]
+            },
+            'run-dns-poisoning-btn': {
+                name: 'dns_cache_poisoning',
+                scenario: [
+                    { text: 'INFO: [Ettercap] DNS zehirleme modülü başlatılıyor...', class: 'log-info' },
+                    { text: 'INFO: Hedef taranıyor: 192.168.1.105', class: 'log-info', delay: 500 },
+                    { text: 'INFO: Ağ geçidi (Gateway) tespit edildi: 192.168.1.1', class: 'log-info' },
+                    { text: 'ACTION: ARP spoofing başlatıldı. Hedef ile ağ geçidi arasına giriliyor...', class: 'log-highlight', delay: 1000 },
+                    { text: 'SUCCESS: Man-in-the-middle pozisyonu başarıyla alındı.', class: 'log-success' },
+                    { text: 'INFO: DNS sorguları dinleniyor...', class: 'log-info', delay: 1500 },
+                    { text: 'LOG: Hedef (192.168.1.105) -> DNS Sorgusu: A? banka.com', class: 'log-info', delay: 800 },
+                    { text: 'CRITICAL: Sorgu yakalandı! Sahte DNS yanıtı gönderiliyor...', class: 'log-fail' },
+                    { text: 'ACTION: DNS Yanıtı: banka.com -> <span class="log-highlight">10.0.8.45</span> (Sahte Sunucu)', class: 'log-highlight', delay: 1000 },
+                    { text: 'SUCCESS: Hedefin DNS önbelleği başarıyla zehirlendi. Yönlendirme aktif.', class: 'log-success' }
                 ]
             }
         };
@@ -491,14 +526,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sim = simulations[btn.id];
                 if (!sim) return;
 
+                const card = btn.closest('.simulation-card');
+
                 // Bir simülasyon çalışırken diğerlerini devre dışı bırak
                 commandButtons.forEach(b => b.disabled = true);
 
-                typeLog(sim.scenario, () => {
+                // Buton metnini ve ikonunu güncelle
+                const originalButtonHTML = btn.innerHTML;
+                btn.innerHTML = '<div class="spinner-sm"></div> Çalışıyor...';
+
+                // Tıklanan butona ve karta "çalışıyor" stili ekle
+                if (card) card.classList.add('running');
+                btn.classList.add('running');
+
+                runSimulation(sim.scenario, () => {
                     // Simülasyon bittiğinde tüm butonları tekrar aktif et
                     commandButtons.forEach(b => b.disabled = false);
+
+                    // Butonu orijinal haline döndür
+                    btn.innerHTML = originalButtonHTML;
+
+                    // "çalışıyor" stilini karttan ve butondan kaldır
+                    if (card) card.classList.remove('running');
+                    btn.classList.remove('running');
                 }, sim.name);
             });
+        });
+
+        // Sayfa yüklendiğinde "boot-up" animasyonunu başlat
+        const bootUpSequence = [
+            { text: 'Sistem başlatılıyor...', class: 'log-info' },
+            { text: 'Çekirdek modülleri yükleniyor... [OK]', class: 'log-info', delay: 300 },
+            { text: 'Ağ arayüzleri yapılandırılıyor... [OK]', class: 'log-info', delay: 400 },
+            { text: 'Güvenlik protokolleri aktif ediliyor... [OK]', class: 'log-info', delay: 500 },
+            { text: 'SentinelPipe v2.1 dinlemede... [OK]', class: 'log-success', delay: 200 },
+            { text: 'Tüm sistemler hazır. Operasyon bekleniyor...', class: 'boot-sequence log-success' }
+        ];
+
+        const runBootUp = () => {
+            const terminalPanel = document.querySelector('.main-log-panel');
+            if (terminalPanel) terminalPanel.classList.add('booting');
+            commandButtons.forEach(b => b.disabled = true); // Boot sırasında butonlar pasif
+            runSimulation(bootUpSequence, () => {
+                commandButtons.forEach(b => b.disabled = false);
+                if (terminalPanel) terminalPanel.classList.remove('booting');
+                mainLogEl.innerHTML = '<li class="log-info">Sistemler hazır. Komut bekleniyor...</li>';
+            }, 'system_boot');
+        };
+        runBootUp();
+
+        // Terminal kontrol butonlarına işlevsellik ekle
+        const terminal = document.querySelector('.main-log-panel');
+        if (!terminal) return;
+
+        const closeBtn = terminal.querySelector('.control-btn.close');
+        closeBtn?.addEventListener('click', () => {
+            terminal.classList.add('closing');
+            // Animasyon bittikten sonra elementi gizle ama tamamen kaldırma
+            // Sayfa yenilenince geri gelecektir.
+            setTimeout(() => {
+                terminal.style.visibility = 'hidden';
+            }, 500);
+        });
+
+        // Temizle butonuna işlevsellik ekle
+        const clearBtn = document.getElementById('clear-terminal-btn');
+        clearBtn?.addEventListener('click', () => {
+            mainLogEl.innerHTML = '<li class="log-info">Konsol temizlendi. Yeni komut bekleniyor...</li>';
+            mainStatusEl.textContent = 'BEKLEMEDE';
         });
     };
 
@@ -682,6 +777,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  13. ANA SAYFA BAŞLIK ANİMASYONU
+     * ------------------------------------------------------------------------
+     * Ana sayfadaki "wavy-headline" başlığının harflerine dalga efekti için
+     * gecikme (delay) atar.
+     */
+    const handleWavyHeadline = () => {
+        const wavyHeadline = document.querySelector('.wavy-headline');
+        if (!wavyHeadline) return;
+
+        wavyHeadline.querySelectorAll('span:not(.space)').forEach((span, index) => {
+            span.style.animationDelay = `${index * 0.05}s`;
+        });
+    };
+    /**
+     * ------------------------------------------------------------------------
      *  UYGULAMA BAŞLATMA
      * ------------------------------------------------------------------------
      */
@@ -699,6 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handleMobileNavigation();
         setActiveNavLink();
         handleThemeSwitcher();
+        handleWavyHeadline(); // Dalga animasyonunu başlat
 
         handleScrollAnimations();
         handleContactForm();

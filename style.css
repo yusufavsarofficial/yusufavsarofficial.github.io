@@ -1088,10 +1088,85 @@ footer {
 .control-btn.minimize { background-color: #ffbd2e; }
 .control-btn.maximize { background-color: #27c93f; }
 
+/* Terminal kontrol butonları için hover ikonları */
+.control-btn::before {
+    content: '';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 8px;
+    color: #3c1d1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.control-btn.close::before { content: '\f00d'; } /* x ikonu */
+.control-btn.minimize::before { content: '\f2d1'; } /* - ikonu */
+.control-btn.maximize::before { content: '\f2d0'; } /* + ikonu */
+
+.terminal-controls:hover .control-btn::before {
+    opacity: 1;
+}
+
 .terminal-title-text {
     flex-grow: 1;
     text-align: center;
     padding: 0 var(--spacing-lg); /* Kontrollerin üzerini kaplamaması için */
+}
+
+/* Terminal başlığındaki aksiyon butonları */
+.terminal-actions {
+    position: absolute;
+    right: var(--spacing-md);
+}
+
+.terminal-action-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+.terminal-action-btn:hover { color: var(--color-cyber-cyan); }
+
+/* Terminal kapanma animasyonu */
+.main-log-panel.closing {
+    animation: terminal-close-anim 0.5s var(--transition-smooth) forwards;
+}
+
+@keyframes terminal-close-anim {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+}
+
+/* Terminal başlangıç (booting) efekti */
+.main-log-panel.booting .terminal-body::after {
+    content: '_';
+    font-family: var(--font-mono);
+    color: var(--color-success-green);
+    animation: blink 1s infinite;
+}
+
+.main-log-panel.booting .terminal-title-text {
+    animation: blink-text 1.5s infinite alternate;
+}
+
+@keyframes blink-text {
+    from { opacity: 0.5; } to { opacity: 1; }
 }
 
 .terminal-body {
@@ -1311,6 +1386,78 @@ button:disabled {
     margin-bottom: var(--spacing-md);
     border: 1px dashed var(--color-border);
 }
+}
+
+/* --- UYARI PANELİ --- */
+.alert-panel {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-glass-panel);
+}
+
+.alert-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.alert-body p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.alert-panel.critical-alert {
+    border-color: rgba(255, 77, 77, 0.4);
+    background-color: rgba(255, 77, 77, 0.05);
+}
+
+.alert-panel.critical-alert .alert-header {
+    color: #ff4d4d;
+}
+}
+
+/* Çalışan simülasyon kartı için animasyon */
+.simulation-card.running {
+    border-color: var(--color-cyber-cyan);
+    animation: pulse-glow 1.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    from {
+        box-shadow: 0 0 5px rgba(0, 229, 255, 0.2), 0 0 10px rgba(0, 229, 255, 0.1);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.4);
+    }
+}
+
+.simulation-card .btn-command.running {
+    /* Çalışan butonun metnini değiştirebilir veya bir ikon ekleyebiliriz */
+    /* Şimdilik özel bir stil gerekmiyor, kartın animasyonu yeterli. */
+}
+
+/* Buton içindeki küçük spinner */
+.spinner-sm {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-anim 0.75s linear infinite;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+@keyframes spinner-anim {
+    to { transform: rotate(1turn); }
 }
 
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Parola Hash Testi</title>
+    <style>
+        body { font-family: monospace; background-color: #030304; color: #E2E8F0; padding: 2rem; }
+        input { padding: 0.5rem; width: 300px; background-color: #333; color: white; border: 1px solid #555; }
+        button { padding: 0.5rem 1rem; }
+        #result { margin-top: 1rem; word-break: break-all; }
+        .correct { color: #22C55E; }
+        .incorrect { color: #ff4d4d; }
+    </style>
+</head>
+<body>
+
+    <h1>Parola Hash Test Aracı</h1>
+    <p>Lütfen parolanızı girip butona basın.</p>
+
+    <input type="text" id="password-input" placeholder="Parolayı buraya girin...">
+    <button id="hash-button">Hash'i Hesapla</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        document.getElementById('hash-button').addEventListener('click', async () => {
+            const passwordInput = document.getElementById('password-input');
+            const resultDiv = document.getElementById('result');
+            
+            const enteredPassword = passwordInput.value.trim();
+            const enteredHash = await sha256(enteredPassword);
+
+            const correctHash = 'f86159e6f1910082559b33785249514050300065092019751281413596144549';
+
+            let html = `<strong>Girilen Parola:</strong> ${enteredPassword}<br>`;
+            html += `<strong>Hesaplanan Hash:</strong> ${enteredHash}<br>`;
+            html += `<strong>Olması Gereken Hash:</strong> ${correctHash}<br><hr>`;
+
+            resultDiv.innerHTML = html;
+            resultDiv.className = (enteredHash === correctHash) ? 'correct' : 'incorrect';
+            resultDiv.innerHTML += (enteredHash === correctHash) ? '<strong>SONUÇ: BAŞARILI! Hash değerleri eşleşiyor.</strong>' : '<strong>SONUÇ: BAŞARISIZ! Hash değerleri farklı.</strong>';
+        });
+    </script>
+</body>
+</html>

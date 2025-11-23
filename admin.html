@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Arama motorlarının bu sayfayı indexlemesini engelle -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="visibility: hidden;"> <!-- İçerik, yetki kontrolünden sonra görünür olacak -->
+
+    <!-- Yetki kontrol scripti sayfanın en başında olmalı -->
+    <script>
+        // Bu script, sayfa içeriği yüklenmeden önce çalışır.
+        // localStorage'daki yetki anahtarını kontrol eder.
+        (() => {
+            const authToken = localStorage.getItem('adminAuthToken');
+            // Bu değerin, giriş sayfasında ayarlanan değerle aynı olması gerekir.
+            const expectedToken = 'ysf-secret-session-token-2024'; 
+
+            if (authToken !== expectedToken) {
+                // Anahtar yoksa veya yanlışsa, 404 sayfasına yönlendir.
+                window.location.replace('404.html');
+            } else {
+                // Yetki doğruysa, sayfanın görünürlüğünü aç.
+                document.body.style.visibility = 'visible';
+            }
+        })();
+    </script>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section>
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+                    <h2 class="section-title scroll-reveal" style="text-align: left; margin: 0;">Yönetim Paneli</h2>
+                    <button id="logout-btn" class="btn btn-secondary scroll-reveal" style="transition-delay: 100ms;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış Yap</button>
+                </div>
+
+                <div class="simulation-grid">
+                    <!-- Sol Panel: İstatistikler -->
+                    <div class="glass-panel scroll-reveal" style="transition-delay: 200ms;">
+                        <h4 class="dashboard-title"><i class="fa-solid fa-chart-pie"></i> Site İstatistikleri</h4>
+                        <div class="system-stats">
+                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
+                                <span class="stat-label">Bugünkü Ziyaretçi</span>
+                                <span class="stat-value">1,234</span>
+                            </div>
+                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
+                                <span class="stat-label">Toplam Makale</span>
+                                <span id="total-articles-stat" class="stat-value">--</span>
+                            </div>
+                            <div class="stat-item" style="grid-template-columns: 1fr 100px;">
+                                <span class="stat-label">Aktif Simülasyon</span>
+                                <span id="total-simulations-stat" class="stat-value">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sağ Panel: Ayarlar -->
+                    <div class="glass-panel scroll-reveal" style="transition-delay: 300ms;">
+                        <h4 class="dashboard-title"><i class="fa-solid fa-sliders"></i> Site Ayarları</h4>
+                        <div class="form-group">
+                            <label for="maintenance-mode">Bakım Modu</label>
+                            <label class="switch">
+                                <input type="checkbox" id="maintenance-mode">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin-top: var(--spacing-md);">
+                            <label for="cache-clear">Önbelleği Temizle</label>
+                            <button class="btn btn-secondary" style="width: 100%;">Tüm Önbelleği Temizle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Yönetimi Bölümü -->
+                <div class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 400ms;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 class="dashboard-title"><i class="fa-solid fa-pen-to-square"></i> Blog Yönetimi</h4>
+                        <div style="display: flex; gap: var(--spacing-sm);">
+                            <label for="import-json-input" class="btn btn-secondary" style="cursor: pointer;"><i class="fa-solid fa-upload"></i> JSON İçe Aktar</label>
+                            <input type="file" id="import-json-input" accept=".json" style="display: none;">
+                            <button id="new-post-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Yeni Yazı Ekle</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Yazı Listesi -->
+                    <ul id="blog-post-list" class="service-list" style="margin-top: var(--spacing-md);">
+                        <!-- JS ile doldurulacak -->
+                        <li>Yazılar yükleniyor...</li>
+                    </ul>
+
+                    <!-- Yazı Düzenleme Formu (Başlangıçta Gizli) -->
+                    <div id="blog-editor" class="contact-form" style="display: none; margin-top: var(--spacing-lg); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
+                        <input type="hidden" id="post-id">
+                        <div class="form-group">
+                            <label for="post-title">Yazı Başlığı</label>
+                            <input type="text" id="post-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-image">Öne Çıkan Görsel URL'si</label>
+                            <input type="text" id="post-image" placeholder="örn: images/blog/yazi-gorseli.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-category">Kategori</label>
+                            <select id="post-category">
+                                <option value="guvenlik">Siber Güvenlik</option>
+                                <option value="gelistirme">Yazılım Geliştirme</option>
+                                <option value="devsecops">DevSecOps & Bulut</option>
+                                <option value="yonetim">Yönetim & Liderlik</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-content">İçerik (Markdown destekler)</label>
+                            <textarea id="post-content" rows="10"></textarea>
+                        </div>
+                        <div style="display: flex; gap: var(--spacing-sm);">
+                            <button id="save-post-btn" class="btn btn-primary" style="flex-grow: 1;">Değişiklikleri Kaydet</button>
+                            <button id="delete-post-btn" class="btn btn-secondary" style="background-color: #ff4d4d; border-color: #ff4d4d; color: white;">Yazıyı Sil</button>
+                            <button id="cancel-edit-btn" class="btn btn-secondary">İptal</button>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--color-text-secondary); text-align: center; margin-top: var(--spacing-sm);">
+                            <i class="fa-solid fa-circle-info"></i> "Kaydet" butonuna bastıktan sonra güncellenmiş <code>blog-posts.json</code> dosyası indirilecektir. Sitenin güncellenmesi için bu dosyayı GitHub deponuza yüklemeniz gerekir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="app.js" defer></script>
+    <script src="admin-auth.js" defer></script>
+    <style>
+        /* Toggle switch için stiller */
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+        input:checked + .slider { background-color: var(--color-cyber-cyan); }
+        input:focus + .slider { box-shadow: 0 0 1px var(--color-cyber-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+        .form-group { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Başlık ve açıklama JS tarafından dinamik olarak ayarlanacak -->
+    <title>Yazı Yükleniyor... - Yusuf Avşar</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog-components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Markdown'ı HTML'e çevirmek için Marked.js kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <div class="preloader"><div class="logo"><a href="../index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
+    <div class="cursor cursor-dot"></div>
+    <div class="cursor cursor-outline"></div>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="page-content">
+            <div class="container" style="max-width: 800px; text-align: left;">
+                
+                <!-- Yazı Başlığı ve Metası (JS ile doldurulacak) -->
+                <div id="post-header" class="blog-header">
+                    <h2 id="post-title" style="font-size: clamp(2.2rem, 5vw, 3rem); margin-bottom: var(--spacing-sm); line-height: 1.2;">Yazı Yükleniyor...</h2>
+                    <p id="post-meta" class="post-card-meta" style="margin-bottom: 2rem;"></p>
+                </div>
+                
+                <!-- Yazı İçeriği (JS ile doldurulacak) -->
+                <div id="post-content" class="blog-post-content">
+                    <p>İçerik yükleniyor, lütfen bekleyin...</p>
+                </div>
+
+                <!-- Paylaşım ve Beğeni Butonları -->
+                <div class="share-section">
+                    <span class="share-title">Bu Yazıyı Paylaş:</span>
+                    <div class="share-buttons">
+                        <a href="#" id="share-twitter" class="share-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter'da paylaş"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" id="share-linkedin" class="share-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn'de paylaş"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button id="copy-link-btn" class="share-btn" aria-label="Bağlantıyı kopyala">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="like-section">
+                    <button id="likeBtn" class="like-btn">Beğen</button>
+                    <span id="likeCount" class="like-count">-- beğeni</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../app.js" defer></script>
+
+</body>
+</html>

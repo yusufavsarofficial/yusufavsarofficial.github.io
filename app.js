@@ -91,6 +91,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  14. BAKIM MODU UYARISI
+     * ------------------------------------------------------------------------
+     * localStorage'da bakım modu aktifse, sayfanın en üstüne bir uyarı
+     * bandı ekler. Bu fonksiyon, admin sayfaları dışında çalışır.
+     */
+    const handleMaintenanceBanner = () => {
+        if (localStorage.getItem('maintenanceMode') === 'on') {
+            // Admin sayfalarında bu bandı gösterme
+            const isAdminPage = window.location.pathname.includes('admin.html') || window.location.pathname.includes('admin-login.html');
+            if (isAdminPage) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'maintenance-banner';
+            banner.innerHTML = `
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <strong>BAKIM MODU AKTİF:</strong> Site şu anda genel bakım altındadır. Bazı özellikler beklendiği gibi çalışmayabilir.
+            `;
+            document.body.prepend(banner);
+            // Banner'ın yüksekliği kadar body'e padding ekleyerek içeriğin aşağı kaymasını sağla
+            document.body.style.paddingTop = `calc(${getComputedStyle(banner).height} + var(--header-height))`;
+        }
+    };
+
+
+    /**
+     * ------------------------------------------------------------------------
+     *  15. SİMÜLASYON SAYACINI KAYDETME
+     * ------------------------------------------------------------------------
+     * Simülasyon sayfasındaki toplam simülasyon sayısını sayar ve
+     * admin panelinde gösterilmek üzere localStorage'a kaydeder.
+     */
+    const countAndStoreSimulations = () => {
+        // Bu fonksiyon sadece simülasyon sayfasında çalışmalı
+        const simulationCards = document.querySelectorAll('.simulation-card');
+        if (simulationCards.length > 0) {
+            localStorage.setItem('totalSimulations', simulationCards.length);
+        }
+    };
+
+    /**
+     * ------------------------------------------------------------------------
      *  4. İLETİŞİM FORMU YÖNETİMİ (FORMSPREE)
      * ------------------------------------------------------------------------
      * Formu asenkron olarak gönderir ve sayfa yenilenmeden sonuç mesajını
@@ -160,17 +201,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!filterContainer) return;
 
         const filterButtons = filterContainer.querySelectorAll('.btn-filter');
-        const filterableCards = document.querySelectorAll('.projects-grid .project-card');
+        const grid = document.querySelector('.projects-grid'); // Kartların ekleneceği grid
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Aktif butonu güncelle
+                const currentActive = filterContainer.querySelector('.active');
+                if (currentActive) {
+                    currentActive.classList.remove('active');
+                }
                 filterContainer.querySelector('.active').classList.remove('active');
                 button.classList.add('active');
 
                 const filterValue = button.getAttribute('data-filter');
 
-                filterableCards.forEach(card => {
+                grid.querySelectorAll('.project-card').forEach(card => {
                     const cardCategory = card.getAttribute('data-category');
                     
                     // Kartı gizle veya göster
@@ -182,6 +227,114 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  X. DİNAMİK BLOG LİSTELEME
+     * ------------------------------------------------------------------------
+     * blog.html sayfasındaki yazıları blog-posts.json dosyasından
+     * asenkron olarak yükler ve ekrana basar.
+     */
+    const handleDynamicBlogListing = async () => {
+        const blogGrid = document.getElementById('blog-grid');
+        if (!blogGrid) return; // Sadece blog sayfasında çalış
+
+        try {
+            const response = await fetch('blog-posts.json?cachebust=' + new Date().getTime());
+            if (!response.ok) throw new Error('Blog yazıları yüklenemedi.');
+            
+            const posts = await response.json();
+            blogGrid.innerHTML = ''; // "Yükleniyor..." mesajını temizle
+
+            if (posts.length === 0) {
+                blogGrid.innerHTML = '<p style="text-align: center; color: var(--color-text-secondary); grid-column: 1 / -1;">Henüz yayınlanmış bir yazı bulunmuyor.</p>';
+                return;
+            }
+
+            // Kategorilerin Türkçe karşılıkları
+            const categoryNames = {
+                guvenlik: "Siber Güvenlik",
+                gelistirme: "Yazılım Geliştirme",
+                devsecops: "DevSecOps & Bulut",
+                yonetim: "Yönetim & Liderlik"
+            };
+
+            posts.forEach(post => {
+                const postCard = document.createElement('div');
+                postCard.className = 'project-card';
+                postCard.setAttribute('data-category', post.category || 'genel');
+                postCard.innerHTML = `
+                    ${post.featuredImage ? `<img src="../${post.featuredImage}" alt="${post.title}" class="card-featured-image">` : ''}
+                    <div class="card-content">
+                    <div class="card-meta-top">
+                        <span class="product-category">${categoryNames[post.category] || 'Genel'}</span>
+                        <span class="reading-time"><i class="fa-regular fa-clock"></i> ${post.readingTime || 1} dk okuma</span>
+                    </div>
+                    <h3><a href="blog/post.html?slug=${post.slug}">${post.title}</a></h3>
+                    <p>${post.summary}</p>
+                    <a href="blog/post.html?slug=${post.slug}" class="action-btn">Devamını Oku &rarr;</a>
+                    </div>
+                `;
+                blogGrid.appendChild(postCard);
+            });
+        } catch (error) {
+            blogGrid.innerHTML = `<p style="text-align: center; color: #ff4d4d; grid-column: 1 / -1;">Hata: ${error.message}</p>`;
+        }
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  XX. DİNAMİK BLOG YAZISI OLUŞTURMA
+     * ------------------------------------------------------------------------
+     * blog/post.html sayfasında, URL'deki 'slug' parametresine göre
+     * ilgili yazıyı JSON'dan yükler ve sayfayı doldurur.
+     */
+    const handleDynamicBlogPost = async () => {
+        const postContentEl = document.getElementById('post-content');
+        if (!postContentEl) return; // Sadece blog/post.html sayfasında çalış
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postSlug = urlParams.get('slug');
+
+        if (!postSlug) {
+            postContentEl.innerHTML = '<p style="color: #ff4d4d;">Hata: Gösterilecek yazı belirtilmemiş.</p>';
+            return;
+        }
+
+        try {
+            const response = await fetch('../blog-posts.json?cachebust=' + new Date().getTime());
+            if (!response.ok) throw new Error('Veritabanı dosyası bulunamadı.');
+            
+            const posts = await response.json();
+            const post = posts.find(p => p.slug === postSlug);
+
+            if (!post) throw new Error('Yazı bulunamadı.');
+
+            // Sayfa başlığını ve meta açıklamasını güncelle
+            document.title = `${post.title} - Yusuf Avşar`;
+            document.querySelector('meta[name="description"]').setAttribute('content', post.summary);
+
+            // Öne çıkan görseli ekle
+            const imageWrapper = document.getElementById('post-image-wrapper');
+            if (post.featuredImage && imageWrapper) {
+                imageWrapper.innerHTML = `<img src="../${post.featuredImage}" alt="${post.title}" class="post-featured-image">`;
+            }
+
+            // HTML içeriğini doldur
+            document.getElementById('post-title').textContent = post.title;
+            document.getElementById('post-meta').innerHTML = `
+                <span>Yayın Tarihi: ${new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span class="meta-separator">·</span>
+                <span><i class="fa-regular fa-clock"></i> ${post.readingTime || 1} dk okuma süresi</span>`;
+            
+            // Markdown içeriğini HTML'e çevir ve ekrana bas
+            postContentEl.innerHTML = marked.parse(post.content);
+
+        } catch (error) {
+            document.getElementById('post-title').textContent = 'Hata';
+            postContentEl.innerHTML = `<p style="color: #ff4d4d;">${error.message}</p>`;
+        }
     };
 
     /**
@@ -428,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'sql_injection_attack',
                 scenario: [
                     { text: 'INFO: Hedef sisteme bağlanılıyor: 10.0.2.15:80...', class: 'log-info' },
-                    { text: 'SUCCESS: Bağlantı kuruldu. HTTP 200 OK.', class: 'log-success', delay: 300 },
+                    { text: 'SUCCESS: Bağlantı kuruldu. Sunucu başlığı: Apache/2.4.29 (Ubuntu) PHP/7.2.24', class: 'log-success', delay: 300 },
                     { text: 'INFO: `login.php` üzerinde zafiyet taraması başlatılıyor...', class: 'log-info' },
                     { text: 'INFO: Test payload\'u gönderiliyor: `user=\' AND 1=1 --`', class: 'log-info', delay: 800 },
                     { text: 'SUCCESS: Sistemden geçerli yanıt alındı. Zafiyet doğrulandı!', class: 'log-success' },
@@ -443,12 +596,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: 'live_log_analysis',
                 scenario: [
                     { text: 'INFO: Canlı log akışı başlatıldı: `/var/log/auth.log`', class: 'log-info' },
+                    { text: 'COMMAND: $ python3 /opt/scripts/log_analyzer.py --watch', class: 'log-command', delay: 500 },
                     { text: 'LOG: [sshd:2154] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48122 ssh2', class: 'log-info', delay: 1000 },
                     { text: 'LOG: [sshd:2156] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48128 ssh2', class: 'log-info', delay: 500 },
                     { text: 'LOG: [sshd:2158] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48134 ssh2', class: 'log-info', delay: 300 },
                     { text: 'LOG: [sshd:2160] Failed password for root from <span class="log-highlight">185.191.171.13</span> port 48140 ssh2', class: 'log-info', delay: 200 },
-                    { text: 'ALERT: [IDS] Tek bir IP\'den çok sayıda başarısız deneme tespit edildi. Potansiyel Brute-Force saldırısı!', class: 'log-fail', delay: 500 },
-                    { text: 'ACTION: [Fail2Ban] IP <span class="log-highlight">185.191.171.13</span> için `sshd` jail kuralı tetiklendi.', class: 'log-info' },
+                    { text: 'ALERT: [log_analyzer.py] Tek bir IP\'den çok sayıda başarısız deneme tespit edildi. Brute-Force olasılığı yüksek!', class: 'log-fail', delay: 500 },
+                    { text: 'ACTION: [Fail2Ban] IP <span class="log-highlight">185.191.171.13</span> için `sshd` kuralı tetikleniyor...', class: 'log-info' },
                     { text: 'SUCCESS: [Firewall] IP <span class="log-highlight">185.191.171.13</span> kalıcı olarak engellendi.', class: 'log-success' }
                 ]
             },
@@ -493,10 +647,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'run-cicd-btn': {
                 name: 'secure_cicd_pipeline',
                 scenario: [
-                    { text: 'INFO: [CI/CD] Pipeline `commit: a3f4d5e` için tetiklendi.', class: 'log-info' },
+                    { text: 'INFO: [Jenkins] Pipeline `commit: a3f4d5e` için tetiklendi.', class: 'log-info' },
                     { text: 'STAGE: [Build] Docker imajı oluşturuluyor... <span class="log-success">OK</span>', class: 'log-info', delay: 800 },
                     { text: 'STAGE: [Test] Birim testleri çalıştırılıyor... %100 Kapsam. <span class="log-success">OK</span>', class: 'log-info', delay: 600 },
                     { text: 'STAGE: [SAST] Statik kod analizi (SonarQube)...', class: 'log-info', delay: 1000 },
+                    { text: 'INFO: [SonarQube] `config.php` dosyasında hard-coded parola bulundu. (Major)', class: 'log-info' },
                     { text: 'SUCCESS: [SAST] 0 Kritik, 2 Major, 5 Minor bulgu. Kalite eşiği: GEÇTİ.', class: 'log-success' },
                     { text: 'STAGE: [SCA] Bağımlılık analizi (Snyk)...', class: 'log-info', delay: 1200 },
                     { text: 'CRITICAL: [SCA] Yüksek riskli zafiyet bulundu: <span class="log-highlight">log4j:2.14.1 (CVE-2021-44228)</span>', class: 'log-fail' },
@@ -507,11 +662,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'run-dns-poisoning-btn': {
                 name: 'dns_cache_poisoning',
                 scenario: [
-                    { text: 'INFO: [Ettercap] DNS zehirleme modülü başlatılıyor...', class: 'log-info' },
+                    { text: 'COMMAND: $ sudo ./scripts/dns_poison.sh --target 192.168.1.105 --spoof banka.com', class: 'log-command' },
+                    { text: 'INFO: [Ettercap] DNS zehirleme modülü `eth0` arayüzünde başlatılıyor...', class: 'log-info', delay: 500 },
                     { text: 'INFO: Hedef taranıyor: 192.168.1.105', class: 'log-info', delay: 500 },
                     { text: 'INFO: Ağ geçidi (Gateway) tespit edildi: 192.168.1.1', class: 'log-info' },
                     { text: 'ACTION: ARP spoofing başlatıldı. Hedef ile ağ geçidi arasına giriliyor...', class: 'log-highlight', delay: 1000 },
-                    { text: 'SUCCESS: Man-in-the-middle pozisyonu başarıyla alındı.', class: 'log-success' },
+                    { text: 'SUCCESS: Man-in-the-middle pozisyonu alındı. Trafik dinleniyor.', class: 'log-success' },
                     { text: 'INFO: DNS sorguları dinleniyor...', class: 'log-info', delay: 1500 },
                     { text: 'LOG: Hedef (192.168.1.105) -> DNS Sorgusu: A? banka.com', class: 'log-info', delay: 800 },
                     { text: 'CRITICAL: Sorgu yakalandı! Sahte DNS yanıtı gönderiliyor...', class: 'log-fail' },
@@ -797,6 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const initApp = async () => {
         // Nirvana özelliklerini en başta çalıştır
+        handleMaintenanceBanner(); // Bakım modu banner'ını en başta kontrol et
         handleNirvanaFeatures();
 
         // Önce component'leri yükle, sonra diğer script'leri çalıştır
@@ -809,6 +966,8 @@ document.addEventListener('DOMContentLoaded', () => {
         handleMobileNavigation();
         setActiveNavLink();
         handleThemeSwitcher();
+        handleDynamicBlogListing(); // Blog yazılarını dinamik olarak yükle
+        handleDynamicBlogPost(); // Tekil blog yazısını dinamik olarak yükle
         handleWavyHeadline(); // Dalga animasyonunu başlat
 
         handleScrollAnimations();
@@ -818,8 +977,10 @@ document.addEventListener('DOMContentLoaded', () => {
         handleSimulations();
         handleLikeButton(); // Beğeni butonunu aktifleştir
         handleFAQ(); // SSS akordiyonunu burada başlat
+        countAndStoreSimulations(); // Simülasyon sayısını say ve kaydet
         handleSecureContent(); // Güvenli içerik korumasını başlat
         handleShareButtons(); // Paylaşım butonlarını başlat
+        handleLiveDashboard(); // Canlı yönetim panelini başlat
         // handleAntiDebugging(); // Geliştirici araçları engellemesini başlat - Geliştirme sırasında kapalı tutulabilir
     };
 

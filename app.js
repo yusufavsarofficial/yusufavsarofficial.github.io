@@ -489,6 +489,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  10. GÜVENLİ İÇERİK KORUMASI
+     * ------------------------------------------------------------------------
+     * Belirli sayfalardaki içeriğin kopyalanmasını ve ekran görüntüsü
+     * alınmasını zorlaştıran özellikleri yönetir.
+     */
+    const handleSecureContent = () => {
+        const secureElement = document.querySelector('.secure-content');
+        if (!secureElement) return;
+
+        // Fare ile kopyalama ve sağ tık menüsünü engelle
+        secureElement.addEventListener('copy', (e) => e.preventDefault());
+        secureElement.addEventListener('cut', (e) => e.preventDefault());
+        secureElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Klavye kısayollarını (Ctrl+C, Ctrl+A, Ctrl+X vb.) engelle
+        document.addEventListener('keydown', (e) => {
+            // Eğer olay korumalı alanın içindeyse
+            if (secureElement.contains(e.target)) {
+                // Ctrl veya Cmd (Mac) tuşlarına basılıyken
+                if (e.ctrlKey || e.metaKey) {
+                    // C, X, A, U, S, P tuşlarını engelle (Copy, Cut, Select All, View Source, Save, Print)
+                    if (['C', 'X', 'A', 'U', 'S', 'P'].includes(e.key.toUpperCase())) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        // Ekran görüntüsü almayı zorlaştırmak için bulanıklaştırma
+        window.addEventListener('blur', () => {
+            // Sadece bu sayfada blur efekti uygula
+            if (document.querySelector('.secure-content')) {
+                document.body.classList.add('content-blurred');
+            }
+        });
+        window.addEventListener('focus', () => {
+            if (document.querySelector('.secure-content')) {
+                document.body.classList.remove('content-blurred');
+            }
+        });
+    };
+
+    /**
+     * ------------------------------------------------------------------------
      *  UYGULAMA BAŞLATMA
      * ------------------------------------------------------------------------
      */
@@ -514,6 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handleSimulations();
         handleLikeButton(); // Beğeni butonunu aktifleştir
         handleFAQ(); // SSS akordiyonunu burada başlat
+        handleSecureContent(); // Güvenli içerik korumasını başlat
     };
 
     initApp();

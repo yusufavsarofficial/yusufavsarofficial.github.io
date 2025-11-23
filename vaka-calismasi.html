@@ -30,7 +30,7 @@
                     <p class="blog-meta scroll-reveal" style="transition-delay: 200ms;">Doküman Sürümü: 1.0.2 | Yazar: Yusuf Avşar</p>
                 </div>
 
-                <article class="blog-post-content" style="max-width: 800px; margin: 0 auto;">
+                <article class="blog-post-content secure-content" style="max-width: 800px; margin: 0 auto;">
                 <h2 id="executive-summary">1. YÖNETİCİ ÖZETİ (EXECUTIVE SUMMARY)</h2>
                 <p>Modern mikroservis mimarilerinde API güvenliği, geleneksel sınır güvenliği (Perimeter Security) yaklaşımlarının ötesine geçmiştir. Bu teknik rapor, yüksek trafikli (günlük ortalama 1.5M istek) bir e-ticaret platformunun Sipariş Yönetim Modülü'nde tespit edilen ve OWASP API Top 10 listesinde 1. sırada yer alan Broken Object Level Authorization (BOLA) zafiyetinin analizini ve çözümünü kapsamaktadır.</p>
                 <p>Zafiyet, kimliği doğrulanmış bir saldırganın, basit parametre manipülasyonu ile diğer kullanıcılara ait Hassas Kişisel Verilere (PII) ve sipariş detaylarına erişmesine olanak tanımıştır. Sorunun çözümü için monolitik yapıyı yamamak yerine, Golang tabanlı, yüksek performanslı ve Test Odaklı Geliştirme (TDD) metodolojisiyle inşa edilmiş harici bir "Authorization Gateway" katmanı tasarlanmıştır. Bu yaklaşım, güvenlik riskini %100 oranında elimine ederken, API yanıt sürelerinde (latency) istatistiksel olarak anlamlı bir artışa neden olmamıştır.</p>

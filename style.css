@@ -1537,3 +1537,58 @@ body.no-scroll {
     }
     * { cursor: auto; }
 }
+
+/* --- MOBİL GÖRÜNÜM İYİLEŞTİRMELERİ (KULLANICI İSTEĞİ) --- */
+
+/* Mobil ve Tabletler için Kapsamlı İyileştirmeler */
+@media (max-width: 960px) {
+
+    /* 1. Navbar: Logo ve hamburger menü hizalama */
+    .navbar {
+        padding: 0 var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    /* 2. Hakkımda Sayfası: Kartların tek sütuna alınması ve boşlukların ayarlanması */
+    .about-grid {
+        grid-template-columns: 1fr; /* Grid yapısını tek sütuna indirge */
+        gap: var(--spacing-xl); /* Kartlar arasına daha fazla dikey boşluk ekle */
+    }
+
+    /* 3. Genel Okunabilirlik: Font boyutları ve satır yükseklikleri */
+    .about-content h3 {
+        font-size: 1.5rem; /* Başlıkları mobilde biraz küçült */
+    }
+    .about-content h4 {
+        font-size: 1.15rem; /* Alt başlıkları mobilde biraz küçült */
+    }
+    .about-content p,
+    .stat-card p,
+    .stat-card ul li {
+        font-size: 1rem; /* Mobil için daha okunaklı font boyutu */
+        line-height: 1.7; /* Satırlar arası boşluğu artır */
+        margin-bottom: var(--spacing-sm);
+    }
+
+    /* Kenar çubuğundaki yetkinlikler listesi için boşluk ayarı */
+    .skills-list {
+        padding-left: var(--spacing-md);
+        margin: 0;
+    }
+    .skills-list li {
+        margin-bottom: var(--spacing-xs);
+    }
+
+    /* 4. Başlık Kontrastı: Arka plan animasyonunun üzerinde kalmasını sağlama */
+    .about-grid + div h2, /* Bu seçici spesifik olarak hedefler */
+    h2[style*="font-family: var(--font-body)"] {
+        position: relative; /* z-index'in çalışması için gerekli */
+        z-index: 2; /* Arka plan animasyonunun üzerinde kalmasını sağla */
+        text-shadow: 0 0 15px var(--color-void-black); /* Okunabilirliği artırmak için gölgeyi belirginleştir */
+    }
+
+    /* 5. Diğer Sayfalar: Faaliyetlerim sayfasındaki içindekiler listesini tek sütuna düşür */
+    .toc-list-activities {
+        grid-template-columns: 1fr;
+    }
+}

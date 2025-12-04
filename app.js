@@ -154,10 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const navLinks = document.querySelectorAll('#nav-links a');
         if (!navLinks.length) return;
 
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        let currentPage = window.location.pathname.split('/').pop();
+        if (currentPage === '' || currentPage === 'index.html') currentPage = 'index.html';
 
         navLinks.forEach(link => {
-            const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
+            const linkPage = link.getAttribute('href').split('/').pop();
             if (linkPage === currentPage) {
                 link.classList.add('active');
             }
@@ -821,15 +822,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const wavyHeadline = document.querySelector('.wavy-headline');
         if (!wavyHeadline) return; // Element yoksa çık
 
+        // Oturum bazında animasyonun çalışıp çalışmadığını kontrol et
         const animationHasRun = sessionStorage.getItem('wavyAnimationHasRun');
 
         if (!animationHasRun) {
-            // Animasyon daha önce çalışmadıysa, class'ı ekle ve gecikmeleri ayarla
+            // Animasyon bu oturumda daha önce çalışmadıysa, class'ı ekle ve gecikmeleri ayarla
             wavyHeadline.classList.add('initial-animation');
             wavyHeadline.querySelectorAll('span:not(.space)').forEach((span, index) => {
                 span.style.animationDelay = `${index * 0.05}s`;
             });
             // Animasyonun çalıştığını oturum için işaretle
+            // Bu, kullanıcı sayfalar arası gezinip geri döndüğünde animasyonun tekrar oynamasını engeller.
             sessionStorage.setItem('wavyAnimationHasRun', 'true');
         }
     };

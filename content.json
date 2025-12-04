@@ -1,0 +1,120 @@
+{
+    "pages": {
+        "home": {
+            "title": "<span>S</span><span>ı</span><span>n</span><span>ı</span><span>r</span><span class=\"space\">&nbsp;</span><span>T</span><span>a</span><span>n</span><span>ı</span><span>m</span><span>a</span><span>y</span><span>a</span><span>n</span><span class=\"space\">&nbsp;</span><span>S</span><span>a</span><span>v</span><span>u</span><span>n</span><span>m</span><span>a</span><span class=\"space\">&nbsp;</span><span>H</span><span>a</span><span>t</span><span>t</span><span>ı</span>",
+            "subtitle": "Python, Golang ve Bulut Teknolojileri ile hızlı, ölçeklenebilir ve güvenlik odaklı uygulamalar geliştiriyorum. Amacım, işlevselliği en yüksek seviyede tutarken sistemlerinizi risklere karşı proaktif olarak korumaktır."
+        },
+        "about": {
+            "mainTitle": "Hakkımda",
+            "introParagraph": "Hakkımda yazısı buraya gelecek."
+        },
+        "projects": {
+            "mainTitle": "Projelerim ve Vaka Çalışmaları",
+            "subtitle": "Güvenlik, performans ve ölçeklenebilirlik odaklı çözümler."
+        }
+    },
+    "expertise": [
+        {
+            "id": 1,
+            "title": "Proaktif Zafiyet Avcılığı",
+            "icon": "fa-solid fa-shield-virus",
+            "description": "İleri düzey Penetrasyon Testi (Pentest) metodolojileri ile web, mobil ve API katmanlarında derinlemesine zafiyet analizi ve exploit geliştirme."
+        },
+        {
+            "id": 2,
+            "title": "Güvenli Mimari Tasarımı",
+            "icon": "fa-solid fa-sitemap",
+            "description": "Mikroservis ve sunucusuz (serverless) mimarilerde Python ve Golang kullanarak gecikmeyi minimuma indiren, bakımı kolay Back-End sistemleri inşa etme."
+        },
+        {
+            "id": 3,
+            "title": "Otomatikleştirilmiş DevSecOps",
+            "icon": "fa-solid fa-gears",
+            "description": "Terraform ve Ansible kullanarak güvenli CI/CD boru hatlarının oluşturulması ve bulut (AWS/Azure) altyapısının otomasyonu."
+        }
+    ],
+    "projects": [
+        { "id": 1, "title": "Otomatik Zafiyet Keşif Motoru", "description": "Ağ varlıklarında güvenlik açıklarını simüle edilmiş saldırılarla proaktif olarak tespit eden ve CVSS skorlamasına uygun raporlar üreten, Python/Scapy tabanlı bir Tehdit Analizi aracı.", "link": "simulasyon.html", "linkText": "Simülasyonu Gör", "category": "python" },
+        { "id": 2, "title": "Güvenli Kod İnceleme Otomasyon Aracı", "description": "Python ve Golang kod tabanlarında yaygın güvenlik zafiyet desenlerini (SQLi, XSS) otomatik olarak tespit eden bir SAST (Statik Uygulama Güvenlik Testi) CLI aracıdır.", "link": "makale-performans.html", "linkText": "Detayları Oku", "category": "python" },
+        { "id": 3, "title": "Kriptografik Anahtar Yönetim Sistemi (KMS)", "description": "Hassas API anahtarlarını, şifreleri ve sertifikaları merkezi olarak güvenli bir şekilde saklamak, dinamik olarak oluşturmak ve dağıtmak için Golang ile geliştirilmiş, HashiCorp Vault ile tam entegre bir kurumsal sızdırmazlık yönetim çözümüdür.", "link": "makale-go-api.html", "linkText": "Makaleyi Oku", "category": "golang" },
+        { "id": 4, "title": "Yüksek Hızlı Finansal Veri API'si", "description": "Gerçek zamanlı borsa ve finansal verileri işlemek ve sunmak için Golang kullanılarak geliştirilmiş, yüksek eşzamanlılığa ve düşük gecikmeye (low-latency) sahip API hizmetidir.", "link": "blog-golang-vs-python.html", "linkText": "Karşılaştırmayı Oku", "category": "golang" },
+        { "id": 5, "title": "Gerçek Zamanlı Sohbet Sunucusu", "description": "Yüksek eşzamanlı kullanıcı bağlantılarını ve düşük gecikmeyi yönetmek için tasarlanmış, Node.js ve WebSockets (Socket.IO) teknolojilerini kullanan, hız odaklı, dağıtılmış sohbet ve bildirim sunucusu.", "link": "faaliyetlerim.html", "linkText": "Faaliyeti İncele", "category": "nodejs" },
+        { "id": 6, "title": "Güvenli AWS Altyapısı Şablonu (Terraform)", "description": "AWS bulut altyapısını, Terraform kullanılarak sıfırdan inşa eden ve otomatikleştiren, güvenlik en iyi uygulamalarını temel alan modüler ve tekrar edilebilir bir Altyapı Kodlama (IaC) şablonudur.", "link": "blog-aws-maliyet.html", "linkText": "İlgili Yazıyı Oku", "category": "devsecops" },
+        { "id": 7, "title": "Güvenlik Entegreli CI/CD Boru Hattı", "description": "Geliştirme, test ve dağıtım aşamalarına güvenlik araçlarını (SAST/DAST/SCA) entegre eden, Jenkins veya GitLab CI kullanılarak oluşturulmuş, tam otomatik ve güvenlik odaklı bir CI/CD çözümüdür.", "link": "blog-ci-cd-kontrol-listesi.html", "linkText": "Kontrol Listesini Gör", "category": "devsecops" },
+        { "id": 8, "title": "Kubernetes Güvenlik Politikası Yönetimi", "description": "Kubernetes kümeleri için güvenlik ve uyumluluk standartlarını zorunlu kılan ve yanlış yapılandırmaları otomatik olarak engelleyen bir Politika Kodlama (Policy as Code) çözümüdür.", "link": "blog-kubernetes-guvenligi.html", "linkText": "Yazıyı Oku", "category": "devsecops" },
+        { "id": 9, "title": "Modüler ve Performans Odaklı Yönetim Paneli", "description": "Çok sayıda veri kaynağını (API) tek bir noktada toplayarak görselleştiren, yüksek performans ve kullanıcı deneyimi için React ve Redux ile geliştirilmiş, modüler ve component tabanlı kurumsal yönetim (dashboard) uygulamasıdır.", "link": "uzmanligim.html", "linkText": "Yetkinliği Gör", "category": "react" },
+        { "id": 10, "title": "API Güvenlik Testi Otomasyon Çerçevesi", "description": "REST ve gRPC API'lerinin güvenlik açıklarına karşı dayanıklılığını test etmek için Golang kullanılarak geliştirilmiş, otomatik fuzzing ve iş mantığı temelli saldırı senaryoları uygulayan bir test çerçevesidir.", "link": "blog-bola-zafiyeti.html", "linkText": "BOLA Yazısını Oku", "category": "golang" }
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "title": "Bir Projenin Başarısız Olacağı Nasıl Anlaşılır?",
+            "slug": "blog-proje-basarisizligi",
+            "category": "yonetim",
+            "summary": "Bir projenin aylar sonra başarısızlığa sürükleneceğini anlamak için sihirli bir küreye ihtiyacınız yok. İşte, daha ilk sprintlerde tehlike sinyallerini okumanızı sağlayacak kritik işaretler."
+        },
+        {
+            "id": 2,
+            "title": "AWS Faturaları Neden Yüksek Gelir?",
+            "slug": "blog-aws-maliyet",
+            "category": "devsecops",
+            "summary": "Yüksek AWS faturaları ve güvenlik açıkları aynı sorunun iki yüzüdür. En uygun maliyetli yapılandırmanın genellikle en güvenli olanı olduğunu keşfedin."
+        },
+        {
+            "id": 3,
+            "title": "TDD'nin Gizli Güvenlik Avantajları",
+            "slug": "blog-tdd-guvenlik",
+            "category": "gelistirme",
+            "summary": "TDD sadece kod kalitesini artırmaz, aynı zamanda en etkili proaktif güvenlik araçlarından biridir. Sınır koşullarını zorlama ve yeniden düzenleme güvenliği gibi gizli avantajlarını keşfedin."
+        },
+        {
+            "id": 4,
+            "title": "GoLang ile Eşzamanlılıkta Python'a Geçiş",
+            "slug": "blog-golang-vs-python",
+            "category": "gelistirme",
+            "summary": "Python'ın GIL kilidi performans darboğazı yarattığında, çözümü Golang'de buldum. Goroutine'ler, kanallar ve milisaniyelik gecikmeler... İşte bu kritik geçişin nedenleri ve sonuçları."
+        },
+        {
+            "id": 5,
+            "title": "Kubernetes'te Policy as Code Hatalarım",
+            "slug": "blog-kubernetes-guvenligi",
+            "category": "devsecops",
+            "summary": "Policy as Code, Kubernetes'te yönetişimin anahtarıdır. Ancak bu yolda yaptığım 3 büyük hata, projeleri yavaşlattı. Denetim modunda takılı kalmaktan, geniş kapsamlı politikalara ve CI/CD ihmaline kadar derslerimi paylaşıyorum."
+        },
+        {
+            "id": 6,
+            "title": "Güvenli CI/CD Kontrol Listesi",
+            "slug": "blog-ci-cd-kontrol-listesi",
+            "category": "devsecops",
+            "summary": "CI/CD boru hattı, en kritik savunma katmanıdır. İşte, kritik bir zafiyetin Production ortamına sızmasını engelleyen, \"Son 5 Dakika Güvenlik Kontrol Listesi\" stratejisi."
+        },
+        {
+            "id": 7,
+            "title": "Saldırgan Zihniyetine Sahip Olmak",
+            "slug": "blog-saldirgan-zihniyeti",
+            "category": "gelistirme",
+            "summary": "Bir geliştiricinin değerini bildiği kütüphane sayısı değil, kodunu hangi zihniyetiyle yazdığı belirler. Peki, saldırgan zihniyeti nedir ve neden en kritik yetenektir?"
+        },
+        {
+            "id": 8,
+            "title": "Güvenlikte En Çok İhmal Edilen Şey",
+            "slug": "blog-log-guvenligi",
+            "category": "guvenlik",
+            "summary": "Loglar sadece hata ayıklama aracı değildir; en güçlü savunma mekanizmanızdır. Peki, loglarınızı kim okuyor ve bu ihmalin maliyeti ne?"
+        },
+        {
+            "id": 9,
+            "title": "Sızma Testi Ekibi Nasıl Yönetilir?",
+            "slug": "blog-pentest-yonetimi",
+            "category": "yonetim",
+            "summary": "Bir sızma testi ekibinin başarısı sadece teknik yetenekle değil, doğru süreç, zihniyet ve iletişim yönetimiyle ölçülür. İşte bir lider yardımcısının gözlemleri..."
+        },
+        {
+            "id": 10,
+            "title": "API Güvenliğinde BOLA Zafiyeti",
+            "slug": "blog-bola-zafiyeti",
+            "category": "guvenlik",
+            "summary": "Siber güvenlikte odak değişti. SQLi'yi büyük ölçüde çözdük, ancak şimdi API'lerimizin başındaki yeni bela BOLA zafiyeti. Nedir ve neden daha tehlikelidir?"
+        }
+    ]
+}

@@ -129,7 +129,7 @@ func AuthorizeOrderAccess(next http.Handler, db *sql.DB) http.Handler {
                 <p>Geliştirilen çözüm, JMeter ve K6 yük testi araçlarıyla, Production benzeri bir ortamda 5000 Sanal Kullanıcı (Virtual Users) ile test edilmiştir.</p>
                 <h3>5.1. Metrik Karşılaştırması</h3>
                 <table class="skills-table" style="margin-top: var(--spacing-md);">
-                    <thead>
+                     <thead>
                         <tr><th>Metrik</th><th>Öncesi (Güvensiz)</th><th>Sonrası (Golang Middleware)</th><th>Değişim</th></tr>
                     </thead>
                     <tbody>
@@ -139,6 +139,19 @@ func AuthorizeOrderAccess(next http.Handler, db *sql.DB) http.Handler {
                         <tr><td data-label="Metrik">Güvenlik Skoru</td><td data-label="Öncesi">F (Kritik)</td><td data-label="Sonrası">A+ (Güvenli)</td><td data-label="Değişim">Tam Mitigasyon</td></tr>
                     </tbody>
                 </table>
+                    <div class="table-wrapper">
+                        <table class="skills-table" style="margin-top: var(--spacing-md);">
+                            <thead>
+                                <tr><th>Metrik</th><th>Öncesi (Güvensiz)</th><th>Sonrası (Golang Middleware)</th><th>Değişim</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td data-label="Metrik">Ortalama Gecikme (Latency)</td><td data-label="Öncesi">145 ms</td><td data-label="Sonrası">153 ms</td><td data-label="Değişim">+8 ms (İhmal Edilebilir)</td></tr>
+                                <tr><td data-label="Metrik">99. Yüzdelik (P99)</td><td data-label="Öncesi">210 ms</td><td data-label="Sonrası">225 ms</td><td data-label="Değişim">Stabil</td></tr>
+                                <tr><td data-label="Metrik">CPU Kullanımı</td><td data-label="Öncesi">%45</td><td data-label="Sonrası">%48</td><td data-label="Değişim">+%3</td></tr>
+                                <tr><td data-label="Metrik">Güvenlik Skoru</td><td data-label="Öncesi">F (Kritik)</td><td data-label="Sonrası">A+ (Güvenli)</td><td data-label="Değişim">Tam Mitigasyon</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 <p style="margin-top: var(--spacing-md);">Gecikmedeki 8ms'lik artış, veritabanı bağlantı havuzlama (Connection Pooling) ve Redis önbellekleme (Caching) stratejileri sayesinde kullanıcı tarafından hissedilmeyecek seviyede tutulmuştur.</p>
                 <h3>5.2. Sonuç</h3>
                 <p>Bu çalışma, Sıfır Güven (Zero Trust) mimarisinin bir uygulamasıdır. "Sisteme giren herkes güvenilirdir" anlayışı terk edilmiş, "Her istek, her kaynak için ayrı ayrı doğrulanmalıdır" prensibi benimsenmiştir. Golang ve TDD kombinasyonu, sadece güvenliği sağlamakla kalmamış, aynı zamanda projenin teknik borcunu (technical debt) düşürerek, gelecekteki özellik geliştirmeleri için sağlam, test edilebilir bir altyapı sunmuştur.</p>

@@ -1,16 +1,5 @@
-// Bu dosya artık sadece bir orkestratör. Gerçek mantık diğer modüllere taşındı.
-// Örnek: import { handleLogin } from './auth.js'; (Gerçek bir modül sisteminde böyle olurdu)
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return hashHex;
-    }
-    
     // --- GİRİŞ SAYFASI MANTIĞI (admin-login.html) --- (auth.js'e taşınabilir)
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
@@ -29,30 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.classList.add('loading');
             submitButton.innerHTML = '<div class="spinner-sm"></div> Giriş Yapılıyor...';
 
-            // Parolanın SHA-256 hash'i. Parola: "Ysfavsr44.."
-            const correctPasswordHash = '07b8b51e0d1c5b949f3595431e782ea4a14f9c4c143c7fa5758525206a7f8946';
-            
-            // localStorage'da saklanacak basit bir yetki anahtarı.
-            const authToken = 'ysf-secret-session-token-2024';
+            const enteredPassword = passwordInput.value.trim();
 
-            const enteredPassword = passwordInput.value.trim(); // Girilen parolanın başındaki/sonundaki boşlukları temizle
-            const enteredPasswordHash = await sha256(enteredPassword);
+            try {
+                // GÜVENLİ YAPI: Parolayı sunucuya gönder.
+                // Bu URL, Netlify, Vercel veya AWS Lambda üzerinde oluşturulmuş bir sunucusuz fonksiyona işaret etmelidir.
+                const response = await fetch('/.netlify/functions/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: enteredPassword })
+                });
 
-            // Gerçekçi bir gecikme ekleyelim
-            setTimeout(() => {
-                if (enteredPasswordHash === correctPasswordHash) {
-                    // Parola doğruysa, yetki anahtarını localStorage'a kaydet ve admin paneline yönlendir.
-                    localStorage.setItem('adminAuthToken', authToken);
+                if (!response.ok) {
+                    const errorResult = await response.json().catch(() => ({ message: 'Bilinmeyen bir sunucu hatası oluştu.' }));
+                    throw new Error(errorResult.message || 'Parola yanlış veya sunucu hatası.');
+                }
+
+                const result = await response.json();
+
+                if (result.token) {
+                    localStorage.setItem('adminAuthToken', result.token);
                     window.location.href = 'admin.html';
                 } else {
-                    // Parola yanlışsa, hata mesajı göster ve butonu eski haline getir.
-                    statusDiv.textContent = 'Parola yanlış. Erişim reddedildi.';
+                    throw new Error('Sunucudan geçerli bir token alınamadı.');
+                }
+
+            } catch (error) {
+                statusDiv.textContent = error.message || 'Giriş yapılırken bir ağ hatası oluştu.';
                     loginPanel.classList.add('shake');
                     submitButton.disabled = false;
-                    submitButton.classList.remove('loading');
-                    submitButton.innerHTML = submitButton.dataset.originalText;
-                }
-            }, 1000); // 1 saniye bekle
+                submitButton.classList.remove('loading');
+                submitButton.innerHTML = submitButton.dataset.originalText;
+            }
         });
 
         // Parolayı göster/gizle butonu
@@ -78,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- YÖNETİM PANELİ MANTIĞI (admin.html) --- (auth.js, ui.js, api.js'e taşınabilir)
     const adminPanel = document.getElementById('logout-btn'); // Admin panelinde olduğumuzu anlamak için bir element
-    // `logoutBtn`'in varlığı, admin.html sayfasında olduğumuzu gösterir.
-    if (adminPanel) { 
+    if (adminPanel) {
+        // Yetki kontrolü sunucu tarafında yapılmalı, ancak istemci tarafında da bir kontrol ekleyelim.
+        const token = localStorage.getItem('adminAuthToken');
+        if (!token) window.location.href = 'admin-login.html';
         adminPanel.addEventListener('click', () => {
-            // Çıkış yapıldığında yetki anahtarını localStorage'dan sil.
             localStorage.removeItem('adminAuthToken');
-            // Kullanıcıyı giriş sayfasına geri yönlendir.
             window.location.href = 'admin-login.html';
         });
 
@@ -188,12 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const postListEl = document.getElementById('blog-post-list');
             const editorEl = document.getElementById('blog-editor');
             const postIdInput = document.getElementById('post-id');
-            const postTitleInput = document.getElementById('post-title');
-            // Yeni ve geliştirilmiş form alanları
+            const postTitleInput = document.getElementById('post-title'); 
+            // Form alanları
             const postSlugInput = document.getElementById('post-slug');
             const postDateInput = document.getElementById('post-date');
             const postSummaryInput = document.getElementById('post-summary');
-            const postImageInput = document.getElementById('post-image');
+            const postImageInput = document.getElementById('post-image'); 
             const postContentInput = document.getElementById('post-content'); // Bu artık EasyMDE tarafından yönetilecek
             const postCategoryInput = document.getElementById('post-category');
             const postTagsInput = document.getElementById('post-tags');
@@ -207,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // --- ERİŞİLEBİLİRLİK VE DOĞRULAMA İYİLEŞTİRMELERİ ---
             const setupFormValidation = () => {
-                const form = document.getElementById('blog-editor-form'); // Formun ID'si bu olmalı
+                const form = document.getElementById('blog-editor');
                 if(form) form.setAttribute('novalidate', '');
 
                 postTitleInput.setAttribute('required', '');
@@ -217,10 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 postSlugInput.setAttribute('required', '');
                 postSlugInput.setAttribute('aria-required', 'true');
                 postSlugInput.setAttribute('pattern', '^[a-z0-9\\-]+$');
-                postSlugInput.setAttribute('aria-label', 'URL için geçerli slug');
-
-                postContentInput.setAttribute('required', '');
-                postContentInput.setAttribute('aria-required', 'true');
+                postSlugInput.setAttribute('title', 'Sadece küçük harfler, rakamlar ve tire (-) içermelidir.');
             };
             // --- BİTİŞ ---
 
@@ -231,7 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     .replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c')
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/^-|-$/g, '');
-                postSlugInput.value = slug;
+                if (postSlugInput) {
+                    postSlugInput.value = slug;
+                }
             });
 
             // EasyMDE editörünü başlat
@@ -418,12 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Değişiklikleri kaydet (artık GitHub'a gönderecek)
             const savePost = async () => {
                 const form = document.getElementById('blog-editor');
-                // Formun içindeki inputları manuel olarak kontrol et
-                if (!postTitleInput.checkValidity()) {
-                    postTitleInput.reportValidity();
-                    alert('Lütfen formdaki zorunlu alanları doğru bir şekilde doldurun.');
-                    return;
-                }
 
                 if (form && !form.checkValidity()) {
                     form.reportValidity();
@@ -440,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const updatedPost = {
                     id: id || Date.now(),
                     title: postTitleInput.value,
-                    slug: document.getElementById('post-slug') ? document.getElementById('post-slug').value : '', // Slug inputu varsa al
+                    slug: postSlugInput.value,
                     author: 'Yusuf Avşar',
                     date: postDateInput.value,
                     category: postCategoryInput.value,

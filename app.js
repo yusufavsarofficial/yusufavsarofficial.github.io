@@ -1,15 +1,3 @@
-/**
- * YUSUF AVSAR - app.js
- * ------------------------------------------------------------------------
- * Bu dosya, sitenin tüm interaktif özelliklerini yönetir.
- * - Dinamik component yükleyici (Header/Footer)
- * - Mobil navigasyon
- * - Scroll animasyonları
- * - İletişim formu yönetimi
- * - Proje filtreleme
- * - Blog sayfası özellikleri (İçindekiler, kod kopyalama vb.)
- * - Gelişmiş UI özellikleri (Özel imleç, preloader)
- */
 document.addEventListener('DOMContentLoaded', () => {
     
     /**
@@ -22,11 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadComponent = async (componentId, filePath) => {
         const element = document.getElementById(componentId);
         if (element) {
+            // --- PERFORMANS İYİLEŞTİRMESİ: Bileşenleri sessionStorage'da önbelleğe al ---
+            // Bu, kullanıcı sayfalar arasında gezindiğinde aynı bileşenin tekrar tekrar fetch edilmesini önler.
+            const cachedContent = sessionStorage.getItem(filePath);
+            if (cachedContent) {
+                element.innerHTML = cachedContent;
+                return; // Önbellekten yüklendi, fonksiyondan çık.
+            }
             try {
                 const response = await fetch(filePath);
                 if (!response.ok) throw new Error(`Component not found: ${filePath}`);
                 const text = await response.text();
                 element.innerHTML = text;
+                sessionStorage.setItem(filePath, text); // Gelecekteki yüklemeler için önbelleğe al.
             } catch (error) {
                 console.error(`[ComponentLoader] Error loading ${componentId}:`, error);
                 element.innerHTML = `<p style="color:red; text-align:center;">Error loading ${componentId}.</p>`;
@@ -36,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     *  2. MOBİL NAVİGASYON YÖNETİMİ
+     *  2. KULLANICI ARAYÜZÜ (UI) İŞLEVLERİ
      * ------------------------------------------------------------------------
      * Hamburger menüye tıklandığında tam ekran menüyü açar/kapatır.
      */
@@ -44,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
 
-        if (!hamburger || !navLinks) return;
+        // --- KOD KALİTESİ: Erken Çıkış (Early Return) ---
+        if (!hamburger || !navLinks) return; 
 
         const toggleMenu = () => {
             const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
@@ -52,10 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
             // Erişilebilirlik için ARIA durumunu güncelle
             hamburger.setAttribute('aria-expanded', !isExpanded);
-            
-            // --- MODERN KAYDIRMA ENGELLEME YÖNTEMİ ---
-            // Menü aktif olduğunda hem <html> hem de <body> etiketlerine bir sınıf ekleyerek kaydırmayı engelle
-            document.documentElement.classList.toggle('no-scroll', navLinks.classList.contains('active'));
+
+            // Menü aktif olduğunda kaydırmayı engelle
             document.body.classList.toggle('no-scroll', navLinks.classList.contains('active'));
         };
 
@@ -63,23 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Menüdeki bir linke tıklandığında menüyü kapat
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
-            })
+            // --- PERFORMANS: Gereksiz kontrolü kaldır ---
+            // Menü zaten aktifse linkler görüneceği için 'active' kontrolü gereksizdir.
+            link.addEventListener('click', toggleMenu);
         });
     };
 
     /**
      * ------------------------------------------------------------------------
-     *  3. SCROLL-TO-REVEAL ANİMASYONLARI
+     *  3. ETKİLEŞİM (INTERACTIONS) İŞLEVLERİ
      * ------------------------------------------------------------------------
      * Intersection Observer API kullanarak, ekran görüş alanına giren
      * elementlere 'visible' class'ı ekler ve CSS animasyonlarını tetikler.
      */
     const handleScrollAnimations = () => {
         const revealElements = document.querySelectorAll('.scroll-reveal');
+        // --- PERFORMANS: Eğer animasyon yapılacak eleman yoksa, Observer'ı hiç oluşturma ---
+        if (revealElements.length === 0) return;
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -97,14 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     *  4. İLETİŞİM FORMU YÖNETİMİ (FORMSPREE)
+     *  4. FORM YÖNETİMİ
      * ------------------------------------------------------------------------
      * Formu asenkron olarak gönderir ve sayfa yenilenmeden sonuç mesajını
      * kullanıcıya gösterir.
      */
     const handleContactForm = () => {
         const form = document.getElementById('contact-form');
-        if (!form) return;
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!form) return; 
 
         const statusDiv = document.getElementById('form-status');
 
@@ -121,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     form.style.display = 'none';
-                    // Güvenli DOM oluşturma
+                    // --- GÜVENLİK: Güvenli DOM oluşturma ---
                     statusDiv.innerHTML = ''; // Önce temizle
                     const successDiv = document.createElement('div');
                     successDiv.className = 'form-success';
@@ -152,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const setActiveNavLink = () => {
         const navLinks = document.querySelectorAll('#nav-links a');
-        if (!navLinks.length) return;
+        // --- PERFORMANS: Erken Çıkış ---
+        if (navLinks.length === 0) return; 
 
         let currentPage = window.location.pathname.split('/').pop();
         if (currentPage === '' || currentPage === 'index.html') currentPage = 'index.html';
@@ -174,29 +171,31 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleProjectFiltering = () => {
         const filterContainer = document.querySelector('.filter-buttons');
-        if (!filterContainer) return;
+        // --- PERFORMANS: Erken Çıkış ---
+        if (!filterContainer) return; 
 
-        const filterButtons = filterContainer.querySelectorAll('.btn-filter');
         const filterableCards = document.querySelectorAll('.projects-grid .project-card');
+        // --- PERFORMANS: Eğer filtrelenecek kart yoksa, dinleyiciyi hiç ekleme ---
+        if (filterableCards.length === 0) return;
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Aktif butonu güncelle
-                filterContainer.querySelector('.active').classList.remove('active');
-                button.classList.add('active');
+        // --- PERFORMANS: Olay Delegasyonu (Event Delegation) ---
+        // Her bir butona ayrı ayrı dinleyici eklemek yerine, kapsayıcıya tek bir dinleyici ekliyoruz.
+        // Bu, özellikle çok sayıda buton olduğunda performansı artırır ve bellek kullanımını azaltır.
+        filterContainer.addEventListener('click', (e) => {
+            const button = e.target.closest('.btn-filter');
+            if (!button) return; // Eğer tıklanan eleman bir filtre butonu değilse, çık.
+            const filterButtons = filterContainer.querySelectorAll('.btn-filter');
 
-                const filterValue = button.getAttribute('data-filter');
+            // Aktif butonu güncelle
+            filterContainer.querySelector('.active')?.classList.remove('active');
+            button.classList.add('active');
 
-                filterableCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    
-                    // Kartı gizle veya göster
-                    if (filterValue === 'all' || cardCategory === filterValue) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                });
+            const filterValue = button.dataset.filter; // .getAttribute yerine .dataset kullanmak daha modern.
+
+            filterableCards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                const shouldShow = filterValue === 'all' || cardCategory === filterValue;
+                card.classList.toggle('hide', !shouldShow); // toggle ile daha temiz bir kod.
             });
         });
     };
@@ -212,7 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const tocList = document.getElementById('toc-list');
         const postContent = document.querySelector('.blog-post-content');
 
-        if (!tocList || !postContent) return; // Sadece blog sayfalarında çalışır
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!tocList || !postContent) return; 
 
         // 1. İçindekiler (TOC) Oluşturma
         const headings = postContent.querySelectorAll('h2, h3');
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
                     // Önce tüm aktif class'ları temizle
-                    tocItems.forEach(item => item.classList.remove('active'));
+                    tocList.querySelector('.active')?.classList.remove('active');
                     // Sonra ilgili linke ekle
                     if(tocLink) tocLink.classList.add('active');
                 }
@@ -257,13 +257,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (copyButton && codeElement) {
                 copyButton.addEventListener('click', () => {
+                    const originalText = copyButton.textContent;
                     navigator.clipboard.writeText(codeElement.innerText).then(() => {
                         copyButton.textContent = 'Kopyalandı!';
                         setTimeout(() => {
-                            copyButton.textContent = 'Kopyala';
+                            copyButton.textContent = originalText;
                         }, 2000);
                     }).catch(err => {
                         console.error('Kopyalama başarısız oldu:', err);
+                        copyButton.textContent = 'Hata';
                         copyButton.textContent = 'Hata';
                     });
                 });
@@ -280,7 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleLikeButton = () => {
         const likeBtn = document.getElementById('likeBtn');
         const likeCountSpan = document.getElementById('likeCount');
-        if (!likeBtn || !likeCountSpan) return;
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!likeBtn || !likeCountSpan) return; 
 
         const pageId = window.location.pathname;
         let likeCount = parseInt(localStorage.getItem(`likes_${pageId}`) || likeCountSpan.textContent.replace(/\D/g, '')) || 89530;
@@ -308,7 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleThemeSwitcher = () => {
         const themeSwitcher = document.getElementById('theme-switcher');
-        if (!themeSwitcher) return;
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!themeSwitcher) return; 
 
         const body = document.body;
 
@@ -333,7 +337,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleFAQ = () => {
         // Hem sss.html hem de faaliyetlerim.html'deki akordiyonları hedefle
         const accordions = document.querySelectorAll('.faq-item details');
-        if (!accordions.length) return;
+        // --- PERFORMANS: Erken Çıkış ---
+        if (accordions.length === 0) return; 
 
         accordions.forEach(accordion => {
             accordion.addEventListener('toggle', (event) => {
@@ -368,7 +373,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainStatusEl = document.getElementById('main-simulation-status');
         const mainSpinner = document.getElementById('main-spinner');
         const terminalTitleEl = document.getElementById('terminal-title');
-        const commandButtons = document.querySelectorAll('.btn-command');
+        const commandPanel = document.querySelector('.command-panel'); // Olay delegasyonu için kapsayıcı
+        const commandButtons = commandPanel?.querySelectorAll('.btn-command');
         if (!mainLogEl || !mainStatusEl || !commandButtons.length) return;
 
         const runSimulation = async (messages, onComplete, commandName) => {
@@ -549,36 +555,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        commandButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const sim = simulations[btn.id];
-                if (!sim) return;
+        // --- PERFORMANS: Olay Delegasyonu ---
+        commandPanel.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-command');
+            if (!btn) return;
 
-                const card = btn.closest('.simulation-card');
+            const sim = simulations[btn.id];
+            if (!sim) return;
 
-                // Bir simülasyon çalışırken diğerlerini devre dışı bırak
-                commandButtons.forEach(b => b.disabled = true);
+            const card = btn.closest('.simulation-card');
 
-                // Buton metnini ve ikonunu güncelle
-                const originalButtonHTML = btn.innerHTML;
-                btn.innerHTML = '<div class="spinner-sm"></div> Çalışıyor...';
+            // Bir simülasyon çalışırken diğerlerini devre dışı bırak
+            commandButtons.forEach(b => b.disabled = true);
 
-                // Tıklanan butona ve karta "çalışıyor" stili ekle
-                if (card) card.classList.add('running');
-                btn.classList.add('running');
+            // Buton metnini ve ikonunu güncelle
+            const originalButtonHTML = btn.innerHTML;
+            btn.innerHTML = '<div class="spinner-sm"></div> Çalışıyor...';
 
-                runSimulation(sim.scenario, () => {
-                    // Simülasyon bittiğinde tüm butonları tekrar aktif et
-                    commandButtons.forEach(b => b.disabled = false);
+            // Tıklanan butona ve karta "çalışıyor" stili ekle
+            if (card) card.classList.add('running');
+            btn.classList.add('running');
 
-                    // Butonu orijinal haline döndür
-                    btn.innerHTML = originalButtonHTML;
+            runSimulation(sim.scenario, () => {
+                // Simülasyon bittiğinde tüm butonları tekrar aktif et
+                commandButtons.forEach(b => b.disabled = false);
 
-                    // "çalışıyor" stilini karttan ve butondan kaldır
-                    if (card) card.classList.remove('running');
-                    btn.classList.remove('running');
-                }, sim.name);
-            });
+                // Butonu orijinal haline döndür
+                btn.innerHTML = originalButtonHTML;
+
+                // "çalışıyor" stilini karttan ve butondan kaldır
+                if (card) card.classList.remove('running');
+                btn.classList.remove('running');
+            }, sim.name);
         });
 
         // Sayfa yüklendiğinde "boot-up" animasyonunu başlat
@@ -646,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sadece fare destekleyen cihazlarda imleç efektini çalıştır
         const isPointerDevice = window.matchMedia('(pointer: fine)').matches;
-        if (!isPointerDevice) return;
+        if (!isPointerDevice || !cursorDot || !cursorOutline) return;
 
         if (cursorDot && cursorOutline) {
             window.addEventListener('mousemove', (e) => {
@@ -662,15 +670,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { duration: 500, fill: 'forwards' });
             });
 
-            const interactiveElements = document.querySelectorAll('a, button, .project-card, .simulation-terminal button, summary, .faq-item, .scan-input');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
+            // --- PERFORMANS: Olay Delegasyonu ---
+            // Sayfadaki her interaktif elemana ayrı ayrı dinleyici eklemek yerine, document'a tek bir dinleyici ekliyoruz.
+            document.addEventListener('mouseover', (e) => {
+                const interactiveSelector = 'a, button, .project-card, .simulation-terminal button, summary, .faq-item, .scan-input';
+                if (e.target.closest(interactiveSelector)) {
                     cursorOutline.classList.add('cursor-grow');
-                });
-                el.addEventListener('mouseleave', () => {
+                } else {
                     cursorOutline.classList.remove('cursor-grow');
-                });
+                }
             });
+
         }
     };
 
@@ -683,7 +693,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleShareButtons = () => {
         const shareSection = document.querySelector('.share-section');
-        if (!shareSection) return;
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!shareSection) return; 
 
         const pageUrl = window.location.href;
         const pageTitle = document.title;
@@ -726,7 +737,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleSecureContent = () => {
         const secureElement = document.querySelector('.secure-content');
         const watermark = document.querySelector('.secure-watermark');
-        if (!secureElement) return;
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!secureElement) return; 
 
         // Fare ile kopyalama ve sağ tık menüsünü engelle
         secureElement.addEventListener('copy', (e) => e.preventDefault());
@@ -751,7 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (watermark) {
             // Sadece fare destekleyen cihazlarda filigranı çalıştır
             const isPointerDevice = window.matchMedia('(pointer: fine)').matches;
-            if (!isPointerDevice) return;
+            if (!isPointerDevice) return; 
 
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
@@ -763,15 +775,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Ekran görüntüsü almayı zorlaştırmak için bulanıklaştırma
         window.addEventListener('blur', () => {
-            // Sadece .secure-content elementine sahip sayfalarda blur efekti uygula
-            if (secureElement) {
-                document.body.classList.add('content-blurred');
-            }
+            document.body.classList.add('content-blurred');
         });
         window.addEventListener('focus', () => {
-            if (secureElement) {
-                document.body.classList.remove('content-blurred');
-            }
+            document.body.classList.remove('content-blurred');
         });
     };
 
@@ -820,7 +827,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleWavyHeadline = () => {
         const wavyHeadline = document.querySelector('.wavy-headline');
-        if (!wavyHeadline) return; // Element yoksa çık
+        // --- KOD KALİTESİ: Erken Çıkış ---
+        if (!wavyHeadline) return; 
 
         // Oturum bazında animasyonun çalışıp çalışmadığını kontrol et
         const animationHasRun = sessionStorage.getItem('wavyAnimationHasRun');

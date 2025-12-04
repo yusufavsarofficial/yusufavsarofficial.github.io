@@ -1506,6 +1506,10 @@ button:disabled {
     gap: var(--spacing-sm) var(--spacing-lg);
 }
 @media (min-width: 961px) {
+    .toc-list-activities {
+        grid-template-columns: 1fr 1fr; /* Masaüstünde iki sütunlu yapı */
+    }
+
     .simulation-grid {
         grid-template-columns: 2fr 1fr; /* Masaüstünde 2'ye 1 oranında sütun */
     }

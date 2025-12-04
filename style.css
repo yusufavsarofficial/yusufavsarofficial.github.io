@@ -627,6 +627,14 @@ footer {
     .blog-post-content {
         max-width: 100%;
     }
+
+    /* --- MOBİL PERFORMANS İYİLEŞTİRMESİ --- */
+    /* backdrop-filter, mobil cihazlarda kaydırma sırasında donmalara neden olabilir. */
+    /* Bu nedenle mobil ve tabletlerde bu özelliği devre dışı bırakıyoruz. */
+    .glass-panel, header {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
 }
 
 /* --- ALT BAŞLIK STİLLERİ (Faaliyetlerim sayfası için) --- */

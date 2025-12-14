@@ -84,6 +84,46 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'admin-login.html';
         });
 
+        // HTML içeriğini güvenli bir şekilde kaçmak için yardımcı fonksiyon
+        const escapeHTML = (str) => {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        };
+
+        // --- VALIDASYON FONKSİYONLARI ---
+        const setupFormValidation = () => {
+            const form = document.getElementById('blog-editor');
+            if(form) form.setAttribute('novalidate', '');
+            postTitleInput.setAttribute('required', '');
+            postTitleInput.setAttribute('aria-required', 'true');
+            postTitleInput.setAttribute('maxlength', '120');
+
+            postSlugInput.setAttribute('required', '');
+            postSlugInput.setAttribute('aria-required', 'true');
+            postSlugInput.setAttribute('pattern', '^[a-z0-9\\-]+$');
+            postSlugInput.setAttribute('title', 'Sadece küçük harfler, rakamlar ve tire (-) içermelidir.');
+        };
+
+        const setupProjectFormValidation = () => {
+            const form = document.getElementById('project-editor');
+            if(form) form.setAttribute('novalidate', '');
+            projectTitleInput.setAttribute('required', '');
+            projectTitleInput.setAttribute('aria-required', 'true');
+            projectDescriptionInput.setAttribute('required', '');
+        };
+
+        const setupExpertiseFormValidation = () => {
+            const form = document.getElementById('expertise-editor');
+            if(form) form.setAttribute('novalidate', '');
+            expertiseTitleInput.setAttribute('required', '');
+            expertiseTitleInput.setAttribute('aria-required', 'true');
+            expertiseIconInput.setAttribute('required', '');
+            expertiseDescriptionInput.setAttribute('required', '');
+        };
+        // --- VALIDASYON FONKSİYONLARI BİTİŞ ---
+
+
         // Bakım Modu anahtarını yönet
         const maintenanceToggle = document.getElementById('maintenance-mode');
         if (maintenanceToggle) {
@@ -178,7 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let siteContent = { 
                 posts: [], 
                 pages: {},
-                projects: []
+                projects: [],
+                expertise: [] // Yeni: Uzmanlık alanları
             }; 
 
             let allPosts = [];
@@ -202,23 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const importInput = document.getElementById('import-json-input');
             const downloadAllBtn = document.getElementById('download-all-btn');
             
-            // --- ERİŞİLEBİLİRLİK VE DOĞRULAMA İYİLEŞTİRMELERİ ---
-            const setupFormValidation = () => {
-                const form = document.getElementById('blog-editor');
-                if(form) form.setAttribute('novalidate', '');
-
-                postTitleInput.setAttribute('required', '');
-                postTitleInput.setAttribute('aria-required', 'true');
-                postTitleInput.setAttribute('maxlength', '120');
-
-                postSlugInput.setAttribute('required', '');
-                postSlugInput.setAttribute('aria-required', 'true');
-                postSlugInput.setAttribute('pattern', '^[a-z0-9\\-]+$');
-                postSlugInput.setAttribute('title', 'Sadece küçük harfler, rakamlar ve tire (-) içermelidir.');
-            };
-            // --- BİTİŞ ---
-
-
             // Başlıktan otomatik slug oluşturma
             postTitleInput.addEventListener('keyup', () => {
                 const slug = postTitleInput.value.toLowerCase()
@@ -250,8 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     allPosts = siteContent.posts || []; // Geriye dönük uyumluluk
                     if (!siteContent.projects) siteContent.projects = []; // Projeler dizisi yoksa oluştur
+                    if (!siteContent.expertise) siteContent.expertise = []; // Uzmanlık dizisi yoksa oluştur
+
                     renderProjectList();
                     renderPostList();
+                    renderExpertiseList(); // Yeni: Uzmanlık alanlarını listele
 
                     // Sayfa verilerinin var olduğundan emin ol
                     if (!siteContent.pages) siteContent.pages = {};
@@ -271,10 +298,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!siteContent.projects) siteContent.projects = [
                         { id: 1, title: "Örnek Proje", description: "Bu bir örnek projedir.", category: "python", link: "#", linkText: "İncele" }
                     ];
-                    };
-
+                    // Uzmanlık verilerinin var olduğundan emin ol
+                    if (!siteContent.expertise) siteContent.expertise = [
+                        { id: 1, title: "Örnek Uzmanlık", description: "Bu bir örnek uzmanlık alanıdır.", icon: "fa-solid fa-star" }
+                    ];
+                    
                     updateStats(); // İstatistikleri güncelle
-                    renderExpertiseList(); // Uzmanlık alanlarını listele
                 } catch (error) {
                     postListEl.innerHTML = `<tr><td colspan="3" style="color: #ff4d4d;">Hata: ${error.message}</td></tr>`;
                 }
@@ -492,13 +521,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     try {
                         const importedContent = JSON.parse(e.target.result);
                         // İçe aktarılan dosyanın yapısını kontrol et
-                        if (typeof importedContent.posts === 'undefined' || typeof importedContent.pages === 'undefined') {
-                            throw new Error('İçe aktarılan JSON dosyası beklenen yapıda değil (posts ve pages alanları eksik).');
+                        if (typeof importedContent.posts === 'undefined' || typeof importedContent.pages === 'undefined' || typeof importedContent.projects === 'undefined' || typeof importedContent.expertise === 'undefined') {
+                            throw new Error('İçe aktarılan JSON dosyası beklenen yapıda değil (posts, pages, projects veya expertise alanları eksik).');
                         }
                         
                         siteContent = importedContent;
                         allPosts = siteContent.posts || [];
                         renderPostList();
+                        renderProjectList(); // İçe aktarıldığında projeleri de render et
+                        renderExpertiseList(); // İçe aktarıldığında uzmanlık alanlarını da render et
                         updateStats();
                         alert(`İçerik başarıyla içe aktarıldı! Değişiklikleri kalıcı hale getirmek için 'Tüm İçeriği İndir' butonunu kullanın.`);
                     } catch (error) {
@@ -593,13 +624,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 await updateContentOnGitHub(siteContent, commitMessage, savePageBtn);
             });
 
-            // Başlangıç
-            loadContent();
-            setupFormValidation(); // Blog formu niteliklerini ayarla
-            setupProjectFormValidation(); // Proje formu niteliklerini ayarla
         }
 
-         // --- PROJE YÖNETİMİ MANTIĞI (blogEditor scope'u içinde olmalı) ---
+         // --- PROJE YÖNETİMİ MANTIĞI ---
         const projectEditorEl = document.getElementById('project-editor');
         if (projectEditorEl) {
             const projectListBody = document.getElementById('project-list');
@@ -614,15 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectCategoryInput = document.getElementById('project-category');
             const projectLinkInput = document.getElementById('project-link');
             const projectLinkTextInput = document.getElementById('project-link-text');
-
-            // Proje formu için doğrulama niteliklerini ayarla
-            const setupProjectFormValidation = () => {
-                const form = document.getElementById('project-editor');
-                if(form) form.setAttribute('novalidate', '');
-                projectTitleInput.setAttribute('required', '');
-                projectTitleInput.setAttribute('aria-required', 'true');
-                projectDescriptionInput.setAttribute('required', '');
-            };
 
             const renderProjectList = () => {
                 projectListBody.innerHTML = '';
@@ -693,6 +711,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 renderProjectList();
+                updateStats(); // İstatistikleri güncelle
                 closeProjectEditor();
 
                 const commitMessage = `CMS: Proje '${updatedProject.title}' güncellendi.`;
@@ -714,16 +733,124 @@ document.addEventListener('DOMContentLoaded', () => {
                     const projectToDelete = siteContent.projects.find(p => p.id === id);
                     siteContent.projects = siteContent.projects.filter(p => p.id !== id);
                     renderProjectList();
+                    updateStats(); // İstatistikleri güncelle
                     closeProjectEditor();
 
                     const commitMessage = `CMS: Proje '${projectToDelete.title}' silindi.`;
                     await updateContentOnGitHub(siteContent, commitMessage, deleteProjectBtn);
                 }
             });
-
-            // `loadContent` tamamlandığında bu fonksiyonu çağır
-            // Bu olay artık gereksiz, loadContent içinde doğrudan çağrılıyor. renderProjectList();
         }
+
+        // --- UZMANLIK ALANLARI YÖNETİMİ MANTIĞI ---
+        const expertiseEditorEl = document.getElementById('expertise-editor');
+        if (expertiseEditorEl) {
+            const expertiseListBody = document.getElementById('expertise-list');
+            const newExpertiseBtn = document.getElementById('new-expertise-btn');
+            const saveExpertiseBtn = document.getElementById('save-expertise-btn');
+            const deleteExpertiseBtn = document.getElementById('delete-expertise-btn');
+            const cancelExpertiseBtn = document.getElementById('cancel-expertise-btn');
+
+            const expertiseIdInput = document.getElementById('expertise-id');
+            const expertiseTitleInput = document.getElementById('expertise-title');
+            const expertiseIconInput = document.getElementById('expertise-icon');
+            const expertiseDescriptionInput = document.getElementById('expertise-description');
+
+            const renderExpertiseList = () => {
+                expertiseListBody.innerHTML = '';
+                const expertiseItems = siteContent.expertise || [];
+                if (expertiseItems.length === 0) {
+                    expertiseListBody.innerHTML = '<tr><td colspan="2" style="text-align: center;">Henüz uzmanlık alanı bulunmuyor.</td></tr>';
+                    return;
+                }
+                expertiseItems.forEach(item => {
+                    const tr = document.createElement('tr');
+                    const tdTitle = document.createElement('td');
+                    tdTitle.innerHTML = `<i class="${escapeHTML(item.icon)}"></i> ${escapeHTML(item.title)}`;
+                    
+                    const tdActions = document.createElement('td');
+                    tdActions.style.textAlign = 'right';
+                    tdActions.innerHTML = `<button class="btn-edit" data-id="${escapeHTML(item.id)}">Düzenle</button>`;
+
+                    tr.appendChild(tdTitle);
+                    tr.appendChild(tdActions);
+                    expertiseListBody.appendChild(tr);
+                });
+            };
+
+            const openExpertiseEditor = (item) => {
+                expertiseIdInput.value = item ? item.id : '';
+                expertiseTitleInput.value = item ? item.title : '';
+                expertiseIconInput.value = item ? item.icon : '';
+                expertiseDescriptionInput.value = item ? item.description : '';
+                deleteExpertiseBtn.style.display = item ? 'block' : 'none';
+                expertiseEditorEl.style.display = 'block';
+            };
+
+            const closeExpertiseEditor = () => {
+                expertiseEditorEl.style.display = 'none';
+            };
+
+            const saveExpertise = async () => {
+                const form = document.getElementById('expertise-editor');
+                if (form && !form.checkValidity()) {
+                    form.reportValidity();
+                    alert('Lütfen uzmanlık alanı formundaki zorunlu alanları doldurun.');
+                    return;
+                }
+
+                const id = expertiseIdInput.value ? parseInt(expertiseIdInput.value, 10) : Date.now();
+                const updatedExpertise = {
+                    id: id,
+                    title: expertiseTitleInput.value,
+                    icon: expertiseIconInput.value,
+                    description: expertiseDescriptionInput.value
+                };
+
+                const existingIndex = siteContent.expertise.findIndex(e => e.id === id);
+                if (existingIndex > -1) {
+                    siteContent.expertise[existingIndex] = updatedExpertise;
+                } else {
+                    siteContent.expertise.push(updatedExpertise);
+                }
+                
+                renderExpertiseList();
+                closeExpertiseEditor();
+
+                const commitMessage = `CMS: Uzmanlık alanı '${updatedExpertise.title}' güncellendi.`;
+                await updateContentOnGitHub(siteContent, commitMessage, saveExpertiseBtn);
+            };
+
+            newExpertiseBtn.addEventListener('click', () => openExpertiseEditor(null));
+            cancelExpertiseBtn.addEventListener('click', closeExpertiseEditor);
+            saveExpertiseBtn.addEventListener('click', saveExpertise);
+            expertiseListBody.addEventListener('click', e => {
+                if (e.target.classList.contains('btn-edit')) {
+                    const item = siteContent.expertise.find(e => e.id === parseInt(e.target.dataset.id));
+                    openExpertiseEditor(item);
+                }
+            });
+            deleteExpertiseBtn.addEventListener('click', async () => {
+                if (confirm('Bu uzmanlık alanını silmek istediğinizden emin misiniz?')) {
+                    const id = parseInt(expertiseIdInput.value);
+                    const itemToDelete = siteContent.expertise.find(e => e.id === id);
+                    siteContent.expertise = siteContent.expertise.filter(e => e.id !== id);
+                    renderExpertiseList();
+                    closeExpertiseEditor();
+
+                    const commitMessage = `CMS: Uzmanlık alanı '${itemToDelete.title}' silindi.`;
+                    await updateContentOnGitHub(siteContent, commitMessage, deleteExpertiseBtn);
+                }
+            });
+            // `loadContent` tamamlandığında bu fonksiyonu çağır
+            // Bu olay artık gereksiz, loadContent içinde doğrudan çağrılıyor. renderExpertiseList();
+        }
+
+        // Başlangıç
+        loadContent();
+        // setupFormValidation(); // Blog formu niteliklerini ayarla - Artık blogEditor bloğu içinde çağrılıyor
+        // setupProjectFormValidation(); // Proje formu niteliklerini ayarla - Artık projectEditorEl bloğu içinde çağrılıyor
+        // setupExpertiseFormValidation(); // Yeni: Uzmanlık alanı formu niteliklerini ayarla - Artık expertiseEditorEl bloğu içinde çağrılıyor
     }
 
 });

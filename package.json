@@ -1,0 +1,26 @@
+{
+  "name": "yusuf-portfolio",
+  "version": "1.0.0",
+  "description": "Yusuf Avşar'ın güvenlik odaklı geliştirme portfolyosu",
+  "main": "index.html",
+  "scripts": {
+    "minify-js": "terser app.js admin-auth.js main.js -o dist/app.min.js --compress --mangle",
+    "minify-css": "cleancss -o dist/style.min.css style.css blog-components.css",
+    "build": "npm run minify-js && npm run minify-css",
+    "start": "python -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "security",
+    "development",
+    "golang",
+    "python",
+    "devsecops"
+  ],
+  "author": "Yusuf Avşar",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.31.0"
+  }
+}

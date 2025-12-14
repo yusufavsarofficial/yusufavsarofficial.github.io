@@ -29,17 +29,15 @@
 </head>
 <body>
 
-    <!-- Nirvana İyileştirmeleri -->
     <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
     <div class="cursor cursor-dot"></div>
     <div class="cursor cursor-outline"></div>
 
-    <!-- Header, CLS önlemek için bir placeholder ile dinamik olarak yüklenecek -->
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main>
-        <section id="hero">
-            <div class="hero-content">
+        <section id="hero" class="hero-section">
+            <div class="container hero-content">
                 <h1 class="scroll-reveal wavy-headline">
                     <span>S</span><span>ı</span><span>n</span><span>ı</span><span>r</span>
                     <span class="space">&nbsp;</span>
@@ -50,14 +48,14 @@
                     <span>H</span><span>a</span><span>t</span><span>t</span><span>ı</span>
                 </h1>
                 <p class="scroll-reveal" style="transition-delay: 100ms;">Python, Golang ve Bulut Teknolojileri ile hızlı, ölçeklenebilir ve güvenlik odaklı uygulamalar geliştiriyorum. Amacım, işlevselliği en yüksek seviyede tutarken sistemlerinizi risklere karşı proaktif olarak korumaktır.</p>
-                <div class="scroll-reveal" style="transition-delay: 200ms;">
+                <div class="hero-actions scroll-reveal" style="transition-delay: 200ms;">
                     <a href="iletisim.html#contact-form" class="btn btn-primary">Projenizi Tartışalım</a>
                     <a href="teknik-yetkinliklerim.html" class="btn btn-secondary">Yetkinliklerimi Gör</a>
                 </div>
             </div>
         </section>
 
-        <section>
+        <section id="expertise-areas" class="section-padding">
             <div class="container">
                 <h2 class="section-title scroll-reveal">Uzmanlık Alanlarım: Savunma, Kodlama ve Altyapı</h2>
                 <div class="projects-grid">
@@ -86,21 +84,21 @@
             </div>
         </section>
 
-        <section>
+        <section id="case-study" class="section-padding">
             <div class="container">
-                <div class="glass-panel case-study-panel scroll-reveal" style="text-align: center;">
+                <div class="glass-panel case-study-panel scroll-reveal text-center">
                     <h2 class="section-title">Öne Çıkan Vaka Çalışması</h2>
-                    <h3 style="color: var(--color-text-secondary); font-family: var(--font-body); font-weight: 500;">Kritik API Zafiyetinde Veri Sızıntısının Önlenmesi</h3>
-                    <p style="max-width: 700px; margin: var(--spacing-sm) auto var(--spacing-lg) auto; color: var(--color-text-secondary);">Yüksek trafikli bir e-ticaret platformunun API katmanında veri sızıntısına yol açan Broken Access Control zafiyeti tespit ettim. Golang ve Test Odaklı Geliştirme (TDD) kullanarak yeni bir yetkilendirme doğrulama servisi geliştirdim. Bu çözüm, platformun hızını korurken tüm kullanıcı veri erişimini kesin olarak izole etti ve yasal uyumluluğunu sağladı.</p>
+                    <h3 class="case-study-subtitle">Kritik API Zafiyetinde Veri Sızıntısının Önlenmesi</h3>
+                    <p class="case-study-description">Yüksek trafikli bir e-ticaret platformunun API katmanında veri sızıntısına yol açan Broken Access Control zafiyeti tespit ettim. Golang ve Test Odaklı Geliştirme (TDD) kullanarak yeni bir yetkilendirme doğrulama servisi geliştirdim. Bu çözüm, platformun hızını korurken tüm kullanıcı veri erişimini kesin olarak izole etti ve yasal uyumluluğunu sağladı.</p>
                     <a href="vaka-calismasi.html" class="btn btn-secondary">Detaylı Vaka Raporunu İncele &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <section>
+        <section id="tech-blog" class="section-padding">
             <div class="container">
                 <h2 class="section-title scroll-reveal">Teknik Derinlik ve Blog</h2>
-                <p class="scroll-reveal" style="text-align: center; max-width: 700px; margin: -3rem auto 3rem auto; color: var(--color-text-secondary);">Geliştiriciler İçin Güvenlik Rehberleri ve Teknik Analizler.</p>
+                <p class="section-subtitle scroll-reveal">Geliştiriciler İçin Güvenlik Rehberleri ve Teknik Analizler.</p>
                 <div class="projects-grid">
                     <a href="makale-mikroservis.html" class="project-card blog-link-card scroll-reveal">
                         <h3>Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h3>
@@ -115,7 +113,7 @@
                         <p>KVKK/GDPR uyumu için Zarf Şifreleme, Anahtar Yönetimi (KMS) ve Tokenizasyon gibi ileri düzey kriptografik ilkelerin mimari uygulamaları üzerine analitik bir inceleme.</p>
                     </a>
                 </div>
-                <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <div class="text-center margin-top-xl">
                     <a href="blog.html" class="btn btn-secondary scroll-reveal">Tüm Teknik Analizler</a>
                 </div>
             </div>
@@ -123,7 +121,30 @@
 
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
+
+    <!-- Dinamik bileşenleri ve interaktif özellikleri yükler -->
+    <!-- AvsarTech AI Chatbot -->
+    <div id="avsar-tech-ai-chatbot" class="ai-chatbot-container">
+        <button id="ai-chatbot-toggle" class="ai-chatbot-toggle" aria-label="AvsarTech AI Sohbet Botunu Aç/Kapat">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+        <div class="ai-chatbot-window">
+            <div class="ai-chatbot-header">
+                <h3>AvsarTech AI <span class="status-dot online"></span></h3>
+                <button class="ai-chatbot-close" aria-label="Sohbet Botunu Kapat"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="ai-chatbot-messages" id="ai-chatbot-messages">
+                <div class="message bot-message">
+                    <p>Merhaba! Ben AvsarTech AI. Sitemizdeki içerikler, Yusuf Avşar'ın yetkinlikleri veya projelerimiz hakkında merak ettiklerinizi bana sorabilirsiniz.</p>
+                </div>
+            </div>
+            <div class="ai-chatbot-input">
+                <input type="text" id="ai-user-input" placeholder="Bir şeyler yazın..." aria-label="Sohbet botuna mesaj yazın">
+                <button id="ai-send-button" aria-label="Mesajı Gönder"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Dinamik bileşenleri ve interaktif özellikleri yükler -->
     <script src="app.js" defer></script>

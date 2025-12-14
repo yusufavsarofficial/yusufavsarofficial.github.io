@@ -115,6 +115,32 @@
             "slug": "blog-bola-zafiyeti",
             "category": "guvenlik",
             "summary": "Siber güvenlikte odak değişti. SQLi'yi büyük ölçüde çözdük, ancak şimdi API'lerimizin başındaki yeni bela BOLA zafiyeti. Nedir ve neden daha tehlikelidir?"
+        },
+        {
+            "id": 1,
+            "title": "İlk Blog Yazım: Siber Güvenliğe Giriş",
+            "author": "Yusuf Avşar",
+            "date": "2024-01-15",
+            "slug": "siber-guvenlige-giris",
+            "category": "guvenlik",
+            "featuredImage": "images/blog/siber-guvenlik-giris.jpg",
+            "summary": "Bu yazıda siber güvenliğin temellerini ve neden önemli olduğunu ele alacağız. Bir siber güvenlik uzmanının bilmesi gereken temel kavramlar.",
+            "tags": ["siber güvenlik", "temeller", "pentest"],
+            "readingTime": 5,
+            "content": "Bu yazıda siber güvenliğin temellerini ve neden önemli olduğunu ele alacağız. **Markdown** formatı desteklenmektedir. Saldırı vektörleri, savunma mekanizmaları ve daha fazlası..."
+        },
+        {
+            "id": 2,
+            "title": "Go Programlama Dili ile Eşzamanlılık",
+            "author": "Yusuf Avşar",
+            "date": "2024-02-20",
+            "slug": "go-ile-eszamanlilik",
+            "category": "gelistirme",
+            "featuredImage": "images/blog/go-eszamanlilik.jpg",
+            "summary": "Go dilinin en güçlü özelliklerinden biri olan `goroutine` ve `channel` yapılarını kullanarak yüksek performanslı uygulamalar geliştirmeyi öğrenin.",
+            "tags": ["golang", "programlama", "performans", "concurrency"],
+            "readingTime": 8,
+            "content": "Go dilinin en güçlü özelliklerinden biri olan `goroutine` ve `channel` yapılarını inceleyeceğiz.\n\n```go\nfunc main() {\n    fmt.Println(\"Merhaba, Go!\")\n}\n```\nBu örnek, Go'nun ne kadar basit ve güçlü olduğunu gösteriyor."
         }
     ]
 }

@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yönetim Paneli</title>
-    <meta name="robots" content="noindex, nofollow"> <!-- Arama motorlarının bu sayfayı indexlemesini engelle -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/blog-components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/easymde/2.16.1/easymde.min.css">
 </head>
 <body>
 
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main>
-        <section>
+        <section class="section-padding">
             <div class="container">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
-                    <h2 class="section-title scroll-reveal" style="text-align: left; margin: 0;">Yönetim Paneli</h2>
-                    <button id="logout-btn" class="btn btn-secondary scroll-reveal" style="transition-delay: 100ms;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış Yap</button>
+                <div class="dashboard-header scroll-reveal">
+                    <h1 class="section-title">Yönetim Paneli</h1>
+                    <button id="logout-btn" class="btn btn-secondary" style="transition-delay: 100ms;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıkış Yap</button>
                 </div>
 
                 <div class="simulation-grid">
                     <!-- Sol Panel: İstatistikler -->
                     <div class="glass-panel scroll-reveal" style="transition-delay: 200ms;">
-                        <h4 class="dashboard-title"><i class="fa-solid fa-chart-pie"></i> Site İstatistikleri</h4>
+                        <h2 class="dashboard-title"><i class="fa-solid fa-chart-pie"></i> Site İstatistikleri</h2>
                         <div class="system-stats">
                             <div class="stat-item">
                                 <span class="stat-label"><i class="fa-solid fa-users"></i> Bugünkü Ziyaretçi</span>
@@ -53,7 +55,7 @@
 
                     <!-- Sağ Panel: Ayarlar -->
                     <div class="glass-panel scroll-reveal" style="transition-delay: 300ms;">
-                        <h4 class="dashboard-title"><i class="fa-solid fa-sliders"></i> Site Ayarları</h4>
+                        <h2 class="dashboard-title"><i class="fa-solid fa-sliders"></i> Site Ayarları</h2>
                         <div class="form-group">
                             <label for="maintenance-mode">Bakım Modu</label>
                             <label class="switch">
@@ -61,11 +63,11 @@
                                 <span class="slider round"></span>
                             </label>
                         </div>
-                        <div class="form-group" style="margin-top: var(--spacing-md);">
+                        <div class="form-group margin-top-md">
                             <label for="cache-clear">Önbelleği Temizle</label>
-                            <button id="clear-cache-btn" class="btn btn-secondary" style="width: 100%;">Tüm Önbelleği Temizle</button>
+                            <button id="clear-cache-btn" class="btn btn-secondary btn-full-width">Tüm Önbelleği Temizle</button>
                         </div>
-                        <div class="form-group" style="margin-top: var(--spacing-md);">
+                        <div class="form-group margin-top-md">
                             <label>Renk Paleti</label>
                             <div id="color-palette-switcher" class="color-palette-switcher">
                                 <button class="palette-btn" data-theme="default" style="background: #00e5ff;" title="Varsayılan (Siber Mavi)"></button>
@@ -78,8 +80,10 @@
                 </div>
 
                 <!-- Sayfa İçerik Yönetimi -->
-                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 400ms;">
-                    <summary class="dashboard-title"><i class="fa-solid fa-file-lines"></i> Sayfa İçerik Yönetimi</summary>
+                <details class="glass-panel scroll-reveal" style="transition-delay: 400ms;">
+                    <summary class="dashboard-title">
+                        <span><i class="fa-solid fa-file-lines"></i> Sayfa İçerik Yönetimi</span>
+                    </summary>
                     <div class="details-content">
                         <div class="form-group">
                             <label for="page-selector">Düzenlenecek Sayfayı Seçin</label>
@@ -94,14 +98,14 @@
                             <!-- JS ile doldurulacak -->
                         </div>
                         <div id="page-editor-actions" style="display: none; margin-top: var(--spacing-md);">
-                            <button id="save-page-btn" class="btn btn-primary" style="width: 100%;">Sayfa Değişikliklerini Kaydet</button>
+                            <button id="save-page-btn" class="btn btn-primary btn-full-width">Sayfa Değişikliklerini Kaydet</button>
                         </div>
                     </div>
                 </details>
 
                 <!-- Proje Yönetimi Bölümü -->
-                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 500ms;" open>
-                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <details class="glass-panel scroll-reveal" style="transition-delay: 500ms;" open>
+                    <summary class="dashboard-title">
                         <span><i class="fa-solid fa-briefcase"></i> Proje Yönetimi</span>
                         <button id="new-project-btn" class="btn btn-primary btn-sm" onclick="event.stopPropagation()"><i class="fa-solid fa-plus"></i> Yeni Proje</button>
                     </summary>
@@ -161,8 +165,8 @@
                 </details>
 
                 <!-- Uzmanlık Alanları Yönetimi -->
-                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 550ms;">
-                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <details class="glass-panel scroll-reveal" style="transition-delay: 550ms;">
+                    <summary class="dashboard-title">
                         <span><i class="fa-solid fa-star"></i> Uzmanlık Alanları Yönetimi</span>
                         <button id="new-expertise-btn" class="btn btn-primary btn-sm" onclick="event.stopPropagation()"><i class="fa-solid fa-plus"></i> Yeni Alan Ekle</button>
                     </summary>
@@ -203,18 +207,20 @@
                     </div>
                 </details>
 
-                <!-- Genel Kaydet Butonu -->
-                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 600ms; background-color: rgba(255, 140, 0, 0.1);">
-                    <summary class="dashboard-title"><i class="fa-solid fa-cloud-arrow-down"></i> Manuel Yedekleme (Tüm İçeriği İndir)</summary>
+                <!-- Manuel Yedekleme (Tüm İçeriği İndir) -->
+                <details class="glass-panel scroll-reveal" style="transition-delay: 600ms;">
+                    <summary class="dashboard-title">
+                        <span><i class="fa-solid fa-cloud-arrow-down"></i> Manuel Yedekleme (Tüm İçeriği İndir)</span>
+                    </summary>
                     <div class="details-content">
-                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0 0 var(--spacing-md) 0;">GitHub API entegrasyonu çalışmazsa veya manuel bir yedek almak isterseniz, aşağıdaki butonu kullanarak tüm site içeriğini (`content.json`) tek bir ZIP dosyası olarak indirebilirsiniz.</p>
-                        <button id="download-all-btn" class="btn btn-secondary" style="width: 100%;"><i class="fa-solid fa-file-zipper"></i> content.json'ı İndir (.zip)</button>
+                        <p class="section-subtitle" style="margin: 0 0 var(--spacing-md) 0;">GitHub API entegrasyonu çalışmazsa veya manuel bir yedek almak isterseniz, aşağıdaki butonu kullanarak tüm site içeriğini (`content.json`) tek bir ZIP dosyası olarak indirebilirsiniz.</p>
+                        <button id="download-all-btn" class="btn btn-secondary btn-full-width"><i class="fa-solid fa-file-zipper"></i> content.json'ı İndir (.zip)</button>
                     </div>
                 </details>
 
                 <!-- Blog Yönetimi Bölümü -->
-                <details class="glass-panel scroll-reveal" style="margin-top: var(--spacing-lg); transition-delay: 700ms;" open>
-                    <summary class="dashboard-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <details class="glass-panel scroll-reveal" style="transition-delay: 700ms;" open>
+                    <summary class="dashboard-title">
                         <span><i class="fa-solid fa-pen-to-square"></i> Blog Yönetimi</span>
                         <div style="display: flex; gap: var(--spacing-sm);" onclick="event.stopPropagation()">
                             <label for="import-json-input" class="btn btn-secondary btn-sm" style="cursor: pointer;" title="JSON dosyasından yazıları içe aktar"><i class="fa-solid fa-upload"></i> İçe Aktar</label>
@@ -291,34 +297,10 @@
         </section>
     </main>
 
-    <div id="footer-placeholder"></div>
-    <script src="app.js" defer></script>
-    <!-- JSZip kütüphanesi -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="assets/js/app.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="admin-auth.js" defer></script>
-    <style>
-        .table-wrapper { overflow-x: auto; }
-        .admin-table { width: 100%; border-collapse: collapse; margin-top: var(--spacing-md); }
-        .admin-table th, .admin-table td { padding: var(--spacing-sm); text-align: left; border-bottom: 1px solid var(--color-border); }
-        .admin-table th { font-family: var(--font-mono); color: var(--color-text-secondary); font-size: 0.85rem; }
-        .admin-table td { color: var(--color-text-primary); font-size: 0.95rem; }
-        .admin-table .btn-edit { background: none; border: 1px solid var(--color-border); color: var(--color-text-secondary); padding: 0.3rem 0.8rem; font-size: 0.8rem; border-radius: 5px; cursor: pointer; transition: all var(--transition-fast); }
-        .admin-table .btn-edit:hover { background-color: var(--color-accent); color: var(--color-void-black); border-color: var(--color-accent); }
-        .admin-table tr:last-child td { border-bottom: none; }
-        .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
-        /* Details/Summary için stiller */
-        details > summary { list-style: none; cursor: pointer; }
-        details > summary::-webkit-details-marker { display: none; }
-        details > summary::before {
-            content: '\f078'; /* Font Awesome down arrow */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            margin-right: var(--spacing-sm);
-            transition: transform var(--transition-fast);
-        }
-        details[open] > summary::before {
-            transform: rotate(-180deg);
-        }
-    </style>
 </body>
 </html>

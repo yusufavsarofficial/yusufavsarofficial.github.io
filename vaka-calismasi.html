@@ -5,88 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teknik Rapor: BOLA Zafiyeti Mitigasyonu - Yusuf Avşar</title>
     <meta name="description" content="Teknik Rapor: Dağıtık e-ticaret mimarilerinde BOLA (IDOR) zafiyetinin TDD ve Golang Middleware yaklaşımıyla mitigasyonu.">
+    <link rel="canonical" href="https://yusufavsarofficial.github.io/vaka-calismasi.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yusufavsarofficial.github.io/vaka-calismasi.html">
+    <meta property="og:title" content="Teknik Rapor: BOLA Zafiyeti Mitigasyonu - Yusuf Avşar">
+    <meta property="og:description" content="Teknik Rapor: Dağıtık e-ticaret mimarilerinde BOLA (IDOR) zafiyetinin TDD ve Golang Middleware yaklaşımıyla mitigasyonu.">
+    <meta property="og:image" content="https://yusufavsarofficial.github.io/assets/images/blog/vaka-calismasi.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yusufavsarofficial.github.io/vaka-calismasi.html">
+    <meta property="twitter:title" content="Teknik Rapor: BOLA Zafiyeti Mitigasyonu - Yusuf Avşar">
+    <meta property="twitter:description" content="Teknik Rapor: Dağıtık e-ticaret mimarilerinde BOLA (IDOR) zafiyetinin TDD ve Golang Middleware yaklaşımıyla mitigasyonu.">
+    <meta property="twitter:image" content="https://yusufavsarofficial.github.io/assets/images/blog/vaka-calismasi.jpg">
+
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome ikonları için -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Nirvana İyileştirmeleri (Fare Efekti) -->
     <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
     <div class="cursor cursor-dot"></div>
     <div class="cursor cursor-outline"></div>
 
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main>
-        <section>
+        <section class="section-padding">
             <div class="container">
-                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
-                    <h2 class="section-title scroll-reveal">Teknik Rapor: BOLA Zafiyeti Mitigasyonu</h2>
-                    <p class="subsection-description scroll-reveal" style="transition-delay: 100ms;">Dağıtık E-Ticaret Mimarilerinde BOLA (IDOR) Zafiyetinin TDD ve Golang Middleware Yaklaşımıyla Çözümü.</p>
-                    <p class="blog-meta scroll-reveal" style="transition-delay: 200ms;">Doküman Sürümü: 1.0.2 | Yazar: Yusuf Avşar</p>
+                <div class="page-header text-center margin-bottom-xl scroll-reveal">
+                    <h1 class="section-title">Teknik Rapor: BOLA Zafiyeti Mitigasyonu</h1>
+                    <p class="subsection-description margin-top-neg-lg" style="transition-delay: 100ms;">Dağıtık E-Ticaret Mimarilerinde BOLA (IDOR) Zafiyetinin TDD ve Golang Middleware Yaklaşımıyla Çözümü.</p>
+                    <p class="blog-meta" style="transition-delay: 200ms;">Doküman Sürümü: 1.0.2 | Yazar: Yusuf Avşar</p>
                 </div>
 
-                <article class="blog-post-content secure-content" style="max-width: 800px; margin: 0 auto;">
-                <h2 id="executive-summary">1. YÖNETİCİ ÖZETİ (EXECUTIVE SUMMARY)</h2>
-                <p>Modern mikroservis mimarilerinde API güvenliği, geleneksel sınır güvenliği (Perimeter Security) yaklaşımlarının ötesine geçmiştir. Bu teknik rapor, yüksek trafikli (günlük ortalama 1.5M istek) bir e-ticaret platformunun Sipariş Yönetim Modülü'nde tespit edilen ve OWASP API Top 10 listesinde 1. sırada yer alan Broken Object Level Authorization (BOLA) zafiyetinin analizini ve çözümünü kapsamaktadır.</p>
-                <p>Zafiyet, kimliği doğrulanmış bir saldırganın, basit parametre manipülasyonu ile diğer kullanıcılara ait Hassas Kişisel Verilere (PII) ve sipariş detaylarına erişmesine olanak tanımıştır. Sorunun çözümü için monolitik yapıyı yamamak yerine, Golang tabanlı, yüksek performanslı ve Test Odaklı Geliştirme (TDD) metodolojisiyle inşa edilmiş harici bir "Authorization Gateway" katmanı tasarlanmıştır. Bu yaklaşım, güvenlik riskini %100 oranında elimine ederken, API yanıt sürelerinde (latency) istatistiksel olarak anlamlı bir artışa neden olmamıştır.</p>
+                <article class="blog-post-content glass-panel secure-content scroll-reveal">
+                    <h2 id="executive-summary" class="section-title" style="text-align: left;">1. YÖNETİCİ ÖZETİ (EXECUTIVE SUMMARY)</h2>
+                    <p>Modern mikroservis mimarilerinde API güvenliği, geleneksel sınır güvenliği (Perimeter Security) yaklaşımlarının ötesine geçmiştir. Bu teknik rapor, yüksek trafikli (günlük ortalama 1.5M istek) bir e-commerce platformunun Sipariş Yönetim Modülü'nde tespit edilen ve OWASP API Top 10 listesinde 1. sırada yer alan Broken Object Level Authorization (BOLA) zafiyetinin analizini ve çözümünü kapsamaktadır.</p>
+                    <p>Zafiyet, kimliği doğrulanmış bir saldırganın, basit parametre manipülasyonu ile diğer kullanıcılara ait Hassas Kişisel Verilere (PII) ve sipariş detaylarına erişmesine olanak tanımıştır. Sorunun çözümü için monolitik yapıyı yamamak yerine, Golang tabanlı, yüksek performanslı ve Test Odaklı Geliştirme (TDD) metodolojisiyle inşa edilmiş harici bir "Authorization Gateway" katmanı tasarlanmıştır. Bu yaklaşım, güvenlik riskini %100 oranında elimine ederken, API yanıt sürelerinde (latency) istatistiksel olarak anlamlı bir artışa neden olmamıştır.</p>
 
-                <h2 id="technical-analysis">2. ZAFİYETİN TEKNİK ANALİZİ VE KEŞİF SÜRECİ</h2>
-                <h3>2.1. Zafiyet Tanımı ve Vektörü</h3>
-                <p>Zafiyet, uygulamanın Yatay Yetki Yükseltme (Horizontal Privilege Escalation) kontrollerindeki eksiklikten kaynaklanmaktadır. Sistem, kullanıcının kim olduğunu (Authentication) doğrulamakta, ancak talep ettiği kaynağın sahibi olup olmadığını (Authorization) nesne düzeyinde denetlememektedir.</p>
-                <h4>Zafiyetli HTTP İsteği (Proof of Concept)</h4>
-                <p>Aşağıdaki HTTP isteği, Saldırgan (User ID: 1337) tarafından, Kurban (User ID: 4096)'a ait sipariş detaylarını çekmek için manipüle edilmiştir.</p>
-                <div class="code-block-wrapper">
-                    <pre><code class="language-bash">GET /api/v2/orders/99502 HTTP/1.1
+                    <h2 id="technical-analysis" class="section-title" style="text-align: left;">2. ZAFİYETİN TEKNİK ANALİZİ VE KEŞİF SÜRECİ</h2>
+                    <h3 id="zafiyet-tanimi-ve-vektoru">2.1. Zafiyet Tanımı ve Vektörü</h3>
+                    <p>Zafiyet, uygulamanın Yatay Yetki Yükseltme (Horizontal Privilege Escalation) kontrollerindeki eksiklikten kaynaklanmaktadır. Sistem, kullanıcının kim olduğunu (Authentication) doğrulamakta, ancak talep ettiği kaynağın sahibi olup olmadığını (Authorization) nesne düzeyinde denetlememektedir.</p>
+                    <h4>Zafiyetli HTTP İsteği (Proof of Concept)</h4>
+                    <p>Aşağıdaki HTTP isteği, Saldırgan (User ID: 1337) tarafından, Kurban (User ID: 4096)'a ait sipariş detaylarını çekmek için manipüle edilmiştir.</p>
+                    <div class="code-block-wrapper">
+<pre><code class="language-bash">GET /api/v2/orders/99502 HTTP/1.1
 Host: api.target-ecommerce.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (Saldırganın Token'ı)
 Content-Type: application/json</code></pre>
-                </div>
-                <h4>Sunucu Yanıtı (Zafiyetli Durum):</h4>
-                <p>Sunucu, 99502 numaralı siparişin Token sahibi (User 1337) ile ilişkisini kontrol etmeden 200 OK yanıtı ve hassas veriyi döndürmüştür.</p>
-                <div class="code-block-wrapper">
-                    <pre><code class="language-json">{
+                    </div>
+                    <h4>Sunucu Yanıtı (Zafiyetli Durum):</h4>
+                    <p>Sunucu, 99502 numaralı siparişin Token sahibi (User 1337) ile ilişkisini kontrol etmeden 200 OK yanıtı ve hassas veriyi döndürmüştür.</p>
+                    <div class="code-block-wrapper">
+<pre><code class="language-json">{
   "order_id": 99502,
   "user_id": 4096,
   "items": [{"sku": "IPH-14-PRO", "qty": 1}],
   "shipping_address": "Bağdat Cad. No:12, Kadıköy/İstanbul",
   "phone": "+90 532 555 00 00"
 }</code></pre>
-                </div>
+                    </div>
 
-                <h3>2.2. CVSS v3.1 Risk Skorlaması</h3>
-                <p>Bu zafiyet, CVSS (Common Vulnerability Scoring System) standartlarına göre "Yüksek" risk seviyesinde sınıflandırılmıştır.</p>
-                <blockquote class="blog-blockquote">
-                    <strong>Vektör:</strong> CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:N<br>
-                    <strong>Skor: 7.1 (High)</strong><br>
-                    <strong>Attack Vector (AV):</strong> Network (Uzaktan sömürülebilir).<br>
-                    <strong>Privileges Required (PR):</strong> Low (Herhangi bir standart kullanıcı hesabı yeterlidir).<br>
-                    <strong>Confidentiality (C):</strong> High (Tüm kullanıcı veritabanı çekilebilir - Enumeration Attack).
-                </blockquote>
+                    <h3 id="cvss-risk-skorlamasi">2.2. CVSS v3.1 Risk Skorlaması</h3>
+                    <p>Bu zafiyet, CVSS (Common Vulnerability Scoring System) standartlarına göre "Yüksek" risk seviyesinde sınıflandırılmıştır.</p>
+                    <blockquote class="blog-blockquote">
+                        <strong>Vektör:</strong> CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:N<br>
+                        <strong>Skor: 7.1 (High)</strong><br>
+                        <strong>Attack Vector (AV):</strong> Network (Uzaktan sömürülebilir).<br>
+                        <strong>Privileges Required (PR):</strong> Low (Herhangi bir standart kullanıcı hesabı yeterlidir).<br>
+                        <strong>Confidentiality (C):</strong> High (Tüm kullanıcı veritabanı çekilebilir - Enumeration Attack).
+                    </blockquote>
 
-                <h2 id="impact-assessment">3. HUKUKİ VE TİCARİ ETKİ DEĞERLENDİRMESİ</h2>
-                <p>Bu zafiyet teknik bir hata olmanın ötesinde, kurumsal sürekliliği tehdit eden bir uyum (compliance) ihlalidir.</p>
-                <ul>
-                    <li><strong>KVKK (Kişisel Verilerin Korunması Kanunu):</strong> Madde 12/1 uyarınca veri sorumlusu, kişisel verilerin hukuka aykırı olarak işlenmesini önlemek amacıyla her türlü teknik tedbiri almak zorundadır. Bu ihlal, kurul tarafından idari para cezasına tabi tutulabilecek bir "Veri Sızıntısı"dır.</li>
-                    <li><strong>GDPR (General Data Protection Regulation):</strong> Avrupa Birliği vatandaşlarını da kapsayan işlemlerde, Madde 32 (İşleme Güvenliği) ihlali, küresel cironun %4'üne varan cezalar doğurabilir.</li>
-                    <li><strong>İtibar Yönetimi:</strong> Saldırının "Script Kiddie" seviyesinde, otomatize araçlarla (Burp Suite Intruder vb.) tüm veritabanını (Database Dump) çekmeye müsait olması, marka güvenini geri dönülemez şekilde zedeleyebilir.</li>
-                </ul>
+                    <h2 id="impact-assessment" class="section-title" style="text-align: left;">3. HUKUKİ VE TİCARİ ETKİ DEĞERLENDİRMESİ</h2>
+                    <p>Bu zafiyet teknik bir hata olmanın ötesinde, kurumsal sürekliliği tehdit eden bir uyum (compliance) ihlalidir.</p>
+                    <ul>
+                        <li><strong>KVKK (Kişisel Verilerin Korunması Kanunu):</strong> Madde 12/1 uyarınca veri sorumlusu, kişisel verilerin hukuka aykırı olarak işlenmesini önlemek amacıyla her türlü teknik tedbiri almak zorundadır. Bu ihlal, kurul tarafından idari para cezasına tabi tutulabilecek bir "Veri Sızıntısı"dır.</li>
+                        <li><strong>GDPR (General Data Protection Regulation):</strong> Avrupa Birliği vatandaşlarını da kapsayan işlemlerde, Madde 32 (İşleme Güvenliği) ihlali, küresel cironun %4'üne varan cezalar doğurabilir.</li>
+                        <li><strong>İtibar Yönetimi:</strong> Saldırının "Script Kiddie" seviyesinde, otomatize araçlarla (Burp Suite Intruder vb.) tüm veritabanını (Database Dump) çekmeye müsait olması, marka güvenini geri dönülemez şekilde zedeleyebilir.</li>
+                    </ul>
 
-                <h2 id="solution-architecture">4. ÇÖZÜM MİMARİSİ: GOLANG TABANLI GÜVENLİK KATMANI</h2>
-                <p>Sorunun çözümü için mevcut kod tabanında (Legacy Codebase) dağınık yamalar yapmak yerine, "Interceptor Pattern" kullanılarak merkezi bir Golang Middleware geliştirilmiştir.</p>
-                <h3>4.1. Neden Golang?</h3>
-                <ul>
-                    <li><strong>Statik Tipleme:</strong> Çalışma zamanı hatalarını (Runtime Errors) minimize eder.</li>
-                    <li><strong>Eşzamanlılık (Concurrency):</strong> Go'nun goroutine yapısı, binlerce eşzamanlı isteği minimum RAM tüketimiyle (her goroutine ~2KB) işleyebilir.</li>
-                    <li><strong>Performans:</strong> Node.js veya Python'a kıyasla, derlenmiş (compiled) bir dil olması nedeniyle CPU yoğun kriptografik işlemlerde (JWT Parsing) çok daha hızlıdır.</li>
-                </ul>
-                <h3>4.2. Uygulanan Kod Mimarisi (Örnek Implementasyon)</h3>
-                <p>Aşağıdaki Golang kodu, çözümün çekirdeğini oluşturan Middleware yapısını temsil etmektedir.</p>
-                <div class="code-block-wrapper">
-                    <pre><code class="language-go"> package middleware
+                    <h2 id="solution-architecture" class="section-title" style="text-align: left;">4. ÇÖZÜM MİMARİSİ: GOLANG TABANLI GÜVENLİK KATMANI</h2>
+                    <p>Sorunun çözümü için mevcut kod tabanında (Legacy Codebase) dağınık yamalar yapmak yerine, "Interceptor Pattern" kullanılarak merkezi bir Golang Middleware geliştirilmiştir.</p>
+                    <h3 id="neden-golang">4.1. Neden Golang?</h3>
+                    <ul>
+                        <li><strong>Statik Tipleme:</strong> Çalışma zamanı hatalarını (Runtime Errors) minimize eder.</li>
+                        <li><strong>Eşzamanlılık (Concurrency):</strong> Go'nun goroutine yapısı, binlerce eşzamanlı isteği minimum RAM tüketimiyle (her goroutine ~2KB) işleyebilir.</li>
+                        <li><strong>Performans:</strong> Node.js veya Python'a kıyasla, derlenmiş (compiled) bir dil olması nedeniyle CPU yoğun kriptografik işlemlerde (JWT Parsing) çok daha hızlıdır.</li>
+                    </ul>
+                    <h3 id="uygulanan-kod-mimarisi">4.2. Uygulanan Kod Mimarisi (Örnek Implementasyon)</h3>
+                    <p>Aşağıdaki Golang kodu, çözümün çekirdeğini oluşturan Middleware yapısını temsil etmektedir.</p>
+                    <div class="code-block-wrapper">
+<pre><code class="language-go"> package middleware
 
 import (
     "net/http"
@@ -122,25 +137,13 @@ func AuthorizeOrderAccess(next http.Handler, db *sql.DB) http.Handler {
         next.ServeHTTP(w, r)
     })
 }</code></pre>
-                    <button class="copy-btn">Kopyala</button>
-                </div>
+                    </div>
 
-                <h2 id="performance-analysis">5. PERFORMANS VE SONUÇ ANALİZİ</h2>
-                <p>Geliştirilen çözüm, JMeter ve K6 yük testi araçlarıyla, Production benzeri bir ortamda 5000 Sanal Kullanıcı (Virtual Users) ile test edilmiştir.</p>
-                <h3>5.1. Metrik Karşılaştırması</h3>
-                <table class="skills-table" style="margin-top: var(--spacing-md);">
-                     <thead>
-                        <tr><th>Metrik</th><th>Öncesi (Güvensiz)</th><th>Sonrası (Golang Middleware)</th><th>Değişim</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td data-label="Metrik">Ortalama Gecikme (Latency)</td><td data-label="Öncesi">145 ms</td><td data-label="Sonrası">153 ms</td><td data-label="Değişim">+8 ms (İhmal Edilebilir)</td></tr>
-                        <tr><td data-label="Metrik">99. Yüzdelik (P99)</td><td data-label="Öncesi">210 ms</td><td data-label="Sonrası">225 ms</td><td data-label="Değişim">Stabil</td></tr>
-                        <tr><td data-label="Metrik">CPU Kullanımı</td><td data-label="Öncesi">%45</td><td data-label="Sonrası">%48</td><td data-label="Değişim">+%3</td></tr>
-                        <tr><td data-label="Metrik">Güvenlik Skoru</td><td data-label="Öncesi">F (Kritik)</td><td data-label="Sonrası">A+ (Güvenli)</td><td data-label="Değişim">Tam Mitigasyon</td></tr>
-                    </tbody>
-                </table>
+                    <h2 id="performance-analysis" class="section-title" style="text-align: left;">5. PERFORMANS VE SONUÇ ANALİZİ</h2>
+                    <p>Geliştirilen çözüm, JMeter ve K6 yük testi araçlarıyla, Production benzeri bir ortamda 5000 Sanal Kullanıcı (Virtual Users) ile test edilmiştir.</p>
+                    <h3 id="metrik-karsilastirmasi">5.1. Metrik Karşılaştırması</h3>
                     <div class="table-wrapper">
-                        <table class="skills-table" style="margin-top: var(--spacing-md);">
+                        <table class="admin-table">
                             <thead>
                                 <tr><th>Metrik</th><th>Öncesi (Güvensiz)</th><th>Sonrası (Golang Middleware)</th><th>Değişim</th></tr>
                             </thead>
@@ -152,17 +155,17 @@ func AuthorizeOrderAccess(next http.Handler, db *sql.DB) http.Handler {
                             </tbody>
                         </table>
                     </div>
-                <p style="margin-top: var(--spacing-md);">Gecikmedeki 8ms'lik artış, veritabanı bağlantı havuzlama (Connection Pooling) ve Redis önbellekleme (Caching) stratejileri sayesinde kullanıcı tarafından hissedilmeyecek seviyede tutulmuştur.</p>
-                <h3>5.2. Sonuç</h3>
-                <p>Bu çalışma, Sıfır Güven (Zero Trust) mimarisinin bir uygulamasıdır. "Sisteme giren herkes güvenilirdir" anlayışı terk edilmiş, "Her istek, her kaynak için ayrı ayrı doğrulanmalıdır" prensibi benimsenmiştir. Golang ve TDD kombinasyonu, sadece güvenliği sağlamakla kalmamış, aynı zamanda projenin teknik borcunu (technical debt) düşürerek, gelecekteki özellik geliştirmeleri için sağlam, test edilebilir bir altyapı sunmuştur.</p>
-                <hr style="border-color: var(--color-border); margin: var(--spacing-xl) 0;">
-                <p style="text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">[Bu rapor Yusuf Avşar tarafından hazırlanmıştır ve tüm hakları saklıdır.]</p>
-            </article>
+                    <p class="margin-top-md">Gecikmedeki 8ms'lik artış, veritabanı bağlantı havuzlama (Connection Pooling) ve Redis önbellekleme (Caching) stratejileri sayesinde kullanıcı tarafından hissedilmeyecek seviyede tutulmuştur.</p>
+                    <h3 id="sonuc">5.2. Sonuç</h3>
+                    <p>Bu çalışma, Sıfır Güven (Zero Trust) mimarisinin bir uygulamasıdır. "Sisteme giren herkes güvenilirdir" anlayışı terk edilmiş, "Her istek, her kaynak için ayrı ayrı doğrulanmalıdır" prensibi benimsenmiştir. Golang ve TDD kombinasyonu, sadece güvenliği sağlamakla kalmamış, aynı zamanda projenin teknik borcunu (technical debt) düşürerek, gelecekteki özellik geliştirmeleri için sağlam, test edilebilir bir altyapı sunmuştur.</p>
+                    <hr class="article-divider">
+                    <p class="text-center text-secondary font-sm">[Bu rapor Yusuf Avşar tarafından hazırlanmıştır ve tüm hakları saklıdır.]</p>
+                </article>
             </div>
         </section>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
 
     <!-- Güvenli İçerik için Dinamik Filigran -->
     <div class="secure-watermark">YUSUF AVŞAR - TELİF HAKKI SAKLIDIR</div>

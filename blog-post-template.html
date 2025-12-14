@@ -5,38 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Makale Başlığı - Yusuf Avşar</title>
     <meta name="description" content="Makalenin kısa bir özeti buraya gelecek.">
+    <link rel="canonical" href="https://yusufavsarofficial.github.io/blog-post-template.html"> <!-- Canonical URL'yi güncelleyin -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yusufavsarofficial.github.io/blog-post-template.html">
+    <meta property="og:title" content="Makale Başlığı - Yusuf Avşar">
+    <meta property="og:description" content="Makalenin kısa bir özeti buraya gelecek.">
+    <meta property="og:image" content="https://yusufavsarofficial.github.io/assets/images/blog/default-blog-image.jpg"> <!-- Varsayılan görseli güncelleyin -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yusufavsarofficial.github.io/blog-post-template.html">
+    <meta property="twitter:title" content="Makale Başlığı - Yusuf Avşar">
+    <meta property="twitter:description" content="Makalenin kısa bir özeti buraya gelecek.">
+    <meta property="twitter:image" content="https://yusufavsarofficial.github.io/assets/images/blog/default-blog-image.jpg"> <!-- Varsayılan görseli güncelleyin -->
+
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome ikonları için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Nirvana İyileştirmeleri (Fare Efekti) -->
     <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
     <div class="cursor cursor-dot"></div>
     <div class="cursor cursor-outline"></div>
 
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main>
-        <div class="container">
-            <div class="blog-layout">
-                <!-- İçindekiler Kenar Çubuğu -->
-                <aside class="toc-sidebar">
-                    <div class="toc-sticky-wrapper">
-                        <span class="toc-title">İÇİNDEKİLER</span>
-                        <ul id="toc-list" class="toc-list">
-                            <!-- İçerik JavaScript ile dinamik olarak doldurulacak -->
-                        </ul>
-                    </div>
-                </aside>
-
-                <!-- Blog İçeriği -->
-                <article class="blog-post-content">
-                    <header class="blog-header">
-                        <h1>Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h1>
+        <section class="section-padding blog-layout">
+            <div class="container">
+                <article class="blog-post-content glass-panel scroll-reveal">
+                    <div class="blog-header">
+                        <h1 class="section-title" style="text-align: left;">Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h1>
                         <p class="blog-meta">14 Kasım 2023 · 15 dakika okuma</p>
-                    </header>
+                    </div>
 
                     <blockquote class="blog-blockquote">
                         <strong>ÖZET:</strong> Bu makale, modern dağıtık sistemlerdeki artan saldırı yüzeyine yanıt olarak, Sıfır Güven (Zero Trust) modelini esas alan, kapsamlı bir mikroservis mimarisi tasarım metodolojisini sunmaktadır.
@@ -89,14 +95,24 @@ func CheckAuthorization(req *http.Request, resourceID int) error {
                     <h2 id="sonuc">IV. SONUÇ VE ÖNERİLER</h2>
                     <p>Siber güvenlik odaklı mikroservis mimarisi, geleneksel yöntemlerin ötesinde kriptografik kesinlik, minimum yetki ve zorunlu otomasyon gerektirir. Bu makalede sunulan mTLS, PaC ve sıkı yetkilendirme prensipleri, mimarinizi saldırganların yatay hareketine ve mantık zafiyetlerine karşı dayanıklı hale getirecektir.</p>
 
+                    <div class="like-section">
+                        <button id="likeBtn" class="btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i> Beğen</button>
+                        <span id="likeCount" class="like-count">0 beğeni</span> <!-- Şablon için varsayılan değer -->
+                    </div>
                 </article>
+
+                <aside class="toc-sidebar scroll-reveal" style="transition-delay: 500ms;">
+                    <div class="toc-sticky-wrapper glass-panel">
+                        <span class="toc-title">İÇİNDEKİLER</span>
+                        <ul class="toc-list" id="toc-list"></ul>
+                    </div>
+                </aside>
             </div>
-        </div>
+        </section>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
 
-    <!-- Dinamik bileşenleri ve interaktif özellikleri yükler -->
     <script src="app.js" defer></script>
 
 </body>

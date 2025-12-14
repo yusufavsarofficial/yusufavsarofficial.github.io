@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 scenario: [
                     { text: 'INFO: [Ettercap] DNS zehirleme modülü başlatılıyor...', class: 'log-info' },
                     { text: 'INFO: Hedef taranıyor: 192.168.1.105', class: 'log-info', delay: 500 },
-                    { text: 'INFO: Ağ geçidi (Gateway) tespit edildi: 192.168.1.1', class: 'log-info' },
+                    { text: 'INFO: Ağ geçidi (Gateway) tespit edildi: 192.168.1.1', class: 'log-info', delay: 1000 },
                     { text: 'ACTION: ARP spoofing başlatıldı. Hedef ile ağ geçidi arasına giriliyor...', class: 'log-highlight', delay: 1000 },
                     { text: 'SUCCESS: Man-in-the-middle pozisyonu başarıyla alındı.', class: 'log-success' },
                     { text: 'INFO: DNS sorguları dinleniyor...', class: 'log-info', delay: 1500 },
@@ -686,6 +686,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     *  16. YUKARI KAYDIR BUTONU
+     * ------------------------------------------------------------------------
+     * Sayfa belirli bir seviyeden aşağı kaydırıldığında "Yukarı Kaydır" butonunu
+     * gösterir/gizler ve tıklandığında sayfanın en üstüne sorunsuz bir şekilde kaydırır.
+     */
+    const handleBackToTop = () => {
+        const backToTopButton = document.getElementById('back-to-top');
+        if (!backToTopButton) return;
+
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) { // 300px aşağı kaydırıldığında göster
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        };
+
+        window.addEventListener('scroll', toggleVisibility);
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Yumuşak kaydırma animasyonu
+            });
+        });
+
+        // Sayfa yüklendiğinde bir kez çalıştır
+        toggleVisibility();
+    };
+
+
+    /**
+     * ------------------------------------------------------------------------
      *  11. SOSYAL MEDYA PAYLAŞIM BUTONLARI
      * ------------------------------------------------------------------------
      * Blog yazılarının sonunda yer alan paylaşım butonlarının işlevselliğini
@@ -725,6 +758,113 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         }
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     *  15. AVZARTECH AI CHATBOT İŞLEVLERİ
+     * ------------------------------------------------------------------------
+     * AI asistanının açılıp kapanmasını ve mesajlaşma arayüzünü yönetir.
+     */
+    const handleAIChatbot = () => {
+        const chatbotContainer = document.getElementById('avsar-tech-ai-chatbot');
+        if (!chatbotContainer) return;
+
+        const toggleButton = document.getElementById('ai-chatbot-toggle');
+        const chatbotWindow = chatbotContainer.querySelector('.ai-chatbot-window');
+        const closeButton = chatbotContainer.querySelector('.ai-chatbot-close');
+        const messagesContainer = document.getElementById('ai-chatbot-messages');
+        const userInput = document.getElementById('ai-user-input');
+        const sendButton = document.getElementById('ai-send-button');
+
+        // Toggle chatbot window
+        toggleButton.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+            toggleButton.classList.toggle('active');
+            if (chatbotWindow.classList.contains('active')) {
+                userInput.focus();
+                scrollToBottom();
+            }
+        });
+
+        // Close chatbot window
+        closeButton.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+            toggleButton.classList.remove('active');
+        });
+
+        // Add message to chat window
+        const addMessage = (text, sender) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', `${sender}-message`);
+            messageDiv.innerHTML = `<p>${text}</p>`;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        };
+
+        // Scroll to the bottom of the messages container
+        const scrollToBottom = () => {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        };
+
+        // Bot yanıtını Netlify fonksiyonundan al
+        const getBotResponse = async (userMessage) => {
+            try {
+                const response = await fetch('/.netlify/functions/chatbot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Chatbot API hatası: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                return result.response; // Botun yanıtını döndür
+            } catch (error) {
+                console.error('AI Chatbot API hatası:', error);
+                return `Üzgünüm, şu an için botla iletişim kurulamıyor. Lütfen daha sonra tekrar deneyin veya farklı bir şekilde sorun.`;
+            }
+        };
+
+        // Send message
+        const sendMessage = async () => {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            addMessage(messageText, 'user');
+            userInput.value = '';
+            sendButton.disabled = true; // Mesaj gönderilirken butonu devre dışı bırak
+
+            // Yazıyor göstergesini ekle
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('message', 'bot-message', 'typing-indicator');
+            typingIndicator.innerHTML = '<p><span></span><span></span><span></span></p>';
+            messagesContainer.appendChild(typingIndicator);
+            scrollToBottom();
+
+            // Bot yanıtını al
+            const botResponse = await getBotResponse(messageText);
+
+            // Yazıyor göstergesini kaldır
+            messagesContainer.removeChild(typingIndicator);
+
+            // Bot yanıtını ekle
+            addMessage(botResponse, 'bot');
+            sendButton.disabled = false; // Butonu tekrar aktif et
+        };
+
+        // Send message on button click
+        sendButton.addEventListener('click', sendMessage);
+
+        // Send message on Enter key press
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Enter tuşunun varsayılan hareketini engelle (örn. form gönderme)
+                sendMessage();
+            }
+        });
     };
 
     /**
@@ -887,6 +1027,8 @@ document.addEventListener('DOMContentLoaded', () => {
         handleFAQ(); // SSS akordiyonunu burada başlat
         handleSecureContent(); // Güvenli içerik korumasını başlat
         handleShareButtons(); // Paylaşım butonlarını başlat
+        handleBackToTop(); // Yukarı Kaydır butonunu başlat
+        handleAIChatbot(); // AvsarTech AI Chatbot'u başlat
         // handleAntiDebugging(); // Geliştirici araçları engellemesini başlat - Geliştirme sırasında kapalı tutulabilir
     };
 

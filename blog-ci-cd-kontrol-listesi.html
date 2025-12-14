@@ -1,79 +1,101 @@
-,<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi) | Yusuf Avşar</title>
     <meta name="description" content="Yusuf Avşar'ın güvenli CI/CD kontrol listesi ile kodunuzu üretim ortamına göndermeden önce son 5 dakikada güvenlik açıklarını tespit edin. SAST, SCA, konteyner ve altyapı güvenliği adımları.">
-    <title>Yusuf Avşar - Güvenli CI/CD Kontrol Listesi</title>
+    <link rel="canonical" href="https://yusufavsarofficial.github.io/blog-ci-cd-kontrol-listesi.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yusufavsarofficial.github.io/blog-ci-cd-kontrol-listesi.html">
+    <meta property="og:title" content="Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi) | Yusuf Avşar">
+    <meta property="og:description" content="Yusuf Avşar'ın güvenli CI/CD kontrol listesi ile kodunuzu üretim ortamına göndermeden önce son 5 dakikada güvenlik açıklarını tespit edin. SAST, SCA, konteyner ve altyapı güvenliği adımları.">
+    <meta property="og:image" content="https://yusufavsarofficial.github.io/assets/images/blog/ci-cd-kontrol-listesi.jpg"> <!-- Bu görseli güncelleyebilirsiniz -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yusufavsarofficial.github.io/blog-ci-cd-kontrol-listesi.html">
+    <meta property="twitter:title" content="Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi) | Yusuf Avşar">
+    <meta property="twitter:description" content="Yusuf Avşar'ın güvenli CI/CD kontrol listesi ile kodunuzu üretim ortamına göndermeden önce son 5 dakikada güvenlik açıklarını tespit edin. SAST, SCA, konteyner ve altyapı güvenliği adımları.">
+    <meta property="twitter:image" content="https://yusufavsarofficial.github.io/assets/images/blog/ci-cd-kontrol-listesi.jpg"> <!-- Bu görseli güncelleyebilirsiniz -->
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="blog-components.css">
     <!-- Font Awesome ikonları için -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Nirvana İyileştirmeleri (Fare Efekti) -->
     <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
     <div class="cursor cursor-dot"></div>
     <div class="cursor cursor-outline"></div>
 
-    <!-- Header buraya dinamik olarak yüklenecek -->
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main>
-        <section class="page-content">
-            <div class="container" style="max-width: 800px; text-align: left;">
-                <h2>Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi)</h2>
-                <p class="post-card-meta" style="margin-bottom: 2rem;">Yayın Tarihi: 22 Haziran 2024 · 8 dakika okuma</p>
-                
-                <h3>Giriş: Güvenlik, Hızı Kesmemeli</h3>
-                <p>Modern yazılım geliştirme dünyasında hız esastır. Hızla geliştirir, hızla test eder ve hızla dağıtırız. Ancak bu hız, güvenlikten ödün vermek anlamına gelmemeli. CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım) boru hattı, bir güvenlik duvarının ötesinde, savunma katmanlarının otomatikleştirildiği en kritik kontrol noktasıdır.</p>
-                <p>Sizlere, yüzlerce dağıtımda uyguladığım ve kritik bir zafiyetin Production ortamına sızmasını engelleyen, "Son 5 Dakika Güvenlik Kontrol Listesi" stratejisini sunuyorum. Bu kontrol listesi, CI/CD adımlarınıza entegre edildiğinde, manuel güvenlik incelemesi beklemeden otomatik koruma sağlar.</p>
+        <section class="section-padding blog-layout">
+            <div class="container">
+                <article class="blog-post-content glass-panel scroll-reveal">
+                    <div class="blog-header">
+                        <h1 class="section-title" style="text-align: left;">Kodu Üretim Ortamına Göndermeden Önceki Son 5 Dakika (Güvenli CI/CD Kontrol Listesi)</h1>
+                        <p class="blog-meta">Yayın Tarihi: 22 Haziran 2024 · 8 dakika okuma</p>
+                    </div>
+                    
+                    <p>Modern yazılım geliştirme dünyasında hız esastır. Hızla geliştirir, hızla test eder ve hızla dağıtırız. Ancak bu hız, güvenlikten ödün vermek anlamına gelmemeli. CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım) boru hattı, bir güvenlik duvarının ötesinde, savunma katmanlarının otomatikleştirildiği en kritik kontrol noktasıdır.</p>
+                    <p>Sizlere, yüzlerce dağıtımda uyguladığım ve kritik bir zafiyetin Production ortamına sızmasını engelleyen, "Son 5 Dakika Güvenlik Kontrol Listesi" stratejisini sunuyorum. Bu kontrol listesi, CI/CD adımlarınıza entegre edildiğinde, manuel güvenlik incelemesi beklemeden otomatik koruma sağlar.</p>
 
-                <h3>I. 1. Aşama (2 Dakika): Kodun Kendisini Kontrol Et</h3>
-                <p>Bu aşamada, henüz uygulama çalışmaya başlamadan, kod ve bağımlılıkları incelenir.</p>
-                <ul>
-                    <li><strong>Statik Uygulama Güvenlik Testi (SAST):</strong> Kodu çalıştırmadan, potansiyel güvenlik açıklarını (SQLi, XSS, Hardcoded Secrets) otomatik olarak tarayın. Eşik kuralı belirleyin: Yüksek veya Kritik seviyedeki bulgular pipeline'ı durdurmalıdır.</li>
-                    <li><strong>Yazılım Bileşen Analizi (SCA):</strong> Projenizin kullandığı tüm üçüncü parti kütüphaneleri ve bağımlılıkları tarayın (npm, pip, go mod). Bilinen zafiyetleri (CVE'ler) olan kütüphanelerin dağıtımını engelleyin.</li>
-                </ul>
+                    <h2 id="asama-kodu-kontrol-et">I. 1. Aşama (2 Dakika): Kodun Kendisini Kontrol Et</h2>
+                    <p>Bu aşamada, henüz uygulama çalışmaya başlamadan, kod ve bağımlılıkları incelenir.</p>
+                    <ul>
+                        <li><strong>Statik Uygulama Güvenlik Testi (SAST):</strong> Kodu çalıştırmadan, potansiyel güvenlik açıklarını (SQLi, XSS, Hardcoded Secrets) otomatik olarak tarayın. Eşik kuralı belirleyin: Yüksek veya Kritik seviyedeki bulgular pipeline'ı durdurmalıdır.</li>
+                        <li><strong>Yazılım Bileşen Analizi (SCA):</strong> Projenizin kullandığı tüm üçüncü parti kütüphaneleri ve bağımlılıkları tarayın (npm, pip, go mod). Bilinen zafiyetleri (CVE'ler) olan kütüphanelerin dağıtımını engelleyin.</li>
+                    </ul>
 
-                <h3>II. 2. Aşama (1 Dakika): Konteyner Güvenliğini İncele</h3>
-                <p>Uygulama kodunuz temiz olabilir, ancak onu barındıran Docker imajı güvensiz olabilir.</p>
-                <ul>
-                    <li><strong>Temel İmaj Zafiyet Taraması:</strong> Kullanılan Docker imajlarının (Örn: node:latest veya alpine:3.15) temel işletim sistemi katmanındaki zafiyetleri tarayın (Örn: Trivy, Clair ile). Zafiyet yoğunluğu yüksek olan imajların dağıtımını engelleyin.</li>
-                    <li><strong>En Az Ayrıcalık Kontrolü:</strong> İmajın root kullanıcısı yerine, özel, düşük yetkili bir kullanıcı ile çalışıp çalışmadığını (USER komutu) kontrol edin.</li>
-                </ul>
+                    <h2 id="asama-konteyner-guvenligini-incele">II. 2. Aşama (1 Dakika): Konteyner Güvenliğini İncele</h2>
+                    <p>Uygulama kodunuz temiz olabilir, ancak onu barındıran Docker imajı güvensiz olabilir.</p>
+                    <ul>
+                        <li><strong>Temel İmaj Zafiyet Taraması:</strong> Kullanılan Docker imajlarının (Örn: node:latest veya alpine:3.15) temel işletim sistemi katmanındaki zafiyetleri tarayın (Örn: Trivy, Clair ile). Zafiyet yoğunluğu yüksek olan imajların dağıtımını engelleyin.</li>
+                        <li><strong>En Az Ayrıcalık Kontrolü:</strong> İmajın root kullanıcısı yerine, özel, düşük yetkili bir kullanıcı ile çalışıp çalışmadığını (USER komutu) kontrol edin.</li>
+                    </ul>
 
-                <h3>III. 3. Aşama (1 Dakika): Altyapı Güvenliğini Doğrula (Policy as Code)</h3>
-                <p>Uygulama ve konteyner güvenliyse, sırada onu barındıracak ortamın güvenliği var. Bu adım, özellikle Kubernetes ve Terraform kullananlar için hayati önem taşır.</p>
-                <ul>
-                    <li><strong>IaC Güvenlik Kuralı Kontrolü:</strong> Terraform veya CloudFormation kodunuzu tarayın. (Örn: SentinelPipe prensipleriyle): Açık S3 kovası var mı? Güvenlik grupları her yerden SSH erişimine izin veriyor mu?</li>
-                    <li><strong>Kubernetes Policy Check:</strong> Dağıtılacak Pod tanımının, küme politikalarınıza uyup uymadığını kontrol edin. OPA Gatekeeper veya Kyverno kullanarak, yetkisiz Pod'ların veya Volume montajlarına izin veren dağıtımları otomatik olarak reddedin.</li>
-                </ul>
+                    <h2 id="asama-altyapi-guvenligini-dogrula">III. 3. Aşama (1 Dakika): Altyapı Güvenliğini Doğrula (Policy as Code)</h2>
+                    <p>Uygulama ve konteyner güvenliyse, sırada onu barındıracak ortamın güvenliği var. Bu adım, özellikle Kubernetes ve Terraform kullananlar için hayati önem taşır.</p>
+                    <ul>
+                        <li><strong>IaC Güvenlik Kuralı Kontrolü:</strong> Terraform veya CloudFormation kodunuzu tarayın. (Örn: SentinelPipe prensipleriyle): Açık S3 kovası var mı? Güvenlik grupları her yerden SSH erişimine izin veriyor mu?</li>
+                        <li><strong>Kubernetes Policy Check:</strong> Dağıtılacak Pod tanımının, küme politikalarınıza uyup uymadığını kontrol edin. OPA Gatekeeper veya Kyverno kullanarak, yetkisiz Pod'ların veya Volume montajlarına izin veren dağıtımları otomatik olarak reddedin.</li>
+                    </ul>
 
-                <h3>IV. 4. Aşama (1 Dakika): Kritik Çevresel Kontroller</h3>
-                <p>Bu, son, genellikle gözden kaçan güvenlik katmanıdır.</p>
-                <ul>
-                    <li><strong>Gizli Bilgi (Secrets) Kontrolü:</strong> Yapılandırma dosyalarında, ortam değişkenlerinde veya kodda hardcoded parola, API anahtarı veya token olup olmadığını kontrol edin. Hardcoded bilginin buluşması durumunda pipeline anında durdurulmalıdır.</li>
-                    <li><strong>Çevre Değişkeni İncelemesi:</strong> Üretim ortamında olması gerekmeyen (Örn: DEBUG=TRUE, ENV=DEV) değişkenlerin yanlışlıkla Production'a gönderilmediğinden emin olun.</li>
-                </ul>
+                    <h2 id="asama-kritik-cevresel-kontroller">IV. 4. Aşama (1 Dakika): Kritik Çevresel Kontroller</h2>
+                    <p>Bu, son, genellikle gözden kaçan güvenlik katmanıdır.</p>
+                    <ul>
+                        <li><strong>Gizli Bilgi (Secrets) Kontrolü:</strong> Yapılandırma dosyalarında, ortam değişkenlerinde veya kodda hardcoded parola, API anahtarı veya token olup olmadığını kontrol edin. Hardcoded bilginin buluşması durumunda pipeline anında durdurulmalıdır.</li>
+                        <li><strong>Çevre Değişkeni İncelemesi:</strong> Üretim ortamında olması gerekmeyen (Örn: DEBUG=TRUE, ENV=DEV) değişkenlerin yanlışlıkla Production'a gönderilmediğinden emin olun.</li>
+                    </ul>
 
-                <h3>Sonuç: Güvenlik Hızı Artırır</h3>
-                <p>Bu 5 dakikalık otomasyon stratejisi, geliştiriciye güvenlik onayı bekleme zorunluluğunu ortadan kaldırır. Güvenliği, dağıtım sürecinin doğal bir parçası haline getirerek hem hızı artırır hem de hata yapma olasılığını sıfıra yaklaştırır.</p>
-                <p>CI/CD boru hatlarınıza bu tür ileri düzey güvenlik otomasyonlarını entegre etmek ve SentinelPipe prensiplerini uygulamak için <a href="faaliyetlerim.html">Otomatikleştirilmiş DevSecOps Altyapısı Faaliyetleri</a> alanımda benimle iletişime geçebilirsiniz.</p>
+                    <h2 id="sonuc-guvenlik-hizi-artirir">Sonuç: Güvenlik Hızı Artırır</h2>
+                    <p>Bu 5 dakikalık otomasyon stratejisi, geliştiriciye güvenlik onayı bekleme zorunluluğunu ortadan kaldırır. Güvenliği, dağıtım sürecinin doğal bir parçası haline getirerek hem hızı artırır hem de hata yapma olasılığını sıfıra yaklaştırır.</p>
+                    <p>CI/CD boru hatlarınıza bu tür ileri düzey güvenlik otomasyonlarını entegre etmek ve SentinelPipe prensiplerini uygulamak için <a href="faaliyetlerim.html">Otomatikleştirilmiş DevSecOps Altyapısı Faaliyetleri</a> alanımda benimle iletişime geçebilirsiniz.</p>
 
-                <div class="like-section">
-                    <button id="likeBtn" class="like-btn">Beğen</button>
-                    <span id="likeCount" class="like-count">112,670 beğeni</span>
-                </div>
+                    <div class="like-section">
+                        <button id="likeBtn" class="btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i> Beğen</button>
+                        <span id="likeCount" class="like-count">112,670 beğeni</span>
+                    </div>
+                </article>
+
+                <aside class="toc-sidebar scroll-reveal" style="transition-delay: 500ms;">
+                    <div class="toc-sticky-wrapper glass-panel">
+                        <span class="toc-title">İÇİNDEKİLER</span>
+                        <ul class="toc-list" id="toc-list"></ul>
+                    </div>
+                </aside>
             </div>
         </section>
     </main>
 
-    <!-- Footer buraya dinamik olarak yüklenecek -->
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
 
     <script src="app.js" defer></script>
 

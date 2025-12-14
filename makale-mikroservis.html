@@ -4,58 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yusuf Avşar - Siber Güvenlik Odaklı Mikroservis Mimarisi</title>
+    <meta name="description" content="Sıfır Güven (Zero Trust) modelini esas alan, Service Mesh (mTLS) ve Policy as Code (PaC) gibi ileri düzey teknikleri analiz eden kapsamlı bir mimari tasarım metodolojisi.">
+    <link rel="canonical" href="https://yusufavsarofficial.github.io/makale-mikroservis.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yusufavsarofficial.github.io/makale-mikroservis.html">
+    <meta property="og:title" content="Yusuf Avşar - Siber Güvenlik Odaklı Mikroservis Mimarisi">
+    <meta property="og:description" content="Sıfır Güven (Zero Trust) modelini esas alan, Service Mesh (mTLS) ve Policy as Code (PaC) gibi ileri düzey teknikleri analiz eden kapsamlı bir mimari tasarım metodolojisi.">
+    <meta property="og:image" content="https://yusufavsarofficial.github.io/assets/images/blog/makale-mikroservis.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yusufavsarofficial.github.io/makale-mikroservis.html">
+    <meta property="twitter:title" content="Yusuf Avşar - Siber Güvenlik Odaklı Mikroservis Mimarisi">
+    <meta property="twitter:description" content="Sıfır Güven (Zero Trust) modelini esas alan, Service Mesh (mTLS) ve Policy as Code (PaC) gibi ileri düzey teknikleri analiz eden kapsamlı bir mimari tasarım metodolojisi.">
+    <meta property="twitter:image" content="https://yusufavsarofficial.github.io/assets/images/blog/makale-mikroservis.jpg">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="blog-components.css">
     <!-- Font Awesome ikonları için -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3063523279693718"
      crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Nirvana İyileştirmeleri (Fare Efekti) -->
     <div class="preloader"><div class="logo"><a href="index.html">YUSUF AVŞAR<span class="cursor">_</span></a></div></div>
     <div class="cursor cursor-dot"></div>
     <div class="cursor cursor-outline"></div>
 
-    <!-- Header buraya dinamik olarak yüklenecek -->
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
-    <main>
-        <section class="page-content">
-            <div class="container about-manifesto" style="max-width: 900px;">
-                <h2 style="text-align: center; font-size: 2.2rem;">Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h2>
-                <p style="text-align: center; font-size: 1.2rem; opacity: 0.8; margin-top: -1rem;">Analitik Derinlik ve Uygulama Metodolojisi</p>
-                
-                <blockquote style="border-left: 4px solid var(--secondary-color); padding-left: 1rem; margin: 2rem 0; font-style: italic;">
-                    <strong>ÖZET (ABSTRACT):</strong> Bu makale, modern dağıtık sistemlerdeki artan saldırı yüzeyine yanıt olarak, Sıfır Güven (Zero Trust) modelini esas alan, kapsamlı bir mikroservis mimarisi tasarım metodolojisini sunmaktadır. Geleneksel çevresel güvenlik modelinin yetersizliğini tartışmakta; Service Mesh (mTLS), Policy as Code (PaC) ve Kriptografik Kontroller gibi ileri düzey tekniklerin uygulama pratiklerini, performans etkilerini (latency overhead) ve güvenlik risk skorlamasına etkilerini (risk scoring) analiz etmektedir. Amaç, güvenliği bir maliyet merkezi değil, bir mimari gereklilik olarak konumlandırmaktır.
-                </blockquote>
+    <main class="section-padding">
+        <div class="container">
+            <div class="blog-layout">
+                <!-- İçindekiler Kenar Çubuğu -->
+                <aside class="toc-sidebar glass-panel scroll-reveal">
+                    <div class="toc-sticky-wrapper">
+                        <span class="toc-title">İÇİNDEKİLER</span>
+                        <ul id="toc-list" class="toc-list">
+                            <!-- İçerik JavaScript ile dinamik olarak doldurulacak -->
+                        </ul>
+                    </div>
+                </aside>
 
-                <div class="manifesto-section">
-                    <h3>I. GİRİŞ: MİMARİ RİSKİN DEĞİŞEN MANZARASI</h3>
+                <!-- Makale İçeriği -->
+                <article class="blog-post-content">
+                    <header class="blog-header">
+                        <h1 class="section-title">Siber Güvenlik Odaklı Mikroservis Mimarisi Tasarımı</h1>
+                        <p class="blog-meta">Analitik Derinlik ve Uygulama Metodolojisi</p>
+                    </header>
+                    
+                    <blockquote class="blog-blockquote">
+                        <strong>ÖZET (ABSTRACT):</strong> Bu makale, modern dağıtık sistemlerdeki artan saldırı yüzeyine yanıt olarak, Sıfır Güven (Zero Trust) modelini esas alan, kapsamlı bir mikroservis mimarisi tasarım metodolojisini sunmaktadır. Geleneksel çevresel güvenlik modelinin yetersizliğini tartışmakta; Service Mesh (mTLS), Policy as Code (PaC) ve Kriptografik Kontroller gibi ileri düzey tekniklerin uygulama pratiklerini, performans etkilerini (latency overhead) ve güvenlik risk skorlamasına etkilerini (risk scoring) analiz etmektedir. Amaç, güvenliği bir maliyet merkezi değil, bir mimari gereklilik olarak konumlandırmaktır.
+                    </blockquote>
+
+                    <h2 id="giris-mimari-riskin-degisen-manzarasi">I. GİRİŞ: MİMARİ RİSKİN DEĞİŞEN MANZARASI</h2>
                     <p>Mikroservisler, çevikliği ve ölçeklenebilirliği getirse de, iki kritik risk alanı yarattı: Yatay Hareket (Lateral Movement) ve Bozuk Yetkilendirme Mantığı (BOLA).</p>
-                    <h4>1.1. Yatay Hareket Riski ve Güvenlik Etki Analizi</h4>
+                    <h3 id="yatay-hareket-riski">1.1. Yatay Hareket Riski ve Güvenlik Etki Analizi</h3>
                     <p>Geleneksel mimaride, başarılı bir dış ihlal sonrası saldırgan içeride "güvenli bölgeye" girerdi. Mikroservislerde ise, her servis arasındaki iletişimin şifrelenmemesi ve yetkilendirilmemesi, bir servisin ihlali durumunda saldırganın içeride hızla yayılmasına olanak tanır. [1]</p>
                     <p><strong>Tehlike Skoru Artışı:</strong> Sistemin yalnızca dış erişim için güvenlik puanı <span>R</span><sub>ext</sub> iken, dahili iletişimin güvensizliği, sistemin iç risk skorunu <span>R</span><sub>int</sub> ile çarpar. Etki Analizi (Impact Analysis) metriklerine göre, <span>R</span><sub>total</sub> = <span>R</span><sub>ext</sub> × (1 + <span>R</span><sub>int</sub>). Sıfır Güven, <span>R</span><sub>int</sub> değerini ~0 yapmayı hedefler.</p>
-                    <h4>1.2. Metodoloji: Güvenliğin Dört Katmanı</h4>
+                    <h3 id="metodoloji-guvenligin-dort-katmani">1.2. Metodoloji: Güvenliğin Dört Katmanı</h3>
                     <p>Tasarım metodolojimiz, güvenliği dört bağımsız ama entegre katmana ayırır: Ağ Katmanı, Yetkilendirme Katmanı, Veri Katmanı ve Yönetim Katmanı.</p>
-                </div>
 
-                <div class="manifesto-section">
-                    <h3>II. AĞ KATMANI GÜVENLİĞİ: SIFIR GÜVEN VE SERVICE MESH ANALİZİ</h3>
-                    <h4>2.1. mTLS Uygulamasının Teknik Derinliği</h4>
+                    <h2 id="ag-katmani-guvenligi">II. AĞ KATMANI GÜVENLİĞİ: SIFIR GÜVEN VE SERVICE MESH ANALİZİ</h2>
+                    <h3 id="mtls-uygulamasinin-teknik-derinligi">2.1. mTLS Uygulamasının Teknik Derinliği</h3>
                     <p>Sıfır Güven modelinin temel taşı mTLS uygulamasıdır. Her servisin sadece geçerli bir sertifikaya sahip olan diğer servislerle iletişim kurması zorunlu kılınır. Service Mesh (Istio, Linkerd) bu süreci otomatikleştirir.</p>
                     <p><strong>Performans Kaygıları (Latency Overhead):</strong> mTLS şifreleme ve şifre çözme işlemleri CPU yükü ve gecikme (latency) yaratır. Endüstri analizlerine göre [2], Sidecar'ların yarattığı gecikme, ek yükü optimize etmek için Go veya Rust ile yazılmış proxy'ler (Envoy) kullanılarak genellikle 1-5 milisaniye (τ<sub>mTLS</sub>) aralığında tutulur.</p>
-                    <h4>2.2. Ağ Topolojisi Güvenliği</h4>
+                    <h3 id="ag-topolojisi-guvenligi">2.2. Ağ Topolojisi Güvenliği</h3>
                     <p>Service Mesh haricinde, Kubernetes içinde Ağ Politikaları (Network Policies) uygulanarak, servislerin Namespace ve Label'larına göre iletişim kısıtlanır. Bu, bir ihlal durumunda yayılabileceği alanı kriptografik ve mantıksal olarak sınırlar.</p>
-                </div>
 
-                <div class="manifesto-section">
-                    <h3>III. YETKİLENDİRME VE UYGULAMA MANTIĞI KONTROLÜ</h3>
-                    <h4>3.1. JWT Token'larının Güvenli Kullanımı ve Hardening</h4>
+                    <h2 id="yetkilendirme-uygulama-mantigi-kontrolu">III. YETKİLENDİRME VE UYGULAMA MANTIĞI KONTROLÜ</h2>
+                    <h3 id="jwt-tokenlarinin-guvenli-kullanimi">3.1. JWT Token'larının Güvenli Kullanımı ve Hardening</h3>
                     <p>API Gateway'de üretilen JWT'ler, servislere ulaştığında sadece varlığı değil, içeriği ve kullanım amacı doğrulanmalıdır. Servisler, token'ı alıp sadece imzayı (HMAC<sub>sig</sub>) kontrol etmekle kalmamalı, aynı zamanda algoritma, süre (exp) ve hedef kitle (aud) gibi kriterleri de doğrulamalıdır.</p>
                     <p><strong>BOLA Önleme Pseudosu:</strong></p>
-<div class="code-block-wrapper">
+                    <div class="code-block-wrapper">
 <pre><code class="language-go">func CheckAuthorization(req *http.Request, resourceID int) error {
     userID := req.Context().Value("claims").("sub") // JWT'den alınan kullanıcı ID
     ownerID := db.GetResourceOwner(resourceID)      // Veritabanından kaynak sahibi ID
@@ -66,55 +89,87 @@
     }
     return nil
 }</code></pre>
-</div>
-                    <h4>3.2. Sır Yönetiminde Yöntem Karşılaştırması</h4>
+                    </div>
+                    <h3 id="sir-yonetiminde-yontem-karsilastirmasi">3.2. Sır Yönetiminde Yöntem Karşılaştırması</h3>
                     <p>Sırların yönetiminde merkezi bir Vault kullanmak esastır. Aşağıda HashiCorp Vault ve AWS KMS/Secrets Manager karşılaştırması yer almaktadır:</p>
-                    <table class="skills-table">
-                        <thead><tr><th>Yöntem</th><th>HashiCorp Vault</th><th>AWS KMS/Secrets Manager</th></tr></thead>
-                        <tbody>
-                            <tr><td data-label="Yöntem">Avantaj</td><td data-label="HashiCorp Vault">Bulut Bağımsızlığı vs. Derin Entegrasyon</td><td data-label="AWS KMS/Secrets Manager">AWS Eko-Sistemi</td></tr>
-                            <tr><td data-label="Yöntem">Anahtar Rotasyonu</td><td data-label="HashiCorp Vault">Otomatikleştirilebilir</td><td data-label="AWS KMS/Secrets Manager">Otomatik</td></tr>
-                            <tr><td data-label="Yöntem">Erişim Modeli</td><td data-label="HashiCorp Vault">Kira Modeli (Leasing)</td><td data-label="AWS KMS/Secrets Manager">İzin Modeli</td></tr>
-                            <tr><td data-label="Yöntem">Kullanım</td><td data-label="HashiCorp Vault">Dinamik Veritabanı Kimlik Bilgileri</td><td data-label="AWS KMS/Secrets Manager">Statik API Anahtarları</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Yöntem</th>
+                                    <th>HashiCorp Vault</th>
+                                    <th>AWS KMS/Secrets Manager</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Yöntem">Avantaj</td>
+                                    <td data-label="HashiCorp Vault">Bulut Bağımsızlığı vs. Derin Entegrasyon</td>
+                                    <td data-label="AWS KMS/Secrets Manager">AWS Eko-Sistemi</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Yöntem">Anahtar Rotasyonu</td>
+                                    <td data-label="HashiCorp Vault">Otomatikleştirilebilir</td>
+                                    <td data-label="AWS KMS/Secrets Manager">Otomatik</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Yöntem">Erişim Modeli</td>
+                                    <td data-label="HashiCorp Vault">Kira Modeli (Leasing)</td>
+                                    <td data-label="AWS KMS/Secrets Manager">İzin Modeli</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Yöntem">Kullanım</td>
+                                    <td data-label="HashiCorp Vault">Dinamik Veritabanı Kimlik Bilgileri</td>
+                                    <td data-label="AWS KMS/Secrets Manager">Statik API Anahtarları</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div class="manifesto-section">
-                    <h3>IV. ALTYAPI GÜVENLİĞİ VE YÖNETİM ZORUNLULUĞU</h3>
-                    <h4>4.1. Sunucu ve Konteyner Sertleştirmesi (Hardening)</h4>
+                    <h2 id="altyapi-guvenligi-ve-yonetim-zorunlulugu">IV. ALTYAPI GÜVENLİĞİ VE YÖNETİM ZORUNLULUĞU</h2>
+                    <h3 id="sunucu-konteyner-sertlestirmesi">4.1. Sunucu ve Konteyner Sertleştirmesi (Hardening)</h3>
                     <p>Güvenlik, en alt katmandan başlamalıdır. Bu, CIS Benchmarks gibi endüstri standartlarına tam uyum gerektirir. [3] Konteynerler için Distroless imajları tercih edilmeli ve tüm konteynerlerin non-root kullanıcı ile çalışması Policy as Code ile zorunlu kılınmalıdır.</p>
-                    <h4>4.2. Policy as Code (PaC) ile Riskin Azaltılması</h4>
+                    <h3 id="policy-as-code-risk-azaltma">4.2. Policy as Code (PaC) ile Riskin Azaltılması</h3>
                     <p>PaC, güvenlik hatalarının mimariye girmesini engelleyen bir kapıcıdır. Kyverno/OPA gibi araçlar, dağıtım öncesi (pre-admission) güvenlik ihlallerini tespit eder. PaC'nin uygulanması, yanlış yapılandırma (misconfiguration) risklerini (R<sub>misconfig</sub>) azaltır. Bu riskler, saldırı yüzeyinin %60'ından fazlasını oluşturabilir [4].</p>
-                </div>
 
-                <div class="manifesto-section">
-                    <h3>V. GÖZETİM, ADLİ ANALİZ VE SÜREKLİLİK</h3>
-                    <h4>5.1. Logların Güvenlik Durumu (Security Posture)</h4>
+                    <h2 id="gozetim-adli-analiz-sureklilik">V. GÖZETİM, ADLİ ANALİZ VE SÜREKLİLİK</h2>
+                    <h3 id="loglarin-guvenlik-durumu">5.1. Logların Güvenlik Durumu (Security Posture)</h3>
                     <p>Loglar, adli analiz (forensic analysis) için hayati öneme sahiptir. Yapısal Loglama (Structured Logging) ve tüm logların aynı standartta (Örn: ECS - Elastic Common Schema) JSON formatında olması, SIEM sistemlerinde hızlı ve doğru korelasyonu mümkün kılar.</p>
-                </div>
 
-                <div class="manifesto-section" style="border-bottom: none;">
-                    <h3>SONUÇ VE ÖNERİLER (CONCLUSION AND RECOMMENDATIONS)</h3>
+                    <h2 id="sonuc-oneriler">SONUÇ VE ÖNERİLER (CONCLUSION AND RECOMMENDATIONS)</h2>
                     <p>Siber güvenlik odaklı mikroservis mimarisi, geleneksel yöntemlerin ötesinde kriptografik kesinlik, minimum yetki ve zorunlu otomasyon gerektirir. Bu makalede sunulan mTLS, PaC ve sıkı yetkilendirme prensipleri, mimarinizi saldırganların yatay hareketine ve mantık zafiyetlerine karşı dayanıklı hale getirecektir.</p>
-                </div>
-                
-                <div class="manifesto-section" style="border-bottom: none; padding-bottom: 0;">
-                    <h3>KAYNAKÇALAR (REFERENCES)</h3>
-                    <ol style="text-align: left; line-height: 1.8;">
+                    
+                    <h2 id="kaynakcalar">KAYNAKÇALAR (REFERENCES)</h2>
+                    <ol class="blog-references">
                         <li>OWASP API Security Project. (2023). OWASP API Security Top 10.</li>
                         <li>CNCF (Cloud Native Computing Foundation). (2022). Service Mesh Performance Benchmark Report.</li>
                         <li>CIS (Center for Internet Security). (2024). Kubernetes Benchmark Guidelines.</li>
                         <li>NIST (National Institute of Standards and Technology). (2020). Zero Trust Architecture (NIST SP 800-207).</li>
                         <li>HashiCorp Vault Documentation. (v1.x). Leasing and Renewal of Secrets.</li>
                     </ol>
-                </div>
+
+                     <!-- Paylaşım Butonları -->
+                    <div class="share-section">
+                        <span class="share-title">Bu Yazıyı Paylaş:</span>
+                        <div class="share-buttons">
+                            <a href="#" id="share-twitter" class="btn btn-secondary share-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter'da paylaş"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#" id="share-linkedin" class="btn btn-secondary share-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn'de paylaş"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <button id="copy-link-btn" class="btn btn-secondary share-btn" aria-label="Bağlantıyı kopyala">
+                                <i class="fa-solid fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="like-section">
+                        <button id="likeBtn" class="btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i> Beğen</button>
+                        <span id="likeCount" class="like-count">54,320 beğeni</span>
+                    </div>
+                </article>
             </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Footer buraya dinamik olarak yüklenecek -->
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
 
     <script src="app.js" defer></script>
 

@@ -1,570 +1,74 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yusuf Avşar | Future-Ready Experience</title>
-  <style>
-    /* THEME ENGINE 
-       Ultra-modern renk paleti: Derin uzay mavisi ve neon vurgular
-    */
-    :root {
-      --bg: #030712;
-      --surface: rgba(17, 24, 39, 0.7);
-      --border: rgba(255, 255, 255, 0.08);
-      --accent: #6366f1; /* Indigo */
-      --accent-glow: rgba(99, 102, 241, 0.4);
-      --text: #f9fafb;
-      --text-dim: #9ca3af;
-      --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* DYNAMIC BACKGROUND 
-       GPU hızlandırmalı mesh gradient ve partikül efekti 
-    */
-    .canvas-bg {
-      position: fixed; inset: 0; z-index: -1;
-      background: 
-        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
-    }
-
-    /* GLASS NAVIGATION */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 5%;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .brand { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-weight: 500; }
-    .nav-links a:hover { color: var(--text); text-shadow: 0 0 10px var(--accent-glow); }
-
-    /* HERO SECTION & BENTO GRID */
-    main { max-width: 1300px; margin: 0 auto; padding: 4rem 5%; }
-
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, minmax(200px, auto));
-      gap: 1.5rem;
-    }
-
-    .bento-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
-    }
-    .bento-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
-    }
-
-    /* Hero Item (Large) */
-    .item-hero { grid-column: span 3; display: flex; flex-direction: column; justify-content: center; }
-    .item-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -2px; }
-    .item-hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; }
-
-    /* Stats Card */
-    .item-stats { grid-column: span 1; background: var(--gradient); color: white; border: none; }
-    .stat-val { font-size: 3rem; font-weight: 800; display: block; }
-    .stat-label { opacity: 0.8; font-size: 0.9rem; text-transform: uppercase; }
-
-    /* Feature Cards */
-    .item-feature { grid-column: span 2; }
-    .item-feature h3 { margin-bottom: 1rem; color: var(--accent); }
-
-    /* STATUS PILL */
-    .status-container {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 100px;
-      border: 1px solid var(--border); margin-bottom: 2rem;
-    }
-    .ping {
-      width: 10px; height: 10px; background: #10b981; border-radius: 50%;
-      position: relative;
-    }
-    .ping::after {
-      content: ''; position: absolute; inset: 0; background: inherit; border-radius: inherit;
-      animation: ping 1.5s infinite;
-    }
-    @keyframes ping { 100% { transform: scale(3); opacity: 0; } }
-
-    /* BUTTONS */
-    .btn-main {
-      margin-top: 2rem; display: inline-flex; align-items: center; gap: 12px;
-      background: var(--text); color: var(--bg); padding: 1rem 2rem;
-      border-radius: 16px; text-decoration: none; font-weight: 700; transition: 0.3s;
-    }
-    .btn-main:hover { background: var(--accent); color: white; transform: scale(1.05); }
-
-    /* TOAST SYSTEM */
-    #notification-center {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
-    }
-    .toast {
-      background: rgba(17, 24, 39, 0.9); border: 1px solid var(--accent);
-      padding: 1rem 1.5rem; border-radius: 16px; color: white;
-      backdrop-filter: blur(10px); margin-top: 1rem;
-      animation: slideLeft 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      display: flex; align-items: center; gap: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    @keyframes slideLeft { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .bento-grid { grid-template-columns: 1fr 1fr; }
-      .item-hero { grid-column: span 2; }
-    }
-    @media (max-width: 640px) {
-      .bento-grid { grid-template-columns: 1fr; }
-      .item-hero, .item-feature, .item-stats { grid-column: span 1; }
-      .item-hero h1 { font-size: 2.5rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Projesi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .page { display: none; }
+        .active-page { display: block; }
+        .locked { cursor: not-allowed; opacity: 0.6; }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 font-sans">
 
-  <div class="canvas-bg"></div>
-
-  <nav>
-    <div class="brand">AVSAR.DEV</div>
-    <ul class="nav-links">
-      <li><a href="#" onclick="showWarning('Hakkımda')">Vizyon</a></li>
-      <li><a href="#" onclick="showWarning('Projeler')">Laboratuvar</a></li>
-      <li><a href="#" onclick="showWarning('İletişim')">Sinyal Gönder</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <div class="bento-grid">
-      
-      <section class="bento-item item-hero">
-        <div class="status-container">
-          <div class="ping"></div>
-          <span style="font-size: 0.8rem; font-weight: 600;">SİSTEMLER ÇEVRİMİÇİ: v4.0.1</span>
+    <nav class="bg-slate-800 text-white p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold italic">Logo</div>
+            <ul class="flex space-x-4">
+                <li><button onclick="showPage('anasayfa')" class="hover:text-blue-400">Anasayfa</button></li>
+                <li><button onclick="showPage('hakkimda')" class="hover:text-blue-400">Hakkımda</button></li>
+                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Eğitimler 🔒</button></li>
+                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Faaliyetler 🔒</button></li>
+                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Ürünler 🔒</button></li>
+                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Yayınlar 🔒</button></li>
+                <li><button onclick="showPage('iletisim')" class="hover:text-blue-400">İletişim</button></li>
+            </ul>
         </div>
-        <h1>Geleceği Kodla, <br>Deneyimi <span style="color: var(--accent)">Tasarla.</span></h1>
-        <p>Yusuf Avşar dijital evrenine hoş geldiniz. Estetik ve fonksiyonelliğin kesiştiği noktada yeni nesil çözümler geliştiriyorum.</p>
-        <div>
-          <a href="#" class="btn-main" onclick="showWarning('Erişim Reddedildi')">
-            Keşfetmeye Başla 
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-        </div>
-      </section>
-
-      <aside class="bento-item item-stats">
-        <span class="stat-label">Başarı Oranı</span>
-        <span class="stat-val">99%</span>
-        <p style="font-size: 0.8rem; margin-top: 1rem;">Müşteri memnuniyeti ve kod kalitesi optimizasyonu.</p>
-      </aside>
-
-      <article class="bento-item item-feature">
-        <h3>İnovasyon Odaklılık</h3>
-        <p style="color: var(--text-dim)">Yapay zeka ve modern web teknolojilerini birleştirerek ölçeklenebilir altyapılar kuruyorum. Her satır kod, bir amaca hizmet eder.</p>
-      </article>
-
-      <article class="bento-item item-feature" style="background: linear-gradient(to bottom right, rgba(99,102,241,0.05), transparent);">
-        <h3>Bakım Modu Aktif</h3>
-        <p style="color: var(--text-dim)">Portfolyom şu anda "Refactoring" sürecinde. En yeni projelerimi görmek için sinyal göndermeye devam edin.</p>
-      </article>
-
-    </div>
-  </main>
-
-  <div id="notification-center"></div>
-
-  <script>
-    function showWarning(page) {
-      const center = document.getElementById('notification-center');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.innerHTML = `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-        <div>
-          <strong style="display:block">${page} Modülü</strong>
-          <small style="opacity:0.7">Geliştirme aşamasında. Erişim kısıtlı.</small>
-        </div>
-      `;
-      center.appendChild(toast);
-
-      // 4 saniye sonra kaldır
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100px)';
-        toast.style.transition = '0.5s';
-        setTimeout(() => toast.remove(), 500);
-      }, 4000);
-    }
-
-    // Hoş geldin mesajı
-    window.onload = () => {
-      setTimeout(() => showWarning('Sistem'), 1000);
-    };
-  </script>
-</body>
-</html>
-      filter: blur(80px); opacity: 0.15; animation: move 20s infinite alternate;
-    }
-    .blob-2 {
-      right: 0; bottom: 0; background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
-      animation-delay: -10s;
-    }
-
-    @keyframes move {
-      from { transform: translate(-10%, -10%); }
-      to { transform: translate(20%, 20%); }
-    }
-
-    /* Layout */
-    .container {
-      max-width: 1200px; margin: 0 auto; padding: 2rem;
-      min-height: 100vh; display: flex; flex-direction: column;
-    }
-
-    /* Navbar */
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.5rem 0; margin-bottom: 4rem;
-    }
-    .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: var(--text-muted); text-decoration: none; font-size: 0.9rem;
-      transition: 0.3s; position: relative;
-    }
-    .nav-links a:hover { color: var(--text-main); }
-    .nav-links a.maint::after {
-      content: 'BAKIMDA'; position: absolute; top: -15px; left: 0;
-      font-size: 0.6rem; color: #fbbf24; font-weight: bold;
-    }
-
-    /* Hero Section */
-    .hero {
-      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1;
-      margin-bottom: 1.5rem; font-weight: 900; letter-spacing: -2px;
-    }
-    .gradient-text {
-      background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    .hero-content p {
-      font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 2.5rem;
-    }
-
-    /* Glass Card */
-    .profile-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 32px; padding: 2.5rem;
-      backdrop-filter: blur(12px); box-shadow: var(--card-shadow);
-      position: relative; overflow: hidden;
-    }
-    .profile-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    }
-
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(34, 197, 94, 0.1); color: #4ade80;
-      padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.8rem; margin-bottom: 1rem;
-    }
-    .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
-
-    /* Buttons */
-    .btn-group { display: flex; gap: 1rem; }
-    .btn {
-      padding: 1rem 2rem; border-radius: 12px; border: none; font-weight: 600;
-      cursor: pointer; transition: 0.3s; font-size: 1rem; text-decoration: none;
-    }
-    .btn-primary { background: var(--text-main); color: var(--bg-dark); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
-    .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--glass-border); }
-    .btn-outline:hover { background: var(--glass); }
-
-    /* Toast Notification */
-    #toast {
-      position: fixed; bottom: 2rem; right: 2rem;
-      background: #1e293b; border: 1px solid var(--glass-border);
-      padding: 1rem 1.5rem; border-radius: 12px; display: none;
-      animation: slideIn 0.3s ease-out; z-index: 1000;
-    }
-
-    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-
-    /* Mobile */
-    @media (max-width: 968px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-content p { margin: 0 auto 2.5rem; }
-      .btn-group { justify-content: center; }
-      .nav-links { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="bg-mesh">
-    <div class="blob"></div>
-    <div class="blob-2"></div>
-  </div>
-
-  <div class="container">
-    <nav>
-      <div class="logo">YUSUF.AVSAR</div>
-      <div class="nav-links">
-        <a href="#">Hakkımda</a>
-        <a href="#" class="maint" onclick="notify()">Projeler</a>
-        <a href="#" class="maint" onclick="notify()">Blog</a>
-        <a href="#" onclick="notify()">İletişim</a>
-      </div>
     </nav>
 
-    <main class="hero">
-      <div class="hero-content">
-        <div class="status-badge">
-          <span class="dot"></span> Aktif & Erişilebilir
-        </div>
-        <h1>Geleceğin Dijital <br><span class="gradient-text">İmzasıyla Tanışın.</span></h1>
-        <p>Ben Yusuf Avşar. Şu anda portfolyomun yeni sürümü üzerinde çalışıyorum. Diğer bölümler çok yakında burada olacak.</p>
-        
-        <div class="btn-group">
-          <a href="#" class="btn btn-primary" onclick="notify('Hoş Geldiniz!', 'Şu an anasayfadasınız.')">Tanışalım</a>
-          <a href="#" class="btn btn-outline" onclick="notify('Bakım Modu', 'Bu modül yakında açılacak.')">Çalışmalarım</a>
-        </div>
-      </div>
+    <main class="container mx-auto mt-10 p-6">
 
-      <div class="profile-card">
-        <h3 style="margin-bottom: 0.5rem;">Sistem Durumu</h3>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">V3.0 Beta Versiyonu</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px;">
-            <small style="color: var(--accent-secondary);">YÜKLENİYOR</small>
-            <div style="height: 4px; background: #334155; border-radius: 2px; margin-top: 8px; overflow: hidden;">
-              <div style="width: 65%; height: 100%; background: var(--accent-secondary);"></div>
+        <section id="anasayfa" class="page active-page text-center py-20 bg-white rounded-lg shadow-lg">
+            <h1 class="text-5xl font-bold text-red-600 mb-4">BAKIM MODU AKTİF</h1>
+            <p class="text-gray-600 text-xl">Web sitemiz şu anda güncellenmektedir. Lütfen daha sonra tekrar deneyiniz.</p>
+            <div class="mt-8">
+                <span class="animate-spin inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full"></span>
             </div>
-            <p style="font-size: 0.8rem; margin-top: 8px;">Gelişmiş API Entegrasyonları</p>
-          </div>
-          
-          <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 12px;">
-            <small style="color: var(--accent-primary);">TAMAMLANDI</small>
-            <p style="font-size: 0.8rem; margin-top: 4px;">UI/UX Altyapı Tasarımı</p>
-          </div>
-        </div>
-      </div>
+        </section>
+
+        <section id="hakkimda" class="page bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-4 border-b pb-2">Hakkımda</h2>
+            <p class="text-gray-700">Burada kişisel bilgileriniz veya şirket geçmişiniz yer alacak.</p>
+        </section>
+
+        <section id="iletisim" class="page bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-4 border-b pb-2">İletişim</h2>
+            <form class="space-y-4">
+                <input type="text" placeholder="Adınız" class="w-full p-2 border rounded">
+                <textarea placeholder="Mesajınız" class="w-full p-2 border rounded h-32"></textarea>
+                <button type="button" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gönder</button>
+            </form>
+        </section>
+
     </main>
-  </div>
 
-  <div id="toast"></div>
+    <script>
+        function showPage(pageId) {
+            // Tüm sayfaları gizle
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
 
-  <script>
-    function notify(title = "Bilgi", message = "Bu özellik yakında aktif edilecektir.") {
-      const toast = document.getElementById('toast');
-      toast.innerHTML = `<strong>${title}</strong><br><small>${message}</small>`;
-      toast.style.display = 'block';
-      
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, 3000);
-    }
+            // Seçilen sayfayı göster
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+        }
+    </script>
 
-    // Konsol logu ile karşılama
-    console.log("%cYusuf Avşar Portfolio v3.0", "color: #8b5cf6; font-size: 20px; font-weight: bold;");
-  </script>
 </body>
 </html>
-class="grid"></div>
-
-  <!-- Topbar -->
-  <header class="topbar" role="banner">
-    <div class="topbar-inner">
-      <a class="brand" href="#home" aria-label="Anasayfa">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Yusuf Avşar</h1>
-          <p>Anasayfa · Kurumsal/kişisel vitrin</p>
-        </div>
-      </a>
-
-      <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç/kapat">Menü</button>
-
-      <nav class="nav" aria-label="Üst menü">
-        <!-- Sadece Anasayfa çalışacak -->
-        <a href="#home" data-allowed="true">Anasayfa</a>
-
-        <!-- Diğerleri bakım modunda -->
-        <a href="#" data-maint="true" data-page="Biz Kimiz">Biz Kimiz</a>
-        <a href="#" data-maint="true" data-page="Faaliyetler">Faaliyetler</a>
-        <a href="#" data-maint="true" data-page="Ürünler">Ürünler</a>
-        <a href="#" data-maint="true" data-page="Eğitimler">Eğitimler</a>
-        <a href="#" data-maint="true" data-page="Yayınlar">Yayınlar</a>
-        <a href="#" data-maint="true" data-page="İletişim" class="cta">İletişim</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Drawer (mobile) -->
-  <div class="drawer-backdrop" id="drawerBackdrop"></div>
-  <aside class="drawer" id="drawer" aria-label="Mobil menü">
-    <a href="#home" data-allowed="true">Anasayfa <span class="pill">Açık</span></a>
-    <a href="#" data-maint="true" data-page="Biz Kimiz">Biz Kimiz <span class="pill">Kapalı</span></a>
-    <a href="#" data-maint="true" data-page="Faaliyetler">Faaliyetler <span class="pill">Kapalı</span></a>
-    <a href="#" data-maint="true" data-page="Ürünler">Ürünler <span class="pill">Kapalı</span></a>
-    <a href="#" data-maint="true" data-page="Eğitimler">Eğitimler <span class="pill">Kapalı</span></a>
-    <a href="#" data-maint="true" data-page="Yayınlar">Yayınlar <span class="pill">Kapalı</span></a>
-    <a href="#" data-maint="true" data-page="İletişim">İletişim <span class="pill">Kapalı</span></a>
-    <div class="hint">
-      Diğer sayfalar planlanıyor. Şu an yalnızca <b>Anasayfa</b> erişime açık.
-    </div>
-  </aside>
-
-  <main class="wrap" id="home">
-    <!-- HERO -->
-    <section class="hero" aria-label="Anasayfa">
-      <div class="panel">
-        <div class="hero-left">
-          <div class="badge-row">
-            <span class="badge"><span class="dot" aria-hidden="true"></span> Sistem Aktif · Anasayfa erişime açık</span>
-            <span class="badge">Bakım Modu: Diğer bölümler kapalı</span>
-          </div>
-
-          <h2 class="hero-title">
-            Dijital vitrinin sade, güçlü ve gerçekçi başlangıcı.
-          </h2>
-          <p class="hero-sub">
-            Bu sayfa, Yusuf Avşar için tek sayfalık anasayfa yapısında hazırlanmıştır.
-            Menüdeki diğer bölümler şu anda <b>bakım modunda</b> ve erişime kapalıdır.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="#home" data-allowed="true" aria-label="Anasayfaya dön">
-              <span>●</span> Anasayfadayım
-            </a>
-            <a class="btn warn" href="#" data-maint="true" data-page="Biz Kimiz" aria-label="Bakım uyarısını gör">
-              ⚠️ Bakım Modunu Test Et
-            </a>
-            <button class="btn" id="copyBtn" type="button" aria-label="Başlık metnini kopyala">
-              📋 İmza Metnini Kopyala
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="hero-right">
-          <div class="stat-card">
-            <div class="stat-top">
-              <p class="stat-title">Durum</p>
-              <span class="pill">Anasayfa Açık</span>
-            </div>
-            <div class="stat-value">Yayın Öncesi</div>
-            <p class="stat-desc">Tasarım gerçekçi bir vitrin olarak hazırlandı. Diğer bölümler devreye alınmadan önce içerik/altyapı güncelleniyor.</p>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-top">
-              <p class="stat-title">Erişim Politikası</p>
-              <span class="pill">Kısıtlı</span>
-            </div>
-            <div class="stat-value">Bakım Modu</div>
-            <p class="stat-desc">Anasayfa dışındaki bağlantılar yönlendirme yapmaz; uyarı verir ve kullanıcıyı bu sayfada tutar.</p>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-top">
-              <p class="stat-title">Hızlı İletişim</p>
-              <span class="pill">Yakında</span>
-            </div>
-            <div class="stat-value">Form Kapalı</div>
-            <p class="stat-desc">İletişim sayfası açılana kadar doğrudan form yok. Menüden tıklanınca bakım uyarısı gösterilir.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTENT CARDS -->
-    <section class="section" aria-label="Öne çıkanlar">
-      <article class="card">
-        <h3>Kurumsal Duruş</h3>
-        <p>
-          Minimal, modern ve güven veren bir görünüm. Net hiyerarşi, okunabilir tipografi ve
-          stabil bir düzen.
-        </p>
-        <div class="small">
-          <span class="tag">Tek sayfa</span>
-          <span class="tag">Bakım kontrolü</span>
-          <span class="tag">Responsive</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Kontrollü Navigasyon</h3>
-        <p>
-          Kullanıcı diğer başlıklara tıklasa bile sayfadan ayrılmaz.
-          “Erişim kapalıdır” uyarısı ile tek noktadan yönetim.
-        </p>
-        <div class="small">
-          <span class="tag">Modal uyarı</span>
-          <span class="tag">Toast</span>
-          <span class="tag">Klavye erişilebilir</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Gelişime Açık Altyapı</h3>
-        <p>
-          İstersen sonra kolayca diğer sayfaları açabilir, linkleri gerçek sayfalara yönlendirip
-          bakım modunu kaldırabilirsin.
-        </p>
-        <div class="small">
-          <span class="tag">Kolay genişler</span>
-          <span class="tag">Temiz JS</span>
-          <span class="tag">Tek dosya</span>
-        </div>
-      </article>
-    </section>
-
-    <footer>
-      <div>© <span id="year"></span> Yusuf Avşar · Tüm hakları saklıdır.</div>
-      <div class="foot-links" aria-label="Alt bağlantılar">
-        <a href="#home" data-allowed="true">Anasayfa</a>
-        <a href="#" data-maint="true" data-page="Politika">Politika</a>
-        <a href="#" data-maint="true" data-page="KVKK">KVKK</a>
-      </div>
-    </footer>
-  </main>
->
-.);
-    )();
-  </script>
-</body>
-</html>
-
-
-
-

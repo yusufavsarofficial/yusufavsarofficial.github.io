@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yusuf Avşar | V3.0 Beta</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --card-bg: rgba(15, 15, 20, 0.8);
+      --accent-cyan: #06b6d4;
+      --accent-purple: #8b5cf6;
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Arka Plan Efektleri (Blobs) */
+    .blobs {
+      position: fixed; inset: 0; z-index: -1;
+      filter: blur(60px); opacity: 0.4;
+    }
+    .blob-1 {
+      position: absolute; top: 10%; left: -10%; width: 300px; height: 300px;
+      background: var(--accent-purple); border-radius: 50%;
+    }
+    .blob-2 {
+      position: absolute; bottom: 10%; right: -5%; width: 350px; height: 350px;
+      background: var(--accent-cyan); border-radius: 50%;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 5%; background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--accent-cyan); }
+    
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; opacity: 0.7; }
+    .nav-links a:hover { opacity: 1; color: var(--accent-cyan); }
+
+    /* Hamburger Menü */
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger span { width: 25px; height: 2px; background: var(--text); transition: 0.3s; }
+
+    /* Mobile Menu Drawer */
+    .mobile-nav {
+      position: fixed; top: 0; right: -100%; width: 70%; height: 100%;
+      background: var(--bg); border-left: 1px solid var(--border);
+      z-index: 200; padding: 80px 40px; transition: 0.4s;
+    }
+    .mobile-nav.active { right: 0; }
+    .mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 25px; }
+    .mobile-nav a { color: var(--text); text-decoration: none; font-size: 1.2rem; }
+
+    /* Hero Section */
+    .hero {
+      text-align: center; padding: 60px 20px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .status-badge {
+      background: rgba(34, 197, 94, 0.1); color: #4ade80;
+      padding: 8px 20px; border-radius: 100px; font-size: 0.85rem;
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 30px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    .status-badge span { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; font-weight: 800;
+      margin-bottom: 25px; max-width: 800px;
+    }
+    .hero h1 span {
+      background: linear-gradient(to right, var(--accent-purple), var(--accent-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 40px; }
+
+    /* Buttons */
+    .btn-container { display: flex; gap: 15px; }
+    .btn {
+      padding: 16px 35px; border-radius: 12px; font-weight: 600; text-decoration: none;
+      transition: 0.3s; font-size: 1rem;
+    }
+    .btn-white { background: #fff; color: #000; }
+    .btn-outline { border: 1px solid var(--border); color: #fff; }
+    .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+    /* Sistem Durumu Kartı */
+    .system-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px; width: 100%; max-width: 500px;
+      margin-top: 50px; backdrop-filter: blur(10px); text-align: center;
+    }
+    .progress-box { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; margin-top: 20px; }
+    .progress-bar { height: 6px; background: #334155; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent-cyan); width: 65%; box-shadow: 0 0 15px var(--accent-cyan); }
+
+    /* Responsive Adjustment */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .btn-container { flex-direction: column; width: 100%; }
+      .btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blobs">
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+  </div>
+
+  <nav>
+    <div class="logo">YUSUF.AVSAR</div>
+    <ul class="nav-links">
+      <li><a href="#">Anasayfa</a></li>
+      <li><a href="#" onclick="alert('Bakım modunda!')">Projeler</a></li>
+      <li><a href="#" onclick="alert('Yakında açılacak!')">Blog</a></li>
+      <li><a href="#">İletişim</a></li>
+    </ul>
+    <div class="hamburger" id="menuBtn">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#" onclick="toggleMenu()">Anasayfa</a></li>
+      <li><a href="#" onclick="alert('Bakım modunda!')">Projeler</a></li>
+      <li><a href="#" onclick="alert('Yakında açılacak!')">Blog</a></li>
+      <li><a href="#" onclick="toggleMenu()">İletişim</a></li>
+    </ul>
+  </div>
+
+  <main class="hero">
+    <div class="status-badge">
+      <span></span> Aktif & Erişilebilir
+    </div>
+
+    <h1>Geleceğin Dijital <br><span>İmzasıyla Tanışın.</span></h1>
+    
+    <p>Ben Yusuf Avşar. Şu anda portfolyomun yeni sürümü üzerinde çalışıyorum. Diğer bölümler çok yakında burada olacak.</p>
+
+    <div class="btn-container">
+      <a href="#" class="btn btn-white">Tanışalım</a>
+      <a href="#" class="btn btn-outline" onclick="alert('Bakım Modu!')">Çalışmalarım</a>
+    </div>
+
+    <div class="system-card">
+      <h3 style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 2px;">SİSTEM DURUMU</h3>
+      <p style="margin-top: 5px; font-weight: 300;">V3.0 Beta Versiyonu</p>
+
+      <div class="progress-box">
+        <span style="color: var(--accent-cyan); font-size: 0.8rem; font-weight: 700;">YÜKLENİYOR</span>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.8rem;">Gelişmiş API Entegrasyonları</p>
+      </div>
+
+      <div class="progress-box" style="margin-top: 15px; border: 1px solid rgba(139, 92, 246, 0.2);">
+        <span style="color: var(--accent-purple); font-size: 0.8rem; font-weight: 700;">TAMAMLANDI</span>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 5px;">UI/UX Altyapı Tasarımı</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function toggleMenu() {
+      mobileNav.classList.toggle('active');
+      // Hamburger animasyonu için basit tetikleyici
+      const spans = menuBtn.querySelectorAll('span');
+      spans.forEach(s => s.style.backgroundColor = mobileNav.classList.contains('active') ? '#06b6d4' : '#fff');
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Dışarı tıklanınca kapansın
+    document.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

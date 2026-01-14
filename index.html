@@ -3,37 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yusuf Avşar | Dijital Deneyim Tasarımcısı</title>
+  <title>Yusuf Avşar | Future-Ready Experience</title>
   <style>
+    /* THEME ENGINE 
+       Ultra-modern renk paleti: Derin uzay mavisi ve neon vurgular
+    */
     :root {
-      --bg-dark: #050505;
-      --accent-primary: #8b5cf6; /* Canlı Mor */
-      --accent-secondary: #06b6d4; /* Turkuaz */
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --bg: #030712;
+      --surface: rgba(17, 24, 39, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #6366f1; /* Indigo */
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --text: #f9fafb;
+      --text-dim: #9ca3af;
+      --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       overflow-x: hidden;
-      line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* Dinamik Arka Plan */
-    .bg-mesh {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1; overflow: hidden;
+    /* DYNAMIC BACKGROUND 
+       GPU hızlandırmalı mesh gradient ve partikül efekti 
+    */
+    .canvas-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background: 
+        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
     }
-    .blob {
-      position: absolute; width: 500px; height: 500px;
-      background: radial-gradient(circle, var(--accent-primary), transparent 70%);
+
+    /* GLASS NAVIGATION */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-shadow: 0 0 10px var(--accent-glow); }
+
+    /* HERO SECTION & BENTO GRID */
+    main { max-width: 1300px; margin: 0 auto; padding: 4rem 5%; }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, minmax(200px, auto));
+      gap: 1.5rem;
+    }
+
+    .bento-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+    }
+    .bento-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+    }
+
+    /* Hero Item (Large) */
+    .item-hero { grid-column: span 3; display: flex; flex-direction: column; justify-content: center; }
+    .item-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -2px; }
+    .item-hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; }
+
+    /* Stats Card */
+    .item-stats { grid-column: span 1; background: var(--gradient); color: white; border: none; }
+    .stat-val { font-size: 3rem; font-weight: 800; display: block; }
+    .stat-label { opacity: 0.8; font-size: 0.9rem; text-transform: uppercase; }
+
+    /* Feature Cards */
+    .item-feature { grid-column: span 2; }
+    .item-feature h3 { margin-bottom: 1rem; color: var(--accent); }
+
+    /* STATUS PILL */
+    .status-container {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 100px;
+      border: 1px solid var(--border); margin-bottom: 2rem;
+    }
+    .ping {
+      width: 10px; height: 10px; background: #10b981; border-radius: 50%;
+      position: relative;
+    }
+    .ping::after {
+      content: ''; position: absolute; inset: 0; background: inherit; border-radius: inherit;
+      animation: ping 1.5s infinite;
+    }
+    @keyframes ping { 100% { transform: scale(3); opacity: 0; } }
+
+    /* BUTTONS */
+    .btn-main {
+      margin-top: 2rem; display: inline-flex; align-items: center; gap: 12px;
+      background: var(--text); color: var(--bg); padding: 1rem 2rem;
+      border-radius: 16px; text-decoration: none; font-weight: 700; transition: 0.3s;
+    }
+    .btn-main:hover { background: var(--accent); color: white; transform: scale(1.05); }
+
+    /* TOAST SYSTEM */
+    #notification-center {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+    }
+    .toast {
+      background: rgba(17, 24, 39, 0.9); border: 1px solid var(--accent);
+      padding: 1rem 1.5rem; border-radius: 16px; color: white;
+      backdrop-filter: blur(10px); margin-top: 1rem;
+      animation: slideLeft 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    @keyframes slideLeft { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: 1fr 1fr; }
+      .item-hero { grid-column: span 2; }
+    }
+    @media (max-width: 640px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .item-hero, .item-feature, .item-stats { grid-column: span 1; }
+      .item-hero h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="canvas-bg"></div>
+
+  <nav>
+    <div class="brand">AVSAR.DEV</div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showWarning('Hakkımda')">Vizyon</a></li>
+      <li><a href="#" onclick="showWarning('Projeler')">Laboratuvar</a></li>
+      <li><a href="#" onclick="showWarning('İletişim')">Sinyal Gönder</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="bento-grid">
+      
+      <section class="bento-item item-hero">
+        <div class="status-container">
+          <div class="ping"></div>
+          <span style="font-size: 0.8rem; font-weight: 600;">SİSTEMLER ÇEVRİMİÇİ: v4.0.1</span>
+        </div>
+        <h1>Geleceği Kodla, <br>Deneyimi <span style="color: var(--accent)">Tasarla.</span></h1>
+        <p>Yusuf Avşar dijital evrenine hoş geldiniz. Estetik ve fonksiyonelliğin kesiştiği noktada yeni nesil çözümler geliştiriyorum.</p>
+        <div>
+          <a href="#" class="btn-main" onclick="showWarning('Erişim Reddedildi')">
+            Keşfetmeye Başla 
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </section>
+
+      <aside class="bento-item item-stats">
+        <span class="stat-label">Başarı Oranı</span>
+        <span class="stat-val">99%</span>
+        <p style="font-size: 0.8rem; margin-top: 1rem;">Müşteri memnuniyeti ve kod kalitesi optimizasyonu.</p>
+      </aside>
+
+      <article class="bento-item item-feature">
+        <h3>İnovasyon Odaklılık</h3>
+        <p style="color: var(--text-dim)">Yapay zeka ve modern web teknolojilerini birleştirerek ölçeklenebilir altyapılar kuruyorum. Her satır kod, bir amaca hizmet eder.</p>
+      </article>
+
+      <article class="bento-item item-feature" style="background: linear-gradient(to bottom right, rgba(99,102,241,0.05), transparent);">
+        <h3>Bakım Modu Aktif</h3>
+        <p style="color: var(--text-dim)">Portfolyom şu anda "Refactoring" sürecinde. En yeni projelerimi görmek için sinyal göndermeye devam edin.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <div id="notification-center"></div>
+
+  <script>
+    function showWarning(page) {
+      const center = document.getElementById('notification-center');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <div>
+          <strong style="display:block">${page} Modülü</strong>
+          <small style="opacity:0.7">Geliştirme aşamasında. Erişim kısıtlı.</small>
+        </div>
+      `;
+      center.appendChild(toast);
+
+      // 4 saniye sonra kaldır
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100px)';
+        toast.style.transition = '0.5s';
+        setTimeout(() => toast.remove(), 500);
+      }, 4000);
+    }
+
+    // Hoş geldin mesajı
+    window.onload = () => {
+      setTimeout(() => showWarning('Sistem'), 1000);
+    };
+  </script>
+</body>
+</html>
       filter: blur(80px); opacity: 0.15; animation: move 20s infinite alternate;
     }
     .blob-2 {
@@ -516,5 +705,6 @@ class="grid"></div>
   </script>
 </body>
 </html>
+
 
 

@@ -3,72 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Projesi</title>
+    <title>Sistem Bakımda</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .page { display: none; }
-        .active-page { display: block; }
-        .locked { cursor: not-allowed; opacity: 0.6; }
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-red { animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .hidden-page { display: none; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-zinc-900 text-slate-200 min-h-screen flex flex-col font-sans">
 
-    <nav class="bg-slate-800 text-white p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold italic">Logo</div>
-            <ul class="flex space-x-4">
-                <li><button onclick="showPage('anasayfa')" class="hover:text-blue-400">Anasayfa</button></li>
-                <li><button onclick="showPage('hakkimda')" class="hover:text-blue-400">Hakkımda</button></li>
-                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Eğitimler 🔒</button></li>
-                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Faaliyetler 🔒</button></li>
-                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Ürünler 🔒</button></li>
-                <li><button onclick="alert('Bu bölüme erişim yetkiniz yok!')" class="locked">Yayınlar 🔒</button></li>
-                <li><button onclick="showPage('iletisim')" class="hover:text-blue-400">İletişim</button></li>
-            </ul>
-        </div>
+    <nav class="p-6 flex justify-end">
+        <button id="menu-btn" class="z-50 text-3xl focus:outline-none hover:text-red-500 transition">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
     </nav>
 
-    <main class="container mx-auto mt-10 p-6">
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 transform translate-x-full flex flex-col items-center justify-center space-y-8 text-2xl font-light">
+        <button onclick="closeMenu()" class="absolute top-6 right-6 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        
+        <a href="#" onclick="showSection('home')" class="hover:text-red-500 transition border-b border-transparent hover:border-red-500">Anasayfa</a>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">Hakkımda <i class="fa-solid fa-lock text-sm"></i></button>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">Eğitimler <i class="fa-solid fa-lock text-sm"></i></button>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">Faaliyetler <i class="fa-solid fa-lock text-sm"></i></button>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">Ürünler <i class="fa-solid fa-lock text-sm"></i></button>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">Yayınlar <i class="fa-solid fa-lock text-sm"></i></button>
+        <button onclick="denied()" class="opacity-40 cursor-not-allowed">İletişim <i class="fa-solid fa-lock text-sm"></i></button>
+    </div>
 
-        <section id="anasayfa" class="page active-page text-center py-20 bg-white rounded-lg shadow-lg">
-            <h1 class="text-5xl font-bold text-red-600 mb-4">BAKIM MODU AKTİF</h1>
-            <p class="text-gray-600 text-xl">Web sitemiz şu anda güncellenmektedir. Lütfen daha sonra tekrar deneyiniz.</p>
-            <div class="mt-8">
-                <span class="animate-spin inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full"></span>
+    <main class="flex-grow flex items-center justify-center px-4">
+        
+        <section id="home-section" class="max-w-4xl w-full text-center">
+            <div class="mb-8 flex justify-center">
+                <div class="relative">
+                    <i class="fa-solid fa-screwdriver-wrench text-7xl text-red-600"></i>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-ping"></div>
+                </div>
             </div>
-        </section>
+            
+            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white">
+                Sistem <span class="text-red-600">Bakım Aşamasında</span>
+            </h1>
+            
+            <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Size daha iyi bir deneyim sunabilmek için altyapımızı güncelliyoruz. 
+                Bu süreçte tüm modüller geçici olarak erişime kapatılmıştır.
+            </p>
 
-        <section id="hakkimda" class="page bg-white p-8 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-bold mb-4 border-b pb-2">Hakkımda</h2>
-            <p class="text-gray-700">Burada kişisel bilgileriniz veya şirket geçmişiniz yer alacak.</p>
-        </section>
+            <div class="w-full bg-zinc-800 rounded-full h-2 mb-12 overflow-hidden">
+                <div class="bg-red-600 h-full w-3/4 shadow-[0_0_15px_rgba(220,38,38,0.5)]"></div>
+            </div>
 
-        <section id="iletisim" class="page bg-white p-8 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-bold mb-4 border-b pb-2">İletişim</h2>
-            <form class="space-y-4">
-                <input type="text" placeholder="Adınız" class="w-full p-2 border rounded">
-                <textarea placeholder="Mesajınız" class="w-full p-2 border rounded h-32"></textarea>
-                <button type="button" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gönder</button>
-            </form>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <div class="p-6 bg-zinc-800/50 rounded-xl border border-zinc-700">
+                    <i class="fa-solid fa-clock mb-3 text-red-500 text-xl"></i>
+                    <h3 class="font-bold block uppercase text-zinc-300">Tahmini Süre</h3>
+                    <p class="text-zinc-500">48 Saat İçinde</p>
+                </div>
+                <div class="p-6 bg-zinc-800/50 rounded-xl border border-zinc-700">
+                    <i class="fa-solid fa-envelope mb-3 text-red-500 text-xl"></i>
+                    <h3 class="font-bold block uppercase text-zinc-300">Destek</h3>
+                    <p class="text-zinc-500">destek@domain.com</p>
+                </div>
+                <div class="p-6 bg-zinc-800/50 rounded-xl border border-zinc-700">
+                    <i class="fa-solid fa-shield-halved mb-3 text-red-500 text-xl"></i>
+                    <h3 class="font-bold block uppercase text-zinc-300">Durum</h3>
+                    <p class="text-zinc-500 italic">Veritabanı Senkronize Ediliyor</p>
+                </div>
+            </div>
         </section>
 
     </main>
 
-    <script>
-        function showPage(pageId) {
-            // Tüm sayfaları gizle
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active-page');
-            });
+    <footer class="p-8 text-center text-zinc-600 text-xs uppercase tracking-widest">
+        &copy; 2026 Tüm Hakları Saklıdır. | Güvenli Erişim Modu Aktif.
+    </footer>
 
-            // Seçilen sayfayı göster
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active-page');
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Menü Açma/Kapama
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('translate-x-full');
+            menuBtn.innerHTML = mobileMenu.classList.contains('translate-x-full') 
+                ? '<i class="fa-solid fa-bars-staggered"></i>' 
+                : '<i class="fa-solid fa-xmark"></i>';
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            menuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
+        }
+
+        // Yasaklı Sayfa Uyarısı
+        function denied() {
+            alert("⚠️ ERİŞİM ENGELLENDİ!\n\nBakım modu aktifken bu bölüme giriş yapamazsınız.");
+        }
+
+        // Sayfa Gösterimi (Şu an sadece Anasayfa için çalışır)
+        function showSection(id) {
+            closeMenu();
+            // Sistem şu an sadece anasayfaya izin veriyor
+            if(id !== 'home') {
+                denied();
             }
         }
     </script>
-
 </body>
 </html>

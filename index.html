@@ -3,50 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Bakımda | Yusuf Avşar</title>
+    <title>Sistem Erişimi Kısıtlı | Yusuf Avşar & AYFSOFT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@900;400;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        @keyframes pulse-blue {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        :root {
+            --primary-red: #ff0000;
+            --bg-dark: #050505;
         }
-        .animate-pulse-blue { animation: pulse-blue 2s infinite; }
-        
-        /* Menü Tam Kapalı ve Opak Olmalı */
-        #mobile-menu { 
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: #09090b; /* Tam siyah/koyu ton, şeffaflık yok */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
-        
-        /* Kaydırma çubuğunu gizle */
-        body::-webkit-scrollbar { display: none; }
-        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Arka Plan Partikül Efekti */
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #1a1a1a 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        /* Menü Animasyonu */
+        #mobile-menu {
+            transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+            background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
+        }
+
+        /* Parlama Efekti */
+        .glow-red {
+            box-shadow: 0 0 50px -10px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Yazı Outline Efekti */
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            color: transparent;
+        }
+
+        /* Kilitli Menü Hover */
+        .locked-item:hover .lock-icon {
+            transform: scale(1.2) rotate(15deg);
+            color: #ff0000;
+        }
+
+        /* Progress Bar Animasyon */
+        @keyframes loading-stripes {
+            from { background-position: 40px 0; }
+            to { background-position: 0 0; }
+        }
+        .progress-animated {
+            background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+            background-size: 40px 40px;
+            animation: loading-stripes 1s linear infinite;
+        }
+
+        /* Matrix Benzeri Text Animasyonu */
+        .mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
-<body class="bg-[#09090b] text-zinc-300 min-h-screen flex flex-col font-sans selection:bg-red-500/30 overflow-x-hidden">
+<body class="bg-pattern min-h-screen flex flex-col">
 
-    <nav class="p-6 flex justify-end fixed w-full top-0 z-[100]">
-        <button id="menu-btn" class="p-2 text-2xl focus:outline-none hover:text-red-500 transition-colors bg-[#09090b]/50 rounded-lg backdrop-blur-md">
-            <i class="fa-solid fa-bars-staggered"></i>
+    <header class="fixed top-0 left-0 w-full p-8 flex justify-end z-[100]">
+        <button id="menu-trigger" class="group flex items-center space-x-4 focus:outline-none">
+            <span class="mono text-[10px] tracking-[0.4em] text-zinc-500 group-hover:text-red-500 transition-all uppercase">Sistem Menüsü</span>
+            <div class="space-y-2">
+                <div class="w-8 h-0.5 bg-zinc-200 group-hover:w-12 group-hover:bg-red-500 transition-all"></div>
+                <div class="w-12 h-0.5 bg-zinc-200 group-hover:w-8 group-hover:bg-red-500 transition-all"></div>
+            </div>
         </button>
-    </nav>
+    </header>
 
-    <div id="mobile-menu" class="fixed inset-0 z-[90] transform translate-x-full flex flex-col items-center justify-center space-y-8 text-xl font-light tracking-[0.2em] border-l border-zinc-800">
-        <button onclick="closeMenu()" class="absolute top-8 right-8 text-3xl hover:text-red-500 transition">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+    <div id="mobile-menu" class="fixed inset-0 z-[90] translate-x-full border-l border-zinc-800 flex items-center justify-center">
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center overflow-hidden">
+            <h1 class="text-[20vw] font-black text-white leading-none select-none">SYSTEM</h1>
+        </div>
         
-        <a href="#" onclick="showSection('home')" class="text-white border-b-2 border-red-600 pb-1">ANASAYFA</a>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">HAKKIMDA <i class="fa-solid fa-lock text-xs ml-3"></i></button>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">EĞİTİMLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">FAALİYETLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">ÜRÜNLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">YAYINLAR <i class="fa-solid fa-lock text-xs ml-3"></i></button>
-        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">İLETİŞİM <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <nav class="relative z-10 w-full max-w-4xl px-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="mono text-red-500 text-xs tracking-[0.5em] uppercase">Erişim Paneli</p>
+                    <ul class="space-y-4">
+                        <li><a href="#" onclick="toggleMenu()" class="text-5xl md:text-7xl font-black hover:text-red-600 transition-colors uppercase tracking-tighter">Anasayfa</a></li>
+                        <li><button onclick="accessDenied()" class="locked-item flex items-center text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">Hakkımda <i class="fa-solid fa-lock lock-icon text-sm ml-4 transition-all"></i></button></li>
+                        <li><button onclick="accessDenied()" class="locked-item flex items-center text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">Eğitimler <i class="fa-solid fa-lock lock-icon text-sm ml-4 transition-all"></i></button></li>
+                        <li><button onclick="accessDenied()" class="locked-item flex items-center text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">Ürünler <i class="fa-solid fa-lock lock-icon text-sm ml-4 transition-all"></i></button></li>
+                        <li><button onclick="accessDenied()" class="locked-item flex items-center text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">İletişim <i class="fa-solid fa-lock lock-icon text-sm ml-4 transition-all"></i></button></li>
+                    </ul>
+                </div>
+                <div class="hidden md:block border-l border-zinc-800 pl-12 space-y-8">
+                    <div class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-widest">
+                        [UYARI]<br>
+                        Güvenli protokol aktif. <br>
+                        Tüm oturumlar izlenmektedir. <br>
+                        Erişim izni olmayan bölgeler <br>
+                        şifrelenmiş katmanlar içerir.
+                    </div>
+                    <button onclick="toggleMenu()" class="px-8 py-3 border border-zinc-700 hover:border-red-600 transition-all text-[10px] tracking-[0.3em] uppercase">Menüyü Kapat</button>
+                </div>
+            </div>
+        </nav>
     </div>
 
-    <main class="flex-grow flex items-center justify-center px-6">
+    <main class="flex-grow flex items-center justify-center relative px-6 py-24">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 text-left space-y-8">
+                <div class="inline-flex items-center space-x-3 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                    </span>
+                    <span class="mono text-[10px] uppercase tracking-widest text-red-500 font-bold">Maintenance Protocol v4.0.1</span>
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-white">
+                    Sistem <span class="text-red-600">Bakım</span> <br> <span class="text-outline">Modunda</span>
+                </h1>
+
+                <p class="text-zinc-500 text-lg md:text-xl font-light max-w-xl leading-relaxed">
+                    Altyapı verimliliğini artırmak ve güvenliği optimize etmek adına sistemimiz geçici olarak çevrimdışı konuma getirilmiştir.
+                </p>
+
+                <div class="space-y-4 max-w-md">
+                    <div class="flex justify-between mono text-[10px] uppercase tracking-[0.2em]">
+                        <span class="text-zinc-400 font-bold">Veritabanı Senkronizasyonu</span>
+                        <span class="text-red-500 animate-pulse">92%</span>
+                    </div>
+                    <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden border border-zinc-800">
+                        <div class="h-full bg-red-600 w-[92%] progress-animated shadow-[0_0_15px_rgba(255,0,0,0.5)] transition-all duration-[3000ms]"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+                <div class="p-8 bg-zinc-900/40 border border-zinc-800 rounded-3xl glow-red backdrop-blur-xl group hover:border-zinc-700 transition-all">
+                    <div class="flex items-start justify-between mb-6">
+                        <i class="fa-solid fa-shield-halved text-4xl text-red-600"></i>
+                        <span class="mono text-[9px] text-zinc-600 uppercase border border-zinc-800 px-2 py-1 rounded">Secure Node</span>
+                    </div>
+                    <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200 mb-4">Destek Kanalları</h3>
+                    <div class="space-y-3">
+                        <a href="mailto:yusufavsarofficial@gmail.com" class="block text-sm text-zinc-500 hover:text-white transition mono">yusufavsarofficial@gmail.com</a>
+                        <a href="mailto:yusufavsarofficial@proton.me" class="block text-sm text-zinc-500 hover:text-white transition mono">yusufavsarofficial@proton.me</a>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-zinc-900/20 border border-zinc-800 rounded-3xl backdrop-blur-md">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <i class="fa-solid fa-satellite-disk text-blue-500 animate-bounce"></i>
+                        <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Sistem Durumu</h3>
+                    </div>
+                    <p class="text-sm text-zinc-500 leading-relaxed font-light italic">
+                        Veritabanı mimarisi AYFSOFT standartlarına göre optimize ediliyor. Tahmini kesinti süresi sistem loglarında belirtilmiştir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-12 border-t border-zinc-900/50 bg-black/30 backdrop-blur-lg mt-12">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-center md:text-left">
+            <div class="space-y-2">
+                <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
+                    &copy; 2010 - 2026 <span class="text-white">YUSUF AVŞAR</span>
+                </p>
+                <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
+                    &copy; 2018 - 2026 <span class="text-white">AYFSOFT PTE</span>
+                </p>
+            </div>
+            <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">
+                Tüm Hakları Saklıdır / All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuTrigger = document.getElementById('menu-trigger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            const isClosed = mobileMenu.classList.contains('translate-x-full');
+            if (isClosed) {
+                mobileMenu.classList.remove('translate-x-full');
+                menuTrigger.innerHTML = `
+                    <span class="mono text-[10px] tracking-[0.4em] text-red-500 uppercase">Kapat</span>
+                    <i class="fa-solid fa-xmark text-2xl text-red-500"></i>
+                `;
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                menuTrigger.innerHTML = `
+                    <span class="mono text-[10px] tracking-[0.4em] text-zinc-500 uppercase">Sistem Menüsü</span>
+                    <div class="space-y-2">
+                        <div class="w-8 h-0.5 bg-zinc-200"></div>
+                        <div class="w-12 h-0.5 bg-zinc-200"></div>
+                    </div>
+                `;
+            }
+        }
+
+        menuTrigger.addEventListener('click', toggleMenu);
+
+        function accessDenied() {
+            // Profesyonel bir Alert yerine özel bir görsel uyarı eklenebilir
+            // Ama isteğin üzerine standart engelleme:
+            alert("ERİŞİM ENGELLENDİ!\nSistem bakım modundayken yetkisiz giriş yapılamaz.");
+        }
+
+        // Mouse takip eden hafif ışık efekti (Opsiyonel görsel şölen)
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth * 100;
+            const y = e.clientY / window.innerHeight * 100;
+            document.body.style.backgroundImage = `radial-gradient(circle at ${x}% ${y}%, #1a1515 0%, #050505 50%)`;
+        });
+    </script>
+</body>
+</html>
         <section id="home-section" class="max-w-3xl w-full text-center">
             
             <div class="mb-8 flex justify-center">
@@ -128,3 +303,4 @@
     </script>
 </body>
 </html>
+

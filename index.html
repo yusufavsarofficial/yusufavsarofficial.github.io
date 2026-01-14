@@ -12,81 +12,91 @@
             50% { opacity: 0.3; }
         }
         .animate-pulse-blue { animation: pulse-blue 2s infinite; }
-        #mobile-menu { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .bg-glass { background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(10px); }
+        
+        /* Menü Tam Kapalı ve Opak Olmalı */
+        #mobile-menu { 
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #09090b; /* Tam siyah/koyu ton, şeffaflık yok */
+        }
+        
+        /* Kaydırma çubuğunu gizle */
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-[#09090b] text-zinc-300 min-h-screen flex flex-col font-sans selection:bg-red-500/30">
+<body class="bg-[#09090b] text-zinc-300 min-h-screen flex flex-col font-sans selection:bg-red-500/30 overflow-x-hidden">
 
-    <nav class="p-6 flex justify-end fixed w-full top-0 z-50">
-        <button id="menu-btn" class="p-2 text-2xl focus:outline-none hover:text-red-500 transition-colors">
+    <nav class="p-6 flex justify-end fixed w-full top-0 z-[100]">
+        <button id="menu-btn" class="p-2 text-2xl focus:outline-none hover:text-red-500 transition-colors bg-[#09090b]/50 rounded-lg backdrop-blur-md">
             <i class="fa-solid fa-bars-staggered"></i>
         </button>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-black/98 z-40 transform translate-x-full flex flex-col items-center justify-center space-y-6 text-xl font-light tracking-widest">
-        <button onclick="closeMenu()" class="absolute top-6 right-8 text-3xl hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+    <div id="mobile-menu" class="fixed inset-0 z-[90] transform translate-x-full flex flex-col items-center justify-center space-y-8 text-xl font-light tracking-[0.2em] border-l border-zinc-800">
+        <button onclick="closeMenu()" class="absolute top-8 right-8 text-3xl hover:text-red-500 transition">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
         
-        <a href="#" onclick="showSection('home')" class="text-white border-b-2 border-red-600 pb-1">Anasayfa</a>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">Hakkımda <i class="fa-solid fa-lock text-xs"></i></button>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">Eğitimler <i class="fa-solid fa-lock text-xs"></i></button>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">Faaliyetler <i class="fa-solid fa-lock text-xs"></i></button>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">Ürünler <i class="fa-solid fa-lock text-xs"></i></button>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">Yayınlar <i class="fa-solid fa-lock text-xs"></i></button>
-        <button onclick="denied()" class="opacity-30 cursor-not-allowed">İletişim <i class="fa-solid fa-lock text-xs"></i></button>
+        <a href="#" onclick="showSection('home')" class="text-white border-b-2 border-red-600 pb-1">ANASAYFA</a>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">HAKKIMDA <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">EĞİTİMLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">FAALİYETLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">ÜRÜNLER <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">YAYINLAR <i class="fa-solid fa-lock text-xs ml-3"></i></button>
+        <button onclick="denied()" class="text-zinc-600 cursor-not-allowed flex items-center">İLETİŞİM <i class="fa-solid fa-lock text-xs ml-3"></i></button>
     </div>
 
-    <main class="flex-grow flex items-center justify-center px-6 pt-20">
+    <main class="flex-grow flex items-center justify-center px-6">
         <section id="home-section" class="max-w-3xl w-full text-center">
             
-            <div class="mb-10 flex justify-center">
-                <div class="relative inline-flex">
-                    <div class="absolute inset-0 bg-red-600 blur-3xl opacity-20"></div>
-                    <i class="fa-solid fa-shield-virus text-6xl text-red-600 relative"></i>
+            <div class="mb-8 flex justify-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-red-600 blur-[80px] opacity-20"></div>
+                    <i class="fa-solid fa-gears text-7xl text-red-600 relative animate-pulse"></i>
                 </div>
             </div>
             
-            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white leading-tight">
-                Sistem <br class="md:hidden"> <span class="text-red-600">Güncelleniyor</span>
+            <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white leading-tight">
+                SİSTEM <br> <span class="text-red-600 font-outline-2">BAKIMDA</span>
             </h1>
             
-            <p class="text-zinc-500 text-base md:text-lg max-w-xl mx-auto mb-12 font-medium">
-                Size daha güvenli ve hızlı bir altyapı sunmak için çalışıyoruz. 
-                Sistem şu an erişime kapalıdır.
+            <p class="text-zinc-500 text-sm md:text-lg max-w-lg mx-auto mb-12 font-medium tracking-wide">
+                Şu an altyapı iyileştirme çalışmaları yapıyoruz. 
+                Tüm modüller geçici olarak devre dışı bırakılmıştır.
             </p>
 
-            <div class="w-full bg-zinc-900 border border-zinc-800 rounded-full h-3 mb-16 overflow-hidden p-0.5">
-                <div class="bg-gradient-to-r from-red-800 to-red-500 h-full w-[85%] rounded-full shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all duration-1000"></div>
+            <div class="w-full bg-zinc-900 border border-zinc-800 rounded-full h-2.5 mb-16 overflow-hidden">
+                <div class="bg-gradient-to-r from-red-900 via-red-600 to-red-400 h-full w-[92%] shadow-[0_0_20px_rgba(220,38,38,0.3)]"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition group">
-                    <i class="fa-solid fa-envelope-open-text mb-4 text-red-500 text-2xl group-hover:scale-110 transition"></i>
-                    <h3 class="font-bold text-zinc-200 uppercase tracking-widest text-xs mb-3">Destek Hattı</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 backdrop-blur-sm">
+                    <i class="fa-solid fa-headset mb-4 text-red-500 text-2xl"></i>
+                    <h3 class="font-bold text-zinc-300 uppercase tracking-widest text-[10px] mb-3">Destek Hattı</h3>
                     <div class="space-y-1">
-                        <a href="mailto:yusufavsarofficial@gmail.com" class="block text-sm text-zinc-500 hover:text-white transition">yusufavsarofficial@gmail.com</a>
-                        <a href="mailto:yusufavsarofficial@proton.me" class="block text-sm text-zinc-500 hover:text-white transition">yusufavsarofficial@proton.me</a>
+                        <a href="mailto:yusufavsarofficial@gmail.com" class="block text-xs text-zinc-500 hover:text-white transition">yusufavsarofficial@gmail.com</a>
+                        <a href="mailto:yusufavsarofficial@proton.me" class="block text-xs text-zinc-500 hover:text-white transition">yusufavsarofficial@proton.me</a>
                     </div>
                 </div>
                 
-                <div class="p-6 bg-zinc-900/50 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition group">
-                    <i class="fa-solid fa-server mb-4 text-blue-500 text-2xl animate-pulse-blue"></i>
-                    <h3 class="font-bold text-zinc-200 uppercase tracking-widest text-xs mb-3">Sistem Durumu</h3>
-                    <p class="text-sm text-zinc-400 font-semibold italic">Veritabanı Senkronize Ediliyor...</p>
-                    <div class="mt-2 text-[10px] text-blue-500/50 uppercase tracking-widest">Canlı İzleniyor</div>
+                <div class="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 backdrop-blur-sm">
+                    <i class="fa-solid fa-database mb-4 text-blue-500 text-2xl animate-pulse-blue"></i>
+                    <h3 class="font-bold text-zinc-300 uppercase tracking-widest text-[10px] mb-3">Sistem Durumu</h3>
+                    <p class="text-xs text-zinc-400 font-bold italic uppercase tracking-tighter">Veritabanı Senkronize Ediliyor</p>
+                    <span class="mt-2 inline-block px-3 py-1 bg-blue-500/10 text-blue-500 text-[9px] rounded-full font-bold">LIVE SYNC</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="p-8 text-center border-t border-zinc-900">
-        <div class="space-y-2">
-            <p class="text-[10px] md:text-xs text-zinc-600 uppercase tracking-widest font-bold">
-                &copy; 2010 - 2026 <span class="text-zinc-400">YUSUF AVŞAR</span> Tüm Hakları Saklıdır.
-            </p>
-            <p class="text-[10px] md:text-xs text-zinc-700 uppercase tracking-widest">
-                &copy; 2018 - 2026 <span class="text-zinc-500">AYFSOFT PTE</span> Tüm Hakları Saklıdır.
-            </p>
+    <footer class="p-10 text-center border-t border-zinc-900/50">
+        <div class="flex flex-col items-center space-y-3">
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 text-[10px] tracking-[0.2em] font-bold uppercase">
+                <p class="text-zinc-500">© 2010 - 2026 <span class="text-zinc-200">YUSUF AVŞAR</span></p>
+                <p class="hidden md:block text-zinc-800">|</p>
+                <p class="text-zinc-500">© 2018 - 2026 <span class="text-zinc-200">AYFSOFT PTE</span></p>
+            </div>
+            <p class="text-[9px] text-zinc-700 tracking-widest uppercase">Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
@@ -94,20 +104,21 @@
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
+        // Menü Kontrolü
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('translate-x-full');
-            menuBtn.innerHTML = mobileMenu.classList.contains('translate-x-full') 
-                ? '<i class="fa-solid fa-bars-staggered"></i>' 
-                : '<i class="fa-solid fa-xmark"></i>';
+            // Menü açıkken butonu gizle (isteğe bağlı) veya simgeyi değiştir
+            menuBtn.classList.toggle('opacity-0');
         });
 
         function closeMenu() {
             mobileMenu.classList.add('translate-x-full');
-            menuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
+            menuBtn.classList.remove('opacity-0');
         }
 
+        // Yasaklı Sayfa Uyarısı
         function denied() {
-            alert("⚠️ ERİŞİM ENGELLENDİ!\n\nBakım modu aktifken bu bölüme giriş yapamazsınız.");
+            alert("⚠️ ERİŞİM KISITLANDI\n\nBakım çalışmaları devam ederken bu bölüme giriş yetkiniz bulunmamaktadır.");
         }
 
         function showSection(id) {

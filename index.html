@@ -26,18 +26,16 @@
 <!-- HEADER -->
 <header class="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex justify-between items-center">
   <span class="mono text-xs tracking-[0.4em] uppercase text-zinc-500">
-    YUSUF AVŞAR| AYFSOFT PTE 
+    YUSUF AVŞAR| AYFSOFT PTE
   </span>
 
   <div class="flex items-center gap-4">
-    <!-- GİRİŞ BUTONU -->
     <button id="loginBtn"
       class="mono text-xs tracking-[0.3em] uppercase border border-zinc-700 px-4 py-2
              hover:border-red-600 hover:text-red-500 transition">
       Giriş Yap
     </button>
 
-    <!-- MENU -->
     <button id="menuTrigger"
       class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500 transition">
       Menü
@@ -71,6 +69,27 @@
 <!-- MAIN -->
 <main class="pt-36 px-6 max-w-6xl mx-auto space-y-28">
 
+  <!-- MIRAÇ KANDİLİ MESAJI -->
+  <section class="border border-zinc-800 bg-black/60 p-8 md:p-10 space-y-4">
+    <p class="mono text-xs tracking-[0.35em] uppercase text-red-500">
+      Manevi Mesaj
+    </p>
+
+    <p class="text-zinc-300 leading-relaxed max-w-5xl">
+      Ne varsa içimde biriken, beni yoran, uykularımı kaçıran ya da
+      <span class="italic">“olur mu acaba?”</span> diye umutla beklediğim...
+      Hepsini sana havale ediyorum Allah’ım.
+      Sen ki imkânsızı mümkün kılan, darda kalana yetişensin.
+      Miraç hürmetine kalbime genişlik, dualarıma
+      <span class="font-bold text-red-500">OL</span> müjdesi ver.
+      <span class="block mt-2 font-semibold">Âmin.</span>
+    </p>
+
+    <p class="mono text-xs tracking-[0.3em] uppercase text-zinc-400">
+      Miraç Kandiliniz Mübarek Olsun
+    </p>
+  </section>
+
   <!-- HERO -->
   <section class="space-y-8">
     <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
@@ -92,7 +111,6 @@
 
   <!-- STATUS -->
   <section class="grid md:grid-cols-3 gap-6">
-
     <div class="border border-zinc-800 p-6 bg-zinc-900/40">
       <p class="mono text-xs tracking-[0.3em] text-zinc-500">PLATFORM</p>
       <p class="mt-4 text-2xl font-black text-green-500">ACTIVE</p>
@@ -110,7 +128,6 @@
       <p class="mt-4 text-2xl font-black text-red-500">RESTRICTED</p>
       <p class="mt-2 text-zinc-400">Yetkili erişim gerektirir</p>
     </div>
-
   </section>
 
   <!-- INFO -->
@@ -159,7 +176,6 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  // MENU
   const menuTrigger = document.getElementById("menuTrigger");
   const mobileMenu  = document.getElementById("mobileMenu");
   const menuClose   = document.getElementById("menuClose");
@@ -169,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
   menuClose.onclick   = () => mobileMenu.classList.add("translate-x-full");
   menuBackdrop.onclick= () => mobileMenu.classList.add("translate-x-full");
 
-  // LOGIN DENIED
   const loginBtn = document.getElementById("loginBtn");
   const modal    = document.getElementById("loginModal");
   const closeBtn = document.getElementById("closeLoginModal");
@@ -182,5 +197,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
-

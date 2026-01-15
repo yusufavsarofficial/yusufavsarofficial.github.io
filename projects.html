@@ -34,7 +34,6 @@
 <!-- HAMBURGER MENU -->
 <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
   <div id="menuBackdrop" class="absolute inset-0"></div>
-
   <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
     <button id="menuClose"
       class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
@@ -50,95 +49,116 @@
 
       <div class="pt-6 border-t border-zinc-800"></div>
 
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
-      </div>
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
-      </div>
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
-      </div>
+      </button>
     </nav>
   </aside>
 </div>
 
 <!-- MAIN -->
-<main class="pt-32 px-6 max-w-6xl mx-auto space-y-24">
+<main class="pt-32 px-6 max-w-6xl mx-auto space-y-28">
 
   <!-- HEADER -->
-  <section class="space-y-6">
+  <section class="space-y-8">
     <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
-      PROJECTS / PORTFOLIO
+      PROJECTS / OVERVIEW
     </span>
 
-    <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight">
-      Proje Çalışmaları
+    <h1 class="text-6xl md:text-7xl font-black uppercase leading-tight">
+      Projeler
     </h1>
 
-    <p class="text-zinc-400 text-lg max-w-3xl leading-relaxed">
-      Aşağıda yer alan çalışmalar; kamu, kurumsal ve özel sektör için
-      yürütülmüş projelerin genel kapsamını temsil eder.
-      Teknik ve operasyonel detaylar gizlidir.
+    <p class="text-zinc-400 text-lg max-w-4xl leading-relaxed">
+      Bu sayfada yer alan projeler; yürütülmüş, yürütülmekte olan
+      veya planlama aşamasındaki çalışmaların **genel çerçevesini**
+      temsil eder. Teknik detaylar, mimari yapılar ve referanslar
+      bilinçli olarak paylaşılmamaktadır.
     </p>
   </section>
 
-  <!-- PROJECT GRID -->
+  <!-- STATUS INFO -->
+  <section class="grid md:grid-cols-3 gap-6">
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">PROJECT STATE</p>
+      <p class="mt-4 text-2xl font-black text-green-500">ACTIVE</p>
+      <p class="mt-2 text-zinc-400">Bazı projeler aktif olarak sürüyor.</p>
+    </div>
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">CONTENT</p>
+      <p class="mt-4 text-2xl font-black text-yellow-500">UPDATING</p>
+      <p class="mt-2 text-zinc-400">Yeni projeler ekleniyor.</p>
+    </div>
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">ACCESS</p>
+      <p class="mt-4 text-2xl font-black text-red-500">RESTRICTED</p>
+      <p class="mt-2 text-zinc-400">Detaylar yetki gerektirir.</p>
+    </div>
+  </section>
+
+  <!-- PROJECT CARDS -->
   <section class="grid md:grid-cols-2 gap-8">
 
-    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+    <!-- PROJECT -->
+    <div class="border border-zinc-800 p-8 bg-black/40">
       <h3 class="text-2xl font-black uppercase">Kurumsal Güvenlik Denetimleri</h3>
       <p class="mt-4 text-zinc-400">
-        Büyük ölçekli kurumlarda uygulama, ağ ve sistem seviyesinde
-        güvenlik denetimleri ve risk analizleri.
+        Büyük ölçekli kurumlarda web, ağ ve sistem seviyesinde
+        güvenlik analizleri ve risk değerlendirmeleri.
       </p>
-      <p class="mt-3 mono text-xs tracking-[0.3em] text-zinc-500">
-        STATUS: COMPLETED • DETAILS: RESTRICTED
+      <p class="mt-4 mono text-xs tracking-[0.3em] text-zinc-500">
+        STATUS: COMPLETED • DETAILS: CONFIDENTIAL
       </p>
     </div>
 
-    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <h3 class="text-2xl font-black uppercase">Kamu Altyapı Projeleri</h3>
+    <div class="border border-zinc-800 p-8 bg-black/40">
+      <h3 class="text-2xl font-black uppercase">Kamu Altyapı Sistemleri</h3>
       <p class="mt-4 text-zinc-400">
-        Kritik kamu sistemlerinde güvenlik mimarisi, sertleştirme
-        ve sürekli izleme çözümleri.
+        Kritik kamu altyapıları için güvenlik mimarisi,
+        sertleştirme ve izleme çözümleri.
       </p>
-      <p class="mt-3 mono text-xs tracking-[0.3em] text-zinc-500">
+      <p class="mt-4 mono text-xs tracking-[0.3em] text-zinc-500">
         STATUS: ACTIVE • CLEARANCE REQUIRED
       </p>
     </div>
 
-    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <h3 class="text-2xl font-black uppercase">Özel Sektör Yazılımları</h3>
+    <div class="border border-zinc-800 p-8 bg-black/40">
+      <h3 class="text-2xl font-black uppercase">Güvenli Yazılım Platformları</h3>
       <p class="mt-4 text-zinc-400">
-        Güvenli web uygulamaları, API sistemleri ve
-        yüksek trafikli platform geliştirmeleri.
+        Kurumsal web uygulamaları, API servisleri ve
+        özel yazılım çözümleri.
       </p>
-      <p class="mt-3 mono text-xs tracking-[0.3em] text-zinc-500">
-        STATUS: COMPLETED • NDA
+      <p class="mt-4 mono text-xs tracking-[0.3em] text-zinc-500">
+        STATUS: MAINTAINED • NDA
       </p>
     </div>
 
-    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <h3 class="text-2xl font-black uppercase">Olay Müdahale & İnceleme</h3>
+    <div class="border border-zinc-800 p-8 bg-black/40">
+      <h3 class="text-2xl font-black uppercase">Araştırma & Geliştirme</h3>
       <p class="mt-4 text-zinc-400">
-        Güvenlik ihlalleri sonrası analiz, log inceleme,
-        kök neden tespiti ve raporlama.
+        Güvenlik açıkları, sistem davranışları ve
+        savunma mekanizmaları üzerine devam eden çalışmalar.
       </p>
-      <p class="mt-3 mono text-xs tracking-[0.3em] text-zinc-500">
-        STATUS: CONFIDENTIAL
+      <p class="mt-4 mono text-xs tracking-[0.3em] text-zinc-500">
+        STATUS: IN PROGRESS • DESIGN PHASE
       </p>
     </div>
 
   </section>
 
-  <!-- DISCLAIMER -->
-  <section class="border border-zinc-800 p-8 bg-black/40">
-    <h2 class="text-3xl font-black uppercase mb-4">Bilgilendirme</h2>
-    <p class="text-zinc-400 leading-relaxed max-w-3xl">
-      Projeler yalnızca genel kapsam başlıkları ile listelenmiştir.
-      Detay, teknik içerik ve referans bilgileri ancak
-      yetkilendirme ve uygun izinler sonrası paylaşılabilir.
+  <!-- NOTE -->
+  <section class="border border-zinc-800 p-10 bg-zinc-900/30 space-y-4">
+    <h2 class="text-3xl font-black uppercase">Ön Bilgilendirme</h2>
+    <p class="text-zinc-400 max-w-4xl leading-relaxed">
+      Proje detayları, kullanılan teknolojiler ve operasyonel bilgiler
+      yalnızca yetkilendirme, sözleşme ve uygun izinler sonrasında
+      paylaşılabilir. Bu sayfa, bilgilendirme ve vitrin amaçlıdır.
     </p>
   </section>
 

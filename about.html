@@ -1,238 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Hakkımda | Yusuf Avşar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
-  <meta name="description" content="Yusuf Avşar — Yazılım geliştirici, güvenlik araştırmacısı ve siber güvenlik uzmanı. 2010'dan bu yana 16+ yıl tecrübe." />
-  <meta name="author" content="Yusuf Avşar" />
-  <meta name="theme-color" content="#0b0f19" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#0b0f19;
-      --card:#0f1629;
-      --line:rgba(255,255,255,.08);
-      --glow:rgba(255,0,0,.18);
+    body{
+      font-family:Inter,system-ui;
+      background:#050505;
+      color:#e5e7eb;
     }
-    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
-    .gridline{
-      background-image:
-        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
-        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
-        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: auto, auto, auto, 28px 28px;
-      background-position: center, center, center, 0 0;
-    }
-    .glass{
-      background: rgba(15, 22, 41, 0.72);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-    }
-    .soft-border{border:1px solid var(--line);}
-    .btn{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-    .btn:hover{background: rgba(255,255,255,.07);}
-    .badge{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
+    .mono{font-family:"JetBrains Mono",monospace}
   </style>
 </head>
 
-<body class="text-white gridline min-h-screen">
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-50">
-    <div class="glass">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center">
-            <span class="mono text-sm tracking-tight">YA</span>
-          </div>
-          <div class="leading-tight">
-            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
-            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
-          </div>
-        </a>
+<body class="min-h-screen overflow-x-hidden">
 
-        <nav class="hidden md:flex items-center gap-2">
-          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
-          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
-          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
-          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
-        </nav>
+<!-- HEADER -->
+<header class="fixed top-0 right-0 z-[100] p-6">
+  <button id="menuTrigger"
+    class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500 transition">
+    MENU
+  </button>
+</header>
 
-        <div class="md:hidden">
-          <button id="menuBtn" class="btn px-3 py-2 rounded-xl text-sm mono">MENU</button>
-        </div>
+<!-- HAMBURGER MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
+  <div id="menuBackdrop" class="absolute inset-0"></div>
+
+  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
+    <button id="menuClose"
+      class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
+      KAPAT
+    </button>
+
+    <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
+      <a href="index.html" class="block hover:text-red-500 transition">Anasayfa</a>
+      <a href="about.html" class="block text-red-500">Hakkımda</a>
+      <a href="services.html" class="block hover:text-red-500 transition">Hizmetler</a>
+      <a href="projects.html" class="block hover:text-red-500 transition">Projeler</a>
+      <a href="contact.html" class="block hover:text-red-500 transition">İletişim</a>
+
+      <div class="pt-6 border-t border-zinc-800"></div>
+
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
       </div>
-
-      <!-- Mobile menu -->
-      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2">
-          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
-          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
-          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
-          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
-        </div>
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
       </div>
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
+      </div>
+    </nav>
+  </aside>
+</div>
+
+<!-- MAIN -->
+<main class="pt-32 px-6 max-w-5xl mx-auto space-y-24">
+
+  <!-- HEADER -->
+  <section class="space-y-6">
+    <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
+      ABOUT / PROFILE
+    </span>
+
+    <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight">
+      Yusuf Avşar
+    </h1>
+
+    <p class="text-zinc-400 text-lg max-w-3xl leading-relaxed">
+      Yazılım geliştirici, güvenlik araştırmacısı ve siber güvenlik uzmanı.
+      16 yılı aşkın süredir sistemler, ağlar ve uygulamalar üzerinde
+      güvenlik odaklı çalışmalar yürütmektedir.
+    </p>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="grid md:grid-cols-2 gap-12">
+
+    <div class="space-y-6">
+      <h2 class="text-3xl font-black uppercase">Yaklaşım</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Güvenlik, sonradan eklenen bir özellik değil; tasarımın kendisidir.
+        Tüm çalışmalarım saldırgan bakış açısı ile savunmacı mimariyi
+        aynı noktada buluşturmayı hedefler.
+      </p>
+      <p class="text-zinc-400 leading-relaxed">
+        Gerçek tehditler, gerçek sistemlerde test edilir.
+        Varsayımsal senaryolar yerine sahada karşılığı olan riskler ele alınır.
+      </p>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
-    <section class="grid lg:grid-cols-12 gap-6 items-stretch">
-      <div class="lg:col-span-8 glass rounded-3xl p-6 md:p-8">
-        <div class="flex flex-wrap items-center gap-2 mb-4">
-          <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">2010 → bugün</span>
-          <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">16+ yıl tecrübe</span>
-          <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Security Research</span>
-          <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Software Engineering</span>
-        </div>
+    <div class="space-y-6">
+      <h2 class="text-3xl font-black uppercase">Uzmanlık Alanları</h2>
+      <ul class="space-y-3 text-zinc-400">
+        <li>• Web & Uygulama Güvenliği</li>
+        <li>• Ağ ve Sistem Güvenliği</li>
+        <li>• Penetrasyon Testleri</li>
+        <li>• Zafiyet Analizi & Risk Değerlendirme</li>
+        <li>• Güvenli Yazılım Mimarileri</li>
+        <li>• Olay Müdahale & İnceleme</li>
+      </ul>
+    </div>
 
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
-          Hakkımda
-        </h1>
-        <p class="text-white/70 mt-3 leading-relaxed">
-          Ben <span class="font-semibold text-white">Yusuf Avşar</span>.
-          <span class="font-semibold text-white">Yazılım geliştirici</span>, <span class="font-semibold text-white">güvenlik araştırmacısı</span> ve <span class="font-semibold text-white">siber güvenlik uzmanı</span>yım.
-          2010 yılından bu yana yazılım geliştirme ve siber güvenlik alanlarında aktif olarak çalışıyorum.
-          Akademik bir çizgiden değil; tamamen <span class="font-semibold text-white">saha tecrübesi</span>, gerçek sistemler ve uzun soluklu bireysel çalışmalarla bu uzmanlığa ulaştım.
-        </p>
+  </section>
 
-        <div class="mt-6 space-y-4 text-white/70 leading-relaxed">
-          <p>
-            Siber güvenlik dünyasına teorik değil <span class="font-semibold text-white">pratik ve gerçek</span> bir yerden girdim.
-            Uzun yıllar boyunca <span class="font-semibold text-white">siyah şapka yaklaşım</span>ıyla, sistemlerin zayıf noktalarını doğrudan hedef alan yöntemler üzerinde çalıştım.
-            Bu dönem bana yalnızca “nasıl korunulur”u değil, bir sistemin <span class="font-semibold text-white">nasıl kırıldığını</span> öğretti.
-            Bugün sahip olduğum perspektif, bu geçmişin disiplinli bir şekilde profesyonelleştirilmiş hâlidir.
-          </p>
+  <!-- PRINCIPLES -->
+  <section class="border border-zinc-800 p-8 bg-black/40 space-y-4">
+    <h2 class="text-3xl font-black uppercase">Çalışma İlkeleri</h2>
+    <p class="text-zinc-400 leading-relaxed max-w-3xl">
+      Tüm faaliyetler gizlilik, etik ve yasal çerçeveye bağlıdır.
+      Yetkisiz erişim, izinsiz test ve hukuka aykırı talepler kabul edilmez.
+      Kurum ve birey güvenliği önceliklidir.
+    </p>
+  </section>
 
-          <p>
-            Yaklaşık <span class="font-semibold text-white">16 yıllık aktif tecrübem</span>; web uygulamalarından sunucu altyapılarına, ağ sistemlerinden otomasyona kadar geniş bir alanı kapsar.
-            Güvenliği bir kontrol listesi olarak değil; yazılım, mimari ve insan faktörünü birlikte ele alan <span class="font-semibold text-white">uçtan uca</span> bir süreç olarak görürüm.
-            Savunmadan önce saldırgan gibi düşünür, ardından sürdürülebilir çözümü tasarlarım.
-          </p>
+</main>
 
-          <p>
-            Uzmanlık alanım tek bir başlığa sıkışmaz:
-            web güvenliği, ağ güvenliği, penetrasyon testleri, zafiyet analizi, exploit araştırmaları, tersine mühendislik, otomasyon ve yazılım geliştirme gibi disiplinleri birlikte ele alırım.
-            Bu yaklaşım, yalnızca problemi tespit eden değil; <span class="font-semibold text-white">çözümü üreten ve uygulayan</span> bir çalışma biçimi sağlar.
-          </p>
+<!-- FOOTER -->
+<footer class="mt-32 py-10 border-t border-zinc-800 text-center mono text-xs tracking-[0.3em] text-zinc-500">
+  © 2010 – 2026 YUSUF AVŞAR • AYFSOFT
+</footer>
 
-          <p>
-            Çalışma prensibim nettir: <span class="font-semibold text-white">gizlilik</span>, <span class="font-semibold text-white">etik</span> ve <span class="font-semibold text-white">profesyonellik</span>.
-            Gösterişe değil sonuca, laf kalabalığına değil <span class="font-semibold text-white">işleyen sistemlere</span> odaklanırım.
-            Bir projeye dahil olduğumda hedefim sadece “çalışması” değil, <span class="font-semibold text-white">doğru çalışmasıdır</span>.
-          </p>
-        </div>
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuTrigger  = document.getElementById("menuTrigger");
+  const mobileMenu   = document.getElementById("mobileMenu");
+  const menuClose    = document.getElementById("menuClose");
+  const menuBackdrop = document.getElementById("menuBackdrop");
 
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="contact.html" class="btn rounded-2xl px-5 py-3 text-sm font-semibold">
-            İletişime geç
-          </a>
-          <a href="services.html" class="btn rounded-2xl px-5 py-3 text-sm font-semibold">
-            Hizmetlere göz at
-          </a>
-        </div>
-      </div>
+  function openMenu(){ mobileMenu.classList.remove("translate-x-full"); }
+  function closeMenu(){ mobileMenu.classList.add("translate-x-full"); }
 
-      <!-- Side card -->
-      <aside class="lg:col-span-4 glass rounded-3xl p-6 md:p-7">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-bold tracking-tight">Özet</h2>
-          <span class="mono text-xs text-white/60">PROFILE</span>
-        </div>
+  menuTrigger.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+  menuBackdrop.addEventListener("click", closeMenu);
+  window.addEventListener("keydown", e => { if(e.key === "Escape") closeMenu(); });
+});
+</script>
 
-        <div class="mt-4 space-y-3">
-          <div class="soft-border rounded-2xl p-4">
-            <div class="text-xs text-white/60 mono">ROL</div>
-            <div class="mt-1 font-semibold">Yazılım Geliştirici • Güvenlik Araştırmacısı • Siber Güvenlik Uzmanı</div>
-          </div>
-
-          <div class="soft-border rounded-2xl p-4">
-            <div class="text-xs text-white/60 mono">ODAK</div>
-            <div class="mt-1 text-white/80">
-              Güvenlik odaklı geliştirme, saldırı yüzeyi analizi, zafiyet araştırması,
-              penetrasyon testleri, otomasyon ve sağlam mimari.
-            </div>
-          </div>
-
-          <div class="soft-border rounded-2xl p-4">
-            <div class="text-xs text-white/60 mono">YAKLAŞIM</div>
-            <ul class="mt-2 space-y-2 text-white/80 text-sm">
-              <li class="flex gap-2"><span class="mono text-white/50">01</span> Gerçekçi tehdit modeli</li>
-              <li class="flex gap-2"><span class="mono text-white/50">02</span> Kanıt tabanlı bulgu</li>
-              <li class="flex gap-2"><span class="mono text-white/50">03</span> Uygulanabilir çözüm</li>
-              <li class="flex gap-2"><span class="mono text-white/50">04</span> Sürdürülebilir güvenlik</li>
-            </ul>
-          </div>
-
-          <div class="soft-border rounded-2xl p-4">
-            <div class="text-xs text-white/60 mono">NOT</div>
-            <div class="mt-1 text-white/80 text-sm leading-relaxed">
-              Bu sayfa bilerek kurumsal tonda yazıldı: net, güçlü ve abartısız.
-              Hizmetler / projeler bölümleri ayrı sayfalarda konumlandırılacaktır.
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- Skills chips -->
-    <section class="mt-8 glass rounded-3xl p-6 md:p-8">
-      <div class="flex items-center justify-between gap-3">
-        <h2 class="text-lg md:text-xl font-bold tracking-tight">Yetkinlik Alanları</h2>
-        <span class="mono text-xs text-white/60">ALL DOMAINS</span>
-      </div>
-
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Web Security</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Network Security</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Penetration Testing</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Red Team / Blue Team</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Exploit Research</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Malware Analysis</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Reverse Engineering</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Backend / API</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Linux / Server</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Automation / Scripting</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">OSINT</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Threat Modeling</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono">Secure Architecture</span>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="mt-10 text-center text-white/50 text-sm">
-      <div class="mono">© <span id="year"></span> Yusuf Avşar • All rights reserved.</div>
-    </footer>
-  </main>
-
-  <script>
-    // Mobile menu
-    const btn = document.getElementById("menuBtn");
-    const menu = document.getElementById("mobileMenu");
-    btn?.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
-          </html>
+</html>

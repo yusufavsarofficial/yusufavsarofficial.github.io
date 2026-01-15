@@ -34,7 +34,6 @@
 <!-- HAMBURGER MENU -->
 <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
   <div id="menuBackdrop" class="absolute inset-0"></div>
-
   <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
     <button id="menuClose"
       class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
@@ -50,76 +49,103 @@
 
       <div class="pt-6 border-t border-zinc-800"></div>
 
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
-      </div>
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
-      </div>
-      <div class="text-zinc-600 cursor-not-allowed select-none">
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
         Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
-      </div>
+      </button>
     </nav>
   </aside>
 </div>
 
 <!-- MAIN -->
-<main class="pt-32 px-6 max-w-5xl mx-auto space-y-24">
+<main class="pt-32 px-6 max-w-6xl mx-auto space-y-28">
 
-  <!-- HEADER -->
-  <section class="space-y-6">
+  <!-- INTRO -->
+  <section class="space-y-8">
     <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
-      ABOUT / PROFILE
+      ABOUT / PROFESSIONAL PROFILE
     </span>
 
-    <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight">
+    <h1 class="text-6xl md:text-7xl font-black uppercase leading-tight">
       Yusuf Avşar
     </h1>
 
-    <p class="text-zinc-400 text-lg max-w-3xl leading-relaxed">
-      Yazılım geliştirici, güvenlik araştırmacısı ve siber güvenlik uzmanı.
-      16 yılı aşkın süredir sistemler, ağlar ve uygulamalar üzerinde
-      güvenlik odaklı çalışmalar yürütmektedir.
+    <p class="text-zinc-400 text-lg max-w-4xl leading-relaxed">
+      Yazılım geliştirici, güvenlik araştırmacısı ve siber güvenlik uzmanıyım.
+      2010 yılından bu yana yazılım, ağ, sistem ve uygulama güvenliği alanlarında
+      aktif olarak çalışıyorum. Akademik ya da kurumsal bir eğitim sürecinden
+      ziyade, tamamen **saha tecrübesi**, gerçek sistemler ve yıllar içinde
+      edinilmiş pratik bilgiye dayalı bir uzmanlık geçmişine sahibim.
     </p>
   </section>
 
-  <!-- CONTENT -->
-  <section class="grid md:grid-cols-2 gap-12">
+  <!-- BACKGROUND -->
+  <section class="grid md:grid-cols-2 gap-16">
+
+    <div class="space-y-6">
+      <h2 class="text-3xl font-black uppercase">Arka Plan</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Siber güvenlik alanına girişim teorik değil, doğrudan pratiğe dayalıdır.
+        Uzun yıllar boyunca sistemlerin nasıl çalıştığını değil,
+        **nasıl bozulduğunu**, nereden kırıldığını ve hangi noktalarda
+        savunmasız kaldığını analiz ederek ilerledim.
+      </p>
+      <p class="text-zinc-400 leading-relaxed">
+        Bu yaklaşım bana yalnızca saldırı vektörlerini değil,
+        aynı zamanda gerçekçi ve sürdürülebilir savunma
+        mimarilerinin nasıl kurulması gerektiğini öğretti.
+      </p>
+    </div>
 
     <div class="space-y-6">
       <h2 class="text-3xl font-black uppercase">Yaklaşım</h2>
       <p class="text-zinc-400 leading-relaxed">
-        Güvenlik, sonradan eklenen bir özellik değil; tasarımın kendisidir.
-        Tüm çalışmalarım saldırgan bakış açısı ile savunmacı mimariyi
-        aynı noktada buluşturmayı hedefler.
+        Güvenliği tek başına bir araç, yazılım ya da kontrol listesi
+        olarak görmüyorum. Güvenlik; yazılım mimarisi, altyapı,
+        süreçler ve insan faktörünün bir bütünüdür.
       </p>
       <p class="text-zinc-400 leading-relaxed">
-        Gerçek tehditler, gerçek sistemlerde test edilir.
-        Varsayımsal senaryolar yerine sahada karşılığı olan riskler ele alınır.
+        Bir sistemi korumadan önce, o sisteme bir saldırganın
+        nasıl yaklaşacağını düşünürüm. Bu bakış açısı,
+        geliştirdiğim tüm çözümlerin temelini oluşturur.
       </p>
-    </div>
-
-    <div class="space-y-6">
-      <h2 class="text-3xl font-black uppercase">Uzmanlık Alanları</h2>
-      <ul class="space-y-3 text-zinc-400">
-        <li>• Web & Uygulama Güvenliği</li>
-        <li>• Ağ ve Sistem Güvenliği</li>
-        <li>• Penetrasyon Testleri</li>
-        <li>• Zafiyet Analizi & Risk Değerlendirme</li>
-        <li>• Güvenli Yazılım Mimarileri</li>
-        <li>• Olay Müdahale & İnceleme</li>
-      </ul>
     </div>
 
   </section>
 
+  <!-- EXPERIENCE -->
+  <section class="border border-zinc-800 p-10 bg-black/40 space-y-8">
+    <h2 class="text-3xl font-black uppercase">Tecrübe Alanları</h2>
+
+    <ul class="grid md:grid-cols-2 gap-4 text-zinc-400">
+      <li>• Web ve uygulama güvenliği</li>
+      <li>• Ağ ve sistem güvenliği</li>
+      <li>• Penetrasyon testleri</li>
+      <li>• Zafiyet analizi ve risk değerlendirme</li>
+      <li>• Güvenli yazılım mimarileri</li>
+      <li>• Olay müdahale ve adli inceleme</li>
+      <li>• Kurumsal altyapı tasarımı</li>
+      <li>• Güvenlik danışmanlığı</li>
+    </ul>
+  </section>
+
   <!-- PRINCIPLES -->
-  <section class="border border-zinc-800 p-8 bg-black/40 space-y-4">
-    <h2 class="text-3xl font-black uppercase">Çalışma İlkeleri</h2>
-    <p class="text-zinc-400 leading-relaxed max-w-3xl">
-      Tüm faaliyetler gizlilik, etik ve yasal çerçeveye bağlıdır.
-      Yetkisiz erişim, izinsiz test ve hukuka aykırı talepler kabul edilmez.
-      Kurum ve birey güvenliği önceliklidir.
+  <section class="space-y-6">
+    <h2 class="text-3xl font-black uppercase">Çalışma Prensipleri</h2>
+    <p class="text-zinc-400 max-w-4xl leading-relaxed">
+      Tüm çalışmalar gizlilik, etik ve yasal çerçeve içerisinde yürütülür.
+      Yetkisiz erişim, izinsiz test veya hukuka aykırı talepler
+      kesinlikle kabul edilmez.
+    </p>
+    <p class="text-zinc-400 max-w-4xl leading-relaxed">
+      Amacım yalnızca bir sistemi “çalışır” hale getirmek değil,
+      uzun vadede sürdürülebilir, güvenli ve kontrol edilebilir
+      bir yapı oluşturmaktır.
     </p>
   </section>
 

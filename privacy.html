@@ -1,135 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Gizlilik Politikası | Yusuf Avşar</title>
-  <meta name="description" content="Yusuf Avşar — Gizlilik Politikası. Veri işleme, iletişim kanalları, üçüncü taraflar ve saklama politikası hakkında bilgilendirme." />
-  <meta name="author" content="Yusuf Avşar" />
-  <meta name="theme-color" content="#0b0f19" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{--bg:#0b0f19;--line:rgba(255,255,255,.08);--glow:rgba(255,0,0,.18);}
-    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
-    .gridline{
-      background-image:
-        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
-        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
-        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: auto, auto, auto, 28px 28px;
-      background-position: center, center, center, 0 0;
+    body{
+      font-family:Inter,system-ui;
+      background:#050505;
+      color:#e5e7eb;
     }
-    .glass{background: rgba(15, 22, 41, 0.72);border: 1px solid var(--line);backdrop-filter: blur(10px);}
-    .soft-border{border:1px solid var(--line);}
-    .btn{border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);}
-    .btn:hover{background: rgba(255,255,255,.07);}
+    .mono{font-family:"JetBrains Mono",monospace}
   </style>
 </head>
 
-<body class="text-white gridline min-h-screen">
-  <header class="sticky top-0 z-50">
-    <div class="glass">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center"><span class="mono text-sm">YA</span></div>
-          <div class="leading-tight">
-            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
-            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
-          </div>
-        </a>
-        <div class="flex items-center gap-2">
-          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
-        </div>
-      </div>
-    </div>
-  </header>
+<body class="min-h-screen overflow-x-hidden">
 
-  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
-    <section class="glass rounded-3xl p-6 md:p-8">
-      <div class="flex items-center justify-between gap-3">
-        <div>
-          <div class="text-xs text-white/60 mono">POLICY</div>
-          <h1 class="mt-1 text-3xl md:text-4xl font-extrabold tracking-tight">Gizlilik Politikası</h1>
-        </div>
-        <span class="mono text-xs text-white/60">Son güncelleme: <span id="lastUpdated"></span></span>
-      </div>
+<!-- HEADER -->
+<header class="fixed top-0 right-0 z-[100] p-6">
+  <button id="menuTrigger"
+    class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500 transition">
+    MENU
+  </button>
+</header>
 
-      <p class="mt-4 text-white/70 leading-relaxed">
-        Bu sayfa, bu web sitesini ziyaret ettiğinizde ve iletişim kanallarını kullandığınızda hangi bilgilerin
-        işlenebileceğini ve nasıl korunduğunu açıklar. Güvenlik ve gizlilik, temel önceliktir.
+<!-- HAMBURGER MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
+  <div id="menuBackdrop" class="absolute inset-0"></div>
+  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
+    <button id="menuClose"
+      class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
+      KAPAT
+    </button>
+
+    <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
+      <a href="index.html" class="block hover:text-red-500 transition">Anasayfa</a>
+      <a href="about.html" class="block hover:text-red-500 transition">Hakkımda</a>
+      <a href="services.html" class="block hover:text-red-500 transition">Hizmetler</a>
+      <a href="projects.html" class="block hover:text-red-500 transition">Projeler</a>
+      <a href="contact.html" class="block hover:text-red-500 transition">İletişim</a>
+      <a href="privacy.html" class="block text-red-500">Gizlilik</a>
+
+      <div class="pt-6 border-t border-zinc-800"></div>
+
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
+      </button>
+    </nav>
+  </aside>
+</div>
+
+<!-- MAIN -->
+<main class="pt-32 px-6 max-w-5xl mx-auto space-y-24">
+
+  <!-- HEADER -->
+  <section class="space-y-6">
+    <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
+      PRIVACY / DATA POLICY
+    </span>
+
+    <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight">
+      Gizlilik Politikası
+    </h1>
+
+    <p class="text-zinc-400 text-lg max-w-4xl leading-relaxed">
+      Bu gizlilik politikası, web sitesi üzerinden elde edilebilecek
+      sınırlı bilgilerin nasıl işlendiğini, korunduğunu ve kullanıldığını
+      açıklamak amacıyla hazırlanmıştır.
+    </p>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="space-y-12">
+
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">1. Genel Bilgilendirme</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Bu web sitesi bilgilendirme amaçlıdır. Ziyaretçilerden
+        otomatik veya manuel olarak kapsamlı kişisel veri toplanmaz.
+        Site içeriği geliştirme ve tasarım aşamasında olabilir.
       </p>
+    </div>
 
-      <div class="mt-6 space-y-4">
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">1) Toplanan Bilgiler</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            Bu site, varsayılan olarak form verilerini sunucuya kaydetmez.
-            İletişim; WhatsApp, Instagram ve e-posta kanalları üzerinden yürütülür.
-            Bu kanallara ilettiğiniz bilgiler (ad, kurum, iletişim bilgisi, mesaj içeriği) iletişim amacıyla kullanılabilir.
-          </p>
-        </div>
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">2. Toplanan Veriler</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Web sitesi üzerinden yalnızca teknik ve zorunlu veriler
+        (tarayıcı bilgisi, cihaz türü gibi) sistemsel olarak
+        işlenebilir. Bu veriler kimlik tespiti amacı taşımaz.
+      </p>
+    </div>
 
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">2) Çerezler (Cookies)</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            Bu site, zorunlu olmayan çerezleri kullanmayabilir.
-            Üçüncü taraf servisler (ör. CDN, barındırma sağlayıcısı) teknik amaçlarla sınırlı log/çerez kullanabilir.
-          </p>
-        </div>
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">3. İletişim</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        İletişim kanalları üzerinden gönderilen e-postalar,
+        yalnızca iletişim kurmak amacıyla değerlendirilir.
+        Bu bilgiler üçüncü kişilerle paylaşılmaz.
+      </p>
+    </div>
 
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">3) Üçüncü Taraflar</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            WhatsApp ve Instagram gibi platformlar, kendi gizlilik politikalarına göre veri işleyebilir.
-            E-posta sağlayıcıları (Proton/Gmail) da benzer şekilde kendi kurallarına tabidir.
-            Bu platformların veri işleme süreçleri üzerinde doğrudan kontrol bulunmayabilir.
-          </p>
-        </div>
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">4. Veri Güvenliği</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Tüm teknik ve idari önlemler, yetkisiz erişimi önlemek
+        amacıyla alınmaktadır. Ancak internet ortamında
+        %100 güvenlik garanti edilemez.
+      </p>
+    </div>
 
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">4) Veri Saklama</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            İletişim kayıtları, yalnızca iş/iletişim sürecinin yürütülmesi ve gerektiğinde referans amacıyla saklanabilir.
-            Hassas içerikler, mümkün olan en kısa sürede minimize edilir ve gereksiz kopyalar tutulmaz.
-          </p>
-        </div>
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">5. Üçüncü Taraflar</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Bu web sitesi, üçüncü taraf hizmetler veya izleme
+        mekanizmaları içermeyebilir veya sınırlı olarak içerebilir.
+        Kullanılan servisler zamanla değiştirilebilir.
+      </p>
+    </div>
 
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">5) Güvenlik</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            Yetkisiz erişim, veri sızıntısı ve kötüye kullanım risklerini azaltmak için iyi uygulamalar izlenir.
-            Ancak internet üzerinde hiçbir sistem %100 garanti vermez; bu nedenle hassas verileri paylaşmadan önce
-            kapsam ve yöntem iletişimde netleştirilmelidir.
-          </p>
-        </div>
+    <div class="space-y-4">
+      <h2 class="text-2xl font-black uppercase">6. Değişiklikler</h2>
+      <p class="text-zinc-400 leading-relaxed">
+        Gizlilik politikası, ihtiyaçlar doğrultusunda güncellenebilir.
+        Güncellemeler bu sayfa üzerinden yayınlanır.
+      </p>
+    </div>
 
-        <div class="soft-border rounded-2xl p-5">
-          <h2 class="font-bold text-lg tracking-tight">6) İletişim</h2>
-          <p class="mt-2 text-white/70 leading-relaxed text-sm">
-            Gizlilikle ilgili talepleriniz için <a class="underline decoration-white/30 hover:decoration-white" href="contact.html">iletişim</a> sayfasını kullanabilirsiniz.
-          </p>
-        </div>
-      </div>
+  </section>
 
-      <footer class="mt-10 text-center text-white/50 text-sm">
-        <div class="mono">© <span id="year"></span> Yusuf Avşar</div>
-      </footer>
-    </section>
-  </main>
+</main>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    // Basit "son güncelleme" etiketi (dosya bazlı bir veri yok, bugün yazdırıyoruz)
-    const d = new Date();
-    const fmt = d.toLocaleDateString("tr-TR", { year:"numeric", month:"long", day:"2-digit" });
-    document.getElementById("lastUpdated").textContent = fmt;
-  </script>
+<!-- FOOTER -->
+<footer class="mt-32 py-10 border-t border-zinc-800 text-center mono text-xs tracking-[0.3em] text-zinc-500">
+  © 2010 – 2026 YUSUF AVŞAR • AYFSOFT
+</footer>
+
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuTrigger  = document.getElementById("menuTrigger");
+  const mobileMenu   = document.getElementById("mobileMenu");
+  const menuClose    = document.getElementById("menuClose");
+  const menuBackdrop = document.getElementById("menuBackdrop");
+
+  function openMenu(){ mobileMenu.classList.remove("translate-x-full"); }
+  function closeMenu(){ mobileMenu.classList.add("translate-x-full"); }
+
+  menuTrigger.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+  menuBackdrop.addEventListener("click", closeMenu);
+  window.addEventListener("keydown", e => { if(e.key === "Escape") closeMenu(); });
+});
+</script>
+
 </body>
 </html>

@@ -15,444 +15,94 @@
     :root{ --bg:#050505; --red:#ff0000; }
     html,body{height:100%}
     body{
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      background: var(--bg);
+      font-family:"Inter",system-ui;
+      background:var(--bg);
       color:#e5e7eb;
       overflow-x:hidden;
     }
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .mono{font-family:"JetBrains Mono", monospace;}
     .bg-grid{
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
-      background-size: 42px 42px;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0);
+      background-size:42px 42px;
     }
-    .glass{ background: rgba(10,10,10,0.55); backdrop-filter: blur(14px); }
-    .glow-red{ box-shadow: 0 0 70px -22px rgba(255,0,0,0.55); }
-    .text-outline{ -webkit-text-stroke: 1px rgba(255,255,255,0.12); color: transparent; }
-
-    #mobileMenu{ transition: transform .6s cubic-bezier(.85,0,.15,1); }
-
-    @keyframes stripes{ from{background-position:40px 0} to{background-position:0 0} }
-    .progress-animated{
-      background-image: linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
-      background-size: 40px 40px;
-      animation: stripes 1s linear infinite;
-    }
-
-    @keyframes floatIn{ from{transform:translateY(10px);opacity:0} to{transform:translateY(0);opacity:1} }
-    .float-in{ animation: floatIn .7s ease both; }
-
-    .nav-link:hover i{ transform: translateX(3px); }
-    .nav-link i{ transition: transform .2s ease; }
-
-    @media (prefers-reduced-motion: reduce){
-      #mobileMenu{transition:none}
-      .progress-animated{animation:none}
-      .float-in{animation:none}
-    }
-
+    .glass{background:rgba(10,10,10,.55);backdrop-filter:blur(14px)}
+    #mobileMenu{transition:transform .45s cubic-bezier(.85,0,.15,1)}
     #bgCanvas{
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: .55;
-      mix-blend-mode: screen;
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none !important;
     }
   </style>
 </head>
 
-<body class="bg-grid min-h-screen flex flex-col">
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+<body class="bg-grid min-h-screen">
+<canvas id="bgCanvas"></canvas>
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-7">
-    <div class="max-w-6xl mx-auto flex justify-end relative z-10">
-      <button id="menuTrigger"
-              class="group inline-flex items-center gap-4 focus:outline-none"
-              aria-controls="mobileMenu"
-              aria-expanded="false">
-        <span class="mono text-[10px] tracking-[0.45em] text-zinc-500 group-hover:text-red-500 transition uppercase">
-          Sistem Menüsü
-        </span>
-        <span class="relative w-12 h-10 flex flex-col justify-center gap-2">
-          <span class="bar1 block h-0.5 w-8 bg-zinc-200 group-hover:bg-red-500 group-hover:w-12 transition-all"></span>
-          <span class="bar2 block h-0.5 w-12 bg-zinc-200 group-hover:bg-red-500 group-hover:w-8 transition-all"></span>
-        </span>
-      </button>
-    </div>
-  </header>
+<!-- HEADER -->
+<header class="fixed top-0 right-0 z-[100] p-6">
+  <button id="menuTrigger" class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500">
+    MENU
+  </button>
+</header>
 
-  <!-- Mobile Menu / Overlay -->
-  <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
-    <div class="absolute inset-0" id="menuBackdrop" aria-hidden="true"></div>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
+  <div id="menuBackdrop" class="absolute inset-0"></div>
 
-    <aside class="absolute right-0 top-0 h-full w-full md:w-[780px] border-l border-zinc-800 glass">
-      <div class="absolute inset-0 opacity-[0.07] pointer-events-none flex items-center justify-center overflow-hidden">
-        <h1 class="text-[22vw] md:text-[14vw] font-black text-white leading-none select-none">SYSTEM</h1>
-      </div>
+  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] glass border-l border-zinc-800 p-10">
+    <button id="menuClose" class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500">
+      KAPAT
+    </button>
 
-      <div class="relative z-10 h-full flex flex-col">
-        <div class="flex items-center justify-between px-8 md:px-10 py-8 border-b border-zinc-900/60">
-          <div>
-            <p class="mono text-red-500 text-xs tracking-[0.45em] uppercase">Erişim Paneli</p>
-            <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-500 mt-2">
-              Secure protocol • monitored sessions • navigation online
-            </p>
-          </div>
-          <button id="menuClose" class="px-4 py-2 border border-zinc-700 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase">
-            Kapat
-          </button>
-        </div>
+    <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
+      <a href="index.html" class="block hover:text-red-500">Anasayfa</a>
+      <a href="about.html" class="block hover:text-red-500">Hakkımda</a>
+      <a href="services.html" class="block hover:text-red-500">Hizmetler</a>
+      <a href="projects.html" class="block hover:text-red-500">Projeler</a>
+      <a href="contact.html" class="block hover:text-red-500">İletişim</a>
+    </nav>
+  </aside>
+</div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 md:px-10 py-10 grow">
-          <nav>
-            <ul class="space-y-5">
-              <li>
-                <a href="index.html"
-                   class="nav-link flex items-baseline justify-between gap-6 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none hover:text-red-600 transition-colors">
-                  <span>Anasayfa</span>
-                  <i class="fa-solid fa-arrow-right-long text-sm text-red-500"></i>
-                </a>
-              </li>
-
-              <li>
-                <a href="about.html"
-                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
-                  <span>Hakkımda</span>
-                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
-                </a>
-              </li>
-
-              <li>
-                <a href="services.html"
-                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
-                  <span>Hizmetler</span>
-                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
-                </a>
-              </li>
-
-              <li>
-                <a href="projects.html"
-                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
-                  <span>Projeler</span>
-                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
-                </a>
-              </li>
-
-              <li>
-                <a href="contact.html"
-                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
-                  <span>İletişim</span>
-                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
-                </a>
-              </li>
-
-              <li class="pt-3">
-                <div class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-4 py-3 rounded-2xl">
-                  privacy • terms • security policy
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
-                       href="privacy.html">Privacy</a>
-                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
-                       href="terms.html">Terms</a>
-                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
-                       href="security.html">Security</a>
-                  </div>
-                </div>
-              </li>
-
-            </ul>
-          </nav>
-
-          <div class="hidden md:block border-l border-zinc-800 pl-10 space-y-8">
-            <div class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-widest">
-              [BİLGİ]<br/>
-              Navigasyon aktif.<br/>
-              Sayfalar: online.<br/>
-              Loglama & izleme aktif.<br/>
-              Güvenlik katmanı: v4.0.1
-            </div>
-
-            <div class="space-y-3">
-              <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Kısayol</div>
-              <button id="goSupport" class="w-full px-6 py-3 border border-zinc-800 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase text-left">
-                Destek Kartına Git
-              </button>
-            </div>
-
-            <div class="space-y-3">
-              <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">İpucu</div>
-              <div class="mono text-[10px] tracking-[0.22em] uppercase text-zinc-500 border border-zinc-800 bg-zinc-900/20 rounded-2xl p-4">
-                ESC ile kapat • dışarı tıkla
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="px-8 md:px-10 py-8 border-t border-zinc-900/60 mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
-          AYFSOFT CORE • MAINTENANCE LOCK • SAFE MODE
-        </div>
-      </div>
-    </aside>
+<!-- MAIN -->
+<main class="relative z-10 flex items-center justify-center min-h-screen text-center px-6">
+  <div>
+    <h1 class="text-6xl md:text-8xl font-black uppercase">
+      Sistem <span class="text-red-600">Bakımda</span>
+    </h1>
+    <p class="mt-6 text-zinc-500 max-w-xl mx-auto">
+      Altyapı güncelleniyor. Modüller sırayla açılacaktır.
+    </p>
   </div>
+</main>
 
-  <!-- Main -->
-  <main class="flex-grow flex items-center justify-center relative px-6 pt-28 pb-16 z-10">
-    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center float-in">
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-      <!-- Left -->
-      <section class="lg:col-span-7 text-left space-y-8">
-        <div class="inline-flex items-center gap-3 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-          </span>
-          <span class="mono text-[10px] uppercase tracking-widest text-red-500 font-bold">
-            Maintenance Protocol v4.0.1
-          </span>
-        </div>
+  const menuTrigger  = document.getElementById("menuTrigger");
+  const mobileMenu   = document.getElementById("mobileMenu");
+  const menuClose    = document.getElementById("menuClose");
+  const menuBackdrop = document.getElementById("menuBackdrop");
 
-        <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-white">
-          Sistem <span class="text-red-600">Bakım</span><br/>
-          <span class="text-outline">Modunda</span>
-        </h1>
+  function openMenu(){
+    mobileMenu.classList.remove("translate-x-full");
+  }
+  function closeMenu(){
+    mobileMenu.classList.add("translate-x-full");
+  }
 
-        <p class="text-zinc-500 text-lg md:text-xl font-light max-w-xl leading-relaxed">
-          Altyapı verimliliği ve güvenliği artırmak için kritik servisler kontrollü olarak güncelleniyor.
-          Modüller sırayla devreye alınacaktır.
-        </p>
+  menuTrigger.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+  menuBackdrop.addEventListener("click", closeMenu);
 
-        <!-- Quick Links (visible) -->
-        <div class="flex flex-wrap gap-3">
-          <a href="about.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-            Hakkımda
-          </a>
-          <a href="services.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-            Hizmetler
-          </a>
-          <a href="projects.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-            Projeler
-          </a>
-          <a href="contact.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-            İletişim
-          </a>
-        </div>
+  window.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") closeMenu();
+  });
 
-        <!-- Progress -->
-        <div class="space-y-4 max-w-md">
-          <div class="flex justify-between mono text-[10px] uppercase tracking-[0.2em]">
-            <span class="text-zinc-400 font-bold">Veritabanı Senkronizasyonu</span>
-            <span id="progressLabel" class="text-red-500">16%</span>
-          </div>
-          <div class="w-full bg-zinc-900 h-2 rounded-full overflow-hidden border border-zinc-800">
-            <div id="progressBar"
-                 class="h-full bg-red-600 progress-animated shadow-[0_0_18px_rgba(255,0,0,0.45)] transition-all duration-700"
-                 style="width:16%"></div>
-          </div>
+});
+</script>
 
-          <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
-            Node: AYFSOFT-CORE • Status: <span id="statusText" class="text-zinc-400">SYNCING</span> • Uptime:
-            <span id="uptime" class="text-zinc-400">00:00:00</span>
-          </div>
-
-          <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-700">
-            Next +1% in: <span id="nextTick" class="text-zinc-400">--:--:--</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Right Cards -->
-      <aside class="lg:col-span-5 grid grid-cols-1 gap-4">
-        <!-- Support -->
-        <div id="supportCard" class="p-8 bg-zinc-900/40 border border-zinc-800 rounded-3xl glow-red backdrop-blur-xl hover:border-zinc-700 transition-all">
-          <div class="flex items-start justify-between mb-6">
-            <i class="fa-solid fa-shield-halved text-4xl text-red-600"></i>
-            <span class="mono text-[9px] text-zinc-600 uppercase border border-zinc-800 px-2 py-1 rounded">
-              Secure Node
-            </span>
-          </div>
-          <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200 mb-4">Destek Kanalları</h3>
-          <div class="space-y-3">
-            <a href="mailto:yusufavsarofficial@gmail.com" class="block text-sm text-zinc-500 hover:text-white transition mono">
-              yusufavsarofficial@gmail.com
-            </a>
-            <a href="mailto:yusufavsarofficial@proton.me" class="block text-sm text-zinc-500 hover:text-white transition mono">
-              yusufavsarofficial@proton.me
-            </a>
-          </div>
-        </div>
-
-        <!-- Policy quick -->
-        <div class="p-8 bg-zinc-900/20 border border-zinc-800 rounded-3xl backdrop-blur-md hover:border-zinc-700 transition-all">
-          <div class="flex items-center gap-3 mb-4">
-            <i class="fa-solid fa-shield text-red-500"></i>
-            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Policy</h3>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <a href="privacy.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-              Privacy
-            </a>
-            <a href="terms.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-              Terms
-            </a>
-            <a href="security.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-              Security
-            </a>
-            <a href="projects.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
-              Projects
-            </a>
-          </div>
-        </div>
-      </aside>
-
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="px-6 py-10 border-t border-zinc-900/50 bg-black/30 backdrop-blur-lg relative z-10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-      <div class="space-y-2">
-        <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
-          &copy; 2010 - <span id="year1"></span> <span class="text-white">YUSUF AVŞAR</span>
-        </p>
-        <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
-          &copy; 2018 - <span id="year2"></span> <span class="text-white">AYFSOFT PTE</span>
-        </p>
-      </div>
-      <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">
-        Tüm Hakları Saklıdır / All Rights Reserved
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ===== Helpers
-    const $ = (q, root=document) => root.querySelector(q);
-
-    // ===== Menu
-    const menuTrigger = $("#menuTrigger");
-    const mobileMenu  = $("#mobileMenu");
-    const menuClose   = $("#menuClose");
-    const menuBackdrop= $("#menuBackdrop");
-
-    function openMenu(){
-      mobileMenu.classList.remove("translate-x-full");
-      menuTrigger.setAttribute("aria-expanded","true");
-    }
-    function closeMenu(){
-      mobileMenu.classList.add("translate-x-full");
-      menuTrigger.setAttribute("aria-expanded","false");
-    }
-    menuTrigger?.addEventListener("click", openMenu);
-    menuClose?.addEventListener("click", closeMenu);
-    menuBackdrop?.addEventListener("click", closeMenu);
-    window.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
-
-    // Support shortcut
-    $("#goSupport")?.addEventListener("click", ()=>{
-      closeMenu();
-      $("#supportCard")?.scrollIntoView({behavior:"smooth", block:"center"});
-    });
-
-    // Years
-    const y = new Date().getFullYear();
-    $("#year1").textContent = y;
-    $("#year2").textContent = y;
-
-    // ===== Progress Logic (16% başlangıç, her 3 saatte +1%)
-    const STORAGE_KEY = "AYF_MAINT_PROGRESS_V1";
-    const STORAGE_T0  = "AYF_MAINT_T0_V1";
-
-    const START_PERCENT = 16;
-    const STEP_PERCENT  = 1;
-    const STEP_MS       = 3 * 60 * 60 * 1000;
-
-    const progressLabel = $("#progressLabel");
-    const progressBar   = $("#progressBar");
-    const statusText    = $("#statusText");
-    const uptimeEl      = $("#uptime");
-    const nextTickEl    = $("#nextTick");
-
-    const pageStart = Date.now();
-
-    function pad2(n){ return String(n).padStart(2,"0"); }
-    function fmtHMS(ms){
-      const s = Math.max(0, Math.floor(ms/1000));
-      const hh = Math.floor(s/3600);
-      const mm = Math.floor((s%3600)/60);
-      const ss = s%60;
-      return `${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
-    }
-
-    function loadState(){
-      const rawP = localStorage.getItem(STORAGE_KEY);
-      const rawT = localStorage.getItem(STORAGE_T0);
-      let p = Number.isFinite(Number(rawP)) ? Number(rawP) : START_PERCENT;
-      let t0 = Number.isFinite(Number(rawT)) ? Number(rawT) : Date.now();
-      if(!rawP || !rawT){
-        localStorage.setItem(STORAGE_KEY, String(p));
-        localStorage.setItem(STORAGE_T0, String(t0));
-      }
-      return {p, t0};
-    }
-
-    function saveState(p, t0){
-      localStorage.setItem(STORAGE_KEY, String(p));
-      localStorage.setItem(STORAGE_T0, String(t0));
-    }
-
-    function clamp(n,a,b){ return Math.min(b, Math.max(a,n)); }
-
-    function computeProgress(){
-      const {p:storedP, t0} = loadState();
-      const elapsed = Date.now() - t0;
-      const steps = Math.floor(elapsed / STEP_MS);
-      let p = clamp(storedP + steps * STEP_PERCENT, 0, 100);
-
-      if(steps > 0){
-        const newT0 = t0 + steps * STEP_MS;
-        saveState(p, newT0);
-        return {p, t0:newT0};
-      }
-      return {p, t0};
-    }
-
-    function renderProgress(){
-      const {p, t0} = computeProgress();
-      progressLabel.textContent = `${p}%`;
-      progressBar.style.width = `${p}%`;
-
-      if(p >= 100){
-        nextTickEl.textContent = "completed";
-        statusText.textContent = "READY";
-        statusText.className = "text-green-500";
-      }else{
-        const elapsed = Date.now() - t0;
-        const remain = STEP_MS - (elapsed % STEP_MS);
-        nextTickEl.textContent = fmtHMS(remain);
-        statusText.textContent = "SYNCING";
-        statusText.className = "text-zinc-400";
-      }
-    }
-
-    function renderUptime(){
-      uptimeEl.textContent = fmtHMS(Date.now() - pageStart);
-    }
-
-    renderProgress();
-    renderUptime();
-    setInterval(()=>{ renderUptime(); renderProgress(); }, 1000);
-
-    // ===== Background canvas (hafif efekt)
-    (function canvasFX(){
-      const canvas = document.getElementById("bgCanvas");
-      const ctx = canvas.getContext("2d");
-      let w,h,dpr;
-
-      function resize(){
-        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
-        h = canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width  = window.innerW
+</body>
+</html>

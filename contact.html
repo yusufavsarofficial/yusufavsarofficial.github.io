@@ -1,312 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>İletişim | Yusuf Avşar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
-  <meta name="description" content="Yusuf Avşar — İletişim: WhatsApp, Instagram, e-posta. Global uzaktan çalışma, kamu için yerinde/uzaktan. Çalışma saatleri: Pzt-Çrş-Cuma 23:00–06:00." />
-  <meta name="author" content="Yusuf Avşar" />
-  <meta name="theme-color" content="#0b0f19" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#0b0f19;
-      --card:#0f1629;
-      --line:rgba(255,255,255,.08);
-      --glow:rgba(255,0,0,.18);
+    body{
+      font-family:Inter,system-ui;
+      background:#050505;
+      color:#e5e7eb;
     }
-    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
-    .gridline{
-      background-image:
-        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
-        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
-        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: auto, auto, auto, 28px 28px;
-      background-position: center, center, center, 0 0;
-    }
-    .glass{
-      background: rgba(15, 22, 41, 0.72);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-    }
-    .soft-border{border:1px solid var(--line);}
-    .btn{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-    .btn:hover{background: rgba(255,255,255,.07);}
-    .badge{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .field{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      outline: none;
-    }
-    .field:focus{
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
-    }
+    .mono{font-family:"JetBrains Mono",monospace}
   </style>
 </head>
 
-<body class="text-white gridline min-h-screen">
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-50">
-    <div class="glass">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center">
-            <span class="mono text-sm tracking-tight">YA</span>
-          </div>
-          <div class="leading-tight">
-            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
-            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
-          </div>
-        </a>
+<body class="min-h-screen overflow-x-hidden">
 
-        <nav class="hidden md:flex items-center gap-2">
-          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
-          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
-          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
-          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
-        </nav>
+<!-- HEADER -->
+<header class="fixed top-0 right-0 z-[100] p-6">
+  <button id="menuTrigger"
+    class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500 transition">
+    MENU
+  </button>
+</header>
 
-        <div class="md:hidden">
-          <button id="menuBtn" class="btn px-3 py-2 rounded-xl text-sm mono">MENU</button>
-        </div>
+<!-- HAMBURGER MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
+  <div id="menuBackdrop" class="absolute inset-0"></div>
+
+  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
+    <button id="menuClose"
+      class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
+      KAPAT
+    </button>
+
+    <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
+      <a href="index.html" class="block hover:text-red-500 transition">Anasayfa</a>
+      <a href="about.html" class="block hover:text-red-500 transition">Hakkımda</a>
+      <a href="services.html" class="block hover:text-red-500 transition">Hizmetler</a>
+      <a href="projects.html" class="block hover:text-red-500 transition">Projeler</a>
+      <a href="contact.html" class="block text-red-500">İletişim</a>
+
+      <div class="pt-6 border-t border-zinc-800"></div>
+
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
+      </div>
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
+      </div>
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
+      </div>
+    </nav>
+  </aside>
+</div>
+
+<!-- MAIN -->
+<main class="pt-32 px-6 max-w-5xl mx-auto space-y-24">
+
+  <!-- HEADER -->
+  <section class="space-y-6">
+    <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
+      CONTACT / COMMUNICATION
+    </span>
+
+    <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight">
+      İletişim
+    </h1>
+
+    <p class="text-zinc-400 text-lg max-w-3xl leading-relaxed">
+      Kurumsal iş birlikleri, danışmanlık ve profesyonel talepler için
+      aşağıdaki kanallar üzerinden iletişime geçebilirsiniz.
+    </p>
+  </section>
+
+  <!-- CONTACT GRID -->
+  <section class="grid md:grid-cols-2 gap-12">
+
+    <!-- LEFT -->
+    <div class="space-y-6">
+      <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+        <h3 class="text-2xl font-black uppercase">E-Posta</h3>
+        <p class="mt-4 text-zinc-400">
+          Resmi iletişim ve talepler için:
+        </p>
+        <p class="mt-2 mono text-sm text-zinc-300">
+          yusufavsarofficial@proton.me
+        </p>
+        <p class="mt-1 mono text-sm text-zinc-300">
+          yusufavsarofficial@gmail.com
+        </p>
       </div>
 
-      <!-- Mobile menu -->
-      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2">
-          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
-          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
-          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
-          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
-        </div>
+      <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+        <h3 class="text-2xl font-black uppercase">Çalışma Modeli</h3>
+        <ul class="mt-4 space-y-2 text-zinc-400">
+          <li>• Global uzaktan çalışma</li>
+          <li>• Kamu projeleri için yerinde / hibrit</li>
+          <li>• Gizlilik ve yetkilendirme esaslı</li>
+        </ul>
       </div>
     </div>
-  </header>
 
-  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
-    <!-- Header -->
-    <section class="glass rounded-3xl p-6 md:p-8">
-      <div class="flex flex-wrap items-center gap-2 mb-4">
-        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Global Remote</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Kamu: Yerinde + Uzaktan</span>
-        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Gizlilik Öncelikli</span>
-      </div>
-
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">İletişim</h1>
-      <p class="text-white/70 mt-3 leading-relaxed">
-        Görüşme ve iş talepleri için aşağıdaki kanallardan ulaşabilirsiniz.
-        Güvenlik projelerinde kapsam ve detaylar, doğrulama ve uygun çerçeve üzerinden ilerletilir.
-      </p>
-
-      <div class="mt-6 soft-border rounded-2xl p-4 md:p-5">
-        <div class="text-xs text-white/60 mono">ÇALIŞMA SAATLERİ (TR)</div>
-        <div class="mt-1 text-white/85">
-          <span class="font-semibold text-white">Pazartesi • Çarşamba • Cuma</span>
-          <span class="text-white/60">—</span>
-          <span class="mono">23:00 – 06:00</span>
-        </div>
-        <div class="mt-2 text-white/60 text-sm">
-          Not: Yoğunluk durumuna göre dönüş süresi değişebilir. Acil durumlar için “Acil e-posta” kanalını kullanın.
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact grid -->
-    <section class="mt-8 grid lg:grid-cols-12 gap-4">
-      <!-- Cards -->
-      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-        <!-- WhatsApp -->
-        <article class="glass rounded-3xl p-6">
-          <div class="text-xs text-white/60 mono">WHATSAPP</div>
-          <div class="mt-2 text-lg font-bold tracking-tight">+90 551 488 38 42</div>
-          <p class="mt-2 text-white/70 text-sm">
-            Hızlı iletişim için. Kapsamı kısaca yazın, ben dönüş yapayım.
-          </p>
-          <a
-            class="btn inline-block mt-4 rounded-2xl px-5 py-3 text-sm font-semibold"
-            href="https://wa.me/905514883842"
-            target="_blank"
-            rel="noopener"
-          >
-            WhatsApp Aç
-          </a>
-        </article>
-
-        <!-- Instagram -->
-        <article class="glass rounded-3xl p-6">
-          <div class="text-xs text-white/60 mono">INSTAGRAM</div>
-          <div class="mt-2 text-lg font-bold tracking-tight">@avyusuf95</div>
-          <p class="mt-2 text-white/70 text-sm">
-            Genel iletişim ve hızlı bildirim için.
-          </p>
-          <a
-            class="btn inline-block mt-4 rounded-2xl px-5 py-3 text-sm font-semibold"
-            href="https://instagram.com/avyusuf95"
-            target="_blank"
-            rel="noopener"
-          >
-            Profili Aç
-          </a>
-        </article>
-
-        <!-- Emergency Mail -->
-        <article class="glass rounded-3xl p-6">
-          <div class="text-xs text-white/60 mono">ACİL DURUM E-POSTA</div>
-          <div class="mt-2 text-base font-bold tracking-tight break-all">yusufavsarofficial@proton.me</div>
-          <p class="mt-2 text-white/70 text-sm">
-            Kritik konular / acil durumlar için öncelikli kanal.
-          </p>
-          <a
-            class="btn inline-block mt-4 rounded-2xl px-5 py-3 text-sm font-semibold"
-            href="mailto:yusufavsarofficial@proton.me?subject=Acil%20İletişim%20Talebi&body=Merhaba%20Yusuf%20Avşar,%0A%0AKonu:%0AKurum/Şirket:%0Aİletişim:%0AÖzet:%0A%0ATeşekkürler."
-          >
-            E-posta Gönder
-          </a>
-        </article>
-
-        <!-- Support Mail -->
-        <article class="glass rounded-3xl p-6">
-          <div class="text-xs text-white/60 mono">DESTEK E-POSTA</div>
-          <div class="mt-2 text-base font-bold tracking-tight break-all">yusufavsarofficial@gmail.com</div>
-          <p class="mt-2 text-white/70 text-sm">
-            Genel sorular, iş talepleri ve dosya paylaşımı.
-          </p>
-          <a
-            class="btn inline-block mt-4 rounded-2xl px-5 py-3 text-sm font-semibold"
-            href="mailto:yusufavsarofficial@gmail.com?subject=İletişim%20Talebi&body=Merhaba%20Yusuf%20Avşar,%0A%0AKonu:%0AKurum/Şirket:%0Aİletişim:%0Aİhtiyaç/Kapsam:%0AÇalışma%20Modeli%20(uzaktan/yerinde):%0A%0ATeşekkürler."
-          >
-            E-posta Gönder
-          </a>
-        </article>
-
-        <!-- Location / Model -->
-        <article class="glass rounded-3xl p-6 sm:col-span-2">
-          <div class="text-xs text-white/60 mono">ÇALIŞMA MODELİ</div>
-          <div class="mt-2 text-white/85 leading-relaxed">
-            <span class="font-semibold text-white">Lokasyon:</span> Uzaktan • Türkiye & Global<br />
-            <span class="font-semibold text-white">Kamu:</span> Yerinde + Uzaktan (hibrit)
-          </div>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="badge px-3 py-1 rounded-full text-xs mono">Remote-first</span>
-            <span class="badge px-3 py-1 rounded-full text-xs mono">Confidential</span>
-            <span class="badge px-3 py-1 rounded-full text-xs mono">NDA-ready</span>
-          </div>
-        </article>
-      </div>
-
-      <!-- Form / Request -->
-      <aside class="lg:col-span-5 glass rounded-3xl p-6 md:p-7">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <div class="text-xs text-white/60 mono">HIZLI TALEP</div>
-            <h2 class="mt-1 text-xl font-extrabold tracking-tight">Teklif / Görüşme Formu</h2>
-          </div>
-          <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">MAILTO</span>
-        </div>
-
-        <p class="mt-3 text-white/70 text-sm leading-relaxed">
-          Bu form gönderimi, cihazınızın e-posta uygulamasını açar. (Sunucuya kayıt yapılmaz.)
-          Güvenlik ve gizlilik gereği, operasyonel detayları burada paylaşmayın.
+    <!-- RIGHT -->
+    <div class="space-y-6">
+      <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+        <h3 class="text-2xl font-black uppercase">Çalışma Saatleri</h3>
+        <p class="mt-4 text-zinc-400">
+          Pazartesi • Çarşamba • Cuma
         </p>
+        <p class="mono mt-2 text-sm text-zinc-300">
+          23:00 – 06:00 (TR)
+        </p>
+      </div>
 
-        <form id="mailForm" class="mt-5 space-y-3">
-          <div>
-            <label class="text-xs text-white/60 mono">KURUM / ŞİRKET</label>
-            <input id="company" class="field w-full rounded-2xl px-4 py-3 mt-1 text-sm text-white placeholder:text-white/30" placeholder="Örn: X Kurumu / Y Şirketi" />
-          </div>
+      <div class="border border-zinc-800 p-6 bg-black/40">
+        <h3 class="text-2xl font-black uppercase">Önemli Not</h3>
+        <p class="mt-4 text-zinc-400 leading-relaxed">
+          İzinsiz erişim, etik dışı talepler ve hukuka aykırı faaliyetler
+          kesinlikle kabul edilmez. Tüm görüşmeler gizlilik ve yasal
+          çerçevede yürütülür.
+        </p>
+      </div>
+    </div>
 
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div>
-              <label class="text-xs text-white/60 mono">İLETİŞİM</label>
-              <input id="contact" class="field w-full rounded-2xl px-4 py-3 mt-1 text-sm text-white placeholder:text-white/30" placeholder="Telefon / E-posta" />
-            </div>
-            <div>
-              <label class="text-xs text-white/60 mono">MODEL</label>
-              <select id="model" class="field w-full rounded-2xl px-4 py-3 mt-1 text-sm text-white bg-transparent">
-                <option class="bg-[#0b0f19]" value="Uzaktan">Uzaktan</option>
-                <option class="bg-[#0b0f19]" value="Yerinde">Yerinde</option>
-                <option class="bg-[#0b0f19]" value="Hibrit">Hibrit</option>
-              </select>
-            </div>
-          </div>
+  </section>
 
-          <div>
-            <label class="text-xs text-white/60 mono">İHTİYAÇ / KAPSAM (ÖZET)</label>
-            <textarea id="scope" rows="5" class="field w-full rounded-2xl px-4 py-3 mt-1 text-sm text-white placeholder:text-white/30" placeholder="Kısa özet yazın: hedef, sistem türü, beklenti..."></textarea>
-          </div>
+</main>
 
-          <button type="submit" class="btn w-full rounded-2xl px-5 py-3 text-sm font-semibold">
-            E-posta Taslağı Oluştur
-          </button>
+<!-- FOOTER -->
+<footer class="mt-32 py-10 border-t border-zinc-800 text-center mono text-xs tracking-[0.3em] text-zinc-500">
+  © 2010 – 2026 YUSUF AVŞAR • AYFSOFT
+</footer>
 
-          <div class="text-xs text-white/50 leading-relaxed">
-            <span class="mono">Not:</span> Detaylı teknik içerik ve dosyalar, doğrulama sonrası kontrollü şekilde paylaşılmalıdır.
-          </div>
-        </form>
-      </aside>
-    </section>
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuTrigger  = document.getElementById("menuTrigger");
+  const mobileMenu   = document.getElementById("mobileMenu");
+  const menuClose    = document.getElementById("menuClose");
+  const menuBackdrop = document.getElementById("menuBackdrop");
 
-    <!-- Footer -->
-    <footer class="mt-10 text-center text-white/50 text-sm">
-      <div class="mono">© <span id="year"></span> Yusuf Avşar • All rights reserved.</div>
-    </footer>
-  </main>
+  function openMenu(){ mobileMenu.classList.remove("translate-x-full"); }
+  function closeMenu(){ mobileMenu.classList.add("translate-x-full"); }
 
-  <script>
-    // Mobile menu
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-    menuBtn?.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+  menuTrigger.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+  menuBackdrop.addEventListener("click", closeMenu);
+  window.addEventListener("keydown", e => { if(e.key === "Escape") closeMenu(); });
+});
+</script>
 
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Mailto form
-    const form = document.getElementById("mailForm");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const company = document.getElementById("company").value.trim();
-      const contact = document.getElementById("contact").value.trim();
-      const model = document.getElementById("model").value;
-      const scope = document.getElementById("scope").value.trim();
-
-      const subject = encodeURIComponent("İletişim / Teklif Talebi");
-      const body = encodeURIComponent(
-`Merhaba Yusuf Avşar,
-
-Kurum/Şirket: ${company || "-"}
-İletişim: ${contact || "-"}
-Çalışma Modeli: ${model}
-
-İhtiyaç/Kapsam (Özet):
-${scope || "-"}
-
-Teşekkürler.`
-      );
-
-      // Default to support mail
-      window.location.href = `mailto:yusufavsarofficial@gmail.com?subject=${subject}&body=${body}`;
-    });
-  </script>
 </body>
-  </html>
+</html>

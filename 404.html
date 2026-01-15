@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 | Sayfa Bulunamadı</title>
+  <meta name="description" content="Aradığınız sayfa bulunamadı. Yusuf Avşar — Software • Security • Research" />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg:#0b0f19; --line:rgba(255,255,255,.08); --glow:rgba(255,0,0,.18);
+    }
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .gridline{
+      background-image:
+        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
+        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 28px 28px;
+      background-position: center, center, center, 0 0;
+    }
+    .glass{
+      background: rgba(15, 22, 41, 0.72);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .btn:hover{background: rgba(255,255,255,.07);}
+    .soft-border{border:1px solid var(--line);}
+  </style>
+</head>
+
+<body class="text-white gridline min-h-screen">
+  <main class="max-w-4xl mx-auto px-4 py-14">
+    <div class="glass rounded-3xl p-8 md:p-10">
+      <div class="flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center">
+            <span class="mono text-sm tracking-tight">YA</span>
+          </div>
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
+            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
+          </div>
+        </a>
+        <span class="mono text-xs text-white/60">ERROR</span>
+      </div>
+
+      <div class="mt-10">
+        <div class="mono text-white/60 text-sm">404</div>
+        <h1 class="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
+          Sayfa bulunamadı
+        </h1>
+        <p class="mt-3 text-white/70 leading-relaxed">
+          Aradığınız sayfa taşınmış, silinmiş olabilir ya da yanlış bir bağlantıya tıkladınız.
+          Aşağıdaki seçeneklerle devam edebilirsiniz.
+        </p>
+
+        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+          <a class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center" href="index.html">
+            Ana sayfaya dön
+          </a>
+          <a class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center" href="contact.html">
+            İletişim
+          </a>
+          <button id="backBtn" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center">
+            Geri git
+          </button>
+        </div>
+
+        <div class="mt-8 soft-border rounded-2xl p-4">
+          <div class="text-xs text-white/60 mono">KISA YOL</div>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <a class="btn rounded-xl px-4 py-2 text-sm" href="about.html">Hakkımda</a>
+            <a class="btn rounded-xl px-4 py-2 text-sm" href="services.html">Hizmetler</a>
+            <a class="btn rounded-xl px-4 py-2 text-sm" href="projects.html">Projeler</a>
+            <a class="btn rounded-xl px-4 py-2 text-sm" href="contact.html">İletişim</a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-10 text-center text-white/50 text-sm">
+        <div class="mono">© <span id="year"></span> Yusuf Avşar</div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("backBtn").addEventListener("click", () => history.back());
+  </script>
+</body>
+</html>

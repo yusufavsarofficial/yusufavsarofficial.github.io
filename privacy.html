@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gizlilik Politikası | Yusuf Avşar</title>
+  <meta name="description" content="Yusuf Avşar — Gizlilik Politikası. Veri işleme, iletişim kanalları, üçüncü taraflar ve saklama politikası hakkında bilgilendirme." />
+  <meta name="author" content="Yusuf Avşar" />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{--bg:#0b0f19;--line:rgba(255,255,255,.08);--glow:rgba(255,0,0,.18);}
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .gridline{
+      background-image:
+        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
+        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 28px 28px;
+      background-position: center, center, center, 0 0;
+    }
+    .glass{background: rgba(15, 22, 41, 0.72);border: 1px solid var(--line);backdrop-filter: blur(10px);}
+    .soft-border{border:1px solid var(--line);}
+    .btn{border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);}
+    .btn:hover{background: rgba(255,255,255,.07);}
+  </style>
+</head>
+
+<body class="text-white gridline min-h-screen">
+  <header class="sticky top-0 z-50">
+    <div class="glass">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center"><span class="mono text-sm">YA</span></div>
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
+            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-2">
+          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
+    <section class="glass rounded-3xl p-6 md:p-8">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <div class="text-xs text-white/60 mono">POLICY</div>
+          <h1 class="mt-1 text-3xl md:text-4xl font-extrabold tracking-tight">Gizlilik Politikası</h1>
+        </div>
+        <span class="mono text-xs text-white/60">Son güncelleme: <span id="lastUpdated"></span></span>
+      </div>
+
+      <p class="mt-4 text-white/70 leading-relaxed">
+        Bu sayfa, bu web sitesini ziyaret ettiğinizde ve iletişim kanallarını kullandığınızda hangi bilgilerin
+        işlenebileceğini ve nasıl korunduğunu açıklar. Güvenlik ve gizlilik, temel önceliktir.
+      </p>
+
+      <div class="mt-6 space-y-4">
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">1) Toplanan Bilgiler</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            Bu site, varsayılan olarak form verilerini sunucuya kaydetmez.
+            İletişim; WhatsApp, Instagram ve e-posta kanalları üzerinden yürütülür.
+            Bu kanallara ilettiğiniz bilgiler (ad, kurum, iletişim bilgisi, mesaj içeriği) iletişim amacıyla kullanılabilir.
+          </p>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">2) Çerezler (Cookies)</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            Bu site, zorunlu olmayan çerezleri kullanmayabilir.
+            Üçüncü taraf servisler (ör. CDN, barındırma sağlayıcısı) teknik amaçlarla sınırlı log/çerez kullanabilir.
+          </p>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">3) Üçüncü Taraflar</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            WhatsApp ve Instagram gibi platformlar, kendi gizlilik politikalarına göre veri işleyebilir.
+            E-posta sağlayıcıları (Proton/Gmail) da benzer şekilde kendi kurallarına tabidir.
+            Bu platformların veri işleme süreçleri üzerinde doğrudan kontrol bulunmayabilir.
+          </p>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">4) Veri Saklama</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            İletişim kayıtları, yalnızca iş/iletişim sürecinin yürütülmesi ve gerektiğinde referans amacıyla saklanabilir.
+            Hassas içerikler, mümkün olan en kısa sürede minimize edilir ve gereksiz kopyalar tutulmaz.
+          </p>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">5) Güvenlik</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            Yetkisiz erişim, veri sızıntısı ve kötüye kullanım risklerini azaltmak için iyi uygulamalar izlenir.
+            Ancak internet üzerinde hiçbir sistem %100 garanti vermez; bu nedenle hassas verileri paylaşmadan önce
+            kapsam ve yöntem iletişimde netleştirilmelidir.
+          </p>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">6) İletişim</h2>
+          <p class="mt-2 text-white/70 leading-relaxed text-sm">
+            Gizlilikle ilgili talepleriniz için <a class="underline decoration-white/30 hover:decoration-white" href="contact.html">iletişim</a> sayfasını kullanabilirsiniz.
+          </p>
+        </div>
+      </div>
+
+      <footer class="mt-10 text-center text-white/50 text-sm">
+        <div class="mono">© <span id="year"></span> Yusuf Avşar</div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // Basit "son güncelleme" etiketi (dosya bazlı bir veri yok, bugün yazdırıyoruz)
+    const d = new Date();
+    const fmt = d.toLocaleDateString("tr-TR", { year:"numeric", month:"long", day:"2-digit" });
+    document.getElementById("lastUpdated").textContent = fmt;
+  </script>
+</body>
+</html>

@@ -41,8 +41,8 @@
     @keyframes floatIn{ from{transform:translateY(10px);opacity:0} to{transform:translateY(0);opacity:1} }
     .float-in{ animation: floatIn .7s ease both; }
 
-    .locked-item:hover i.lock-icon{ transform: scale(1.15) rotate(12deg); color:#ff0000; }
-    .locked-item i.lock-icon{ transition: transform .25s ease, color .25s ease; }
+    .nav-link:hover i{ transform: translateX(3px); }
+    .nav-link i{ transition: transform .2s ease; }
 
     @media (prefers-reduced-motion: reduce){
       #mobileMenu{transition:none}
@@ -73,7 +73,7 @@
               class="group inline-flex items-center gap-4 focus:outline-none"
               aria-controls="mobileMenu"
               aria-expanded="false">
-        <span id="menuLabel" class="mono text-[10px] tracking-[0.45em] text-zinc-500 group-hover:text-red-500 transition uppercase">
+        <span class="mono text-[10px] tracking-[0.45em] text-zinc-500 group-hover:text-red-500 transition uppercase">
           Sistem Menüsü
         </span>
         <span class="relative w-12 h-10 flex flex-col justify-center gap-2">
@@ -98,7 +98,7 @@
           <div>
             <p class="mono text-red-500 text-xs tracking-[0.45em] uppercase">Erişim Paneli</p>
             <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-500 mt-2">
-              Secure protocol • monitored sessions • maintenance lock
+              Secure protocol • monitored sessions • navigation online
             </p>
           </div>
           <button id="menuClose" class="px-4 py-2 border border-zinc-700 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase">
@@ -110,71 +110,67 @@
           <nav>
             <ul class="space-y-5">
               <li>
-                <a href="#"
-                   data-action="home"
-                   class="flex items-baseline justify-between gap-6 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none hover:text-red-600 transition-colors">
+                <a href="index.html"
+                   class="nav-link flex items-baseline justify-between gap-6 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none hover:text-red-600 transition-colors">
                   <span>Anasayfa</span>
-                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-red-500 border border-red-600/30 bg-red-600/10 px-3 py-1 rounded-full">
-                    ACTIVE
-                  </span>
+                  <i class="fa-solid fa-arrow-right-long text-sm text-red-500"></i>
                 </a>
               </li>
 
               <li>
-                <button data-action="locked"
-                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  <span class="flex items-center gap-4">
-                    Hakkımda <i class="fa-solid fa-lock lock-icon text-sm"></i>
-                  </span>
-                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
-                    SOON
-                  </span>
-                </button>
+                <a href="about.html"
+                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
+                  <span>Hakkımda</span>
+                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
+                </a>
               </li>
 
               <li>
-                <button data-action="locked"
-                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  <span class="flex items-center gap-4">
-                    Eğitimler <i class="fa-solid fa-lock lock-icon text-sm"></i>
-                  </span>
-                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
-                    SOON
-                  </span>
-                </button>
+                <a href="services.html"
+                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
+                  <span>Hizmetler</span>
+                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
+                </a>
               </li>
 
               <li>
-                <button data-action="locked"
-                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  <span class="flex items-center gap-4">
-                    Ürünler <i class="fa-solid fa-lock lock-icon text-sm"></i>
-                  </span>
-                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
-                    SOON
-                  </span>
-                </button>
+                <a href="projects.html"
+                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
+                  <span>Projeler</span>
+                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
+                </a>
               </li>
 
               <li>
-                <button data-action="locked"
-                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  <span class="flex items-center gap-4">
-                    İletişim <i class="fa-solid fa-lock lock-icon text-sm"></i>
-                  </span>
-                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
-                    SOON
-                  </span>
-                </button>
+                <a href="contact.html"
+                   class="nav-link flex items-baseline justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-300 hover:text-red-500 transition-all uppercase italic">
+                  <span>İletişim</span>
+                  <i class="fa-solid fa-arrow-right-long text-xs text-zinc-500"></i>
+                </a>
               </li>
+
+              <li class="pt-3">
+                <div class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-4 py-3 rounded-2xl">
+                  privacy • terms • security policy
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
+                       href="privacy.html">Privacy</a>
+                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
+                       href="terms.html">Terms</a>
+                    <a class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
+                       href="security.html">Security</a>
+                  </div>
+                </div>
+              </li>
+
             </ul>
           </nav>
 
           <div class="hidden md:block border-l border-zinc-800 pl-10 space-y-8">
             <div class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-widest">
-              [UYARI]<br/>
-              Sistem bakım protokolünde.<br/>
-              Yetkisiz alanlar kilitli.<br/>
+              [BİLGİ]<br/>
+              Navigasyon aktif.<br/>
+              Sayfalar: online.<br/>
               Loglama & izleme aktif.<br/>
               Güvenlik katmanı: v4.0.1
             </div>
@@ -189,8 +185,7 @@
             <div class="space-y-3">
               <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">İpucu</div>
               <div class="mono text-[10px] tracking-[0.22em] uppercase text-zinc-500 border border-zinc-800 bg-zinc-900/20 rounded-2xl p-4">
-                ESC ile kapat • dışarı tıkla<br/>
-                “SOON” modülleri bakım sonrası açılır
+                ESC ile kapat • dışarı tıkla
               </div>
             </div>
           </div>
@@ -228,6 +223,22 @@
           Altyapı verimliliği ve güvenliği artırmak için kritik servisler kontrollü olarak güncelleniyor.
           Modüller sırayla devreye alınacaktır.
         </p>
+
+        <!-- Quick Links (visible) -->
+        <div class="flex flex-wrap gap-3">
+          <a href="about.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+            Hakkımda
+          </a>
+          <a href="services.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+            Hizmetler
+          </a>
+          <a href="projects.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+            Projeler
+          </a>
+          <a href="contact.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+            İletişim
+          </a>
+        </div>
 
         <!-- Progress -->
         <div class="space-y-4 max-w-md">
@@ -271,83 +282,27 @@
               yusufavsarofficial@proton.me
             </a>
           </div>
-          <div class="mt-6 flex gap-3">
-            <button id="copyMail1" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.2em] uppercase">
-              Gmail Kopyala
-            </button>
-            <button id="copyMail2" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.2em] uppercase">
-              Proton Kopyala
-            </button>
-          </div>
         </div>
 
-        <!-- Timeline -->
+        <!-- Policy quick -->
         <div class="p-8 bg-zinc-900/20 border border-zinc-800 rounded-3xl backdrop-blur-md hover:border-zinc-700 transition-all">
-          <div class="flex items-center gap-4 mb-5">
-            <i class="fa-solid fa-diagram-project text-blue-500"></i>
-            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Bakım Akışı</h3>
-            <span class="ml-auto mono text-[9px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 px-2 py-1 rounded">
-              LIVE
-            </span>
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fa-solid fa-shield text-red-500"></i>
+            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Policy</h3>
           </div>
-
-          <ol class="space-y-4">
-            <li class="flex gap-3 items-start">
-              <span id="step1" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-500">
-                <i class="fa-solid fa-check text-[11px]"></i>
-              </span>
-              <div class="grow">
-                <div class="flex items-center justify-between">
-                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Backup & Snapshot</p>
-                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">DONE</p>
-                </div>
-                <p class="text-zinc-500 text-sm mt-1">Veri güvenliği için yedekleme ve snapshot tamamlandı.</p>
-              </div>
-            </li>
-
-            <li class="flex gap-3 items-start">
-              <span id="step2" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-500">
-                <i class="fa-solid fa-check text-[11px]"></i>
-              </span>
-              <div class="grow">
-                <div class="flex items-center justify-between">
-                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Schema Migration</p>
-                  <p id="s2state" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">DONE</p>
-                </div>
-                <p class="text-zinc-500 text-sm mt-1">Şema güncellemesi uygulanıyor, uyumluluk kontrol ediliyor.</p>
-              </div>
-            </li>
-
-            <li class="flex gap-3 items-start">
-              <span id="step3" class="mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500">
-                <i id="s3icon" class="fa-solid fa-spinner fa-spin text-[11px]"></i>
-              </span>
-              <div class="grow">
-                <div class="flex items-center justify-between">
-                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Data Sync</p>
-                  <p id="s3state" class="mono text-[10px] tracking-[0.25em] uppercase text-red-500">IN PROGRESS</p>
-                </div>
-                <p class="text-zinc-500 text-sm mt-1">Kayıtlar senkronize ediliyor, tutarlılık doğrulanıyor.</p>
-              </div>
-            </li>
-
-            <li class="flex gap-3 items-start">
-              <span id="step4" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-600">
-                <i id="s4icon" class="fa-solid fa-lock text-[11px]"></i>
-              </span>
-              <div class="grow">
-                <div class="flex items-center justify-between">
-                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Deploy & Unlock</p>
-                  <p id="s4state" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-700">LOCKED</p>
-                </div>
-                <p class="text-zinc-500 text-sm mt-1">Servisler sırayla açılacak, modüller aktifleşecek.</p>
-              </div>
-            </li>
-          </ol>
-
-          <div class="mt-6 flex items-center justify-between">
-            <span class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">Last check</span>
-            <span id="lastCheck" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-400">--:--:--</span>
+          <div class="flex flex-wrap gap-3">
+            <a href="privacy.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+              Privacy
+            </a>
+            <a href="terms.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+              Terms
+            </a>
+            <a href="security.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+              Security
+            </a>
+            <a href="projects.html" class="px-4 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase">
+              Projects
+            </a>
           </div>
         </div>
       </aside>
@@ -372,34 +327,132 @@
     </div>
   </footer>
 
-  <!-- Denied Modal -->
-  <div id="deniedModal" class="fixed inset-0 z-[200] hidden">
-    <div class="absolute inset-0 bg-black/75" data-close="modal"></div>
-    <div class="relative max-w-lg mx-auto mt-28 px-6">
-      <div class="border border-zinc-800 rounded-3xl glass p-7 glow-red">
-        <div class="flex items-start justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <i class="fa-solid fa-triangle-exclamation text-red-500 text-2xl"></i>
-            <div>
-              <p class="mono text-[10px] tracking-[0.35em] uppercase text-red-400">Access Denied</p>
-              <h3 class="text-xl font-bold text-white mt-1">Erişim Engellendi</h3>
-            </div>
-          </div>
-          <button class="px-3 py-2 border border-zinc-800 hover:border-red-600 transition mono text-[10px] tracking-[0.25em] uppercase"
-                  data-close="modal">
-            Kapat
-          </button>
-        </div>
-        <p class="text-zinc-400 mt-5 leading-relaxed">
-          Sistem bakım modundayken bu alana erişim yetkiniz yok. Modüller bakım sonrası otomatik açılacaktır.
-        </p>
-        <div class="mt-6 mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
-          Code: <span class="text-zinc-400">AYF-403</span> • Policy: <span class="text-zinc-400">MAINTENANCE_LOCK</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     // ===== Helpers
-    const $ = (q, root=docum
+    const $ = (q, root=document) => root.querySelector(q);
+
+    // ===== Menu
+    const menuTrigger = $("#menuTrigger");
+    const mobileMenu  = $("#mobileMenu");
+    const menuClose   = $("#menuClose");
+    const menuBackdrop= $("#menuBackdrop");
+
+    function openMenu(){
+      mobileMenu.classList.remove("translate-x-full");
+      menuTrigger.setAttribute("aria-expanded","true");
+    }
+    function closeMenu(){
+      mobileMenu.classList.add("translate-x-full");
+      menuTrigger.setAttribute("aria-expanded","false");
+    }
+    menuTrigger?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+    menuBackdrop?.addEventListener("click", closeMenu);
+    window.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
+
+    // Support shortcut
+    $("#goSupport")?.addEventListener("click", ()=>{
+      closeMenu();
+      $("#supportCard")?.scrollIntoView({behavior:"smooth", block:"center"});
+    });
+
+    // Years
+    const y = new Date().getFullYear();
+    $("#year1").textContent = y;
+    $("#year2").textContent = y;
+
+    // ===== Progress Logic (16% başlangıç, her 3 saatte +1%)
+    const STORAGE_KEY = "AYF_MAINT_PROGRESS_V1";
+    const STORAGE_T0  = "AYF_MAINT_T0_V1";
+
+    const START_PERCENT = 16;
+    const STEP_PERCENT  = 1;
+    const STEP_MS       = 3 * 60 * 60 * 1000;
+
+    const progressLabel = $("#progressLabel");
+    const progressBar   = $("#progressBar");
+    const statusText    = $("#statusText");
+    const uptimeEl      = $("#uptime");
+    const nextTickEl    = $("#nextTick");
+
+    const pageStart = Date.now();
+
+    function pad2(n){ return String(n).padStart(2,"0"); }
+    function fmtHMS(ms){
+      const s = Math.max(0, Math.floor(ms/1000));
+      const hh = Math.floor(s/3600);
+      const mm = Math.floor((s%3600)/60);
+      const ss = s%60;
+      return `${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
+    }
+
+    function loadState(){
+      const rawP = localStorage.getItem(STORAGE_KEY);
+      const rawT = localStorage.getItem(STORAGE_T0);
+      let p = Number.isFinite(Number(rawP)) ? Number(rawP) : START_PERCENT;
+      let t0 = Number.isFinite(Number(rawT)) ? Number(rawT) : Date.now();
+      if(!rawP || !rawT){
+        localStorage.setItem(STORAGE_KEY, String(p));
+        localStorage.setItem(STORAGE_T0, String(t0));
+      }
+      return {p, t0};
+    }
+
+    function saveState(p, t0){
+      localStorage.setItem(STORAGE_KEY, String(p));
+      localStorage.setItem(STORAGE_T0, String(t0));
+    }
+
+    function clamp(n,a,b){ return Math.min(b, Math.max(a,n)); }
+
+    function computeProgress(){
+      const {p:storedP, t0} = loadState();
+      const elapsed = Date.now() - t0;
+      const steps = Math.floor(elapsed / STEP_MS);
+      let p = clamp(storedP + steps * STEP_PERCENT, 0, 100);
+
+      if(steps > 0){
+        const newT0 = t0 + steps * STEP_MS;
+        saveState(p, newT0);
+        return {p, t0:newT0};
+      }
+      return {p, t0};
+    }
+
+    function renderProgress(){
+      const {p, t0} = computeProgress();
+      progressLabel.textContent = `${p}%`;
+      progressBar.style.width = `${p}%`;
+
+      if(p >= 100){
+        nextTickEl.textContent = "completed";
+        statusText.textContent = "READY";
+        statusText.className = "text-green-500";
+      }else{
+        const elapsed = Date.now() - t0;
+        const remain = STEP_MS - (elapsed % STEP_MS);
+        nextTickEl.textContent = fmtHMS(remain);
+        statusText.textContent = "SYNCING";
+        statusText.className = "text-zinc-400";
+      }
+    }
+
+    function renderUptime(){
+      uptimeEl.textContent = fmtHMS(Date.now() - pageStart);
+    }
+
+    renderProgress();
+    renderUptime();
+    setInterval(()=>{ renderUptime(); renderProgress(); }, 1000);
+
+    // ===== Background canvas (hafif efekt)
+    (function canvasFX(){
+      const canvas = document.getElementById("bgCanvas");
+      const ctx = canvas.getContext("2d");
+      let w,h,dpr;
+
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width  = window.innerW

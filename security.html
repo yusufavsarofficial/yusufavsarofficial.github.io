@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Policy | Yusuf Avşar</title>
+  <meta name="description" content="Yusuf Avşar — Güvenlik Politikası / Responsible Disclosure. Güvenlik açığı bildirimi ve koordineli açıklama kuralları." />
+  <meta name="author" content="Yusuf Avşar" />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{--bg:#0b0f19;--line:rgba(255,255,255,.08);--glow:rgba(255,0,0,.18);}
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .gridline{
+      background-image:
+        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
+        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 28px 28px;
+      background-position: center, center, center, 0 0;
+    }
+    .glass{background: rgba(15, 22, 41, 0.72);border: 1px solid var(--line);backdrop-filter: blur(10px);}
+    .soft-border{border:1px solid var(--line);}
+    .btn{border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.04);}
+    .btn:hover{background: rgba(255,255,255,.07);}
+    .badge{border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.03);}
+  </style>
+</head>
+
+<body class="text-white gridline min-h-screen">
+  <header class="sticky top-0 z-50">
+    <div class="glass">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center"><span class="mono text-sm">YA</span></div>
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
+            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-2">
+          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
+    <section class="glass rounded-3xl p-6 md:p-8">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Responsible Disclosure</span>
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Coordinated</span>
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">No Abuse</span>
+      </div>
+
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <div class="text-xs text-white/60 mono">SECURITY</div>
+          <h1 class="mt-1 text-3xl md:text-4xl font-extrabold tracking-tight">Security Policy</h1>
+        </div>
+        <span class="mono text-xs text-white/60">Son güncelleme: <span id="lastUpdated"></span></span>
+      </div>
+
+      <p class="mt-4 text-white/70 leading-relaxed">
+        Bu sayfa, güvenlik açıklarının sorumlu şekilde bildirilmesi ve koordineli açıklama süreci için hazırlanmıştır.
+        Amaç; kullanıcıları ve sistemleri korurken, kötüye kullanımı önlemektir.
+      </p>
+
+      <div class="mt-6 grid lg:grid-cols-2 gap-4">
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">Nasıl bildirilir?</h2>
+          <ul class="mt-3 space-y-2 text-white/70 text-sm leading-relaxed">
+            <li><span class="mono text-white/60">1)</span> Bulguyu kısa ve net özetleyin.</li>
+            <li><span class="mono text-white/60">2)</span> Etki alanını yazın (domain, uygulama, API vb.).</li>
+            <li><span class="mono text-white/60">3)</span> Tekrarlanabilir adımlar ve kanıt ekleyin (log/screenshot).</li>
+            <li><span class="mono text-white/60">4)</span> Varsa önerilen çözümü belirtin.</li>
+          </ul>
+
+          <div class="mt-4 flex flex-col sm:flex-row gap-3">
+            <a class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center"
+               href="mailto:yusufavsarofficial@proton.me?subject=Security%20Report%20-%20Responsible%20Disclosure&body=Merhaba%20Yusuf%20Avşar,%0A%0ABulgu%20Özeti:%0AEtkilenen%20Varlık%20(domain/app/api):%0ASeverity%20(tahmini):%0ATekrarlanabilir%20Adımlar:%0AKanıt%20(log/screenshot):%0AÖneri:%0A%0Aİletişim:%0A%0ATeşekkürler.">
+              Proton’a rapor gönder
+            </a>
+            <a class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center"
+               href="mailto:yusufavsarofficial@gmail.com?subject=Security%20Report%20-%20Responsible%20Disclosure&body=Merhaba%20Yusuf%20Avşar,%0A%0ABulgu%20Özeti:%0AEtkilenen%20Varlık%20(domain/app/api):%0ASeverity%20(tahmini):%0ATekrarlanabilir%20Adımlar:%0AKanıt%20(log/screenshot):%0AÖneri:%0A%0Aİletişim:%0A%0ATeşekkürler.">
+              Gmail’e rapor gönder
+            </a>
+          </div>
+        </div>
+
+        <div class="soft-border rounded-2xl p-5">
+          <h2 class="font-bold text-lg tracking-tight">Kurallar (Önemli)</h2>
+          <ul class="mt-3 space-y-2 text-white/70 text-sm leading-relaxed">
+            <li><span class="mono text-white/60">•</span> Yetkisiz erişim, veri sızdırma ve hizmet kesintisi (DDoS) kesinlikle yasaktır.</li>
+            <li><span class="mono text-white/60">•</span> Sosyal mühendislik, phishing veya üçüncü kişilere yönelik saldırı denemeleri kabul edilmez.</li>
+            <li><span class="mono text-white/60">•</span> Veri bütünlüğünü bozacak işlemler yapılmamalıdır.</li>
+            <li><span class="mono text-white/60">•</span> Bulgular kamuya açıklanmadan önce koordinasyon sağlanmalıdır.</li>
+          </ul>
+
+          <div class="mt-4 soft-border rounded-2xl p-4">
+            <div class="text-xs text-white/60 mono">YANIT SÜRESİ</div>
+            <p class="mt-2 text-white/70 text-sm leading-relaxed">
+              Uygun bildirimlerde mümkün olan en kısa sürede dönüş hedeflenir.
+              Kritik bulgular önceliklidir. (Yoğunluk durumuna göre süre değişebilir.)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 soft-border rounded-2xl p-5">
+        <h2 class="font-bold text-lg tracking-tight">Koordineli Açıklama (Coordinated Disclosure)</h2>
+        <p class="mt-2 text-white/70 text-sm leading-relaxed">
+          Bildirilen açıklar; doğrulama, etki analizi ve düzeltme sürecinden sonra uygun takvimle açıklanır.
+          Amaç; kullanıcı güvenliğini riske atmadan şeffaflık sağlamaktır.
+        </p>
+      </div>
+
+      <footer class="mt-10 text-center text-white/50 text-sm">
+        <div class="mono">© <span id="year"></span> Yusuf Avşar</div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const d = new Date();
+    const fmt = d.toLocaleDateString("tr-TR", { year:"numeric", month:"long", day:"2-digit" });
+    document.getElementById("lastUpdated").textContent = fmt;
+  </script>
+</body>
+</html>

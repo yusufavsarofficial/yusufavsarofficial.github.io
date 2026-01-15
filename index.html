@@ -12,10 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    :root{
-      --bg:#050505;
-      --red:#ff0000;
-    }
+    :root{ --bg:#050505; --red:#ff0000; }
     html,body{height:100%}
     body{
       font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
@@ -28,20 +25,12 @@
       background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
       background-size: 42px 42px;
     }
-    .glass{
-      background: rgba(10,10,10,0.55);
-      backdrop-filter: blur(14px);
-    }
+    .glass{ background: rgba(10,10,10,0.55); backdrop-filter: blur(14px); }
     .glow-red{ box-shadow: 0 0 70px -22px rgba(255,0,0,0.55); }
-    .text-outline{
-      -webkit-text-stroke: 1px rgba(255,255,255,0.12);
-      color: transparent;
-    }
+    .text-outline{ -webkit-text-stroke: 1px rgba(255,255,255,0.12); color: transparent; }
 
-    /* Menu slide */
     #mobileMenu{ transition: transform .6s cubic-bezier(.85,0,.15,1); }
 
-    /* Progress stripes */
     @keyframes stripes{ from{background-position:40px 0} to{background-position:0 0} }
     .progress-animated{
       background-image: linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
@@ -49,22 +38,18 @@
       animation: stripes 1s linear infinite;
     }
 
-    /* Entrance */
     @keyframes floatIn{ from{transform:translateY(10px);opacity:0} to{transform:translateY(0);opacity:1} }
     .float-in{ animation: floatIn .7s ease both; }
 
-    /* Locked hover */
     .locked-item:hover i.lock-icon{ transform: scale(1.15) rotate(12deg); color:#ff0000; }
     .locked-item i.lock-icon{ transition: transform .25s ease, color .25s ease; }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       #mobileMenu{transition:none}
       .progress-animated{animation:none}
       .float-in{animation:none}
     }
 
-    /* Canvas */
     #bgCanvas{
       position: fixed;
       inset: 0;
@@ -79,7 +64,6 @@
 </head>
 
 <body class="bg-grid min-h-screen flex flex-col">
-  <!-- Subtle particles canvas -->
   <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
   <!-- Header -->
@@ -125,7 +109,6 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 md:px-10 py-10 grow">
           <nav>
             <ul class="space-y-5">
-              <!-- Active item -->
               <li>
                 <a href="#"
                    data-action="home"
@@ -137,7 +120,6 @@
                 </a>
               </li>
 
-              <!-- Locked items -->
               <li>
                 <button data-action="locked"
                         class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
@@ -251,12 +233,12 @@
         <div class="space-y-4 max-w-md">
           <div class="flex justify-between mono text-[10px] uppercase tracking-[0.2em]">
             <span class="text-zinc-400 font-bold">Veritabanı Senkronizasyonu</span>
-            <span id="progressLabel" class="text-red-500">92%</span>
+            <span id="progressLabel" class="text-red-500">16%</span>
           </div>
           <div class="w-full bg-zinc-900 h-2 rounded-full overflow-hidden border border-zinc-800">
             <div id="progressBar"
                  class="h-full bg-red-600 progress-animated shadow-[0_0_18px_rgba(255,0,0,0.45)] transition-all duration-700"
-                 style="width:92%"></div>
+                 style="width:16%"></div>
           </div>
 
           <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
@@ -451,18 +433,12 @@
       }
     });
 
-    // Locked actions
     $$("#mobileMenu [data-action='locked']").forEach(btn => {
-      btn.addEventListener("click", () => {
-        setMenuOpen(false);
-        openDenied();
-      });
+      btn.addEventListener("click", () => { setMenuOpen(false); openDenied(); });
     });
-
     $$("#mobileMenu [data-action='home']").forEach(a => {
       a.addEventListener("click", (e) => { e.preventDefault(); setMenuOpen(false); });
     });
-
     goSupport?.addEventListener("click", () => {
       setMenuOpen(false);
       $("#supportCard")?.scrollIntoView({behavior:"smooth", block:"center"});
@@ -480,22 +456,14 @@
     deniedModal.addEventListener("click", (e) => { if(e.target?.dataset?.close === "modal") closeDenied(); });
     $$("[data-close='modal']").forEach(el => el.addEventListener("click", closeDenied));
 
-    // ===== Progress + Timeline state
-    const progressBar = $("#progressBar");
-    const progressLabel = $("#progressLabel");
-    const statusText = $("#statusText");
-
+    // ===== Timeline switch (sync -> deploy)
     const step3 = $("#step3");
     const step4 = $("#step4");
     const s3state = $("#s3state");
     const s4state = $("#s4state");
 
-    let p = 92;
-
-    function setTimeline(done){
-      // When sync reaches 95+ we flip to deploying
-      if(done){
-        statusText.textContent = "DEPLOYING";
+    function setTimeline(deploying){
+      if(deploying){
         step3.className = "mt-0.5 w-6 h-6 rounded-full border border-zinc-800 bg-zinc-900/20 grid place-items-center text-zinc-500";
         step3.innerHTML = '<i class="fa-solid fa-check text-[11px]"></i>';
         s3state.textContent = "DONE";
@@ -506,20 +474,56 @@
         s4state.textContent = "IN PROGRESS";
         s4state.className = "mono text-[10px] tracking-[0.25em] uppercase text-red-500";
       } else {
-        statusText.textContent = "SYNCING";
+        // default stays syncing (step3 spinner, step4 locked)
+        step3.className = "mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500";
+        step3.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-[11px]"></i>';
+        s3state.textContent = "IN PROGRESS";
+        s3state.className = "mono text-[10px] tracking-[0.25em] uppercase text-red-500";
+
+        step4.className = "mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-600";
+        step4.innerHTML = '<i class="fa-solid fa-lock text-[11px]"></i>';
+        s4state.textContent = "LOCKED";
+        s4state.className = "mono text-[10px] tracking-[0.25em] uppercase text-zinc-700";
       }
     }
 
-    setInterval(() => {
-      const delta = (Math.random() * 1.2) - 0.6;
-      p = Math.min(96, Math.max(90, p + delta));
-      const val = Math.round(p);
+    // ===== Progress (TIME-BASED): 16% start, +1% every 3 hours
+    const progressBar = $("#progressBar");
+    const progressLabel = $("#progressLabel");
+    const statusText = $("#statusText");
+
+    const STEP_MS = 3 * 60 * 60 * 1000;       // 3 hours
+    const START_PERCENT = 16;                 // starts at 16%
+    const STORAGE_KEY = "ayf_maint_start_ts"; // persists across refresh
+
+    let startTs = Number(localStorage.getItem(STORAGE_KEY));
+    if (!startTs || Number.isNaN(startTs)) {
+      startTs = Date.now();
+      localStorage.setItem(STORAGE_KEY, String(startTs));
+    }
+
+    function computePercent(){
+      const elapsed = Date.now() - startTs;
+      const steps = Math.floor(elapsed / STEP_MS);
+      return Math.min(100, START_PERCENT + steps);
+    }
+
+    function updateProgressUI(){
+      const val = computePercent();
       progressBar.style.width = val + "%";
       progressLabel.textContent = val + "%";
       $("#lastCheck").textContent = new Date().toLocaleTimeString("tr-TR");
 
-      setTimeline(val >= 95);
-    }, 1400);
+      const deploying = val >= 95;
+      statusText.textContent = deploying ? "DEPLOYING" : "SYNCING";
+      setTimeline(deploying);
+    }
+
+    // Initial draw
+    updateProgressUI();
+
+    // Update every minute (more than enough)
+    setInterval(updateProgressUI, 60 * 1000);
 
     // ===== Uptime
     const start = Date.now();
@@ -570,8 +574,7 @@
     resize();
 
     const particles = [];
-    const COUNT = 65; // enough for premium feel without heavy load
-
+    const COUNT = 65;
     function rnd(min,max){ return Math.random()*(max-min)+min; }
     function makeParticle(){
       return {
@@ -585,10 +588,9 @@
     for(let i=0;i<COUNT;i++) particles.push(makeParticle());
 
     function step(){
-      if(reduceMotion) return; // respect accessibility
+      if(reduceMotion) return;
       ctx.clearRect(0,0,W,H);
 
-      // soft vignette
       const g = ctx.createRadialGradient(W*0.5,H*0.35, 40, W*0.5,H*0.35, Math.max(W,H)*0.75);
       g.addColorStop(0, "rgba(255,0,0,0.06)");
       g.addColorStop(1, "rgba(0,0,0,0)");

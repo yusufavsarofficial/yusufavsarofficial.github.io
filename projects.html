@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeler | Yusuf Avşar</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Yusuf Avşar — Projeler: güvenlik odaklı sistemler, altyapı sertleştirme, uygulama güvenliği ve özel araştırmalar. Erişim kontrollü." />
+  <meta name="author" content="Yusuf Avşar" />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#0f1629;
+      --line:rgba(255,255,255,.08);
+      --glow:rgba(255,0,0,.18);
+    }
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .gridline{
+      background-image:
+        radial-gradient(circle at 20% 10%, var(--glow), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(0,153,255,.12), transparent 40%),
+        linear-gradient(to bottom, rgba(255,255,255,.04), transparent 25%),
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: auto, auto, auto, 28px 28px;
+      background-position: center, center, center, 0 0;
+    }
+    .glass{
+      background: rgba(15, 22, 41, 0.72);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .soft-border{border:1px solid var(--line);}
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .btn:hover{background: rgba(255,255,255,.07);}
+    .badge{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .card{
+      background: rgba(15, 22, 41, 0.72);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+    }
+    .locked{
+      position: relative;
+      overflow: hidden;
+    }
+    .locked:before{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background: radial-gradient(circle at 20% 20%, rgba(255,0,0,.16), transparent 35%),
+                  radial-gradient(circle at 80% 30%, rgba(0,153,255,.12), transparent 40%);
+      filter: blur(10px);
+      opacity:.55;
+      pointer-events:none;
+    }
+  </style>
+</head>
+
+<body class="text-white gridline min-h-screen">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-50">
+    <div class="glass">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl soft-border grid place-items-center">
+            <span class="mono text-sm tracking-tight">YA</span>
+          </div>
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-tight">Yusuf Avşar</div>
+            <div class="text-xs text-white/60 mono">Software • Security • Research</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-2">
+          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
+          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
+          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
+          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
+        </nav>
+
+        <div class="md:hidden">
+          <button id="menuBtn" class="btn px-3 py-2 rounded-xl text-sm mono">MENU</button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2">
+          <a href="about.html" class="btn px-3 py-2 rounded-xl text-sm">Hakkımda</a>
+          <a href="services.html" class="btn px-3 py-2 rounded-xl text-sm">Hizmetler</a>
+          <a href="projects.html" class="btn px-3 py-2 rounded-xl text-sm">Projeler</a>
+          <a href="contact.html" class="btn px-3 py-2 rounded-xl text-sm">İletişim</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pt-10 pb-14">
+    <!-- Header -->
+    <section class="glass rounded-3xl p-6 md:p-8">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Portfolio / Case Studies</span>
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">Erişim Kontrollü</span>
+        <span class="badge px-3 py-1 rounded-full text-xs mono text-white/80">NDA / Gizlilik</span>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Projeler</h1>
+      <p class="text-white/70 mt-3 leading-relaxed">
+        Bu sayfada, güvenlik ve gizlilik gereği <span class="font-semibold text-white">tam detay paylaşılmayan</span> proje başlıkları ve çalışma türleri yer alır.
+        Birçok çalışma <span class="font-semibold text-white">NDA</span> kapsamında yürütüldüğü için müşteri adı, altyapı bilgisi ve yöntem detayları yayınlanmaz.
+        Talep halinde, uygun yetkilendirme ve doğrulama ile <span class="font-semibold text-white">kontrollü paylaşım</span> sağlanır.
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-3">
+        <div class="soft-border rounded-2xl p-4">
+          <div class="text-xs text-white/60 mono">TESLİMAT</div>
+          <div class="mt-1 text-white/85 text-sm">Rapor • Risk haritası • Yol planı • İyileştirme</div>
+        </div>
+        <div class="soft-border rounded-2xl p-4">
+          <div class="text-xs text-white/60 mono">YAKLAŞIM</div>
+          <div class="mt-1 text-white/85 text-sm">Kanıt tabanlı bulgu • Önceliklendirme • Sürdürülebilir güvenlik</div>
+        </div>
+        <div class="soft-border rounded-2xl p-4">
+          <div class="text-xs text-white/60 mono">MODEL</div>
+          <div class="mt-1 text-white/85 text-sm">Global uzaktan • Kamu hibrit (yerinde/uzaktan)</div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="contact.html" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center">
+          Proje görüşmesi / Teklif
+        </a>
+        <button id="requestAccessBtn" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center">
+          Kontrollü erişim talep et
+        </button>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="mt-8 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <!-- Card 1 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">SECURITY</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Kurumsal Web & API Güvenlik Denetimi</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Yetkilendirme, iş mantığı, veri akışı ve kritik uç noktalar üzerinde derin analiz.
+            Bulgular, risk önceliği ile raporlanır.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">AppSec</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">API</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">RBAC</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">INFRA</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Sunucu & Altyapı Sertleştirme (Hardening)</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Saldırı yüzeyi azaltma, servis bazlı sertleştirme, erişim kontrolü ve güvenli yapılandırma.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Linux</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Servers</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Zero Trust</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">PENTEST</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Ağ Penetrasyon Testi & Segment Analizi</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            İç/dış ağ yüzeyi, yetki zincirleri ve kritik servisler üzerinde hedef odaklı değerlendirme.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Network</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">AD</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Segmentation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">RESEARCH</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Zafiyet Araştırması & Doğrulama</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Zafiyet doğrulama, etki analizi ve düzeltme önerileri.
+            Operasyonel detaylar kontrollü paylaşılır.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">PoC</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Risk</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Mitigation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">DEVSECOPS</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Güvenlik Odaklı Süreç & Otomasyon</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Güvenli geliştirme yaşam döngüsü, kontrol noktaları, log/izleme ve otomasyon yaklaşımı.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">SDLC</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">CI/CD</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Monitoring</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card rounded-3xl p-6 locked">
+        <div class="relative">
+          <div class="flex items-start justify-between gap-3">
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">INCIDENT</div>
+            <div class="badge px-3 py-1 rounded-full text-xs mono text-white/80">LOCKED</div>
+          </div>
+          <h2 class="mt-4 font-bold text-lg tracking-tight">Olay Müdahale & İyileştirme</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Olay tespiti, etki azaltma, kalıcı iyileştirme ve güvenlik kazanımı odaklı süreç yönetimi.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="badge px-3 py-1 rounded-full text-xs mono">IR</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Forensics</span>
+            <span class="badge px-3 py-1 rounded-full text-xs mono">Hardening</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Access / CTA -->
+    <section class="mt-8 glass rounded-3xl p-6 md:p-8">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="text-lg md:text-xl font-bold tracking-tight">Erişim & Referans Paylaşımı</h2>
+        <span class="mono text-xs text-white/60">CONTROLLED SHARING</span>
+      </div>
+
+      <div class="mt-4 soft-border rounded-2xl p-4 md:p-5">
+        <p class="text-white/70 leading-relaxed">
+          Proje referansları ve teknik kapsam; işin niteliğine göre, doğrulama ve uygun yetkilendirme sonrasında paylaşılır.
+          Kamu ve kurumsal çalışmaların çoğu gizlilik kapsamında yürütüldüğünden; isim, kurum ve altyapı bilgisi bu sayfada yer almaz.
+        </p>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+          <a href="contact.html" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center">
+            İletişim
+          </a>
+          <button id="openModalBtn" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center">
+            Erişim Talebi
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-center text-white/50 text-sm">
+      <div class="mono">© <span id="year"></span> Yusuf Avşar • All rights reserved.</div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4 z-50">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="relative glass rounded-3xl p-6 md:p-7 max-w-lg w-full">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="text-xs text-white/60 mono">ERİŞİM TALEBİ</div>
+          <h3 class="mt-1 text-xl font-extrabold tracking-tight">Kontrollü Paylaşım</h3>
+        </div>
+        <button id="closeModal" class="btn rounded-xl px-3 py-2 text-sm mono">X</button>
+      </div>
+
+      <p class="mt-3 text-white/70 leading-relaxed text-sm">
+        Proje detayları, referanslar ve teknik kapsam; doğrulama ve uygun çerçeve sonrasında paylaşılır.
+        Talebinizi iletmek için iletişim sayfasını kullanabilir veya aşağıdaki metni kopyalayabilirsiniz.
+      </p>
+
+      <div class="mt-4 soft-border rounded-2xl p-4">
+        <div class="text-xs text-white/60 mono mb-2">KOPYALA / GÖNDER</div>
+        <pre class="mono text-xs text-white/80 whitespace-pre-wrap leading-relaxed">Merhaba,
+Proje referansları ve kontrollü paylaşım kapsamında görüşmek istiyorum.
+Kurum/Şirket:
+İletişim:
+İhtiyaç/Kapsam:
+Tercih edilen model (uzaktan/yerinde):
+Teşekkürler.</pre>
+      </div>
+
+      <div class="mt-5 flex flex-col sm:flex-row gap-3">
+        <a href="contact.html" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center w-full">
+          İletişim Sayfasına Git
+        </a>
+        <button id="copyBtn" class="btn rounded-2xl px-5 py-3 text-sm font-semibold text-center w-full">
+          Metni Kopyala
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn?.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Modal logic
+    const modal = document.getElementById("modal");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const requestAccessBtn = document.getElementById("requestAccessBtn");
+    const closeModal = document.getElementById("closeModal");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+    function closeModalFn() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    openModalBtn?.addEventListener("click", openModal);
+    requestAccessBtn?.addEventListener("click", openModal);
+    closeModal?.addEventListener("click", closeModalFn);
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal || e.target.classList.contains("bg-black/70")) closeModalFn();
+    });
+
+    // Copy template
+    const copyBtn = document.getElementById("copyBtn");
+    copyBtn?.addEventListener("click", async () => {
+      const pre = modal.querySelector("pre");
+      try {
+        await navigator.clipboard.writeText(pre.innerText);
+        copyBtn.textContent = "Kopyalandı ✓";
+        setTimeout(() => (copyBtn.textContent = "Metni Kopyala"), 1600);
+      } catch (err) {
+        copyBtn.textContent = "Kopyalanamadı";
+        setTimeout(() => (copyBtn.textContent = "Metni Kopyala"), 1600);
+      }
+    });
+  </script>
+</body>
+  </html>

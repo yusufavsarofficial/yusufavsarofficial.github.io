@@ -31,10 +31,9 @@
   </button>
 </header>
 
-<!-- HAMBURGER MENU -->
+<!-- HAMBURGER MENU (AYNI) -->
 <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
   <div id="menuBackdrop" class="absolute inset-0"></div>
-
   <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
     <button id="menuClose"
       class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
@@ -42,103 +41,117 @@
     </button>
 
     <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
-
-      <!-- AÇIK -->
-      <a href="index.html" class="block hover:text-red-500 transition">Anasayfa</a>
+      <a href="index.html" class="block text-red-500">Anasayfa</a>
       <a href="about.html" class="block hover:text-red-500 transition">Hakkımda</a>
       <a href="services.html" class="block hover:text-red-500 transition">Hizmetler</a>
       <a href="projects.html" class="block hover:text-red-500 transition">Projeler</a>
       <a href="contact.html" class="block hover:text-red-500 transition">İletişim</a>
 
-      <!-- AYRAÇ -->
       <div class="pt-6 border-t border-zinc-800"></div>
 
-      <!-- ERİŞİM KAPALI -->
-      <div class="text-zinc-600 cursor-not-allowed select-none">
-        Eğitimler
-        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
-          ACCESS DENIED
-        </span>
-      </div>
-
-      <div class="text-zinc-600 cursor-not-allowed select-none">
-        Kariyer
-        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
-          RESTRICTED
-        </span>
-      </div>
-
-      <div class="text-zinc-600 cursor-not-allowed select-none">
-        Burs
-        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
-          AUTH REQUIRED
-        </span>
-      </div>
-
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Eğitimler <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">ACCESS DENIED</span>
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Kariyer <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">RESTRICTED</span>
+      </button>
+      <button data-denied class="text-left text-zinc-600 cursor-not-allowed">
+        Burs <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">AUTH REQUIRED</span>
+      </button>
     </nav>
   </aside>
 </div>
 
 <!-- MAIN -->
-<main class="pt-32 px-6 max-w-6xl mx-auto space-y-24">
+<main class="pt-32 px-6 max-w-6xl mx-auto space-y-28">
 
   <!-- HERO -->
   <section class="space-y-8">
     <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
-      SYSTEM STATUS • ACTIVE
+      SYSTEM OVERVIEW
     </span>
 
     <h1 class="text-6xl md:text-8xl font-black uppercase leading-[0.9]">
-      Dijital Sistemler<br>
+      Dijital Altyapı<br>
       <span class="text-red-600">Kontrol Altında</span>
     </h1>
 
-    <p class="max-w-2xl text-zinc-400 text-lg leading-relaxed">
-      16 yılı aşkın yazılım, siber güvenlik ve sistem araştırmaları tecrübesiyle
-      kurumsal ve kamu altyapıları için yüksek riskli ortamlar güvenli hale getirilir.
+    <p class="max-w-3xl text-zinc-400 text-lg leading-relaxed">
+      Bu platform; yazılım, siber güvenlik ve sistem mimarisi alanlarında
+      yürütülen çalışmaların **genel çerçevesini** sunmak amacıyla hazırlanmıştır.
+      İçerikler kontrollü şekilde yayınlanmakta, bazı modüller bilinçli olarak
+      erişime kapalı tutulmaktadır.
     </p>
-
-    <div class="flex flex-wrap gap-4">
-      <a href="services.html"
-         class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
-        Hizmetleri İncele
-      </a>
-      <a href="contact.html"
-         class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
-        İletişime Geç
-      </a>
-    </div>
   </section>
 
-  <!-- STATUS CARDS -->
+  <!-- INFO / STATUS -->
   <section class="grid md:grid-cols-3 gap-6">
+
     <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <p class="mono text-xs tracking-[0.3em] text-zinc-500">EXPERIENCE</p>
-      <p class="mt-4 text-4xl font-black">16+</p>
-      <p class="mt-2 text-zinc-500">Yıl Aktif Tecrübe</p>
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">PLATFORM STATUS</p>
+      <p class="mt-4 text-3xl font-black text-green-500">ACTIVE</p>
+      <p class="mt-2 text-zinc-400">
+        Sistem aktif, içerikler aşamalı olarak yayınlanıyor.
+      </p>
     </div>
 
     <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <p class="mono text-xs tracking-[0.3em] text-zinc-500">FOCUS</p>
-      <p class="mt-4 text-4xl font-black">SECURITY</p>
-      <p class="mt-2 text-zinc-500">Offensive & Defensive</p>
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">CONTENT STATE</p>
+      <p class="mt-4 text-3xl font-black text-yellow-500">IN PROGRESS</p>
+      <p class="mt-2 text-zinc-400">
+        Sayfalar güncelleniyor, yeni modüller ekleniyor.
+      </p>
     </div>
 
     <div class="border border-zinc-800 p-6 bg-zinc-900/40">
-      <p class="mono text-xs tracking-[0.3em] text-zinc-500">SCOPE</p>
-      <p class="mt-4 text-4xl font-black">GLOBAL</p>
-      <p class="mt-2 text-zinc-500">Uzaktan • Yerinde</p>
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">ACCESS CONTROL</p>
+      <p class="mt-4 text-3xl font-black text-red-500">RESTRICTED</p>
+      <p class="mt-2 text-zinc-400">
+        Bazı alanlar yetkilendirme gerektirir.
+      </p>
     </div>
+
   </section>
 
-  <!-- INFO -->
-  <section class="border border-zinc-800 p-8 bg-black/40">
-    <h2 class="text-3xl font-black uppercase mb-4">Çalışma Prensibi</h2>
-    <p class="text-zinc-400 leading-relaxed max-w-3xl">
-      Bu platform yalnızca bilgilendirme ve profesyonel iletişim amaçlıdır.
-      Yetkisiz erişim, izinsiz test ve etik dışı faaliyetlere destek verilmez.
-      Tüm çalışmalar gizlilik, sözleşme ve yasal çerçeve içerisinde yürütülür.
+  <!-- PRE INFO -->
+  <section class="border border-zinc-800 p-8 bg-black/40 space-y-6">
+    <h2 class="text-3xl font-black uppercase">Ön Bilgilendirme</h2>
+
+    <p class="text-zinc-400 leading-relaxed max-w-4xl">
+      Bu web sitesi, devam eden geliştirme ve tasarım sürecinin bir parçasıdır.
+      İçerikler zaman içerisinde güncellenmekte, genişletilmekte ve yeniden
+      yapılandırılmaktadır.
     </p>
+
+    <p class="text-zinc-400 leading-relaxed max-w-4xl">
+      Yayınlanan bilgiler genel bilgilendirme amaçlıdır.
+      Teknik detaylar, referanslar ve operasyonel içerikler yalnızca
+      uygun izinler ve doğrulama süreçleri sonrasında paylaşılır.
+    </p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="space-y-6">
+    <h2 class="text-3xl font-black uppercase">Geliştirme Süreci</h2>
+
+    <ul class="space-y-3 text-zinc-400">
+      <li>• İçerik düzenleme ve güncelleme</li>
+      <li>• Tasarım iyileştirmeleri</li>
+      <li>• Yeni modül ve bölümlerin eklenmesi</li>
+      <li>• Güvenlik ve erişim kontrollerinin genişletilmesi</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section class="flex flex-wrap gap-4">
+    <a href="services.html"
+      class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
+      Hizmetler
+    </a>
+    <a href="contact.html"
+      class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
+      İletişim
+    </a>
   </section>
 
 </main>
@@ -148,7 +161,7 @@
   © 2010 – 2026 YUSUF AVŞAR • AYFSOFT
 </footer>
 
-<!-- JS -->
+<!-- JS (MENU + 403) -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const menuTrigger  = document.getElementById("menuTrigger");

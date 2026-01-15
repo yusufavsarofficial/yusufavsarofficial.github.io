@@ -1,106 +1,168 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sistem Bakım Modu | Yusuf Avşar & AYFSOFT</title>
+  <meta charset="UTF-8">
+  <title>Yusuf Avşar | AYFSOFT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    :root{ --bg:#050505; --red:#ff0000; }
-    html,body{height:100%}
     body{
-      font-family:"Inter",system-ui;
-      background:var(--bg);
+      font-family:Inter,system-ui;
+      background:#050505;
       color:#e5e7eb;
-      overflow-x:hidden;
     }
-    .mono{font-family:"JetBrains Mono", monospace;}
-    .bg-grid{
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0);
-      background-size:42px 42px;
-    }
-    .glass{background:rgba(10,10,10,.55);backdrop-filter:blur(14px)}
-    #mobileMenu{transition:transform .45s cubic-bezier(.85,0,.15,1)}
-    #bgCanvas{
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none !important;
-    }
+    .mono{font-family:"JetBrains Mono",monospace}
   </style>
 </head>
 
-<body class="bg-grid min-h-screen">
-<canvas id="bgCanvas"></canvas>
+<body class="min-h-screen overflow-x-hidden">
 
 <!-- HEADER -->
 <header class="fixed top-0 right-0 z-[100] p-6">
-  <button id="menuTrigger" class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500">
+  <button id="menuTrigger"
+    class="mono text-xs tracking-[0.4em] uppercase text-zinc-400 hover:text-red-500 transition">
     MENU
   </button>
 </header>
 
-<!-- MOBILE MENU -->
+<!-- HAMBURGER MENU -->
 <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
   <div id="menuBackdrop" class="absolute inset-0"></div>
 
-  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] glass border-l border-zinc-800 p-10">
-    <button id="menuClose" class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500">
+  <aside class="absolute right-0 top-0 h-full w-full md:w-[520px] bg-black/90 backdrop-blur-xl border-l border-zinc-800 p-10">
+    <button id="menuClose"
+      class="mono text-xs tracking-[0.3em] text-zinc-400 hover:text-red-500 transition">
       KAPAT
     </button>
 
     <nav class="mt-16 space-y-6 text-4xl uppercase font-black">
-      <a href="index.html" class="block hover:text-red-500">Anasayfa</a>
-      <a href="about.html" class="block hover:text-red-500">Hakkımda</a>
-      <a href="services.html" class="block hover:text-red-500">Hizmetler</a>
-      <a href="projects.html" class="block hover:text-red-500">Projeler</a>
-      <a href="contact.html" class="block hover:text-red-500">İletişim</a>
+
+      <!-- AÇIK -->
+      <a href="index.html" class="block hover:text-red-500 transition">Anasayfa</a>
+      <a href="about.html" class="block hover:text-red-500 transition">Hakkımda</a>
+      <a href="services.html" class="block hover:text-red-500 transition">Hizmetler</a>
+      <a href="projects.html" class="block hover:text-red-500 transition">Projeler</a>
+      <a href="contact.html" class="block hover:text-red-500 transition">İletişim</a>
+
+      <!-- AYRAÇ -->
+      <div class="pt-6 border-t border-zinc-800"></div>
+
+      <!-- ERİŞİM KAPALI -->
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Eğitimler
+        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
+          ACCESS DENIED
+        </span>
+      </div>
+
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Kariyer
+        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
+          RESTRICTED
+        </span>
+      </div>
+
+      <div class="text-zinc-600 cursor-not-allowed select-none">
+        Burs
+        <span class="ml-3 text-xs mono tracking-[0.3em] border border-zinc-700 px-2 py-1 rounded">
+          AUTH REQUIRED
+        </span>
+      </div>
+
     </nav>
   </aside>
 </div>
 
 <!-- MAIN -->
-<main class="relative z-10 flex items-center justify-center min-h-screen text-center px-6">
-  <div>
-    <h1 class="text-6xl md:text-8xl font-black uppercase">
-      Sistem <span class="text-red-600">Bakımda</span>
+<main class="pt-32 px-6 max-w-6xl mx-auto space-y-24">
+
+  <!-- HERO -->
+  <section class="space-y-8">
+    <span class="mono text-xs tracking-[0.4em] text-red-500 uppercase">
+      SYSTEM STATUS • ACTIVE
+    </span>
+
+    <h1 class="text-6xl md:text-8xl font-black uppercase leading-[0.9]">
+      Dijital Sistemler<br>
+      <span class="text-red-600">Kontrol Altında</span>
     </h1>
-    <p class="mt-6 text-zinc-500 max-w-xl mx-auto">
-      Altyapı güncelleniyor. Modüller sırayla açılacaktır.
+
+    <p class="max-w-2xl text-zinc-400 text-lg leading-relaxed">
+      16 yılı aşkın yazılım, siber güvenlik ve sistem araştırmaları tecrübesiyle
+      kurumsal ve kamu altyapıları için yüksek riskli ortamlar güvenli hale getirilir.
     </p>
-  </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="services.html"
+         class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
+        Hizmetleri İncele
+      </a>
+      <a href="contact.html"
+         class="px-6 py-3 border border-zinc-700 hover:border-red-600 transition mono text-xs tracking-[0.3em] uppercase">
+        İletişime Geç
+      </a>
+    </div>
+  </section>
+
+  <!-- STATUS CARDS -->
+  <section class="grid md:grid-cols-3 gap-6">
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">EXPERIENCE</p>
+      <p class="mt-4 text-4xl font-black">16+</p>
+      <p class="mt-2 text-zinc-500">Yıl Aktif Tecrübe</p>
+    </div>
+
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">FOCUS</p>
+      <p class="mt-4 text-4xl font-black">SECURITY</p>
+      <p class="mt-2 text-zinc-500">Offensive & Defensive</p>
+    </div>
+
+    <div class="border border-zinc-800 p-6 bg-zinc-900/40">
+      <p class="mono text-xs tracking-[0.3em] text-zinc-500">SCOPE</p>
+      <p class="mt-4 text-4xl font-black">GLOBAL</p>
+      <p class="mt-2 text-zinc-500">Uzaktan • Yerinde</p>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="border border-zinc-800 p-8 bg-black/40">
+    <h2 class="text-3xl font-black uppercase mb-4">Çalışma Prensibi</h2>
+    <p class="text-zinc-400 leading-relaxed max-w-3xl">
+      Bu platform yalnızca bilgilendirme ve profesyonel iletişim amaçlıdır.
+      Yetkisiz erişim, izinsiz test ve etik dışı faaliyetlere destek verilmez.
+      Tüm çalışmalar gizlilik, sözleşme ve yasal çerçeve içerisinde yürütülür.
+    </p>
+  </section>
+
 </main>
+
+<!-- FOOTER -->
+<footer class="mt-32 py-10 border-t border-zinc-800 text-center mono text-xs tracking-[0.3em] text-zinc-500">
+  © 2010 – 2026 YUSUF AVŞAR • AYFSOFT
+</footer>
 
 <!-- JS -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
   const menuTrigger  = document.getElementById("menuTrigger");
   const mobileMenu   = document.getElementById("mobileMenu");
   const menuClose    = document.getElementById("menuClose");
   const menuBackdrop = document.getElementById("menuBackdrop");
 
-  function openMenu(){
-    mobileMenu.classList.remove("translate-x-full");
-  }
-  function closeMenu(){
-    mobileMenu.classList.add("translate-x-full");
-  }
+  function openMenu(){ mobileMenu.classList.remove("translate-x-full"); }
+  function closeMenu(){ mobileMenu.classList.add("translate-x-full"); }
 
   menuTrigger.addEventListener("click", openMenu);
   menuClose.addEventListener("click", closeMenu);
   menuBackdrop.addEventListener("click", closeMenu);
-
-  window.addEventListener("keydown", (e)=>{
-    if(e.key === "Escape") closeMenu();
-  });
-
+  window.addEventListener("keydown", e => { if(e.key === "Escape") closeMenu(); });
 });
 </script>
 

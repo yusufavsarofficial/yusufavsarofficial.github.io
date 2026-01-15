@@ -15,7 +15,6 @@
     :root{
       --bg:#050505;
       --red:#ff0000;
-      --zinc:#0a0a0a;
     }
     html,body{height:100%}
     body{
@@ -26,55 +25,66 @@
     }
     .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
     .bg-grid{
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
       background-size: 42px 42px;
     }
     .glass{
       background: rgba(10,10,10,0.55);
       backdrop-filter: blur(14px);
     }
-    .glow-red{
-      box-shadow: 0 0 70px -22px rgba(255,0,0,0.55);
-    }
+    .glow-red{ box-shadow: 0 0 70px -22px rgba(255,0,0,0.55); }
     .text-outline{
       -webkit-text-stroke: 1px rgba(255,255,255,0.12);
       color: transparent;
     }
-    /* Smooth menu transition */
-    #mobileMenu{
-      transition: transform .6s cubic-bezier(.85,0,.15,1);
-    }
+
+    /* Menu slide */
+    #mobileMenu{ transition: transform .6s cubic-bezier(.85,0,.15,1); }
+
     /* Progress stripes */
-    @keyframes stripes{
-      from{background-position:40px 0}
-      to{background-position:0 0}
-    }
+    @keyframes stripes{ from{background-position:40px 0} to{background-position:0 0} }
     .progress-animated{
       background-image: linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
       background-size: 40px 40px;
       animation: stripes 1s linear infinite;
     }
-    /* Subtle entrance */
-    @keyframes floatIn{
-      from{transform:translateY(10px);opacity:.0}
-      to{transform:translateY(0);opacity:1}
-    }
-    .float-in{animation: floatIn .7s ease both}
+
+    /* Entrance */
+    @keyframes floatIn{ from{transform:translateY(10px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .float-in{ animation: floatIn .7s ease both; }
+
+    /* Locked hover */
+    .locked-item:hover i.lock-icon{ transform: scale(1.15) rotate(12deg); color:#ff0000; }
+    .locked-item i.lock-icon{ transition: transform .25s ease, color .25s ease; }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       #mobileMenu{transition:none}
       .progress-animated{animation:none}
       .float-in{animation:none}
     }
+
+    /* Canvas */
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .55;
+      mix-blend-mode: screen;
+    }
   </style>
 </head>
 
 <body class="bg-grid min-h-screen flex flex-col">
+  <!-- Subtle particles canvas -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
   <!-- Header -->
   <header class="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-7">
-    <div class="max-w-6xl mx-auto flex justify-end">
+    <div class="max-w-6xl mx-auto flex justify-end relative z-10">
       <button id="menuTrigger"
               class="group inline-flex items-center gap-4 focus:outline-none"
               aria-controls="mobileMenu"
@@ -92,12 +102,10 @@
 
   <!-- Mobile Menu / Overlay -->
   <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
-    <div class="absolute inset-0"
-         id="menuBackdrop"
-         aria-hidden="true"></div>
+    <div class="absolute inset-0" id="menuBackdrop" aria-hidden="true"></div>
 
-    <aside class="absolute right-0 top-0 h-full w-full md:w-[760px] border-l border-zinc-800 glass">
-      <div class="absolute inset-0 opacity-[0.08] pointer-events-none flex items-center justify-center overflow-hidden">
+    <aside class="absolute right-0 top-0 h-full w-full md:w-[780px] border-l border-zinc-800 glass">
+      <div class="absolute inset-0 opacity-[0.07] pointer-events-none flex items-center justify-center overflow-hidden">
         <h1 class="text-[22vw] md:text-[14vw] font-black text-white leading-none select-none">SYSTEM</h1>
       </div>
 
@@ -106,7 +114,7 @@
           <div>
             <p class="mono text-red-500 text-xs tracking-[0.45em] uppercase">Erişim Paneli</p>
             <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-500 mt-2">
-              Secure protocol active • sessions monitored
+              Secure protocol • monitored sessions • maintenance lock
             </p>
           </div>
           <button id="menuClose" class="px-4 py-2 border border-zinc-700 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase">
@@ -117,36 +125,64 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 md:px-10 py-10 grow">
           <nav>
             <ul class="space-y-5">
+              <!-- Active item -->
               <li>
                 <a href="#"
                    data-action="home"
-                   class="block text-5xl md:text-7xl font-black hover:text-red-600 transition-colors uppercase tracking-tighter">
-                  Anasayfa
+                   class="flex items-baseline justify-between gap-6 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none hover:text-red-600 transition-colors">
+                  <span>Anasayfa</span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-red-500 border border-red-600/30 bg-red-600/10 px-3 py-1 rounded-full">
+                    ACTIVE
+                  </span>
                 </a>
+              </li>
+
+              <!-- Locked items -->
+              <li>
+                <button data-action="locked"
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Hakkımda <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
+                </button>
               </li>
 
               <li>
                 <button data-action="locked"
-                        class="locked-item flex items-center gap-4 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  Hakkımda <i class="fa-solid fa-lock text-sm transition-all"></i>
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Eğitimler <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
                 </button>
               </li>
+
               <li>
                 <button data-action="locked"
-                        class="locked-item flex items-center gap-4 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  Eğitimler <i class="fa-solid fa-lock text-sm transition-all"></i>
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Ürünler <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
                 </button>
               </li>
+
               <li>
                 <button data-action="locked"
-                        class="locked-item flex items-center gap-4 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  Ürünler <i class="fa-solid fa-lock text-sm transition-all"></i>
-                </button>
-              </li>
-              <li>
-                <button data-action="locked"
-                        class="locked-item flex items-center gap-4 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
-                  İletişim <i class="fa-solid fa-lock text-sm transition-all"></i>
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    İletişim <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
                 </button>
               </li>
             </ul>
@@ -155,29 +191,38 @@
           <div class="hidden md:block border-l border-zinc-800 pl-10 space-y-8">
             <div class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-widest">
               [UYARI]<br/>
-              Güvenli protokol aktif.<br/>
-              Oturumlar loglanır & izlenir.<br/>
-              Yetkisiz bölgeler şifreli katman içerir.<br/>
-              Bakım bitene kadar erişim kapalıdır.
+              Sistem bakım protokolünde.<br/>
+              Yetkisiz alanlar kilitli.<br/>
+              Loglama & izleme aktif.<br/>
+              Güvenlik katmanı: v4.0.1
             </div>
+
             <div class="space-y-3">
               <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Kısayol</div>
               <button id="goSupport" class="w-full px-6 py-3 border border-zinc-800 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase text-left">
-                Destek Kanallarına Git
+                Destek Kartına Git
               </button>
+            </div>
+
+            <div class="space-y-3">
+              <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">İpucu</div>
+              <div class="mono text-[10px] tracking-[0.22em] uppercase text-zinc-500 border border-zinc-800 bg-zinc-900/20 rounded-2xl p-4">
+                ESC ile kapat • dışarı tıkla<br/>
+                “SOON” modülleri bakım sonrası açılır
+              </div>
             </div>
           </div>
         </div>
 
         <div class="px-8 md:px-10 py-8 border-t border-zinc-900/60 mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
-          ESC ile kapat • Dışarı tıkla
+          AYFSOFT CORE • MAINTENANCE LOCK • SAFE MODE
         </div>
       </div>
     </aside>
   </div>
 
   <!-- Main -->
-  <main class="flex-grow flex items-center justify-center relative px-6 pt-28 pb-16">
+  <main class="flex-grow flex items-center justify-center relative px-6 pt-28 pb-16 z-10">
     <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center float-in">
 
       <!-- Left -->
@@ -198,8 +243,8 @@
         </h1>
 
         <p class="text-zinc-500 text-lg md:text-xl font-light max-w-xl leading-relaxed">
-          Altyapı verimliliğini artırmak ve güvenliği optimize etmek adına sistem geçici olarak çevrimdışı.
-          Kritik modüller kontrollü şekilde yeniden devreye alınacaktır.
+          Altyapı verimliliği ve güvenliği artırmak için kritik servisler kontrollü olarak güncelleniyor.
+          Modüller sırayla devreye alınacaktır.
         </p>
 
         <!-- Progress -->
@@ -215,13 +260,15 @@
           </div>
 
           <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
-            Node: AYFSOFT-CORE • Status: SYNCING • Uptime: <span id="uptime" class="text-zinc-400">00:00:00</span>
+            Node: AYFSOFT-CORE • Status: <span id="statusText" class="text-zinc-400">SYNCING</span> • Uptime:
+            <span id="uptime" class="text-zinc-400">00:00:00</span>
           </div>
         </div>
       </section>
 
       <!-- Right Cards -->
       <aside class="lg:col-span-5 grid grid-cols-1 gap-4">
+        <!-- Support -->
         <div id="supportCard" class="p-8 bg-zinc-900/40 border border-zinc-800 rounded-3xl glow-red backdrop-blur-xl hover:border-zinc-700 transition-all">
           <div class="flex items-start justify-between mb-6">
             <i class="fa-solid fa-shield-halved text-4xl text-red-600"></i>
@@ -248,16 +295,71 @@
           </div>
         </div>
 
+        <!-- Timeline -->
         <div class="p-8 bg-zinc-900/20 border border-zinc-800 rounded-3xl backdrop-blur-md hover:border-zinc-700 transition-all">
-          <div class="flex items-center gap-4 mb-4">
-            <i class="fa-solid fa-satellite-dish text-blue-500"></i>
-            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Sistem Durumu</h3>
+          <div class="flex items-center gap-4 mb-5">
+            <i class="fa-solid fa-diagram-project text-blue-500"></i>
+            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-200">Bakım Akışı</h3>
+            <span class="ml-auto mono text-[9px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 px-2 py-1 rounded">
+              LIVE
+            </span>
           </div>
-          <p class="text-sm text-zinc-500 leading-relaxed font-light italic">
-            Veritabanı mimarisi AYFSOFT standartlarına göre optimize ediliyor. Loglara göre kritik servisler “read-only”
-            modda çalışıyor.
-          </p>
-          <div class="mt-5 flex items-center justify-between">
+
+          <ol class="space-y-4">
+            <li class="flex gap-3 items-start">
+              <span id="step1" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-500">
+                <i class="fa-solid fa-check text-[11px]"></i>
+              </span>
+              <div class="grow">
+                <div class="flex items-center justify-between">
+                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Backup & Snapshot</p>
+                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">DONE</p>
+                </div>
+                <p class="text-zinc-500 text-sm mt-1">Veri güvenliği için yedekleme ve snapshot tamamlandı.</p>
+              </div>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <span id="step2" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-500">
+                <i class="fa-solid fa-check text-[11px]"></i>
+              </span>
+              <div class="grow">
+                <div class="flex items-center justify-between">
+                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Schema Migration</p>
+                  <p id="s2state" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">DONE</p>
+                </div>
+                <p class="text-zinc-500 text-sm mt-1">Şema güncellemesi uygulanıyor, uyumluluk kontrol ediliyor.</p>
+              </div>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <span id="step3" class="mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500">
+                <i class="fa-solid fa-spinner fa-spin text-[11px]"></i>
+              </span>
+              <div class="grow">
+                <div class="flex items-center justify-between">
+                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Data Sync</p>
+                  <p id="s3state" class="mono text-[10px] tracking-[0.25em] uppercase text-red-500">IN PROGRESS</p>
+                </div>
+                <p class="text-zinc-500 text-sm mt-1">Kayıtlar senkronize ediliyor, tutarlılık doğrulanıyor.</p>
+              </div>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <span id="step4" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-600">
+                <i class="fa-solid fa-lock text-[11px]"></i>
+              </span>
+              <div class="grow">
+                <div class="flex items-center justify-between">
+                  <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-300">Deploy & Unlock</p>
+                  <p id="s4state" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-700">LOCKED</p>
+                </div>
+                <p class="text-zinc-500 text-sm mt-1">Servisler sırayla açılacak, modüller aktifleşecek.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="mt-6 flex items-center justify-between">
             <span class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">Last check</span>
             <span id="lastCheck" class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-400">--:--:--</span>
           </div>
@@ -268,7 +370,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="px-6 py-10 border-t border-zinc-900/50 bg-black/30 backdrop-blur-lg">
+  <footer class="px-6 py-10 border-t border-zinc-900/50 bg-black/30 backdrop-blur-lg relative z-10">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="space-y-2">
         <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
@@ -303,8 +405,7 @@
           </button>
         </div>
         <p class="text-zinc-400 mt-5 leading-relaxed">
-          Sistem bakım modundayken bu alana erişim yetkiniz bulunmuyor. Modüller yeniden devreye alındığında
-          panel otomatik açılacaktır.
+          Sistem bakım modundayken bu alana erişim yetkiniz yok. Modüller bakım sonrası otomatik açılacaktır.
         </p>
         <div class="mt-6 mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
           Code: <span class="text-zinc-400">AYF-403</span> • Policy: <span class="text-zinc-400">MAINTENANCE_LOCK</span>
@@ -327,9 +428,7 @@
     const menuBackdrop = $("#menuBackdrop");
     const goSupport = $("#goSupport");
 
-    function lockScroll(lock){
-      body.style.overflow = lock ? "hidden" : "";
-    }
+    function lockScroll(lock){ body.style.overflow = lock ? "hidden" : ""; }
 
     function setMenuOpen(open){
       mobileMenu.classList.toggle("translate-x-full", !open);
@@ -342,7 +441,6 @@
       const isOpen = menuTrigger.getAttribute("aria-expanded") === "true";
       setMenuOpen(!isOpen);
     });
-
     menuClose.addEventListener("click", () => setMenuOpen(false));
     menuBackdrop.addEventListener("click", () => setMenuOpen(false));
 
@@ -353,7 +451,7 @@
       }
     });
 
-    // Menu actions
+    // Locked actions
     $$("#mobileMenu [data-action='locked']").forEach(btn => {
       btn.addEventListener("click", () => {
         setMenuOpen(false);
@@ -362,10 +460,7 @@
     });
 
     $$("#mobileMenu [data-action='home']").forEach(a => {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        setMenuOpen(false);
-      });
+      a.addEventListener("click", (e) => { e.preventDefault(); setMenuOpen(false); });
     });
 
     goSupport?.addEventListener("click", () => {
@@ -375,34 +470,55 @@
 
     // ===== Denied Modal
     const deniedModal = $("#deniedModal");
-    function openDenied(){
-      deniedModal.classList.remove("hidden");
-      lockScroll(true);
-    }
+    function openDenied(){ deniedModal.classList.remove("hidden"); lockScroll(true); }
     function closeDenied(){
       if(!deniedModal.classList.contains("hidden")){
         deniedModal.classList.add("hidden");
         lockScroll(false);
       }
     }
-    deniedModal.addEventListener("click", (e) => {
-      if(e.target?.dataset?.close === "modal") closeDenied();
-    });
+    deniedModal.addEventListener("click", (e) => { if(e.target?.dataset?.close === "modal") closeDenied(); });
     $$("[data-close='modal']").forEach(el => el.addEventListener("click", closeDenied));
 
-    // ===== Progress (smooth tiny loop for premium feel)
+    // ===== Progress + Timeline state
     const progressBar = $("#progressBar");
     const progressLabel = $("#progressLabel");
+    const statusText = $("#statusText");
+
+    const step3 = $("#step3");
+    const step4 = $("#step4");
+    const s3state = $("#s3state");
+    const s4state = $("#s4state");
+
     let p = 92;
 
+    function setTimeline(done){
+      // When sync reaches 95+ we flip to deploying
+      if(done){
+        statusText.textContent = "DEPLOYING";
+        step3.className = "mt-0.5 w-6 h-6 rounded-full border border-zinc-800 bg-zinc-900/20 grid place-items-center text-zinc-500";
+        step3.innerHTML = '<i class="fa-solid fa-check text-[11px]"></i>';
+        s3state.textContent = "DONE";
+        s3state.className = "mono text-[10px] tracking-[0.25em] uppercase text-zinc-600";
+
+        step4.className = "mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500";
+        step4.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-[11px]"></i>';
+        s4state.textContent = "IN PROGRESS";
+        s4state.className = "mono text-[10px] tracking-[0.25em] uppercase text-red-500";
+      } else {
+        statusText.textContent = "SYNCING";
+      }
+    }
+
     setInterval(() => {
-      // Premium micro-variation, stays between 90-96
       const delta = (Math.random() * 1.2) - 0.6;
       p = Math.min(96, Math.max(90, p + delta));
       const val = Math.round(p);
       progressBar.style.width = val + "%";
       progressLabel.textContent = val + "%";
       $("#lastCheck").textContent = new Date().toLocaleTimeString("tr-TR");
+
+      setTimeline(val >= 95);
     }, 1400);
 
     // ===== Uptime
@@ -415,25 +531,13 @@
       $("#uptime").textContent = `${hh}:${mm}:${ss}`;
     }, 1000);
 
-    // ===== Copy buttons
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        openToast("Kopyalandı");
-      }catch{
-        openToast("Kopyalanamadı");
-      }
-    }
-
-    $("#copyMail1").addEventListener("click", () => copyText("yusufavsarofficial@gmail.com"));
-    $("#copyMail2").addEventListener("click", () => copyText("yusufavsarofficial@proton.me"));
-
-    // ===== Tiny toast (no libs)
+    // ===== Copy buttons + toast
     let toastEl;
     function openToast(msg){
       if(!toastEl){
         toastEl = document.createElement("div");
-        toastEl.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-[300] px-5 py-3 border border-zinc-800 rounded-full glass mono text-[10px] tracking-[0.25em] uppercase text-zinc-200";
+        toastEl.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-[300] px-5 py-3 border border-zinc-800 rounded-full glass mono text-[10px] tracking-[0.25em] uppercase text-zinc-200 transition-opacity";
+        toastEl.style.opacity = "0";
         document.body.appendChild(toastEl);
       }
       toastEl.textContent = msg;
@@ -441,19 +545,71 @@
       setTimeout(() => { if(toastEl) toastEl.style.opacity = "0"; }, 1200);
     }
 
-    // ===== Subtle mouse light (optional, throttled)
-    let raf = null;
-    document.addEventListener("mousemove", (e) => {
-      if(raf) return;
-      raf = requestAnimationFrame(() => {
-        const x = (e.clientX / innerWidth) * 100;
-        const y = (e.clientY / innerHeight) * 100;
-        document.body.style.backgroundImage =
-          `radial-gradient(circle at ${x}% ${y}%, rgba(255,0,0,0.06) 0%, rgba(5,5,5,1) 55%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)`;
-        document.body.style.backgroundSize = "auto, 42px 42px";
-        raf = null;
-      });
-    });
+    async function copyText(text){
+      try{ await navigator.clipboard.writeText(text); openToast("Kopyalandı"); }
+      catch{ openToast("Kopyalanamadı"); }
+    }
+    $("#copyMail1").addEventListener("click", () => copyText("yusufavsarofficial@gmail.com"));
+    $("#copyMail2").addEventListener("click", () => copyText("yusufavsarofficial@proton.me"));
+
+    // ===== Canvas particles (lightweight)
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canvas = $("#bgCanvas");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    let W=0, H=0, dpr=1;
+    function resize(){
+      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      W = canvas.clientWidth = window.innerWidth;
+      H = canvas.clientHeight = window.innerHeight;
+      canvas.width = Math.floor(W * dpr);
+      canvas.height = Math.floor(H * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener("resize", resize, { passive:true });
+    resize();
+
+    const particles = [];
+    const COUNT = 65; // enough for premium feel without heavy load
+
+    function rnd(min,max){ return Math.random()*(max-min)+min; }
+    function makeParticle(){
+      return {
+        x: rnd(0,W), y: rnd(0,H),
+        vx: rnd(-0.18, 0.18), vy: rnd(-0.12, 0.12),
+        r: rnd(0.8, 2.2),
+        a: rnd(0.05, 0.18),
+        red: Math.random() < 0.38
+      };
+    }
+    for(let i=0;i<COUNT;i++) particles.push(makeParticle());
+
+    function step(){
+      if(reduceMotion) return; // respect accessibility
+      ctx.clearRect(0,0,W,H);
+
+      // soft vignette
+      const g = ctx.createRadialGradient(W*0.5,H*0.35, 40, W*0.5,H*0.35, Math.max(W,H)*0.75);
+      g.addColorStop(0, "rgba(255,0,0,0.06)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,W,H);
+
+      for(const p of particles){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < -10) p.x = W+10;
+        if(p.x > W+10) p.x = -10;
+        if(p.y < -10) p.y = H+10;
+        if(p.y > H+10) p.y = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = p.red ? `rgba(255,0,0,${p.a})` : `rgba(255,255,255,${p.a})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   </script>
 </body>
 </html>

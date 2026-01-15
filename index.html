@@ -33,7 +33,183 @@
 
     @keyframes stripes{ from{background-position:40px 0} to{background-position:0 0} }
     .progress-animated{
-      background-image: linear-gradient(45deg, rgba(255,255,items-center gap-3 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full">
+      background-image: linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
+      background-size: 40px 40px;
+      animation: stripes 1s linear infinite;
+    }
+
+    @keyframes floatIn{ from{transform:translateY(10px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .float-in{ animation: floatIn .7s ease both; }
+
+    .locked-item:hover i.lock-icon{ transform: scale(1.15) rotate(12deg); color:#ff0000; }
+    .locked-item i.lock-icon{ transition: transform .25s ease, color .25s ease; }
+
+    @media (prefers-reduced-motion: reduce){
+      #mobileMenu{transition:none}
+      .progress-animated{animation:none}
+      .float-in{animation:none}
+    }
+
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .55;
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+
+<body class="bg-grid min-h-screen flex flex-col">
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-[100] px-6 md:px-10 py-7">
+    <div class="max-w-6xl mx-auto flex justify-end relative z-10">
+      <button id="menuTrigger"
+              class="group inline-flex items-center gap-4 focus:outline-none"
+              aria-controls="mobileMenu"
+              aria-expanded="false">
+        <span id="menuLabel" class="mono text-[10px] tracking-[0.45em] text-zinc-500 group-hover:text-red-500 transition uppercase">
+          Sistem Menüsü
+        </span>
+        <span class="relative w-12 h-10 flex flex-col justify-center gap-2">
+          <span class="bar1 block h-0.5 w-8 bg-zinc-200 group-hover:bg-red-500 group-hover:w-12 transition-all"></span>
+          <span class="bar2 block h-0.5 w-12 bg-zinc-200 group-hover:bg-red-500 group-hover:w-8 transition-all"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu / Overlay -->
+  <div id="mobileMenu" class="fixed inset-0 z-[90] translate-x-full bg-black/70">
+    <div class="absolute inset-0" id="menuBackdrop" aria-hidden="true"></div>
+
+    <aside class="absolute right-0 top-0 h-full w-full md:w-[780px] border-l border-zinc-800 glass">
+      <div class="absolute inset-0 opacity-[0.07] pointer-events-none flex items-center justify-center overflow-hidden">
+        <h1 class="text-[22vw] md:text-[14vw] font-black text-white leading-none select-none">SYSTEM</h1>
+      </div>
+
+      <div class="relative z-10 h-full flex flex-col">
+        <div class="flex items-center justify-between px-8 md:px-10 py-8 border-b border-zinc-900/60">
+          <div>
+            <p class="mono text-red-500 text-xs tracking-[0.45em] uppercase">Erişim Paneli</p>
+            <p class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-500 mt-2">
+              Secure protocol • monitored sessions • maintenance lock
+            </p>
+          </div>
+          <button id="menuClose" class="px-4 py-2 border border-zinc-700 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase">
+            Kapat
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 md:px-10 py-10 grow">
+          <nav>
+            <ul class="space-y-5">
+              <li>
+                <a href="#"
+                   data-action="home"
+                   class="flex items-baseline justify-between gap-6 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none hover:text-red-600 transition-colors">
+                  <span>Anasayfa</span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-red-500 border border-red-600/30 bg-red-600/10 px-3 py-1 rounded-full">
+                    ACTIVE
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <button data-action="locked"
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Hakkımda <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
+                </button>
+              </li>
+
+              <li>
+                <button data-action="locked"
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Eğitimler <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
+                </button>
+              </li>
+
+              <li>
+                <button data-action="locked"
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    Ürünler <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
+                </button>
+              </li>
+
+              <li>
+                <button data-action="locked"
+                        class="locked-item w-full flex items-center justify-between gap-6 text-3xl md:text-5xl font-light text-zinc-700 hover:text-zinc-500 transition-all uppercase italic">
+                  <span class="flex items-center gap-4">
+                    İletişim <i class="fa-solid fa-lock lock-icon text-sm"></i>
+                  </span>
+                  <span class="mono text-[10px] tracking-[0.35em] uppercase text-zinc-600 border border-zinc-800 bg-zinc-900/20 px-3 py-1 rounded-full">
+                    SOON
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="hidden md:block border-l border-zinc-800 pl-10 space-y-8">
+            <div class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-widest">
+              [UYARI]<br/>
+              Sistem bakım protokolünde.<br/>
+              Yetkisiz alanlar kilitli.<br/>
+              Loglama & izleme aktif.<br/>
+              Güvenlik katmanı: v4.0.1
+            </div>
+
+            <div class="space-y-3">
+              <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Kısayol</div>
+              <button id="goSupport" class="w-full px-6 py-3 border border-zinc-800 hover:border-red-600 transition-all mono text-[10px] tracking-[0.3em] uppercase text-left">
+                Destek Kartına Git
+              </button>
+            </div>
+
+            <div class="space-y-3">
+              <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">İpucu</div>
+              <div class="mono text-[10px] tracking-[0.22em] uppercase text-zinc-500 border border-zinc-800 bg-zinc-900/20 rounded-2xl p-4">
+                ESC ile kapat • dışarı tıkla<br/>
+                “SOON” modülleri bakım sonrası açılır
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-8 md:px-10 py-8 border-t border-zinc-900/60 mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
+          AYFSOFT CORE • MAINTENANCE LOCK • SAFE MODE
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Main -->
+  <main class="flex-grow flex items-center justify-center relative px-6 pt-28 pb-16 z-10">
+    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center float-in">
+
+      <!-- Left -->
+      <section class="lg:col-span-7 text-left space-y-8">
+        <div class="inline-flex items-center gap-3 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
@@ -68,6 +244,10 @@
           <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-600">
             Node: AYFSOFT-CORE • Status: <span id="statusText" class="text-zinc-400">SYNCING</span> • Uptime:
             <span id="uptime" class="text-zinc-400">00:00:00</span>
+          </div>
+
+          <div class="mono text-[10px] tracking-[0.25em] uppercase text-zinc-700">
+            Next +1% in: <span id="nextTick" class="text-zinc-400">--:--:--</span>
           </div>
         </div>
       </section>
@@ -140,7 +320,7 @@
 
             <li class="flex gap-3 items-start">
               <span id="step3" class="mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500">
-                <i class="fa-solid fa-spinner fa-spin text-[11px]"></i>
+                <i id="s3icon" class="fa-solid fa-spinner fa-spin text-[11px]"></i>
               </span>
               <div class="grow">
                 <div class="flex items-center justify-between">
@@ -153,7 +333,7 @@
 
             <li class="flex gap-3 items-start">
               <span id="step4" class="mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-600">
-                <i class="fa-solid fa-lock text-[11px]"></i>
+                <i id="s4icon" class="fa-solid fa-lock text-[11px]"></i>
               </span>
               <div class="grow">
                 <div class="flex items-center justify-between">
@@ -180,10 +360,10 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="space-y-2">
         <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
-          &copy; 2010 - 2026 <span class="text-white">YUSUF AVŞAR</span>
+          &copy; 2010 - <span id="year1"></span> <span class="text-white">YUSUF AVŞAR</span>
         </p>
         <p class="mono text-[11px] tracking-[0.3em] text-zinc-500">
-          &copy; 2018 - 2026 <span class="text-white">AYFSOFT PTE</span>
+          &copy; 2018 - <span id="year2"></span> <span class="text-white">AYFSOFT PTE</span>
         </p>
       </div>
       <div class="mono text-[10px] text-zinc-600 uppercase tracking-widest">
@@ -222,221 +402,4 @@
 
   <script>
     // ===== Helpers
-    const $ = (q, root=document) => root.querySelector(q);
-    const $$ = (q, root=document) => [...root.querySelectorAll(q)];
-    const body = document.body;
-
-    // ===== Menu
-    const menuTrigger = $("#menuTrigger");
-    const menuLabel = $("#menuLabel");
-    const mobileMenu = $("#mobileMenu");
-    const menuClose = $("#menuClose");
-    const menuBackdrop = $("#menuBackdrop");
-    const goSupport = $("#goSupport");
-
-    function lockScroll(lock){ body.style.overflow = lock ? "hidden" : ""; }
-
-    function setMenuOpen(open){
-      mobileMenu.classList.toggle("translate-x-full", !open);
-      menuTrigger.setAttribute("aria-expanded", String(open));
-      menuLabel.textContent = open ? "Kapat" : "Sistem Menüsü";
-      lockScroll(open);
-    }
-
-    menuTrigger.addEventListener("click", () => {
-      const isOpen = menuTrigger.getAttribute("aria-expanded") === "true";
-      setMenuOpen(!isOpen);
-    });
-    menuClose.addEventListener("click", () => setMenuOpen(false));
-    menuBackdrop.addEventListener("click", () => setMenuOpen(false));
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        setMenuOpen(false);
-        closeDenied();
-      }
-    });
-
-    $$("#mobileMenu [data-action='locked']").forEach(btn => {
-      btn.addEventListener("click", () => { setMenuOpen(false); openDenied(); });
-    });
-    $$("#mobileMenu [data-action='home']").forEach(a => {
-      a.addEventListener("click", (e) => { e.preventDefault(); setMenuOpen(false); });
-    });
-    goSupport?.addEventListener("click", () => {
-      setMenuOpen(false);
-      $("#supportCard")?.scrollIntoView({behavior:"smooth", block:"center"});
-    });
-
-    // ===== Denied Modal
-    const deniedModal = $("#deniedModal");
-    function openDenied(){ deniedModal.classList.remove("hidden"); lockScroll(true); }
-    function closeDenied(){
-      if(!deniedModal.classList.contains("hidden")){
-        deniedModal.classList.add("hidden");
-        lockScroll(false);
-      }
-    }
-    deniedModal.addEventListener("click", (e) => { if(e.target?.dataset?.close === "modal") closeDenied(); });
-    $$("[data-close='modal']").forEach(el => el.addEventListener("click", closeDenied));
-
-    // ===== Timeline switch (sync -> deploy)
-    const step3 = $("#step3");
-    const step4 = $("#step4");
-    const s3state = $("#s3state");
-    const s4state = $("#s4state");
-
-    function setTimeline(deploying){
-      if(deploying){
-        step3.className = "mt-0.5 w-6 h-6 rounded-full border border-zinc-800 bg-zinc-900/20 grid place-items-center text-zinc-500";
-        step3.innerHTML = '<i class="fa-solid fa-check text-[11px]"></i>';
-        s3state.textContent = "DONE";
-        s3state.className = "mono text-[10px] tracking-[0.25em] uppercase text-zinc-600";
-
-        step4.className = "mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500";
-        step4.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-[11px]"></i>';
-        s4state.textContent = "IN PROGRESS";
-        s4state.className = "mono text-[10px] tracking-[0.25em] uppercase text-red-500";
-      } else {
-        // default stays syncing (step3 spinner, step4 locked)
-        step3.className = "mt-0.5 w-6 h-6 rounded-full border border-red-600/40 bg-red-600/10 grid place-items-center text-red-500";
-        step3.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-[11px]"></i>';
-        s3state.textContent = "IN PROGRESS";
-        s3state.className = "mono text-[10px] tracking-[0.25em] uppercase text-red-500";
-
-        step4.className = "mt-0.5 w-6 h-6 rounded-full border border-zinc-800 grid place-items-center text-zinc-600";
-        step4.innerHTML = '<i class="fa-solid fa-lock text-[11px]"></i>';
-        s4state.textContent = "LOCKED";
-        s4state.className = "mono text-[10px] tracking-[0.25em] uppercase text-zinc-700";
-      }
-    }
-
-    // ===== Progress (TIME-BASED): 16% start, +1% every 3 hours
-    const progressBar = $("#progressBar");
-    const progressLabel = $("#progressLabel");
-    const statusText = $("#statusText");
-
-    const STEP_MS = 3 * 60 * 60 * 1000;       // 3 hours
-    const START_PERCENT = 16;                 // starts at 16%
-    const STORAGE_KEY = "ayf_maint_start_ts"; // persists across refresh
-
-    let startTs = Number(localStorage.getItem(STORAGE_KEY));
-    if (!startTs || Number.isNaN(startTs)) {
-      startTs = Date.now();
-      localStorage.setItem(STORAGE_KEY, String(startTs));
-    }
-
-    function computePercent(){
-      const elapsed = Date.now() - startTs;
-      const steps = Math.floor(elapsed / STEP_MS);
-      return Math.min(100, START_PERCENT + steps);
-    }
-
-    function updateProgressUI(){
-      const val = computePercent();
-      progressBar.style.width = val + "%";
-      progressLabel.textContent = val + "%";
-      $("#lastCheck").textContent = new Date().toLocaleTimeString("tr-TR");
-
-      const deploying = val >= 95;
-      statusText.textContent = deploying ? "DEPLOYING" : "SYNCING";
-      setTimeline(deploying);
-    }
-
-    // Initial draw
-    updateProgressUI();
-
-    // Update every minute (more than enough)
-    setInterval(updateProgressUI, 60 * 1000);
-
-    // ===== Uptime
-    const start = Date.now();
-    setInterval(() => {
-      const s = Math.floor((Date.now() - start) / 1000);
-      const hh = String(Math.floor(s / 3600)).padStart(2,"0");
-      const mm = String(Math.floor((s % 3600) / 60)).padStart(2,"0");
-      const ss = String(s % 60).padStart(2,"0");
-      $("#uptime").textContent = `${hh}:${mm}:${ss}`;
-    }, 1000);
-
-    // ===== Copy buttons + toast
-    let toastEl;
-    function openToast(msg){
-      if(!toastEl){
-        toastEl = document.createElement("div");
-        toastEl.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-[300] px-5 py-3 border border-zinc-800 rounded-full glass mono text-[10px] tracking-[0.25em] uppercase text-zinc-200 transition-opacity";
-        toastEl.style.opacity = "0";
-        document.body.appendChild(toastEl);
-      }
-      toastEl.textContent = msg;
-      toastEl.style.opacity = "1";
-      setTimeout(() => { if(toastEl) toastEl.style.opacity = "0"; }, 1200);
-    }
-
-    async function copyText(text){
-      try{ await navigator.clipboard.writeText(text); openToast("Kopyalandı"); }
-      catch{ openToast("Kopyalanamadı"); }
-    }
-    $("#copyMail1").addEventListener("click", () => copyText("yusufavsarofficial@gmail.com"));
-    $("#copyMail2").addEventListener("click", () => copyText("yusufavsarofficial@proton.me"));
-
-    // ===== Canvas particles (lightweight)
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const canvas = $("#bgCanvas");
-    const ctx = canvas.getContext("2d", { alpha: true });
-
-    let W=0, H=0, dpr=1;
-    function resize(){
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      W = canvas.clientWidth = window.innerWidth;
-      H = canvas.clientHeight = window.innerHeight;
-      canvas.width = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-    window.addEventListener("resize", resize, { passive:true });
-    resize();
-
-    const particles = [];
-    const COUNT = 65;
-    function rnd(min,max){ return Math.random()*(max-min)+min; }
-    function makeParticle(){
-      return {
-        x: rnd(0,W), y: rnd(0,H),
-        vx: rnd(-0.18, 0.18), vy: rnd(-0.12, 0.12),
-        r: rnd(0.8, 2.2),
-        a: rnd(0.05, 0.18),
-        red: Math.random() < 0.38
-      };
-    }
-    for(let i=0;i<COUNT;i++) particles.push(makeParticle());
-
-    function step(){
-      if(reduceMotion) return;
-      ctx.clearRect(0,0,W,H);
-
-      const g = ctx.createRadialGradient(W*0.5,H*0.35, 40, W*0.5,H*0.35, Math.max(W,H)*0.75);
-      g.addColorStop(0, "rgba(255,0,0,0.06)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0,0,W,H);
-
-      for(const p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x < -10) p.x = W+10;
-        if(p.x > W+10) p.x = -10;
-        if(p.y < -10) p.y = H+10;
-        if(p.y > H+10) p.y = -10;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = p.red ? `rgba(255,0,0,${p.a})` : `rgba(255,255,255,${p.a})`;
-        ctx.fill();
-      }
-      requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  </script>
-</body>
-</html>
-
+    const $ = (q, root=docum

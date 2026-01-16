@@ -12,6 +12,135 @@
     return Math.abs(hash).toString(16);
   };
 
+  // Admin Dashboard
+  const initAdminPanel = () => {
+    const adminPanel = document.getElementById('admin-panel');
+    const accessDenied = document.getElementById('admin-access-denied');
+    const loginFromAdmin = document.getElementById('login-from-admin');
+    
+    if (!adminPanel || !accessDenied) return;
+    
+    const checkAdmin = () => {
+      const isLoggedIn = localStorage.getItem('authToken') === 'admin_session_active';
+      if (isLoggedIn) {
+        adminPanel.style.display = 'block';
+        accessDenied.style.display = 'none';
+        loadAdminStats();
+      } else {
+        adminPanel.style.display = 'none';
+        accessDenied.style.display = 'block';
+      }
+    };
+    
+    const loadAdminStats = () => {
+      const analytics = JSON.parse(localStorage.getItem('analytics') || '{}');
+      document.getElementById('stat-visitors').textContent = analytics.visitors || 0;
+      document.getElementById('stat-logins').textContent = analytics.logins || 0;
+      document.getElementById('stat-pageviews').textContent = analytics.pageviews || 0;
+      
+      const activityLog = JSON.parse(localStorage.getItem('activityLog') || '[]');
+      const logTable = document.getElementById('activity-log');
+      
+      if (activityLog.length > 0) {
+        logTable.innerHTML = activityLog.slice(-10).reverse().map(log => `
+          <tr>
+            <td>${new Date(log.timestamp).toLocaleString('tr-TR')}</td>
+            <td>${log.event}</td>
+            <td>${log.detail}</td>
+          </tr>
+        `).join('');
+      }
+    };
+    
+    document.getElementById('clear-data')?.addEventListener('click', () => {
+      if (confirm('Tüm verileri temizlemek istediğinize emin misiniz?')) {
+        localStorage.removeItem('analytics');
+        localStorage.removeItem('activityLog');
+        loadAdminStats();
+        alert('Veriler temizlendi!');
+      }
+    });
+    
+    document.getElementById('export-data')?.addEventListener('click', () => {
+      const data = {
+        analytics: JSON.parse(localStorage.getItem('analytics') || '{}'),
+        activityLog: JSON.parse(localStorage.getItem('activityLog') || '[]'),
+        exportDate: new Date().toISOString()
+      };
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `admin-data-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+    });
+    
+    if (loginFromAdmin) {
+      loginFromAdmin.addEventListener('click', () => {
+        const loginBtn = document.getElementById('login-btn');
+        if (loginBtn) loginBtn.click();
+      });
+    }
+    
+    checkAdmin();
+  };
+
+  // Analytics tracking
+  const trackEvent = (event, detail) => {
+    const analytics = JSON.parse(localStorage.getItem('analytics') || '{"visitors":0,"logins":0,"pageviews":0}');
+    analytics.pageviews = (analytics.pageviews || 0) + 1;
+    localStorage.setItem('analytics', JSON.stringify(analytics));
+    
+    const activityLog = JSON.parse(localStorage.getItem('activityLog') || '[]');
+    activityLog.push({
+      timestamp: new Date().toISOString(),
+      event,
+      detail
+    });
+    if (activityLog.length > 100) activityLog.shift();
+    localStorage.setItem('activityLog', JSON.stringify(activityLog));
+  };
+
+  // Theme toggle
+  const initThemeToggle = () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    if (!themeToggle) return;
+    
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      body.classList.add('light-mode');
+      themeToggle.textContent = '☀️';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      themeToggle.textContent = isLight ? '☀️' : '🌙';
+    });
+  };
+
+  // ScrollTop button
+  const initScrollTop = () => {
+    const scrollTopBtn = document.getElementById('scroll-top');
+    if (!scrollTopBtn) return;
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  };
+
   // Login system
   const initLoginSystem = () => {
     const loginBtn = document.getElementById('login-btn');
@@ -64,6 +193,13 @@
       if (username === CORRECT_USERNAME && hashPassword(password) === CORRECT_PASSWORD_HASH) {
         localStorage.setItem('authToken', 'admin_session_active');
         localStorage.setItem('loginTime', new Date().getTime());
+        
+        // Track login
+        const analytics = JSON.parse(localStorage.getItem('analytics') || '{"visitors":0,"logins":0,"pageviews":0}');
+        analytics.logins = (analytics.logins || 0) + 1;
+        localStorage.setItem('analytics', JSON.stringify(analytics));
+        trackEvent('login', CORRECT_USERNAME);
+        
         closeModal();
         checkAuthStatus();
       } else {
@@ -181,6 +317,10 @@
 
   // Initialize
   const init = () => {
+    initAdminPanel();
+    trackEvent('pageview', window.location.pathname);
+    initThemeToggle();
+    initScrollTop();
     initLoginSystem();
     initHamburgerMenu();
     activateNav();

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /404.html
+
+Sitemap: https://yusufavsar.com/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Sayfa Bulunamadı - Yusuf Avşar" />
+  <meta name="description" content="Admin Paneli - Yusuf Avşar" />
   <link rel="stylesheet" href="style.css?v=20260116000000" />
   <script defer src="app.js?v=20260116000000"></script>
-  <title>404 - Sayfa Bulunamadı | Yusuf Avşar</title>
+  <title>Admin Paneli | Yusuf Avşar</title>
 </head>
 <body>
 <header class="navbar">
@@ -39,19 +39,71 @@
 </header>
 
 <main class="container">
-  <section class="hero error-404">
-    <div style="text-align:center;padding:60px 0">
-      <h1 style="font-size:120px;margin:0;line-height:1;color:var(--accent);">404</h1>
-      <h2>Sayfa Bulunamadı</h2>
-      <p style="font-size:18px;margin:20px 0 40px;color:var(--muted);">
-        Üzgünüz, aradığınız sayfa bulunmuyor veya silinmiş olabilir.
-      </p>
+  <div id="admin-access-denied" style="display:none;">
+    <section class="hero">
+      <h1>Admin Erişimi Gereklidir</h1>
+      <p>Bu sayfaya erişmek için lütfen giriş yapınız.</p>
       <div class="actions">
-        <a class="btn" href="index.html?v=20260116000000">Anasayfaya Dön</a>
-        <a class="btn secondary" href="javascript:history.back()">Geri Git</a>
+        <button class="btn" id="login-from-admin">Giriş Yap</button>
+        <a class="btn secondary" href="index.html?v=20260116000000">Anasayfaya Dön</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <div id="admin-panel">
+    <section class="hero">
+      <h1>🛡️ Admin Paneli</h1>
+      <p>Hoş geldiniz! Sistem kontrolü ve istatistikler burada.</p>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>👥 Toplam Ziyaretçi</h3>
+          <div class="admin-stat" id="stat-visitors">0</div>
+          <p class="admin-info">Son 30 gün</p>
+        </div>
+        <div class="admin-card">
+          <h3>🔐 Giriş Sayısı</h3>
+          <div class="admin-stat" id="stat-logins">0</div>
+          <p class="admin-info">Bugün</p>
+        </div>
+        <div class="admin-card">
+          <h3>⏱️ Ortalama Ziyaret</h3>
+          <div class="admin-stat" id="stat-avgtime">2m 30s</div>
+          <p class="admin-info">Oturum başına</p>
+        </div>
+        <div class="admin-card">
+          <h3>📄 Sayfa Görüntüleme</h3>
+          <div class="admin-stat" id="stat-pageviews">0</div>
+          <p class="admin-info">Toplam</p>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h2>📊 Son Etkinlikler</h2>
+      <div class="admin-log">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Tarih</th>
+              <th>Etkinlik</th>
+              <th>Detay</th>
+            </tr>
+          </thead>
+          <tbody id="activity-log">
+            <tr>
+              <td colspan="3" style="text-align:center;padding:20px;color:var(--muted);">Etkinlik yok</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="actions" style="margin-top:30px;">
+        <button class="btn" id="clear-data">Verileri Temizle</button>
+        <button class="btn secondary" id="export-data">Verileri İndir</button>
+      </div>
+    </section>
+  </div>
 
   <footer class="footer">
     <div class="footer-content">

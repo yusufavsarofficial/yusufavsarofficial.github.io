@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿﻿<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
@@ -53,77 +53,1039 @@
 
     <hr class="divider" />
 
-    <h2>Güvenli Yazılım</h2>
+    <div class="search-box">
+      <input type="text" id="edu-search" placeholder="Eğitim ara (örn: Pentest, Java, ISO 27001, Incident Response)...">
+    </div>
+
+    <h2>🛡️ Temel ve Ağ Güvenliği (Basics & Network)</h2>
+    
     <div class="grid">
       <div class="card">
-        <h3>PTE-SDLC | Secure SDLC</h3>
-        <p>Güvenli geliştirme yaşam döngüsü: kontrol kapıları, süreç şablonları ve pratik uygulama.</p>
-        <ul>
-          <li>Gereksinim→tasarım→geliştirme→test→yayın kontrol noktaları</li>
-          <li>Kod inceleme disiplini ve denetim izi yaklaşımı</li>
-          <li>Kurumsal şablonlar ve standardizasyon</li>
-        </ul>
-        <div class="meta">Çıktı: Secure SDLC şablon seti + değerlendirme raporu.</div>
+        <h3>1. Attacker Mindset & Threat Modeling</h3>
+        <p>Saldırgan düşünce yapısı, hedef seçimi, saldırı zinciri analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Saldırgan düşünce yapısı</li>
+            <li>Hedef seçimi</li>
+            <li>Saldırı zinciri analizi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Zorunlu vaka analizi</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teorik + senaryo sınavı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
       </div>
 
       <div class="card">
-        <h3>PTE-API | Secure API Design</h3>
-        <p>Kurumsal API tasarımı: yetkilendirme modeli, audit, versiyonlama ve izlenebilirlik.</p>
-        <ul>
-          <li>Yetkilendirme (RBAC/politika), rate limiting, audit log</li>
-          <li>Sözleşme yaklaşımı, versiyonlama ve standart hata disiplini</li>
-          <li>Proje tabanlı lab ve kod inceleme</li>
-        </ul>
-        <div class="meta">Odak: Kurumsal entegrasyon kalitesi ve güvenlik standardı.</div>
+        <h3>2. Linux for Hackers (Advanced)</h3>
+        <p>Kali Linux, terminal hakimiyeti, script otomasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Kali Linux</li>
+            <li>Terminal hakimiyeti</li>
+            <li>Script otomasyonu</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">40 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Canlı lab zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>3. Networking for Hackers</h3>
+        <p>TCP/IP, port yönlendirme, sniffing, MITM.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>TCP/IP</li>
+            <li>Port yönlendirme</li>
+            <li>Sniffing ve MITM</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Paket analizi lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Uygulamalı sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>4. TCP/IP Exploitation</h3>
+        <p>Paket manipülasyonu, spoofing, flood saldırıları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Paket manipülasyonu</li>
+            <li>Spoofing</li>
+            <li>Flood saldırıları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">32 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Ağ simülasyonu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>12. Network Penetration Testing</h3>
+        <p>İç ağ keşfi, lateral movement.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>İç ağ keşfi</li>
+            <li>Lateral movement</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">42 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Network lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>13. Wireless Network Hacking</h3>
+        <p>WPA/WPA2, evil twin.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>WPA/WPA2 kırma</li>
+            <li>Evil twin saldırıları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Kablosuz lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
       </div>
     </div>
 
-    <hr class="divider" />
+    <br>
+    <h2>🌐 Web ve Uygulama Güvenliği (Web & App)</h2>
 
-    <h2>IT Operasyon</h2>
     <div class="grid">
       <div class="card">
-        <h3>PTE-OBS | Observability</h3>
-        <p>Log standardı, korelasyon, alarm tasarımı ve operasyonel dashboard yaklaşımı.</p>
-        <ul>
-          <li>Log şeması ve korelasyon standardı</li>
-          <li>Alarm yaklaşımı ve raporlama disiplini</li>
-          <li>Üretim odaklı pratik senaryolar</li>
-        </ul>
-        <div class="meta">Çıktı: Standart doküman + şablonlar + operasyon rehberi.</div>
+        <h3>5. Web Application Hacking (Advanced)</h3>
+        <p>OWASP Top 10, custom exploit yazımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>OWASP Top 10</li>
+            <li>Custom exploit yazımı</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">48 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">6 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Web lab zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı exploit sınavı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
       </div>
 
       <div class="card">
-        <h3>PTE-ITOPS | IT Service Management</h3>
-        <p>Talep yönetimi, SLA, değişiklik yönetimi ve kurumsal operasyon standardizasyonu.</p>
-        <ul>
-          <li>Servis masası akışları ve onay süreçleri</li>
-          <li>Envanter, değişiklik yönetimi, ölçüm metrikleri</li>
-          <li>Denetlenebilir süreç ve raporlama</li>
-        </ul>
-        <div class="meta">Odak: Süreç disiplini + ölçülebilir operasyon.</div>
+        <h3>6. SQL Injection Mastery</h3>
+        <p>Error-based, blind, time-based injection.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Error-based injection</li>
+            <li>Blind injection</li>
+            <li>Time-based injection</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">30 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">SQL lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik exploit</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>7. XSS & Client-Side Attacks</h3>
+        <p>Stored, reflected, DOM XSS saldırıları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Stored XSS</li>
+            <li>Reflected XSS</li>
+            <li>DOM XSS</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Tarayıcı lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Uygulamalı sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>8. CSRF & Session Hijacking</h3>
+        <p>Cookie manipulation, token bypass.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Cookie manipulation</li>
+            <li>Token bypass</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Session lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Senaryo sınavı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>9. Authentication Bypass Techniques</h3>
+        <p>Login bypass, logic flaws.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Login bypass</li>
+            <li>Logic flaws</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">26 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Gerçek sistem lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>10. File Upload Vulnerabilities</h3>
+        <p>Web shell, MIME bypass.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Web shell</li>
+            <li>MIME bypass</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">22 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Shell lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik değerlendirme</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>11. API Hacking (Advanced)</h3>
+        <p>REST API exploitleri, token saldırıları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>REST API exploitleri</li>
+            <li>Token saldırıları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">30 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">API lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı test</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
       </div>
     </div>
 
-    <hr class="divider" />
+    <br>
+    <h2>🔑 Sistem ve Yetki Yükseltme (System & Privilege)</h2>
 
-    <h2>Siber Savunma</h2>
     <div class="grid">
       <div class="card">
-        <h3>PTE-IR | Incident Response Readiness</h3>
-        <p>Kurumsal olay müdahale hazırlığı: playbook, tatbikat ve raporlama yaklaşımı.</p>
-        <ul>
-          <li>Triage, rol dağılımı ve playbook standardı</li>
-          <li>Kanıt yaklaşımı ve rapor formatları</li>
-          <li>İyileştirme döngüsü ve olgunluk artışı</li>
-        </ul>
-        <div class="meta">Çıktı: Playbook seti + tatbikat planı + raporlama şablonları.</div>
+        <h3>14. Active Directory Attacks</h3>
+        <p>Kerberos, privilege escalation.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Kerberos</li>
+            <li>Privilege escalation</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">40 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">AD lab zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı saldırı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>15. Privilege Escalation (Linux)</h3>
+        <p>SUID, kernel exploits.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>SUID</li>
+            <li>Kernel exploits</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">32 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Sistem lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>16. Privilege Escalation (Windows)</h3>
+        <p>Token abuse, registry exploits.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Token abuse</li>
+            <li>Registry exploits</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">32 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Windows lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Uygulamalı test</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>27. Password Attacks</h3>
+        <p>Brute-force, rainbow tables.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Brute-force</li>
+            <li>Rainbow tables</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Hash lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>🦠 Zararlı Yazılım ve Tersine Mühendislik (Malware & RE)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>17. Malware Analysis (Static)</h3>
+        <p>Binary inceleme, signature analysis.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Binary inceleme</li>
+            <li>Signature analysis</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Malware lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>18. Malware Analysis (Dynamic)</h3>
+        <p>Sandbox, runtime davranış analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Sandbox</li>
+            <li>Runtime davranış analizi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Canlı analiz</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Uygulamalı sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>19. Reverse Engineering (Advanced)</h3>
+        <p>Assembly, debugger kullanımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Assembly</li>
+            <li>Debugger kullanımı</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">48 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">6 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Reverse lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik proje</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>20. Exploit Development</h3>
+        <p>Buffer overflow, shellcode.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Buffer overflow</li>
+            <li>Shellcode</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">50 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">6 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Exploit yazımı</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı exploit</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>36. Secure Coding & Bypass</h3>
+        <p>Güvenli kodu aşma yöntemleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Güvenli kodu aşma yöntemleri</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Kod analizi</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>43. Exploit Mitigation Bypass</h3>
+        <p>ASLR, DEP atlatma.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>ASLR</li>
+            <li>DEP atlatma</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">40 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Exploit lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>🏰 Savunma, Operasyon ve İstihbarat (Defense, Ops & Intel)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>22. Blue Team & Defense</h3>
+        <p>IDS, IPS, log analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>IDS</li>
+            <li>IPS</li>
+            <li>Log analizi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">40 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">SIEM lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>23. SOC Analyst Training</h3>
+        <p>Alarm analizi, olay yönetimi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Alarm analizi</li>
+            <li>Olay yönetimi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">SOC simülasyonu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Uygulamalı test</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>24. Incident Response</h3>
+        <p>Saldırı sonrası müdahale.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Saldırı sonrası müdahale</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Senaryo lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Kriz sınavı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>25. Digital Forensics</h3>
+        <p>Delil toplama, disk analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Delil toplama</li>
+            <li>Disk analizi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">40 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Adli lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik rapor</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>29. OSINT for Hackers</h3>
+        <p>Açık kaynak istihbarat.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Açık kaynak istihbarat</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">26 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">OSINT raporu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Proje</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>30. Dark Web & Threat Intel</h3>
+        <p>Yeraltı ağları, tehdit takibi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Yeraltı ağları</li>
+            <li>Tehdit takibi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Analiz lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>49. Cyber Intelligence & Espionage</h3>
+        <p>Dijital istihbarat teknikleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Dijital istihbarat teknikleri</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">30 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">İstihbarat raporu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Proje</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>⚔️ İleri Seviye Saldırı ve Red Team (Advanced Offensive)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>21. Red Team Operations</h3>
+        <p>Gerçek saldırı simülasyonları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Gerçek saldırı simülasyonları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">60 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">8 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Zorunlu operasyon</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Performans değerlendirme</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>37. Firewall & IDS Evasion</h3>
+        <p>Tespit atlatma teknikleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Tespit atlatma teknikleri</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Evasion lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik test</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>38. Advanced Persistence Techniques</h3>
+        <p>Sistem içinde kalıcılık.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Sistem içinde kalıcılık</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">26 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Persistence lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>39. Lateral Movement Techniques</h3>
+        <p>Ağ içi yayılma.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Ağ içi yayılma</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">30 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Network lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı saldırı</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>40. Command & Control Systems</h3>
+        <p>C2 altyapı tasarımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>C2 altyapı tasarımı</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">34 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">C2 lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik proje</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>41. Advanced Post-Exploitation</h3>
+        <p>Veri sızdırma, gizleme.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Veri sızdırma</li>
+            <li>Gizleme</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Post-exploit lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Performans</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>45. Cyber Kill Chain</h3>
+        <p>APT saldırı yaşam döngüsü.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>APT saldırı yaşam döngüsü</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">24 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Analiz lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>46. APT Attack Simulation</h3>
+        <p>Gelişmiş kalıcı tehditler.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Gelişmiş kalıcı tehditler</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">48 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">6 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Operasyon zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı değerlendirme</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>47. Red Team vs Blue Team</h3>
+        <p>Gerçekçi savaş simülasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Gerçekçi savaş simülasyonu</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">60 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">8 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Takım zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Performans</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>☁️ Özel Teknolojiler ve Bulut (Specialized Tech)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>26. Cryptography Attacks</h3>
+        <p>Hash kırma, crypto exploit.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Hash kırma</li>
+            <li>Crypto exploit</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">30 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Crypto lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>28. Social Engineering (Advanced)</h3>
+        <p>Phishing, OSINT manipülasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Phishing</li>
+            <li>OSINT manipülasyonu</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">22 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Senaryo zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Performans</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>31. Mobile Application Hacking</h3>
+        <p>Android/iOS exploitleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Android/iOS exploitleri</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Mobil lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı test</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>32. IoT Hacking</h3>
+        <p>Gömülü sistem saldırıları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Gömülü sistem saldırıları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">32 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">IoT lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>33. Cloud Hacking</h3>
+        <p>AWS/Azure zafiyetleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>AWS/Azure zafiyetleri</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">34 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Cloud lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Pratik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>34. Container Security</h3>
+        <p>Docker & Kubernetes açıkları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Docker & Kubernetes açıkları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">28 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Container lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>35. CI/CD Pipeline Attacks</h3>
+        <p>DevOps güvenlik açıkları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>DevOps güvenlik açıkları</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">26 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">3 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Pipeline lab</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Senaryo sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>🏆 Strateji ve Master Seviye (Strategy & Master)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>42. Zero-Day Vulnerability Research</h3>
+        <p>Yeni açık keşfi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Yeni açık keşfi</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">60 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">8 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Araştırma zorunlu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik rapor</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>44. Bug Bounty Masterclass</h3>
+        <p>Profesyonel bug avcılığı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Profesyonel bug avcılığı</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">36 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">5 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Gerçek platform</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Performans</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>48. Cyber Warfare Concepts</h3>
+        <p>Devlet düzeyi siber saldırılar.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Devlet düzeyi siber saldırılar</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">32 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">4 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Senaryo analizi</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Teknik sınav</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>50. Master Hacker Final Program</h3>
+        <p>Tüm konuların entegre uygulaması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Müfredat</h4>
+          <ul>
+            <li>Tüm konuların entegre uygulaması</li>
+          </ul>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Program Şartları</h4>
+          <div class="kv"><div class="k">Süre:</div><div class="v">80 saat</div></div>
+          <div class="kv"><div class="k">Takvim:</div><div class="v">10 hafta</div></div>
+          <div class="kv"><div class="k">Lab:</div><div class="v">Zorunlu final operasyonu</div></div>
+          <div class="kv"><div class="k">Sınav:</div><div class="v">Canlı değerlendirme</div></div>
+          <div class="kv"><div class="k">Geçme Notu:</div><div class="v">70</div></div>
+          <div class="meta">Çıktı: Sertifika + Uzmanlık Rozeti.</div>
+        </div>
+        </div>
       </div>
     </div>
 
     <div class="callout accent">
       <p>
-        Eğitim içerikleri savunma ve kurumsal uygulama odaklıdır. Etik dışı ve izinsiz faaliyetlere yönelik içerik üretilmez.
+        <strong>Not:</strong> Bu liste dinamik olarak güncellenmektedir. Kurumsal ihtiyaçlarınıza özel eğitim programları (Tailor-made Training) için lütfen iletişime geçiniz. Tüm eğitimler, etik kurallar ve yasal çerçeveler dahilinde, savunma ve kurumsal yetkinlik artırma odaklıdır.
       </p>
     </div>
   </section>
@@ -169,9 +1131,15 @@
 </div>
 
 <div class="modal-overlay" id="modal-overlay"></div>
+
+<!-- Course Detail Modal -->
+<div class="modal" id="course-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="course-modal-close">&times;</button>
+    <h2 id="course-modal-title"></h2>
+    <div id="course-modal-content"></div>
+  </div>
+</div>
+
 </body>
 </html>
-
-
-
-

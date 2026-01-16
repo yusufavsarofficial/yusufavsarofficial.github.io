@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿﻿<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
@@ -40,8 +40,7 @@
   <section class="hero">
     <h1>Faaliyetler</h1>
     <p>
-      Faaliyetler; kurumun hedefleri, risk iştahı ve mevcut mimari durumuna göre konumlandırılır. Odak; ölçülebilir çıktı, denetlenebilir süreç ve
-      sürdürülebilir işletimdir. Çalışmalar “tek seferlik müdahale” yerine, tekrar eden riskleri azaltan bir iyileştirme döngüsüyle yürütülür.
+      Yürüttüğümüz tüm faaliyetler; kurumların stratejik hedefleri, risk iştahı ve mevcut teknolojik olgunluk seviyeleri dikkate alınarak, terzi usulü (tailor-made) bir yaklaşımla kurgulanır. Temel odağımız; yalnızca anlık problemleri çözen reaktif müdahaleler değil, ölçülebilir çıktılar üreten, denetlenebilir süreçler inşa eden ve sürdürülebilir işletim modelleri sağlayan proaktif bir güvenlik mimarisi oluşturmaktır. Çalışmalarımız, 'tek seferlik' testlerden ziyade, riskleri kaynağında kurutan ve sürekli iyileştirme (CI/CD) döngüsüne entegre edilen bütüncül bir mühendislik disipliniyle yürütülür.
     </p>
 
     <div class="badges">
@@ -64,42 +63,42 @@
     <div class="grid">
       <div class="card">
         <h3>Uygulama Güvenliği & Doğrulama</h3>
-        <p>Web uygulamaları, API’ler ve backend bileşenlerinde risk azaltma, kontrol tasarımı ve doğrulama.</p>
+        <p>Modern web uygulamaları, mikroservis mimarileri ve API ekosistemlerinde derinlemesine güvenlik analizleri. Statik (SAST) ve dinamik (DAST) analiz yöntemlerinin yanı sıra, iş mantığı (business logic) hatalarına odaklanan manuel doğrulama süreçleri.</p>
         <ul>
-          <li>Kimlik/yetki akışlarının analizi</li>
-          <li>İş mantığı riskleri ve zafiyet sınıfları</li>
-          <li>Güvenli veri işleme ve hata yönetimi</li>
-          <li>Denetim izi (audit) ve log standardı</li>
+          <li>Kimlik doğrulama (AuthN) ve yetkilendirme (AuthZ) mimarilerinin RBAC/ABAC standartlarında analizi.</li>
+          <li>OWASP Top 10 ve ötesindeki sofistike zafiyet sınıflarının (IDOR, SSRF, Deserialization vb.) tespiti.</li>
+          <li>Veri sanitizasyonu, girdi doğrulama ve güvenli veri işleme standartlarının oluşturulması.</li>
+          <li>Yasal uyumluluk ve adli bilişim gereksinimlerine uygun denetim izi (Audit Logging) tasarımı.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Güvenli Mimari & Tehdit Modelleme</h3>
-        <p>Yeni veya dönüşen sistemlerde güvenlik gereksinimlerini mimariye gömerek tekrar eden riskleri kaynağında azaltma.</p>
+        <p>Dijital dönüşüm projelerinde ve yeni nesil sistem tasarımlarında, 'Security by Design' prensibiyle güvenlik gereksinimlerinin yazılım yaşam döngüsünün en başında (Shift-Left) mimariye entegre edilmesi.</p>
         <ul>
-          <li>Varlık, saldırı yüzeyi ve senaryo analizi</li>
-          <li>Erişim modeli: RBAC/politika yaklaşımı</li>
-          <li>Entegrasyon güvenliği ve güvenli tasarım ilkeleri</li>
-          <li>Ölçeklenebilir kontrol setleri</li>
+          <li>STRIDE ve PASTA metodolojileri ile varlık tabanlı tehdit modelleme ve saldırı yüzeyi analizi.</li>
+          <li>Sıfır Güven (Zero Trust) ilkelerine dayalı ağ segmentasyonu ve erişim kontrol mimarisi.</li>
+          <li>Kriptografik anahtar yönetimi (KMS) ve hassas veri koruma stratejileri.</li>
+          <li>Bulut yerel (Cloud-Native) ve konteyner (Kubernetes) güvenliği için ölçeklenebilir kontrol setleri.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Altyapı Sertleştirme & Görünürlük</h3>
-        <p>Sunucu/ağ katmanında minimum saldırı yüzeyi ve yüksek görünürlük için standardizasyon.</p>
+        <p>Kritik sunucu, ağ ve sanallaştırma katmanlarında saldırı yüzeyini minimize eden sıkılaştırma (hardening) çalışmaları ve operasyonel kör noktaları ortadan kaldıran tam görünürlük (observability) altyapısı.</p>
         <ul>
-          <li>Hardening kontrol setleri</li>
-          <li>Segmentasyon ve servis yüzeyi azaltma</li>
-          <li>Merkezi loglama ve izleme yaklaşımı</li>
-          <li>Yedekleme ve geri dönüş testleri</li>
+          <li>CIS Benchmarks ve NIST standartlarına uygun işletim sistemi ve servis konfigürasyonları.</li>
+          <li>Ağ segmentasyonu, VLAN izolasyonu ve mikro-segmentasyon stratejileri.</li>
+          <li>SIEM/SOAR entegrasyonuna uygun, zenginleştirilmiş merkezi loglama ve korelasyon mimarisi.</li>
+          <li>İş sürekliliği (BCP) kapsamında fidye yazılımlarına dirençli yedekleme ve felaket kurtarma (DR) testleri.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Olay Yönetimi & Sürekli İyileştirme</h3>
-        <p>Olay triage, kök neden analizi ve kalıcı iyileştirme döngüsüyle kurumsal dayanıklılığı artırma.</p>
+        <p>Siber olaylara hazırlık, müdahale ve toparlanma süreçlerinin kurumsal hafızaya kazandırılması. Olay anında kaosu yönetmek yerine, önceden tanımlanmış prosedürlerle (Playbooks) sistematik müdahale yetkinliği.</p>
         <ul>
-          <li>Olay sınıflandırma ve playbook yaklaşımı</li>
-          <li>İz sürülebilirlik (log) ve kanıt bütünlüğü</li>
-          <li>Raporlama ve aksiyon takibi</li>
-          <li>Tekrar kontrol ve olgunluk artışı</li>
+          <li>Olay sınıflandırma, önceliklendirme (Triage) ve müdahale senaryolarının (Playbooks) hazırlanması.</li>
+          <li>Adli bilişim standartlarına uygun dijital delil toplama ve zincirleme gözetim (Chain of Custody).</li>
+          <li>Kök neden analizi (RCA) ile ihlallerden ders çıkarma ve savunma hattını güçlendirme.</li>
+          <li>Düzenli Masaüstü Tatbikatları (TTX) ve Kırmızı Takım (Red Teaming) simülasyonları ile olgunluk artışı.</li>
         </ul>
       </div>
     </div>
@@ -110,23 +109,23 @@
     <div class="grid">
       <div class="card">
         <h3>Kurumsal Güvenlik Değerlendirme</h3>
-        <p>Mevcut durum analizi, doğrulanmış bulgular ve önceliklendirilmiş iyileştirme planı.</p>
-        <div class="meta">Teslim: Yönetici özeti + teknik rapor + yol haritası.</div>
+        <p>Kurumun mevcut siber güvenlik duruşunun (Security Posture) bütüncül analizi. Teknoloji, süreç ve insan faktörlerini kapsayan GAP analizi ile mevcut durumun ideal standartlara (ISO 27001, NIST CSF) göre kıyaslanması.</p>
+        <div class="meta">Teslimat: Yönetici Özeti (Executive Summary) + Teknik Detay Raporu + Risk Odaklı İyileştirme Yol Haritası.</div>
       </div>
       <div class="card">
         <h3>Güvenli Ürün/Uygulama Tasarımı</h3>
-        <p>Mimari kararlar, erişim modeli, log/audit tasarımı ve işletime uygun standartlaştırma.</p>
-        <div class="meta">Teslim: Mimari doküman + kontrol setleri + doğrulama planı.</div>
+        <p>Yeni geliştirilen dijital ürünlerin mimari tasarım aşamasından itibaren güvenli olarak kurgulanması. Yazılım mimarları ve DevOps ekipleriyle omuz omuza çalışarak güvenli kodlama standartlarının belirlenmesi.</p>
+        <div class="meta">Teslimat: Güvenlik Mimarisi Dokümanı (SAD) + Tehdit Modeli Raporu + Güvenlik Test Planı.</div>
       </div>
       <div class="card">
         <h3>Altyapı Sertleştirme Programı</h3>
-        <p>Hardening, izleme/loglama standardı, süreklilik ve operasyonel dayanıklılık.</p>
-        <div class="meta">Teslim: Standart + kontrol listesi + doğrulama çıktıları.</div>
+        <p>Mevcut BT altyapısının dayanıklılığını artırmak için kapsamlı bir sıkılaştırma programı. Varsayılan konfigürasyonların güvenli hale getirilmesi, gereksiz servislerin kapatılması ve yama yönetiminin disipline edilmesi.</p>
+        <div class="meta">Teslimat: Konfigürasyon Yönetim Standartları + Hardening Kontrol Listeleri + Doğrulama Raporları.</div>
       </div>
       <div class="card">
         <h3>Olay Müdahale Hazırlık Programı</h3>
-        <p>Playbook, rol dağılımı, tatbikat ve kalıcı iyileştirme yaklaşımı.</p>
-        <div class="meta">Teslim: Playbook + tatbikat planı + raporlama şablonları.</div>
+        <p>Kurumun siber saldırılara karşı reaksiyon kabiliyetini artıran hazırlık programı. CSIRT/SOME ekiplerinin kurulması, süreçlerin yazılması ve teknik altyapının olay müdahalesine uygun hale getirilmesi.</p>
+        <div class="meta">Teslimat: Olay Müdahale Planı (IRP) + Playbook Kütüphanesi + Tatbikat Sonuç Raporları.</div>
       </div>
     </div>
 
@@ -134,16 +133,16 @@
 
     <h2>Çalışma Süreci</h2>
     <ol>
-      <li><strong>Kapsam & Yetkilendirme:</strong> Hedef, sınır, kabul kriterleri ve gizlilik çerçevesi.</li>
-      <li><strong>Analiz:</strong> Teknik inceleme, senaryo tabanlı doğrulama, risk haritası.</li>
-      <li><strong>Önceliklendirme:</strong> Etki/olasılık/iş kritikliği ile uygulanabilir plan.</li>
-      <li><strong>Uygulama & Doğrulama:</strong> İyileştirmeler ve tekrar kontrol.</li>
-      <li><strong>Raporlama:</strong> Yönetici özeti + teknik detay + sürdürülebilir yol haritası.</li>
+      <li><strong>Kapsam & Yetkilendirme:</strong> Projenin sınırlarının, iş hedeflerinin ve yasal çerçevenin (NDA) netleştirilmesi.</li>
+      <li><strong>Keşif & Analiz:</strong> Varlık envanterinin çıkarılması, tehdit vektörlerinin belirlenmesi ve derinlemesine teknik analiz.</li>
+      <li><strong>Risk Değerlendirme:</strong> Bulguların teknik şiddetinin yanı sıra iş süreçlerine olan etkisinin (Business Impact) analizi.</li>
+      <li><strong>İyileştirme & Doğrulama:</strong> Çözüm önerilerinin uygulanması sürecinde teknik rehberlik ve yapılan yamaların doğrulanması (Re-test).</li>
+      <li><strong>Raporlama & Kapanış:</strong> Stratejik ve teknik çıktıların sunumu, bilgi aktarımı ve proje kapanış toplantısı.</li>
     </ol>
 
     <div class="callout accent">
       <p>
-        Kurumsal çalışmalarda amaç; sadece problem çözmek değil, tekrar eden riskleri azaltan ve ölçülebilir olgunluk artışı sağlayan bir yapı kurmaktır.
+        Kurumsal işbirliklerimizde temel gayemiz; yalnızca tespit edilen zafiyetleri kapatmak değil, kurumun kendi kendine yetebilen, siber dirençliliği yüksek ve sürdürülebilir bir güvenlik kültürüne sahip olmasını sağlamaktır.
       </p>
     </div>
   </section>
@@ -191,4 +190,3 @@
 <div class="modal-overlay" id="modal-overlay"></div>
 </body>
 </html>
-

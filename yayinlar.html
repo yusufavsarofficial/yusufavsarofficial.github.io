@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Yusuf Avşar - Blog, makale ve araştırmalar" />
+  <meta name="description" content="Yusuf Avşar - Blog, Makale ve Araştırmalar" />
   <link rel="stylesheet" href="style.css?v=20260116000000" />
   <script defer src="app.js?v=20260116000000"></script>
   <title>Yayınlar | Yusuf Avşar</title>
@@ -40,75 +40,817 @@
   <section class="hero">
     <h1>Yayınlar</h1>
     <p>
-      Güvenli yazılım, IT operasyon ve siber savunma odağında; kurumsal uygulanabilirliği hedefleyen blog yazıları, rehberler ve araştırma notları.
-      İçerikler gizlilik prensiplerine uygun hazırlanır.
+      Siber güvenlik, yazılım mimarisi ve teknoloji dünyasına dair teknik incelemeler, sektörel analizler ve akademik araştırmalar.
+      Bilgi paylaştıkça çoğalır ilkesiyle hazırlanan içerikler kütüphanesi.
     </p>
     <div class="badges">
-      <span class="badge accent">Secure Software</span>
-      <span class="badge">IT Operations</span>
-      <span class="badge">Cyber Defense</span>
-      <span class="badge">Rehber</span>
-      <span class="badge">Araştırma</span>
+      <span class="badge accent">Kütüphane</span>
+      <span class="badge">Teknik Blog</span>
+      <span class="badge">Akademik Makale</span>
+      <span class="badge">Ar-Ge Raporları</span>
     </div>
 
     <hr class="divider" />
 
-    <h2>Katalog</h2>
+    <div class="search-box">
+      <input type="text" id="pub-search" placeholder="Yayın ara (örn: XSS, Malware, AI, Cloud, Kariyer)...">
+    </div>
+
+    <h2>📝 Blog Yazıları (Blog Posts)</h2>
     <div class="grid">
+      <!-- 15 Blog Items -->
       <div class="card">
-        <h3>Mimari | Kurumsal Yetkilendirme Modeli</h3>
-        <p>RBAC’tan politika yaklaşımına geçiş; sürdürülebilir yetkilendirme ve denetim izi tasarımı.</p>
-        <ul>
-          <li>Yetki matrisi ve ayrıcalık azaltma</li>
-          <li>Kritik işlem doğrulama ve audit yaklaşımı</li>
-          <li>Kurumsal standardizasyon şablonları</li>
-        </ul>
-      </div>
+        <h3>1. Siber Güvenlikte Kariyer Yolu</h3>
+        <p>Yeni Başlayanlardan Uzmanlığa: Yol Haritası, Sertifikasyonlar ve Uzmanlaşma Alanları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Siber güvenlik dışarıdan bakıldığında tek bir meslek gibi algılansa da gerçekte; teknik derinliği, sorumluluk alanı ve çalışma biçimi birbirinden çok farklı birden fazla kariyer yolundan oluşur. Bu yazı; siber güvenliğe adım atmak isteyenler, yönünü netleştirmeye çalışanlar ve kariyerini derinleştirmek isteyenler için gerçekçi, sürdürülebilir ve sektörle uyumlu bir yol haritası sunar.</p>
 
-      <div class="card">
-        <h3>Rehber | Üretimde Log Standardı</h3>
-        <p>Korelasyon, alarm tasarımı ve raporlama disiplini ile olay anında iz sürme yaklaşımı.</p>
-        <ul>
-          <li>Log şeması ve korelasyon ID standardı</li>
-          <li>Alarm yaklaşımı ve dashboard şablonları</li>
-          <li>Saklama politikası ve raporlama</li>
-        </ul>
-      </div>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Siber Güvenlik Tek Bir Meslek Değildir</h4>
+          <p>Temel ayrım şudur: Savunma odaklı roller (Blue Team), Saldırı ve test odaklı roller (Red Team), Ara katman roller (Purple Team, AppSec, Cloud Security) ve Operasyon/Yönetişim (SOC, GRC).</p>
 
-      <div class="card">
-        <h3>Araştırma | Yanlış Yapılandırma Riskleri</h3>
-        <p>Zincirleme etki analizi: konfigürasyon, erişim politikaları ve kontrol eksikliği.</p>
-        <ul>
-          <li>Varsayılan ayarlar ve servis yüzeyi</li>
-          <li>Değişiklik yönetimi ve tekrar kontrol</li>
-          <li>Operasyonel görünürlük (log/izleme)</li>
-        </ul>
-      </div>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Temel Altyapı: Ortak Zemin</h4>
+          <p>Hangi alana gidersen git, temel bilgiler kaçınılmazdır:</p>
+          <ul>
+            <li><strong>İşletim Sistemleri:</strong> Linux (dosya sistemi, yetkiler), Windows (AD, event loglar).</li>
+            <li><strong>Ağ Temelleri:</strong> TCP/IP, DNS, HTTP/S, portlar, firewall mantığı.</li>
+            <li><strong>Programlama Mantığı:</strong> Kod okuyabilmek, basit script yazabilmek (Python, bash).</li>
+          </ul>
 
-      <div class="card">
-        <h3>Makale | Secure API Tasarımı</h3>
-        <p>Sözleşme, versiyonlama, audit ve izlenebilirlik odaklı kurumsal API yaklaşımı.</p>
-        <ul>
-          <li>Yetkilendirme modeli ve rate limiting</li>
-          <li>Audit log ve standart hata yaklaşımı</li>
-          <li>Sürdürülebilir entegrasyon standardı</li>
-        </ul>
-      </div>
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Giriş Seviyesi Roller</h4>
+          <p>Sektöre girişte hedef uzmanlık değil, deneyimdir. <strong>SOC Analyst (Junior)</strong> veya <strong>IT/System Destek</strong> rolleri iyi bir başlangıç noktasıdır.</p>
 
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Uzmanlaşma Alanları</h4>
+          <ul>
+            <li><strong>Red Team / Ethical Hacking:</strong> Sistemlere kontrollü saldırılar, zafiyet keşfi.</li>
+            <li><strong>Blue Team / Defensive Security:</strong> Saldırı tespiti, log/alarm sistemleri, olay müdahale.</li>
+            <li><strong>Application Security (AppSec):</strong> Güvenli yazılım geliştirme, kod analizi.</li>
+            <li><strong>Cloud & Platform Security:</strong> Bulut ortamlarını (AWS/Azure) güvenli hale getirme.</li>
+            <li><strong>GRC:</strong> Risk analizi, politika, standartlar ve uyumluluk.</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Sertifikasyonlar ve Deneyim</h4>
+          <p>Sertifikalar amaç değil araçtır. Başlangıç, orta ve ileri seviye sertifikalar gerçek deneyimle (Lab, Simülasyon, Bug Bounty) birleştiğinde değer kazanır.</p>
+
+          <div class="meta">Kategori: Kariyer / Rehber | Okuma Süresi: 8 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
       <div class="card">
-        <h3>Operasyon | Incident Response Modeli</h3>
-        <p>Playbook, tatbikat ve raporlama döngüsü ile kurumsal müdahale standardı.</p>
-        <ul>
-          <li>Triage ve rol dağılımı yaklaşımı</li>
-          <li>Kanıt yaklaşımı ve rapor formatları</li>
-          <li>İyileştirme döngüsü ve olgunluk artışı</li>
-        </ul>
+        <h3>2. Yazılımcılar İçin Güvenlik 101</h3>
+        <p>Kod yazarken dikkat edilmesi gereken temel güvenlik prensipleri ve savunma stratejileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Birçok güvenlik açığı “ileri seviye hacker tekniği” ile değil, gündelik yazılım geliştirme sırasında yapılan basit varsayımlar nedeniyle ortaya çıkar. Bu yazı; güvenlik uzmanı olmayan ama güvenli yazılım üretmek isteyen geliştiriciler için temel prensipleri, sık yapılan hataları ve pratik savunma yaklaşımlarını ele alır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Güvenlik Sonradan Eklenmez</h4>
+          <p>Yazılım projelerinde en sık yapılan hata "Önce çalışsın, sonra güvenli hale getiririz" düşüncesidir. Güvenli yazılım, gereksinim aşamasında başlar, kodla devam eder ve testle doğrulanır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) En Yaygın Varsayım Hataları</h4>
+          <p>Saldırganlar kodu geliştirici gibi okumaz. Yanlış kabuller:</p>
+          <ul>
+            <li>Frontend kontrolü yeterli</li>
+            <li>Bu endpoint’i kimse tahmin edemez</li>
+            <li>Bu veri zaten güvenli kaynaktan geliyor</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Girdi (Input) Her Zaman Şüphelidir</h4>
+          <p>Kullanıcıdan gelen her veri güvensizdir. Input validation (beklenen formatı kabul et) ve Output encoding (veriyi bağlama uygun kaçır) birlikte uygulanmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Kimlik Doğrulama ≠ Yetkilendirme</h4>
+          <p>Authentication "Sen kimsin?", Authorization "Ne yapabilirsin?" sorusuna cevap verir. IDOR açıklarının ana sebebi bu ikisinin karıştırılmasıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Hata Mesajları ve Bilgi Sızıntısı</h4>
+          <p>Hatalar geliştirici için yol gösterici, saldırgan için altın madeni olabilir. Kullanıcıya genel mesaj verilmeli, detaylı hata bilgisi loglarda tutulmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Güvenli Oturum Yönetimi</h4>
+          <p>HTTPOnly ve Secure cookie kullanımı, session fixation önlemleri ve logout sonrası session invalidation kritiktir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">7) Güvenli Varsayılanlar (Secure by Default)</h4>
+          <p>Yeni bir özellik eklenirken varsayılan olarak kapalı gelmeli, açılması bilinçli bir karar olmalıdır.</p>
+
+          <div class="meta">Kategori: Geliştirme / Güvenlik | Okuma Süresi: 10 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>3. Neden Linux Kullanmalısınız?</h3>
+        <p>Siber güvenlik uzmanları ve geliştiriciler için Linux işletim sisteminin önemi ve avantajları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Siber güvenlik ve yazılım dünyasında Linux, yalnızca bir işletim sistemi değil; bir çalışma biçimi, bir ekosistem ve bir zihniyettir. Bu yazıda Linux’un neden güvenlik ve yazılım alanlarında vazgeçilmez olduğunu; kontrol, şeffaflık, güvenlik ve üretkenlik başlıkları altında ele alıyoruz.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Kontrol: Sistem Senin Kontrolündedir</h4>
+          <p>Linux’un en temel farkı şudur: sistemin nasıl çalıştığını gerçekten bilirsin. Şeffaf mimarisi sayesinde servisler açıktır ve konfigürasyonlar okunabilir. Ayrıca gereksiz bileşenleri kurmamana izin vererek saldırı yüzeyini küçültür.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Güvenlik Modeli: Temelden Gelen Dayanıklılık</h4>
+          <p>Linux’un güvenlik modeli tasarımın parçasıdır. Kullanıcı/grup ayrımı ve dosya izinleri güçlü bir izolasyon sağlar. Modern sistemler SELinux, AppArmor gibi ileri mekanizmaları destekler.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Gözlemlenebilirlik</h4>
+          <p>Güvenlik uzmanları için görünürlük hayati önemdedir. Linux'ta sistem logları, servis davranışları ve process aktiviteleri detaylı analiz edilebilir. Birçok güvenlik aracı önce Linux için geliştirilir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Geliştiriciler İçin Avantajlar</h4>
+          <p>Birçok üretim sistemi Linux üzerinde çalışır, bu da ortam tutarlılığı sağlar. Shell scripting ve otomasyon araçları sayesinde geliştirme hızı artar.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Siber Güvenlikte Vazgeçilmezlik</h4>
+          <p>Pentest, malware analizi ve forensics alanlarında Linux standarttır. Blue Team tarafında da log analizi ve sunucu güvenliği için Linux bilgisi şarttır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Öğrenme Eğrisi ve Kurumsal Dünya</h4>
+          <p>Linux’un öğrenme eğrisi diktir ancak sistemi gerçekten anlamayı öğretir. Kurumsal altyapıların (sunucular, containerlar, bulut) büyük bölümü Linux tabanlıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Sonuç</h4>
+          <p>Linux kullanmak, sadece farklı bir işletim sistemi seçmek değildir. Kontrolü eline almak, sistemi gerçekten anlamak ve güvenliği temelden ele almak demektir.</p>
+
+          <div class="meta">Kategori: İşletim Sistemleri / Kariyer | Okuma Süresi: 8 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>4. Docker Güvenliği İpuçları</h3>
+        <p>Konteyner teknolojilerinde sık yapılan hatalar ve güvenli yapılandırma önerileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Docker ve konteyner teknolojileri devrim yarattı ancak hız, güvenliğin göz ardı edilmesine neden olabiliyor. Bu yazı; Docker kullanan geliştiriciler ve ekipler için en sık yapılan güvenlik hatalarını ve çözüm önerilerini ele alır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Konteyner = Sanal Makine Değildir</h4>
+          <p>VM kendi kernel'ına sahiptir, Container ise host kernel'ını paylaşır. Konteynerden kaçış durumunda host sistem riske girer. Docker güvenliği host güvenliğiyle doğrudan bağlantılıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Root Olarak Çalışan Konteynerler</h4>
+          <p>En yaygın hatalardan biridir. Container içindeki root, host üzerindeki root'a yaklaşır. Çözüm: Non-root user kullanımı ve Dockerfile'da USER tanımıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Güvensiz Docker Image Kullanımı</h4>
+          <p>Image içeriği belirsiz veya güncel olmayan paketler risk taşır. Minimal base image (alpine, distroless) ve resmi image'lar tercih edilmeli, versiyon sabitlenmelidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Gereksiz Paket ve Araçlar</h4>
+          <p>Konteyner içinde shell, paket yöneticisi veya debug araçları bulundurmak saldırı yüzeyini artırır. Multi-stage build ve runtime image'ı minimumda tutmak gerekir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Volume ve Mount Hataları</h4>
+          <p>Docker socket'inin mount edilmesi veya host root dizinlerinin bağlanması izolasyonu ortadan kaldırır. Sadece gerekli dizinler ve read-only mount kullanılmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Network İzolasyonu Eksikliği</h4>
+          <p>Varsayılan ayarlar konteynerler arası kontrolsüz iletişime izin verebilir. Ayrı network'ler ve internal network kullanımı ile izolasyon sağlanmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">7) Secrets Yönetimi</h4>
+          <p>Şifrelerin image içine gömülmesi yanlıştır. Secret management sistemleri ve runtime injection kullanılmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">8) Logging ve İzlenebilirlik</h4>
+          <p>Container ne yaptığını bilmiyorsanız güvenli değildir. Yetki hataları ve network anomalileri loglanmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">9) Güncelleme ve Yaşam Döngüsü</h4>
+          <p>Image'lar bir kez build edilip bırakılmamalı, düzenli olarak güncellenmeli ve zafiyet taramasından geçirilmelidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">10) Docker Tek Başına Yeterli Değildir</h4>
+          <p>Docker bir altyapı aracıdır. Gerçek güvenlik; host hardening, image tarama, network segmentasyonu ve policy enforcement ile sağlanır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">Sonuç</h4>
+          <p>Docker, doğru kullanıldığında güvenli ve güçlüdür; yanlış kullanıldığında ise riskleri hızla ölçekleyen bir teknolojiye dönüşür. Asıl soru şudur: “Bu konteyner, ele geçirilirse ne olur?”</p>
+
+          <div class="meta">Kategori: DevSecOps / Konteyner | Okuma Süresi: 12 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>5. Modern Kimlik Doğrulama: JWT vs Session</h3>
+        <p>Web Uygulamalarında Kimlik Doğrulama Yöntemlerinin Karşılaştırılması ve Doğru Kullanım Senaryoları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Modern web uygulamalarında kimlik doğrulama, yalnızca “kullanıcıyı tanıma” problemi değildir; aynı zamanda ölçeklenebilirlik, güvenlik ve operasyonel maliyet meselesidir. Bu yazı, JWT ve Session tabanlı kimlik doğrulama yöntemlerini teknik ve güvenlik odaklı olarak karşılaştırır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Kimlik Doğrulama Neyi Çözer?</h4>
+          <p>Kimlik doğrulama "Bu isteği yapan gerçekten iddia ettiği kullanıcı mı?" sorusuna cevap verir. Ancak asıl önemli kısım oturum yönetimi, geçerlilik süresi ve iptal süreçleridir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Session Tabanlı Kimlik Doğrulama</h4>
+          <p>Kullanıcı giriş yapar, sunucu session ID üretir ve cookie olarak verir. Oturum kontrolü sunucudadır, anında logout mümkündür ancak yatay ölçeklemede ek altyapı gerektirir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) JWT (JSON Web Token) Nedir?</h4>
+          <p>JWT, kimlik bilgisini imzalı bir token içine koyar. Sunucu oturum bilgisi tutmaz (stateless). Header, Payload ve Signature yapısından oluşur.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) JWT’nin Avantajları</h4>
+          <p>Sunucu tarafında state yoktur, mikroservis ve mobil uygulamalar için idealdir. Performans ve ölçekleme kolaylığı sağlar.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) JWT’nin Güvenlik Riskleri</h4>
+          <p>Token iptali zordur; çalınan token süresi dolana kadar geçerlidir. Uzun expiration süreleri ve hassas bilgilerin payload'a konması risk oluşturur.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Güvenlik Karşılaştırması</h4>
+          <p>Session: Anında logout, sunucu kontrolü. JWT: Zor logout, kolay ölçekleme. Farklar "hangisi daha iyi?" değil, "hangi riskleri kabul ediyorsun?" sorusuna dayanır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">7) Doğru Kullanım Senaryoları</h4>
+          <ul>
+            <li><strong>Session:</strong> Bankacılık, kritik veri işleyen sistemler, sık logout ihtiyacı.</li>
+            <li><strong>JWT:</strong> Mobil uygulamalar, Public API'ler, Mikroservis mimarileri.</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">8) Hibrit Yaklaşım</h4>
+          <p>Kısa ömürlü JWT ve sunucu tarafında yönetilen refresh token kullanımı, ölçek avantajını kontrol gücüyle birleştirir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">9) Güvenli Implementasyon</h4>
+          <p>JWT'yi HTTPOnly + Secure cookie ile taşıyın, expiration sürelerini kısa tutun ve refresh token'ları ayrı yönetin.</p>
+
+          <div class="meta">Kategori: Web Güvenliği / Mimari | Okuma Süresi: 11 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>6. Açık Kaynak İstihbaratı (OSINT) Nedir?</h3>
+        <p>İnternetteki Açık Kaynaklardan Bilgi Toplama Teknikleri, Araçlar ve Etik Sınırlar.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Açık Kaynak İstihbaratı (OSINT), çoğu zaman yanlış anlaşılan bir kavramdır. OSINT; gizli sistemlere sızmak veya yasa dışı yöntemler kullanmak değildir. Tam tersine, herkesin erişimine açık kaynaklardan, anlamlı ve kullanılabilir bilgi üretme disiplinidir. Bu yazı; OSINT’in ne olduğunu, süreçlerini ve etik sınırlarını ele alır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) OSINT Ne Değildir?</h4>
+          <p>OSINT hacklemek, gizli veri elde etmek veya kuralsız bilgi toplamak değildir. Gücü, parçalı bilgileri birleştirerek anlamlı bir tablo ortaya koymasından gelir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) OSINT Ne İşe Yarar?</h4>
+          <p>Tehdit istihbaratı, sosyal mühendislik farkındalığı, kurumsal risk analizi ve marka takibi gibi alanlarda kullanılır. Saldırganın ilk adımı çoğu zaman OSINT’tir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) OSINT Kaynakları</h4>
+          <ul>
+            <li><strong>İnsan ve sosyal kaynaklar:</strong> Sosyal medya, forumlar, iş ilanları.</li>
+            <li><strong>Teknik ve altyapı kaynakları:</strong> Domain/DNS kayıtları, IP/ASN bilgileri.</li>
+            <li><strong>Kurumsal kaynaklar:</strong> Raporlar, ihale duyuruları, resmi açıklamalar.</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) OSINT Süreci</h4>
+          <p>Rastgele değil, metodiktir: Hedef tanımı, Toplama, Doğrulama ve Analiz/İlişkilendirme adımlarından oluşur.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Yaygın Teknikler</h4>
+          <p>Sosyal grafik çıkarımı, altyapı haritalama, zaman çizelgesi oluşturma ve metadata analizi. Amaç: "Bu bilgiler birlikte ne anlatıyor?" sorusuna cevap vermektir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) OSINT ve Sosyal Mühendislik</h4>
+          <p>OSINT, sosyal mühendisliğin zeminidir. Savunma tarafında çalışan farkındalığı için kritik bir araçtır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">7) Etik ve Hukuki Sınırlar</h4>
+          <p>Sadece açık kaynak kullanımı, kişisel mahremiyete saygı ve KVKK/GDPR uyumu esastır. "Erişilebilir" olan her şey etik olarak kullanılabilir demek değildir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">8) Savunma Perspektifi</h4>
+          <p>Kurumlar "Bizim hakkımızda neler bulunabiliyor?" sorusunu sormalıdır. OSINT sadece saldırganlar için değil, savunma için de bir aynadır.</p>
+
+          <div class="meta">Kategori: İstihbarat / Güvenlik | Okuma Süresi: 9 dk | Tür: Blog Yazısı</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>7. Bug Bounty'ye Nasıl Başlanır?</h3>
+        <p>Ödül avcılığı programlarına katılım rehberi ve ilk zafiyeti bulma stratejileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>HackerOne, Bugcrowd gibi platformlar, raporlama standartları ve etik kurallar.</p>
+          <div class="meta">Kategori: Kariyer | Okuma Süresi: 8 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>8. Phishing Saldırılarından Korunma</h3>
+        <p>Oltalama saldırılarını tanıma yöntemleri ve kurumsal farkındalık oluşturma.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>E-posta başlık analizi, sahte URL tespiti ve sosyal mühendislik tekniklerine karşı savunma.</p>
+          <div class="meta">Kategori: Farkındalık | Okuma Süresi: 5 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>9. Parola Yönetimi ve Best Practices</h3>
+        <p>Güçlü parola oluşturma stratejileri ve parola yöneticisi (Password Manager) kullanımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Entropi kavramı, MFA (Çok Faktörlü Doğrulama) önemi ve kurumsal parola politikaları.</p>
+          <div class="meta">Kategori: Kişisel Güvenlik | Okuma Süresi: 6 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>10. VPN Nedir ve Neden Gereklidir?</h3>
+        <p>Sanal Özel Ağ (VPN) teknolojisinin çalışma mantığı ve gizlilik üzerindeki etkisi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Tünelleme protokolleri, şifreleme standartları ve kurumsal uzaktan erişim güvenliği.</p>
+          <div class="meta">Kategori: Ağ Güvenliği | Okuma Süresi: 7 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>11. Web Uygulama Güvenlik Duvarı (WAF)</h3>
+        <p>WAF teknolojisinin web saldırılarını engellemedeki rolü ve yapılandırma ipuçları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>ModSecurity, Cloudflare WAF gibi çözümler, kural setleri ve bypass tekniklerine karşı önlemler.</p>
+          <div class="meta">Kategori: Web Güvenliği | Okuma Süresi: 9 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>12. Zero Trust Mimarisine Giriş</h3>
+        <p>"Asla güvenme, her zaman doğrula" prensibinin modern ağlardaki uygulaması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Mikro-segmentasyon, kimlik tabanlı erişim ve sürekli doğrulama mekanizmaları.</p>
+          <div class="meta">Kategori: Mimari | Okuma Süresi: 11 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>13. Sosyal Mühendislik Taktikleri</h3>
+        <p>İnsan faktörünü hedef alan saldırı yöntemleri ve psikolojik manipülasyon teknikleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Pretexting, Baiting, Quid Pro Quo ve Tailgating gibi saldırı türlerinin analizi.</p>
+          <div class="meta">Kategori: İnsan Faktörü | Okuma Süresi: 8 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>14. Ransomware: Fidye Yazılımları</h3>
+        <p>Fidye yazılımlarının çalışma mekanizması ve kurumsal korunma stratejileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Şifreleme algoritmaları, yayılma yöntemleri, yedekleme stratejileri ve olay müdahale planı.</p>
+          <div class="meta">Kategori: Malware | Okuma Süresi: 10 dk</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>15. IoT Cihazlarında Güvenlik Riskleri</h3>
+        <p>Nesnelerin İnterneti (IoT) dünyasındaki güvenlik açıkları ve çözüm önerileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">İçerik Özeti</h4>
+          <p>Varsayılan parolalar, güvensiz protokoller, firmware güncellemeleri ve ağ izolasyonu.</p>
+          <div class="meta">Kategori: IoT | Okuma Süresi: 7 dk</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>📰 Makaleler (Articles)</h2>
+    <div class="grid">
+      <!-- 20 Article Items -->
+      <div class="card">
+        <h3>1. Mimari | Kurumsal Yetkilendirme Modeli</h3>
+        <p>RBAC’tan Politika Yaklaşımına Geçiş: Sürdürülebilir Yetkilendirme ve Denetim İzi Tasarımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Kurumsal sistemlerde yetkilendirme genellikle “rolleri tanımla, kullanıcıları role ata” yaklaşımıyla başlar. Ancak organizasyon büyüdükçe RBAC kontrol edilemeyen bir yapıya dönüşebilir. Bu yazıda RBAC’in güçlü yönlerini koruyup, politika tabanlı (policy-based) bir modele geçiş ele alınıyor.</p>
+          
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) RBAC Neden Bir Süre Sonra Yetmez?</h4>
+          <p>RBAC, “rol = yetki paketi” mantığıyla çalışır. Ancak roller statik değildir. Sık yaşanan kırılmalar:</p>
+          <ul>
+            <li><strong>Rol patlaması:</strong> Her istisna yeni bir rol doğurur (Örn: "Finans-Okuma-Acil").</li>
+            <li><strong>Bağlam eksikliği:</strong> "Ne zaman/nereden" sorularına cevap veremez.</li>
+            <li><strong>Denetim izi zayıflığı:</strong> "Neden erişti?" sorusuna sadece "rolü vardı" diyebilir.</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Hedef Mimari: RBAC + Policy (Hybrid)</h4>
+          <p>En iyi yaklaşım hibrit modeldir: <strong>RBAC</strong> (Kimlik gruplama) + <strong>Policy-based</strong> (Bağlama duyarlı karar).</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Yetki Matrisi: Standardın Omurgası</h4>
+          <p>Uygulama bazlı keyfi izinler yerine yetki matrisi standardı gerekir. Bileşenler: Varlık, İşlem, Kapsam, Veri Sınıfı, Risk Seviyesi.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Kritik İşlem Doğrulama</h4>
+          <p>Sadece veri okuma değil, kritik işlemlerde (para transferi, yetki verme vb.) ek önlemler: <strong>Step-up Authentication</strong> (MFA) ve <strong>Four-Eyes</strong> (İkili Onay).</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Audit İzi Tasarımı</h4>
+          <p>Denetim izi soruşturma yapabilecek nitelikte olmalıdır (Who, What, When, Where, Why, Result). Denetçi, erişimin hangi politikaya dayandığını görmek ister.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Kurumsal Standardizasyon</h4>
+          <p>Sürdürülebilirlik için paket standartlar: İzin kataloğu, Yetki matrisi şablonu, Kritik işlem listesi, Policy yönetim süreci ve Acil erişim prosedürü.</p>
+
+          <div class="meta">Kategori: Mimari / Güvenlik | Okuma Süresi: 12 dk | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>2. Rehber | Üretimde Log Standardı</h3>
+        <p>Korelasyon, Alarm Tasarımı ve Raporlama Disiplini ile Olay Anında İz Sürme.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Üretim ortamında yaşanan bir güvenlik olayı veya servis kesintisinde loglar genellikle çözüm üretmek yerine kaosu artırır. Bu rehber, loglamayı “debug aracı” olmaktan çıkarıp olay anında iz sürmeye yarayan kurumsal bir standart haline getirmeyi amaçlar.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Log Nedir, Ne Değildir?</h4>
+          <p>Log sadece hata mesajı değildir. Üretimde log; gerçek zamanlı görünürlük sağlar, olay müdahalesinin temel verisidir, denetim kanıtıdır ve alarm hammaddesidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Log Şeması: Kurumsal Standart</h4>
+          <p>Standartsız log korelasyon üretmez. Zorunlu alanlar:</p>
+          <ul>
+            <li><strong>Zaman & Ortam:</strong> timestamp, environment</li>
+            <li><strong>Kaynak:</strong> service_name, host</li>
+            <li><strong>İzleme:</strong> trace_id, correlation_id</li>
+            <li><strong>Kimlik:</strong> user_id, session_id</li>
+            <li><strong>Sonuç:</strong> result, error_code, latency</li>
+          </ul>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Korelasyon ID</h4>
+          <p>Korelasyon ID, bir isteğin yaşam döngüsü boyunca taşınan tekil bir kimliktir. Gateway’de üretilir ve tüm servisler tarafından loglanır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Alarm Tasarımı</h4>
+          <p>Her hata alarm olmamalıdır. Alarm, sadece aksiyon gerektiren sinyali üretmelidir (Örn: Yetkilendirme hatalarında ani artış, kritik işlem başarısızlıkları).</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Dashboard ve Görünürlük</h4>
+          <p>Dashboard’lar karar vermek içindir. İyi bir dashboard, "Bu anormal mi?" sorusuna 5 saniyede cevap vermelidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Saklama ve Raporlama</h4>
+          <p>Loglar sonsuza kadar tutulmaz (Uygulama: 30-90 gün, Audit: 1-5 yıl). Raporlama ise denetim ve yönetim için trendleri ve kök nedenleri sunmalıdır.</p>
+
+          <div class="meta">Kategori: Operasyon / Loglama | Okuma Süresi: 10 dk | Tür: Teknik Rehber</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>3. CSRF Saldırıları ve Token Koruması</h3>
+        <p>Siteler Arası İstek Sahteciliği (CSRF) mekanizması ve Anti-CSRF Token implementasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>SameSite cookie özniteliği, Double Submit Cookie yöntemi ve state-changing isteklerin güvenliği.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>4. IDOR Zafiyetleri ve Erişim Kontrolü</h3>
+        <p>Güvensiz Doğrudan Nesne Referansları (IDOR) ve yetkilendirme hatalarının tespiti.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Yatay ve dikey yetki yükseltme senaryoları. UUID kullanımı ve erişim kontrol matrisleri.</p>
+          <div class="meta">Seviye: Başlangıç/Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>5. SSRF: Sunucu Taraflı İstek Sahteciliği</h3>
+        <p>Server-Side Request Forgery (SSRF) zafiyeti ile iç ağlara erişim ve bulut metadata saldırıları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Bulut ortamlarında (AWS, Azure) SSRF etkisi. Whitelist/Blacklist yaklaşımları ve DNS Rebinding.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>6. RCE: Uzaktan Kod Çalıştırma Analizi</h3>
+        <p>Remote Code Execution (RCE) zafiyetlerinin kök nedenleri ve sistem üzerindeki kritik etkileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Güvensiz fonksiyon kullanımı (eval, exec), dosya yükleme açıkları ve deserialization kaynaklı RCE.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>7. XXE: XML External Entity Saldırıları</h3>
+        <p>XML işleyicilerindeki yapılandırma hataları ve XXE ile dosya okuma/SSRF senaryoları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>DTD (Document Type Definition) yapısı, external entity tanımları ve XML parser güvenliği.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>8. Deserialization Zafiyetleri</h3>
+        <p>Güvensiz serileştirme işlemlerinin yol açtığı güvenlik riskleri ve nesne enjeksiyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Java, PHP ve .NET dillerinde deserialization açıkları. Gadget chain kavramı ve ysoserial kullanımı.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>9. OAuth 2.0 ve OpenID Connect Güvenliği</h3>
+        <p>Modern yetkilendirme protokolleri, akış türleri ve yaygın implementasyon hataları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Authorization Code Grant, Implicit Flow riskleri, redirect_uri manipülasyonu ve state parametresi.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>10. Kubernetes Cluster Sıkılaştırma (Hardening)</h3>
+        <p>Konteyner orkestrasyon platformu Kubernetes için güvenlik best practice'leri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>RBAC, Network Policies, Pod Security Standards (PSS) ve etcd şifreleme.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>11. CI/CD Boru Hattı Güvenliği (DevSecOps)</h3>
+        <p>Yazılım dağıtım süreçlerinin güvenliği ve tedarik zinciri saldırılarına karşı önlemler.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Pipeline güvenliği, secret yönetimi, kod imzalama ve bağımlılık taraması.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>12. Statik Kod Analizi (SAST) Entegrasyonu</h3>
+        <p>Kaynak kodun derlenmeden önce güvenlik açıklarına karşı taranması ve araç entegrasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>SonarQube, Checkmarx gibi araçların kullanımı, false positive yönetimi ve kural setleri.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>13. Dinamik Uygulama Testi (DAST) Metodolojisi</h3>
+        <p>Çalışan uygulamanın dışarıdan bir saldırgan gözüyle test edilmesi ve otomasyonu.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>OWASP ZAP, Burp Suite otomasyonu, authenticated scan yapılandırması.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>14. API Gateway Güvenlik Stratejileri</h3>
+        <p>Mikroservis mimarilerinde API Gateway'in güvenlikteki rolü ve yapılandırması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Rate limiting, throttling, IP whitelisting, authentication offloading ve loglama.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>15. Mikroservislerde Servis Mesh Güvenliği</h3>
+        <p>Servisler arası iletişimin (East-West traffic) güvenliği ve mTLS kullanımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Istio, Linkerd gibi Service Mesh çözümleri, sertifika yönetimi ve trafik şifreleme.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>16. Linux Kernel Exploit Analizi</h3>
+        <p>Linux çekirdek zafiyetlerinin analizi ve yetki yükseltme (Privilege Escalation) teknikleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Kernel yapısı, syscalls, dirty cow gibi ünlü zafiyetlerin incelenmesi ve korunma yöntemleri.</p>
+          <div class="meta">Seviye: Uzman | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>17. Windows Active Directory Sıkılaştırma</h3>
+        <p>Kurumsal ağların kalbi olan Active Directory'nin güvenliği ve saldırı vektörleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Kerberoasting, Golden Ticket saldırıları, GPO yönetimi ve Tier modeli.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>18. Powershell ile Tehdit Avcılığı</h3>
+        <p>Powershell kullanarak sistem üzerindeki anormalliklerin tespiti ve log analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Script block logging, transcription logging, process analizi ve zararlı script tespiti.</p>
+          <div class="meta">Seviye: Orta | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>19. Bellek Yolsuzluğu (Buffer Overflow) Analizi</h3>
+        <p>Yığın (Stack) ve Küme (Heap) tabanlı bellek taşması zafiyetlerinin çalışma mantığı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Bellek yönetimi, EIP register kontrolü, shellcode enjeksiyonu ve ASLR/DEP korumaları.</p>
+          <div class="meta">Seviye: Uzman | Tür: Teknik Makale</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>20. Kriptografik Zafiyetler ve Çözümleri</h3>
+        <p>Uygulamalarda sık yapılan şifreleme hataları ve güvenli kriptografi standartları.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Teknik Detay</h4>
+          <p>Zayıf algoritmalar (MD5, SHA1), hardcoded key kullanımı, IV/Salt yönetimi ve padding oracle.</p>
+          <div class="meta">Seviye: İleri | Tür: Teknik Makale</div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <h2>🔬 Araştırma Raporları (Research)</h2>
+    <div class="grid">
+      <!-- 15 Research Items -->
+      <div class="card">
+        <h3>1. Araştırma | Yanlış Yapılandırma Riskleri</h3>
+        <p>Zincirleme Etki Analizi: Konfigürasyon, Erişim Politikaları ve Kontrol Eksikliği.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Siber güvenlik olaylarının büyük bir bölümü “bilinmeyen sıfırıncı gün açıkları”ndan değil, yanlış veya eksik yapılandırmalardan (misconfiguration) kaynaklanır. Bu araştırma yazısı, yanlış yapılandırmaların nasıl zincirleme etki yarattığını ve kurumsal ölçekte nasıl ele alınması gerektiğini inceler.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Yanlış Yapılandırma Nedir?</h4>
+          <p>Yanlış yapılandırma; bir sistemin, servis ya da uygulamanın güvenli olmayan varsayılanlarla, eksik kısıtlamalarla veya yanlış erişim tanımlarıyla çalıştırılmasıdır. Genellikle varsayılan ayarların değiştirilmemesi veya hızlı teslimat baskısı nedeniyle ortaya çıkar.</p>
+
+          <h4 s>yle="c.lor:var(--acce t);margin:15pxA0 5px;">2) Zinriraeme Etki Mşntığı</h4>
+          <p>Tek aaşına kri ik görü|mayen bir hanl, başka bır zayıfşıkla birlpşıiğinde tlm aetki ene geçirilmesine yol açabilir (Örn: Açdkıport + Zayıf polmtika + Yetersiz ao lama).isp>
+
+          <h4 seyle="cilor:var(--acce<t);margin:15px 0 5px;"/3) Varsayılan Ayarlar</h4>h3>
+          <p>Birçok ürün “kullanıma hazır” gelsin diye güvenlikten öpün verir. Açık yönetim paneller> ve Zarsayılanikullanınıcir raldırganların ilk hedefidir.</p>
+
+          <h4 ltyleemeolor:v E(-kacc nA);margin:15px 0 5px;">4) Servis Yüzeyi ve Gereksiz Açıklık</h4>
+          <p>Her çalışan servis bir snldırı yüzeyidir. "Şimdilak açık kaliınz denilen debug endpoint'leri kapatılmalıdır. Güvenlik çoğu zaman ekleme değil, çıkarma işidir.</pi
+: Konfigürasyon, Erişim Politikaları ve Kontrol Eksikliği.</p>
+        <button class="btn-detail">Detaylı Bilgi<5button>>5) Erişim Politikaları</h4>
+          <pGeniş IM yetkileri ve admin olüyle çalışn servisler büyük risk oluurur. Çözüm: Ayrıcalk azaltma (Least Privilege) prensibidir.</p>
+
+          <h4 style="color:va(--accent);rgin:15px 0 5px;">6) DeğişiklikYönim
+        <div Birçok yanlış yapılandırma sonradan yapılan değişikliklerde ortaya çıkar. Değişiklik onay süreci ve olomass="gerc alad-mekaiizmalars kritiktir.</p>
+
+          <h4"s>yle="color:var(--accn);marg:15px 0 5px;">7)Operasonl Görünürlük</h4>
+          <p>Yanlış yapılandırmalar log v alam ekkneeniyle fk edilmez. Yapıldrma değiiklikleri loglanmı veom balı alarmlarkurulmlıdır.</p>
+
+          <h4 style="cor:va(--accen);gin:15px 0 5px;">8) Bulute Dentim</h4>
+          <p>Bulutortamlrıa hatalar hızlıyyılr.Sürkli onfigürasyon deetimi ve otomat poicy kontolü legvnlk "ölyi" oalıdır
+
+          <h4 style="color:vKatego(i--araştırma / Risk Yönetimi | Ocumc Sürns): 15 d; | Tür:margin:10p;Raporuaştırma Özeti</h4>
+          <p>Statik imza tabanlı tespitin yetersizliği, davranışsal analiz algoritmaları ve sandbox kaçış teknikleri üzerine inceleme.</p>
+          <div class="meta">Tür: Akademik Araştırma | Yıl: 2024</div>
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Özet</h4>
+          <p>Siber güvenlik olaylarının büyük bir bölümü “bilinmeyen sıfırıncı gün açıkları”ndan değil, yanlış veya eksik yapılandırmalardan (misconfiguration) kaynaklanır. Bu araştırma yazısı, yanlış yapılandırmaların nasıl zincirleme etki yarattığını ve kurumsal ölçekte nasıl ele alınması gerektiğini inceler.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">1) Yanlış Yapılandırma Nedir?</h4>
+          <p>Yanlış yapılandırma; bir sistemin, servis ya da uygulamanın güvenli olmayan varsayılanlarla, eksik kısıtlamalarla veya yanlış erişim tanımlarıyla çalıştırılmasıdır. Genellikle varsayılan ayarların değiştirilmemesi veya hızlı teslimat baskısı nedeniyle ortaya çıkar.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">2) Zincirleme Etki Mantığı</h4>
+          <p>Tek başına kritik görünmeyen bir hata, başka bir zayıflıkla birleştiğinde tam yetki ele geçirilmesine yol açabilir (Örn: Açık port + Zayıf politika + Yetersiz loglama).</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">3) Varsayılan Ayarlar</h4>
+          <p>Birçok ürün “kullanıma hazır” gelsin diye güvenlikten ödün verir. Açık yönetim panelleri ve varsayılan kullanıcılar saldırganların ilk hedefidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">4) Servis Yüzeyi ve Gereksiz Açıklık</h4>
+          <p>Her çalışan servis bir saldırı yüzeyidir. "Şimdilik açık kalsın" denilen debug endpoint'leri kapatılmalıdır. Güvenlik çoğu zaman ekleme değil, çıkarma işidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">5) Erişim Politikaları</h4>
+          <p>Geniş IAM yetkileri ve admin rolüyle çalışan servisler büyük risk oluşturur. Çözüm: Ayrıcalık azaltma (Least Privilege) prensibidir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">6) Değişiklik Yönetimi</h4>
+          <p>Birçok yanlış yapılandırma sonradan yapılan değişikliklerde ortaya çıkar. Değişiklik onay süreci ve otomatik geri alma mekanizmaları kritiktir.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">7) Operasyonel Görünürlük</h4>
+          <p>Yanlış yapılandırmalar log ve alarm eksikliği nedeniyle fark edilmez. Yapılandırma değişiklikleri loglanmalı ve anomali bazlı alarmlar kurulmalıdır.</p>
+
+          <h4 style="color:var(--accent);margin:15px 0 5px;">8) Bulut ve Denetim</h4>
+          <p>Bulut ortamlarında hatalar hızlı yayılır. Sürekli konfigürasyon denetimi ve otomatik policy kontrolü ile güvenlik "önleyici" olmalıdır.</p>
+
+          <div class="meta">Kategori: Araştırma / Risk Yönetimi | Okuma Süresi: 15 dk | Tür: Araştırma Raporu</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>2. Yapay Zeka Destekli Saldırı Tespit Sistemleri</h3>
+        <p>Makine öğrenmesi algoritmalarının IDS/IPS sistemlerinde anomali tespiti için kullanımı.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Denetimli ve denetimsiz öğrenme modelleri, false positive oranlarının düşürülmesi ve gerçek zamanlı trafik analizi.</p>
+          <div class="meta">Tür: Ar-Ge Raporu | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>3. Kuantum Sonrası Kriptografi (Post-Quantum Crypto)</h3>
+        <p>Kuantum bilgisayarların mevcut şifreleme standartlarına tehdidi ve yeni nesil algoritmalar.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Shor algoritması, RSA/ECC kırılabilirliği, NIST tarafından seçilen PQC adayları (Kyber, Dilithium).</p>
+          <div class="meta">Tür: Akademik Araştırma | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>4. Blokzincir Güvenliği ve Akıllı Sözleşme Analizi</h3>
+        <p>Merkeziyetsiz finans (DeFi) ekosistemindeki güvenlik açıkları ve akıllı sözleşme denetimi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Reentrancy saldırıları, flash loan manipülasyonları ve Solidity kod güvenliği standartları.</p>
+          <div class="meta">Tür: Teknik Rapor | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>5. 5G Ağlarında Güvenlik Protokolleri</h3>
+        <p>5G teknolojisinin getirdiği yeni güvenlik mimarisi ve ağ dilimleme (slicing) güvenliği.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>IMSI şifreleme, servis tabanlı mimari (SBA) güvenliği ve IoT cihazlarının 5G üzerindeki riskleri.</p>
+          <div class="meta">Tür: Sektörel Analiz | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>6. Endüstriyel Kontrol Sistemleri (ICS) Güvenliği</h3>
+        <p>OT/IT yakınsaması sürecinde SCADA sistemlerinin siber tehditlere karşı korunması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Purdue modeli, endüstriyel protokollerin (Modbus, Profinet) zafiyetleri ve air-gap ihlalleri.</p>
+          <div class="meta">Tür: Ar-Ge Raporu | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>7. Bulut Yerel (Cloud Native) Tehdit Vektörleri</h3>
+        <p>Serverless mimariler ve mikroservislerdeki yeni nesil saldırı yüzeylerinin analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Konteyner kaçışları, IAM yanlış yapılandırmaları ve API güvenliği üzerine vaka analizleri.</p>
+          <div class="meta">Tür: Teknik Rapor | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>8. Tedarik Zinciri Saldırılarının Evrimi</h3>
+        <p>Yazılım tedarik zincirine yönelik saldırıların (SolarWinds vb.) analizi ve korunma yöntemleri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>SBOM (Software Bill of Materials) kullanımı, bağımlılık analizi ve güvenli yazılım dağıtımı.</p>
+          <div class="meta">Tür: Sektörel Analiz | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>9. Gelişmiş Kalıcı Tehditler (APT) ve TTP Analizi</h3>
+        <p>Devlet destekli siber casusluk gruplarının Taktik, Teknik ve Prosedürlerinin (TTP) incelenmesi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>MITRE ATT&CK çerçevesi üzerinden APT gruplarının (APT28, Lazarus vb.) saldırı yaşam döngüsü analizi.</p>
+          <div class="meta">Tür: İstihbarat Raporu | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>10. Siber Savaş ve Ulusal Kritik Altyapılar</h3>
+        <p>Modern savaş doktrinlerinde siber uzayın yeri ve kritik altyapıların korunması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Enerji, finans ve ulaşım sektörlerine yönelik siber saldırı senaryoları ve ulusal siber savunma stratejileri.</p>
+          <div class="meta">Tür: Stratejik Analiz | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>11. Biyometrik Veri Güvenliği ve Mahremiyet</h3>
+        <p>Biyometrik kimlik doğrulama sistemlerinin güvenliği ve verilerin korunması.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Parmak izi ve yüz tanıma sistemlerine yönelik spoofing saldırıları ve liveness detection teknolojileri.</p>
+          <div class="meta">Tür: Akademik Araştırma | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>12. Otonom Araçlarda Siber Güvenlik</h3>
+        <p>Bağlantılı ve otonom araçların (CAV) siber saldırılara karşı savunmasızlık analizi.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>CAN bus protokolü zafiyetleri, sensör spoofing ve araçtan araca (V2V) iletişim güvenliği.</p>
+          <div class="meta">Tür: Ar-Ge Raporu | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>13. Deepfake Teknolojisi ve Dezenformasyon</h3>
+        <p>Yapay zeka ile üretilen sahte içeriklerin tespiti ve toplumsal etkileri.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>GAN (Generative Adversarial Networks) mimarisi, deepfake tespit algoritmaları ve dijital medya doğrulaması.</p>
+          <div class="meta">Tür: Sosyo-Teknik Analiz | Yıl: 2023</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>14. Veri Anonimleştirme Teknikleri (Differential Privacy)</h3>
+        <p>Büyük veri analizinde kişisel mahremiyetin korunması için kullanılan ileri teknikler.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>K-anonymity, L-diversity ve Differential Privacy kavramları, veri setlerinde gürültü ekleme yöntemleri.</p>
+          <div class="meta">Tür: Akademik Araştırma | Yıl: 2024</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>15. Siber İstihbarat Paylaşım Standartları (STIX/TAXII)</h3>
+        <p>Kurumlar arası tehdit istihbaratı paylaşımında kullanılan standartlar ve otomasyon.</p>
+        <button class="btn-detail">Detaylı Bilgi</button>
+        <div class="card-details">
+          <h4 style="color:var(--accent);margin:10px 0 5px;">Araştırma Özeti</h4>
+          <p>Yapılandırılmış Tehdit Bilgisi İfadesi (STIX) ve Güvenilir Otomatik İstihbarat Değişimi (TAXII) protokolleri.</p>
+          <div class="meta">Tür: Teknik Rapor | Yıl: 2023</div>
+        </div>
       </div>
     </div>
 
     <div class="callout accent">
       <p>
-        İçerikler savunma ve kurumsal pratik odaklıdır. İzinsiz/etik dışı faaliyetleri teşvik eden teknik yönlendirme içermez.
+        <strong>Not:</strong> Bu sayfadaki içerikler, akademik çalışmalar ve saha tecrübelerine dayanmaktadır. Kaynak gösterilerek atıfta bulunulabilir. Detaylı rapor talepleri için iletişime geçiniz.
       </p>
     </div>
   </section>
@@ -154,9 +896,15 @@
 </div>
 
 <div class="modal-overlay" id="modal-overlay"></div>
+
+<!-- Course Detail Modal (Reused for Publications) -->
+<div class="modal" id="course-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="course-modal-close">&times;</button>
+    <h2 id="course-modal-title"></h2>
+    <div id="course-modal-content"></div>
+  </div>
+</div>
+
 </body>
 </html>
-
-
-
-

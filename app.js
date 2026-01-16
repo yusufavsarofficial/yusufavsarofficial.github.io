@@ -315,6 +315,97 @@
     });
   };
 
+  // Education Filter
+  const initEduFilter = () => {
+    const input = document.getElementById('edu-search');
+    if (!input) return;
+    
+    input.addEventListener('keyup', (e) => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(el => {
+        const text = el.textContent.toLowerCase();
+        if (text.includes(term)) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    });
+  };
+
+  // Publication Filter
+  const initPubFilter = () => {
+    const input = document.getElementById('pub-search');
+    if (!input) return;
+    
+    input.addEventListener('keyup', (e) => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(el => {
+        const text = el.textContent.toLowerCase();
+        if (text.includes(term)) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    });
+  };
+
+  // Course Details Modal System
+  const initCourseModal = () => {
+    const modal = document.getElementById('course-modal');
+    const overlay = document.getElementById('modal-overlay');
+    const closeBtn = document.getElementById('course-modal-close');
+    const titleEl = document.getElementById('course-modal-title');
+    const contentEl = document.getElementById('course-modal-content');
+
+    if (!modal || !overlay) return;
+
+    // Open Modal
+    document.querySelectorAll('.btn-detail').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        const title = card.querySelector('h3').textContent;
+        const desc = card.querySelector('p').outerHTML; // Description paragraph
+        const details = card.querySelector('.card-details').innerHTML; // Hidden details
+
+        titleEl.textContent = title;
+        // Combine description and details
+        contentEl.innerHTML = desc + details;
+        
+        // Clean up inline styles to allow CSS to take over for a professional look
+        contentEl.querySelectorAll('*[style]').forEach(el => el.removeAttribute('style'));
+
+        // Add CTA button with alert ONLY for trainings page
+        if (window.location.pathname.includes('egitimler.html')) {
+          const actionDiv = document.createElement('div');
+          actionDiv.style.cssText = "margin-top:30px;display:flex;justify-content:flex-end;border-top:1px solid var(--border);padding-top:20px;";
+          actionDiv.innerHTML = `<button class="btn" onclick="alert('Planlanan bir eğitim bulunamamıştır. Lütfen duyuruları takip ediniz.')">Programa Başvur</button>`;
+          contentEl.appendChild(actionDiv);
+        }
+        
+        modal.classList.add('active');
+        overlay.classList.add('active');
+      });
+    });
+
+    // Close Modal Logic
+    const closeModal = () => {
+      modal.classList.remove('active');
+      // Overlay removal is handled by shared overlay logic or we can force it here if needed, 
+      // but usually we want to ensure we don't close other modals if stacked (not the case here).
+      // Since overlay is shared, we remove active class from it too.
+      overlay.classList.remove('active');
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    
+    // Add click listener to overlay to close this modal as well
+    overlay.addEventListener('click', () => {
+      if (modal.classList.contains('active')) closeModal();
+    });
+  };
+
   // Initialize
   const init = () => {
     initAdminPanel();
@@ -329,6 +420,9 @@
     initPageFade();
     if ('IntersectionObserver' in window) initScrollReveal();
     initDetailsAnimation();
+    initEduFilter();
+    initPubFilter();
+    initCourseModal();
     document.body.style.opacity = '1';
   };
 

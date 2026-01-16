@@ -1,6 +1,114 @@
 ﻿(function(){
   'use strict';
 
+  // Simple password hashing (not cryptographically secure, for basic security only)
+  const hashPassword = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(16);
+  };
+
+  // Login system
+  const initLoginSystem = () => {
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const loginModal = document.getElementById('login-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalClose = document.getElementById('modal-close');
+    const loginForm = document.getElementById('login-form');
+    
+    const CORRECT_USERNAME = 'yusufavsar';
+    const CORRECT_PASSWORD_HASH = hashPassword('AyfSoftYusuf');
+    
+    if (!loginBtn || !loginModal) return;
+    
+    const checkAuthStatus = () => {
+      const isLoggedIn = localStorage.getItem('authToken') === 'admin_session_active';
+      if (isLoggedIn) {
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'flex';
+      } else {
+        loginBtn.style.display = 'flex';
+        logoutBtn.style.display = 'none';
+      }
+    };
+    
+    checkAuthStatus();
+    
+    loginBtn.addEventListener('click', () => {
+      loginModal.classList.add('active');
+      modalOverlay.classList.add('active');
+    });
+    
+    const closeModal = () => {
+      loginModal.classList.remove('active');
+      modalOverlay.classList.remove('active');
+      loginForm.reset();
+      document.getElementById('login-error').style.display = 'none';
+    };
+    
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+    
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('login-error');
+      
+      if (username === CORRECT_USERNAME && hashPassword(password) === CORRECT_PASSWORD_HASH) {
+        localStorage.setItem('authToken', 'admin_session_active');
+        localStorage.setItem('loginTime', new Date().getTime());
+        closeModal();
+        checkAuthStatus();
+      } else {
+        errorEl.textContent = 'Kullanıcı adı veya şifre hatalı!';
+        errorEl.style.display = 'block';
+      }
+    });
+    
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('loginTime');
+      checkAuthStatus();
+    });
+  };
+
+  // Hamburger menu
+  const initHamburgerMenu = () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (!hamburger || !navMenu) return;
+    
+    hamburger.addEventListener('click', () => {
+      const isActive = hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isActive);
+    });
+    
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  };
+
   // Navbar active state
   const activateNav = () => {
     const current = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
@@ -73,6 +181,8 @@
 
   // Initialize
   const init = () => {
+    initLoginSystem();
+    initHamburgerMenu();
     activateNav();
     updateYear();
     initSmoothScroll();

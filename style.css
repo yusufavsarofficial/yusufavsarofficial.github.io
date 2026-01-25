@@ -283,3 +283,55 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =========================
+   HAKKIMDA SAYFASI (NET ÇÖZÜM)
+========================= */
+
+/* Yazı + foto yan yana */
+.about-wrap {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Yazı tarafı */
+.about-text {
+  line-height: 1.9;
+}
+
+/* Foto konteyner */
+.about-photo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Foto kendisi */
+.about-photo img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+}
+
+/* =========================
+   MOBİL HAKKIMDA
+========================= */
+@media (max-width: 768px) {
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .about-photo img {
+    max-width: 220px;
+  }
+}

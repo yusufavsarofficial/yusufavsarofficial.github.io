@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Makale</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .wrap{ max-width:1100px; margin:auto; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    @media (max-width: 820px){ .grid{ grid-template-columns: 1fr;} }
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:18px;
+      text-decoration:none;
+      display:block;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .card:hover{ transform: translateY(-2px); background:rgba(255,255,255,.05); }
+    .kicker{ opacity:.7; font-size:12px; letter-spacing:.4px; text-transform:uppercase; }
+    .title{ font-size:18px; font-weight:900; margin-top:8px; line-height:1.35; }
+    .desc{ opacity:.85; margin-top:10px; line-height:1.65; }
+    .meta{ opacity:.55; margin-top:12px; font-size:12px; }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container navbar">
+    <div class="brand">YUSUF AVŞAR</div>
+    <nav class="nav">
+      <a href="../../index.html">ANASAYFA</a>
+      <a href="../hakkimda.html">HAKKIMDA</a>
+      <a href="../faaliyet.html">FAALİYET</a>
+      <a href="../yayinlar.html">YAYINLAR</a>
+      <a href="../katkilar.html">KATKILAR</a>
+      <a href="../iletisim.html">İLETİŞİM</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container wrap">
+  <section class="hero">
+    <h1>MAKALE</h1>
+    <p class="hint">Analitik çerçeve, kavramsal yaklaşım ve kurumsal güvenlik perspektifleri.</p>
+  </section>
+
+  <div class="grid">
+    <a class="card" href="makale/05-antifragile-guvenlik.html">
+      <div class="kicker">Makale · 05</div>
+      <div class="title">Antifragile Güvenlik</div>
+      <div class="desc">Darbelerle güçlenen güvenlik mimarisini; bağışıklık sistemi metaforuyla ele alır.</div>
+      <div class="meta">Chaos Engineering · Post-Mortem</div>
+    </a>
+
+    <a class="card" href="makale/06-guvenlikte-insan-hatasi.html">
+      <div class="kicker">Makale · 06</div>
+      <div class="title">Güvenlikte İnsan Hatası</div>
+      <div class="desc">“İnsan hatası”nı kök neden değil; katman eksikliği ve tasarım kusuru belirtisi olarak yorumlar.</div>
+      <div class="meta">Swiss Cheese · Human-Centered Security</div>
+    </a>
+
+    <a class="card" href="makale/07-guvenlikte-gorunmez-emek.html">
+      <div class="kicker">Makale · 07</div>
+      <div class="title">Güvenlikte Görünmez Emek</div>
+      <div class="desc">Olmayan olayların değeri: Sessiz önlemler, vitrin kahramanlığı ve kurumsal körlük.</div>
+      <div class="meta">Negatif Kanıt · Önleme</div>
+    </a>
+
+    <a class="card" href="makale/08-guvenlikte-bilincli-sadelik.html">
+      <div class="kicker">Makale · 08</div>
+      <div class="title">Güvenlikte Bilinçli Sadelik</div>
+      <div class="desc">Karmaşıklık tuzağına karşı; gereksizi atarak saldırı yüzeyini küçültme yaklaşımı.</div>
+      <div class="meta">Tool Sprawl · Netlik</div>
+    </a>
+
+    <a class="card" href="makale/09-guvenlikte-bilinmemeyi-secmek.html">
+      <div class="kicker">Makale · 09</div>
+      <div class="title">Güvenlikte Bilinmemeyi Seçmek</div>
+      <div class="desc">OSINT’i zorlaştıran stratejik görünmezliğin savunmadaki rolü.</div>
+      <div class="meta">Keşif Sabotajı · Maliyet</div>
+    </a>
+
+    <a class="card" href="makale/10-guvenlik-bir-durustur.html">
+      <div class="kicker">Makale · 10</div>
+      <div class="title">Güvenlik Bir Meslek Değil, Bir Duruştur</div>
+      <div class="desc">Güvenliği “mindset” ve etik dayanıklılık olarak konumlandırır.</div>
+      <div class="meta">Sorumluluk · Sınır</div>
+    </a>
+    <a class="card" href="makale/01-savunma-odakli-yaklasim.html">
+      <div class="kicker">Makale · 01</div>
+      <div class="title">Siber Güvenlikte Savunma Odaklı Yaklaşım</div>
+      <div class="desc">Savunmanın teknik bir zorunluluktan öte stratejik ve etik bir duruş olduğunu ele alır.</div>
+      <div class="meta">Önleme · Tespit · Müdahale</div>
+    </a>
+
+    <a class="card" href="makale/02-etik-sinirlar-bilgi-gucu.html">
+      <div class="kicker">Makale · 02</div>
+      <div class="title">Etik Sınırlar ve Bilgi Gücü</div>
+      <div class="desc">Teknik gücün etik sorumluluklarını; “yapabilmek” ile “yapmak” arasındaki çizgiyi tartışır.</div>
+      <div class="meta">Bilgi Etiği · Responsible Disclosure</div>
+    </a>
+
+    <a class="card" href="makale/03-kriz-anlari-sessiz-guc.html">
+      <div class="kicker">Makale · 03</div>
+      <div class="title">Kriz Anları ve Sessiz Güç</div>
+      <div class="desc">Krizi teknik bir olaydan çok, belirsizlik altında karar alma süreci olarak konumlandırır.</div>
+      <div class="meta">Cognitive Tunneling · Stratejik Sessizlik</div>
+    </a>
+
+    <a class="card" href="makale/04-sessiz-savunma-teorisi.html">
+      <div class="kicker">Makale · 04</div>
+      <div class="title">Sessiz Savunma Teorisi</div>
+      <div class="desc">Görünürlük–güvenlik tersliğini ve keşfi sabote eden mimari sessizliği inceler.</div>
+      <div class="meta">Recon Sabotajı · Minimal İz</div>
+    </a>
+  </div>
+
+  <p style="margin-top:22px"><a href="../yayinlar.html">← Yayınlara dön</a></p>
+</main>
+
+<footer><div class="container"><small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small></div></footer>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/tts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

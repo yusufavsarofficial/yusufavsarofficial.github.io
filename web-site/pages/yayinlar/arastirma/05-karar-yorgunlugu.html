@@ -1,0 +1,257 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Kriz Anlarında Karar Yorgunluğu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <style>
+    .article{ max-width:900px; margin:auto; line-height:1.95; }
+    .article h2{ margin-top:34px; font-size:22px; }
+    .article h3{ margin-top:22px; font-size:18px; }
+    .article p{ margin-top:14px; text-align:justify; }
+    .meta{ opacity:.65; font-size:14px; margin-top:6px; }
+    .callout{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    ul{ margin-top:10px; line-height:1.85; }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      overflow:hidden;
+    }
+    th, td{
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background:rgba(255,255,255,.05);
+      font-weight:800;
+    }
+    tr:last-child td{ border-bottom:none; }
+    pre{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      padding:16px;
+      border-radius:12px;
+      overflow:auto;
+      margin-top:14px;
+    }
+    .sig{
+      margin-top:36px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .sig .name{ font-weight:900; letter-spacing:.4px; }
+    .sig .role{ opacity:.75; margin-top:4px; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <div class="brand">YUSUF AVŞAR</div>
+    <nav class="nav">
+      <a href="../../../index.html">ANASAYFA</a>
+      <a href="../../../pages/hakkimda.html">HAKKIMDA</a>
+      <a href="../../../pages/faaliyet.html">FAALİYET</a>
+      <a href="../../../pages/yayinlar.html">YAYINLAR</a>
+      <a href="../../../pages/katkilar.html">KATKILAR</a>
+      <a href="../../../pages/iletisim.html">İLETİŞİM</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container article">
+
+  <section class="hero">
+    <h1>Kriz Anlarında Karar Yorgunluğu</h1>
+    <p class="hint">
+      SOC Operasyonlarında Decision Fatigue ve Sistemsel Hata Üretimi
+    </p>
+    <div class="meta">Araştırma · SOC · Decision Fatigue · Post-Incident Analizi</div>
+  </section>
+
+  <h2>Özet</h2>
+  <p>
+    Bu araştırma, kriz anlarında güvenlik ekiplerinde ortaya çıkan “Karar Yorgunluğu”nun (Decision Fatigue),
+    operasyonel hatalar ve gözden kaçan tehditler üzerindeki etkisini incelemektedir. Çalışmada, SOC
+    (Security Operations Center) analistlerinin vardiya saatleri ilerledikçe verdikleri kararların kalitesi,
+    olay kayıtları üzerinden değerlendirilmiştir.
+  </p>
+  <p>
+    Güvenlik ihlalleri çoğu zaman “yanlış karar” ile açıklanır: “Neden o IP engellenmedi?”, “Neden alarm kapatıldı?”
+    gibi sorular sorulur. Bu çalışma ise daha temel bir soruya odaklanır: Bu kararlar hangi bilişsel koşullar altında
+    verildi? İrade ve karar verme kapasitesi sınırsız değildir; sürekli seçim yapmak ve risk değerlendirmek,
+    insan zihninde ölçülebilir bir tükenme etkisi üretir.
+  </p>
+
+  <h2>1. Giriş ve Problem</h2>
+  <p>
+    SOC ortamı, neredeyse kesintisiz bir karar üretim hattıdır. Analist, her alarm için bir sonuç üretmek zorundadır:
+    gerçek tehdit mi, yanlış pozitif mi, eskale edilecek mi, izlenecek mi, kapatılacak mı?
+    Bu kararların her biri, bağlam bilgisi, deneyim, risk algısı ve zaman baskısı üzerinden şekillenir.
+  </p>
+  <p>
+    Roy Baumeister’in “Ego Depletion” (benlik tükenmesi) yaklaşımı, irade ve karar verme yetisinin sınırlı bir kaynak
+    gibi çalıştığını öne sürer. Bu yaklaşım, SOC operasyonlarına uygulandığında çarpıcı bir gerçek ortaya çıkar:
+    gün boyunca yüzlerce karar veren analist, vardiya sonunda aynı kaliteyi sürdüremeyebilir.
+  </p>
+
+  <div class="callout">
+    <strong>Kritik soru</strong>
+    “Yanlış karar verildi” demek kolaydır. Asıl mesele, bu kararın hangi koşullarda ve hangi yük altında verildiğini
+    analiz edebilmektir.
+  </div>
+
+  <h2>2. Yöntem</h2>
+  <p>
+    Araştırma, üç farklı kurumun SOC kayıtları üzerinden yürütülmüştür. Toplam 1200+ olay kaydı incelenmiş,
+    vardiya saatlerine göre hata örüntüleri karşılaştırılmıştır. Analiz, özellikle “false negative” (gözden kaçan tehdit)
+    oranlarına odaklanmıştır.
+  </p>
+
+  <ul>
+    <li><strong>Veri seti:</strong> 3 kurum SOC logları (1200+ olay)</li>
+    <li><strong>Analiz:</strong> Vardiya saatlerine göre karar kalitesi ve false negative oranları</li>
+    <li><strong>Odak:</strong> Bilişsel yük, tekrar eden alarmlar, varsayılan tercih eğilimi</li>
+  </ul>
+
+  <h2>3. Bulgular: Yorgunluk ve Risk</h2>
+  <p>
+    Analiz, vardiya ilerledikçe karar kalitesinin düştüğünü ve riskli kısayolların arttığını göstermektedir.
+    Bu düşüş, tek bir bireyin performans problemi gibi değil; süreç ve iş yükü tasarımının ürettiği sistemik bir sonuç
+    olarak değerlendirilmelidir.
+  </p>
+
+  <h3>3.1 Vardiya Sonu Körlüğü</h3>
+  <p>
+    Vardiyanın son iki saatinde yapılan incelemelerde hata oranı, ilk iki saate göre yaklaşık %35 daha yüksektir.
+    Bu fark, özellikle yoğun alarm akışı olan günlerde daha belirgin hâle gelmektedir.
+  </p>
+
+  <h3>3.2 Varsayılanı Seçme Eğilimi (Default Bias)</h3>
+  <p>
+    Karar yorgunluğu yaşayan analistler, daha az bilişsel efor gerektiren seçeneklere yönelme eğilimindedir.
+    “Riskli dosyayı incele” yerine “Güvenli işaretle” gibi düşük eforlu kararlar daha sık görülür.
+    Bu durum, bilinçli bir ihmal değil; zihnin enerji tasarrufu mekanizmasıdır.
+  </p>
+
+  <h3>3.3 Alarm Yorgunluğu ve Duyarsızlaşma</h3>
+  <p>
+    Sürekli tekrar eden ve çoğu yanlış pozitif olan alarmlar, analist üzerinde duyarsızlaşma (desensitization) etkisi
+    yaratır. Zihin, “zaten bir şey çıkmıyor” varsayımı üretir. Bu varsayım, gerçek saldırının da aynı gürültü içinde
+    kaybolmasına neden olur.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Gözlenen Örüntü</th>
+        <th>Operasyonel Sonuç</th>
+        <th>Sistemsel Karşılık</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vardiya sonuna doğru hata artışı</td>
+        <td>Tehdit kaçırma / yanlış sınıflandırma</td>
+        <td>İş yükü ve mola tasarımının yeniden kurgulanması</td>
+      </tr>
+      <tr>
+        <td>Default seçeneğe yönelim</td>
+        <td>Riskli olayların “kolay kapatılması”</td>
+        <td>UI/UX, onay mekanizması ve iki aşamalı doğrulama</td>
+      </tr>
+      <tr>
+        <td>Tekrarlayan yanlış pozitifler</td>
+        <td>Duyarsızlaşma, alarmın değersizleşmesi</td>
+        <td>Korelasyon, deduplikasyon, kural iyileştirme</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Tartışma: Güvenliği “Yorulmaz İnsan” Varsayımı Üzerine Kurmak</h2>
+  <p>
+    Güvenlik mimarileri, insanın yorulmayacağı varsayımı üzerine kurulamaz. SOC analisti; sadece teknik alarmı değil,
+    bağlamı, riski ve olası iş etkisini birlikte değerlendirir. Bu değerlendirme kapasitesi, sürekli ve yoğun kullanımda
+    düşer. Bu düşüş kaçınılmazsa, sistem tasarımı bunu hesaba katmalıdır.
+  </p>
+  <p>
+    Bu noktada otomasyonun (SOAR) rolü yanlış anlaşılmamalıdır. Otomasyon “insanı devre dışı bırakmak” için değil;
+    insanın bilişsel yükünü azaltmak ve karar kalitesini korumak için kullanılmalıdır.
+  </p>
+
+  <h2>5. Teknik Karşılık: Bilişsel Yük Azaltma Tasarımı</h2>
+  <p>
+    Aşağıdaki yaklaşım, karar yorgunluğunu azaltmak için süreç + otomasyon + tasarımın birlikte ele alınmasını hedefler:
+  </p>
+
+  <pre><code>
+# Konsept: karar yorgunluğunu azaltan SOC akışı
+events = ingest()
+events = deduplicate(events)
+events = correlate(events)             # bağlam ekle: varlık kritiklik, kullanıcı rolü, geçmiş davranış
+events = risk_score(events)            # önceliklendirme
+events = auto_close_low_risk(events)   # düşük risk otomatik kapatma (kontrollü)
+queue  = distribute_by_load(events)    # iş yüküne göre dağıtım
+breaks = enforce_micro_breaks()        # mikro mola / rota
+  </code></pre>
+
+  <ul>
+    <li><strong>Gürültü azaltma:</strong> Kural iyileştirme, yanlış pozitifleri düşürme</li>
+    <li><strong>UI/UX:</strong> Riskli kapatma için ikinci onay, “kolay kapatma” tuzaklarını azaltma</li>
+    <li><strong>Vardiya tasarımı:</strong> Mikro molalar, rotasyon, yoğun saatlerde destek</li>
+    <li><strong>Otomasyon:</strong> Tekrarlayan düşük risk işleri otomatikleştirme</li>
+  </ul>
+
+  <h2>6. Sonuç</h2>
+  <p>
+    Bu araştırma, kriz anlarında karar yorgunluğunun SOC karar kalitesini belirgin şekilde düşürdüğünü göstermektedir.
+    Yanlış kararlar, çoğu zaman bireysel yetersizlik değil; aşırı bilişsel yük ve süreç tasarımının ürettiği sistemsel
+    bir sonuçtur.
+  </p>
+  <p>
+    Güvenlik, yalnızca tehditleri değil; karar veremeyecek hâle gelme sınırlarını da planlamalıdır.
+    Otomasyon, insanı değiştirmek için değil; insanın bilişsel yükünü azaltmak için kullanılmalıdır.
+  </p>
+
+  <div class="sig">
+    <div class="name">YUSUF AVŞAR</div>
+    <div class="role">Siber Güvenlik & Sistem Mimarı</div>
+  </div>
+
+  <p style="margin-top:28px">
+    <a href="../arastirma.html">← Araştırma listesine dön</a>
+  </p>
+
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  </div>
+</footer>
+
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/tts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

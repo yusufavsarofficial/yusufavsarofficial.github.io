@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+    .wrap{ max-width:1100px; margin:auto; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    @media (max-width: 980px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 640px){ .grid{ grid-template-columns: 1fr;} }
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:18px;
+      text-decoration:none;
+      display:block;
+      transition: transform .15s ease, background .15s ease;
+      min-height: 170px;
+    }
+    .card:hover{ transform: translateY(-2px); background:rgba(255,255,255,.05); }
+    .kicker{ opacity:.7; font-size:12px; letter-spacing:.4px; text-transform:uppercase; }
+    .title{ font-size:18px; font-weight:900; margin-top:8px; line-height:1.35; }
+    .desc{ opacity:.85; margin-top:10px; line-height:1.65; }
+    .meta{ opacity:.55; margin-top:12px; font-size:12px; }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container navbar">
+    <div class="brand">YUSUF AVŞAR</div>
+    <nav class="nav">
+      <a href="../../index.html">ANASAYFA</a>
+      <a href="../hakkimda.html">HAKKIMDA</a>
+      <a href="../faaliyet.html">FAALİYET</a>
+      <a href="../yayinlar.html">YAYINLAR</a>
+      <a href="../katkilar.html">KATKILAR</a>
+      <a href="../iletisim.html">İLETİŞİM</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container wrap">
+  <section class="hero">
+    <h1>BLOG</h1>
+    <p class="hint">Kısa notlar, sahadan gözlemler ve süreç içinden çıkarılmış sade değerlendirmeler.</p>
+  </section>
+
+  <div class="grid">
+    <a class="card" href="blog/07-kirilma-noktalari.html">
+      <div class="kicker">Blog · 07</div>
+      <div class="title">Kırılma Noktaları İnsanı Yeniden Tanımlar</div>
+      <div class="desc">Kırılmanın bir son değil; yeniden konumlanma olduğuna dair notlar.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/08-savunmayi-secmek.html">
+      <div class="kicker">Blog · 08</div>
+      <div class="title">Savunmayı Seçmek Korkaklık Değildir</div>
+      <div class="desc">Savunmanın eylemsizlik değil; stratejik bir konumlanma olduğu üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/09-bosluklar-nefes-alani.html">
+      <div class="kicker">Blog · 09</div>
+      <div class="title">Boşluklar Hata Değil, Nefes Alanıdır</div>
+      <div class="desc">Buffer ve tolerans payının sistemleri nasıl ayakta tuttuğu üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/10-sessizlik-stratejidir.html">
+      <div class="kicker">Blog · 10</div>
+      <div class="title">Sessizlik Bir Eksiklik Değil, Stratejidir</div>
+      <div class="desc">Bilinmemeyi seçmenin, gücü ve kontrolü nasıl büyüttüğü üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+    <a class="card" href="blog/04-disiplin-sessizdir.html">
+      <div class="kicker">Blog · 04</div>
+      <div class="title">Disiplin Sessizdir, Gösteriş Yapmaz</div>
+      <div class="desc">Gerçek disiplinin gürültü değil; davranışsal tutarlılık olduğunu anlatan notlar.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/05-bilginin-karanlik-tarafi.html">
+      <div class="kicker">Blog · 05</div>
+      <div class="title">Bilginin Karanlık Tarafı</div>
+      <div class="desc">Bilginin her zaman aydınlatmadığı; bazen yük, bazen gölge ürettiği üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/06-insan-en-buyuk-acik.html">
+      <div class="kicker">Blog · 06</div>
+      <div class="title">İnsan En Büyük Açık</div>
+      <div class="desc">Teknolojinin değil; duygunun, alışkanlığın ve sosyal baskının ürettiği açıklara dair.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+    <a class="card" href="blog/01-gorunmeyen-sistemler.html">
+      <div class="kicker">Blog · 01</div>
+      <div class="title">Görünmeyen Sistemler Neden Daha Uzun Yaşar?</div>
+      <div class="desc">Görünürlüğün bir başarı değil, çoğu zaman saldırıya davet olduğunu anlatan bir değerlendirme.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/02-bozulmayan-sistemler.html">
+      <div class="kicker">Blog · 02</div>
+      <div class="title">Bozulmayan Sistemler Öğretmez</div>
+      <div class="desc">Hatanın bir kusur değil, sistemin konuştuğu tek dürüst an olduğu üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+
+    <a class="card" href="blog/03-sahada-ogrenilmeyen.html">
+      <div class="kicker">Blog · 03</div>
+      <div class="title">Sahada Öğrenilmeyen Bilgi Eksiktir</div>
+      <div class="desc">Teorinin “nasıl”ı, sahanın ise “ne zaman”ı öğrettiği gerçeği üzerine.</div>
+      <div class="meta">Sistem & Güvenlik</div>
+    </a>
+  </div>
+
+  <p style="margin-top:22px"><a href="../yayinlar.html">← Yayınlara dön</a></p>
+</main>
+
+<footer><div class="container"><small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small></div></footer>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/tts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

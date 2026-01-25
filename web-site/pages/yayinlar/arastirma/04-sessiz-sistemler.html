@@ -1,0 +1,227 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Sessiz Sistemler: Düşük Görünürlüklü Altyapılar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <style>
+    .article{ max-width:900px; margin:auto; line-height:1.95; }
+    .article h2{ margin-top:34px; font-size:22px; }
+    .article h3{ margin-top:22px; font-size:18px; }
+    .article p{ margin-top:14px; text-align:justify; }
+    .meta{ opacity:.65; font-size:14px; margin-top:6px; }
+    .callout{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    ul{ margin-top:10px; line-height:1.85; }
+    pre{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      padding:16px;
+      border-radius:12px;
+      overflow:auto;
+      margin-top:14px;
+    }
+    .sig{
+      margin-top:36px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .sig .name{ font-weight:900; letter-spacing:.4px; }
+    .sig .role{ opacity:.75; margin-top:4px; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <div class="brand">YUSUF AVŞAR</div>
+    <nav class="nav">
+      <a href="../../../index.html">ANASAYFA</a>
+      <a href="../../../pages/hakkimda.html">HAKKIMDA</a>
+      <a href="../../../pages/faaliyet.html">FAALİYET</a>
+      <a href="../../../pages/yayinlar.html">YAYINLAR</a>
+      <a href="../../../pages/katkilar.html">KATKILAR</a>
+      <a href="../../../pages/iletisim.html">İLETİŞİM</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container article">
+
+  <section class="hero">
+    <h1>Sessiz Sistemler</h1>
+    <p class="hint">
+      Düşük Görünürlüklü Altyapılar ve Siber Dayanıklılık
+    </p>
+    <div class="meta">
+      Araştırma · Güvenlik Mimarisi · Controlled Invisibility · Dayanıklılık
+    </div>
+  </section>
+
+  <h2>Özet</h2>
+  <p>
+    Bu araştırma, “Sessiz Sistemler” (Silent Infrastructure) kavramını ele alarak,
+    düşük görünürlüklü altyapıların siber saldırılara karşı dayanıklılığını incelemektedir.
+    Çalışma kapsamında, dış dünyaya yüksek miktarda telemetri, banner bilgisi ve servis
+    yanıtı sunan altyapılar ile minimum ayak izi bırakan, kontrollü biçimde sessiz kalan
+    sistemler karşılaştırılmıştır.
+  </p>
+  <p>
+    Araştırma bulguları, görünürlüğün her zaman bir avantaj olmadığını; aksine
+    güvenlik perspektifinden bakıldığında aşırı görünürlüğün saldırı yüzeyini genişlettiğini
+    göstermektedir. Sessiz sistemler, saldırıyı engellemekten ziyade saldırganı yavaşlatan,
+    hataya zorlayan ve tespiti kolaylaştıran stratejik bir savunma katmanı sunmaktadır.
+  </p>
+
+  <h2>1. Giriş: Görünürlük – Dayanıklılık Paradoksu</h2>
+  <p>
+    Geleneksel BT yönetimi ve modern DevOps yaklaşımları, “gözlemlenebilirlik”
+    (observability) ilkesini temel bir gereklilik olarak kabul eder. Sistemlerin sürekli
+    veri üretmesi, metrik yayınlaması ve dışarıdan kolayca izlenebilmesi operasyonel
+    açıdan avantaj sağlar.
+  </p>
+  <p>
+    Ancak güvenlik perspektifinden bakıldığında bu yaklaşım farklı bir sonuç üretir:
+    dış dünyaya karşı aşırı gözlemlenebilirlik, saldırgan için hazır bir keşif haritası
+    anlamına gelir. Banner’lar, açık portlar, hata mesajları, API yanıtları ve
+    telemetri uç noktaları, saldırganın hedefi daha saldırıya başlamadan tanımasını sağlar.
+  </p>
+  <p>
+    Bu araştırma, görünürlüğün mutlak bir erdem olmadığını; aksine “kontrollü görünmezliğin”
+    (Controlled Invisibility) güvenlik dayanıklılığı açısından stratejik bir değer
+    taşıdığını savunmaktadır.
+  </p>
+
+  <div class="callout">
+    <strong>Temel yaklaşım</strong>
+    Operasyonel görünürlük içeride artırılabilir; dışarıya karşı ise bilinçli olarak
+    sınırlandırılmalıdır. Güvenlikte mesele “görünür olmak” değil, “doğru yere görünür olmaktır”.
+  </div>
+
+  <h2>2. Yöntem</h2>
+  <p>
+    Araştırma, karşılaştırmalı altyapı analizi yöntemiyle yürütülmüştür.
+    İnceleme kapsamında 12 farklı altyapı değerlendirilmiştir:
+  </p>
+
+  <ul>
+    <li><strong>6 yüksek görünürlüklü altyapı:</strong> Yoğun servis yayını, banner bilgisi, açık API uçları</li>
+    <li><strong>6 düşük görünürlüklü altyapı:</strong> Minimal servis yanıtı, kısıtlı telemetri, sessiz ağ profili</li>
+  </ul>
+
+  <p>
+    Altyapılar aynı tehdit senaryolarına maruz bırakılmış; keşif (reconnaissance),
+    ilk temas ve derinleşme (lateral movement) safhalarındaki davranışlar ölçülmüştür.
+  </p>
+
+  <h3>Kullanılan Metrikler</h3>
+  <ul>
+    <li><strong>Keşif Süresi (MTTD – Mean Time to Discovery)</strong></li>
+    <li><strong>Saldırı Derinliği</strong></li>
+    <li><strong>Yanlış Pozitif Oranı</strong></li>
+  </ul>
+
+  <h2>3. Bulgular: Sessizliğin Avantajları</h2>
+  <p>
+    Araştırma sonuçları, düşük görünürlüklü altyapıların saldırı sürecini doğrudan
+    etkileyecek üç temel avantaja sahip olduğunu göstermektedir.
+  </p>
+
+  <h3>3.1 Saldırganı Yavaşlatma</h3>
+  <p>
+    Port taramalarına yanıt vermeyen, yanıltıcı veya gecikmeli cevaplar üreten
+    sistemlerde saldırganın keşif süresi ortalama %40 oranında artmıştır.
+    Bu durum, saldırganın hedef hakkında net bir resim oluşturmasını geciktirmekte
+    ve operasyon maliyetini yükseltmektedir.
+  </p>
+
+  <h3>3.2 Hata Yapmaya Zorlama</h3>
+  <p>
+    Sistem hakkında yeterli bilgi alamayan saldırgan, varsayımlar üzerinden hareket etmek
+    zorunda kalır. Bu da daha agresif, daha gürültülü araçların kullanılmasına neden olur.
+    Sonuç olarak saldırgan, kendi görünürlüğünü artırarak tespit edilme ihtimalini yükseltir.
+  </p>
+
+  <h3>3.3 Kaynak ve Odak Tasarrufu</h3>
+  <p>
+    Gereksiz log ve telemetri üretmeyen sistemler, işlemci gücünü ve ağ kaynaklarını
+    asıl iş yüküne ayırabilir. Ayrıca içeride üretilen sinyal/gürültü oranı düşer,
+    bu da savunma ekiplerinin gerçek tehditleri ayırt etmesini kolaylaştırır.
+  </p>
+
+  <h2>4. Mimari Karşılık: Black Box – Glass Box Dengesi</h2>
+  <p>
+    Araştırma bulguları, ideal mimarinin iki yönlü olması gerektiğini göstermektedir:
+  </p>
+
+  <ul>
+    <li><strong>Dışarıya karşı:</strong> Black Box – minimum bilgi, minimum yüzey</li>
+    <li><strong>İçeriye karşı:</strong> Glass Box – tam görünürlük, tam denetlenebilirlik</li>
+  </ul>
+
+  <p>
+    Bu yaklaşımda amaç, saldırganın sistemi anlamasını zorlaştırırken,
+    savunma ekiplerinin sistem üzerinde tam hâkimiyet kurmasını sağlamaktır.
+  </p>
+
+  <pre><code>
+# Konsept mimari yaklaşım (örnek)
+if request.origin == "external":
+    respond_minimally()
+    suppress_banner()
+    randomize_timing()
+else if request.origin == "internal":
+    enable_full_logging()
+    expose_metrics()
+    allow_debug()
+  </code></pre>
+
+  <h2>5. Sonuç</h2>
+  <p>
+    Sessiz sistemler, modern güvenlik mimarisinde çoğu zaman göz ardı edilen
+    ancak stratejik değeri yüksek bir savunma katmanıdır.
+    Güvenlik her zaman bağırmaz, alarm üretmez veya kendini sürekli göstermez.
+    Bazen en güçlü savunma, fark edilmemektir.
+  </p>
+  <p>
+    Dışarıya karşı “kara kutu”, içeriye karşı “cam kutu” yaklaşımı;
+    dayanıklılığı, tespit kabiliyetini ve operasyonel sürdürülebilirliği birlikte
+    sağlayan dengeli bir güvenlik mimarisi sunmaktadır.
+  </p>
+
+  <div class="sig">
+    <div class="name">YUSUF AVŞAR</div>
+    <div class="role">Siber Güvenlik & Sistem Mimarı</div>
+  </div>
+
+  <p style="margin-top:28px">
+    <a href="../arastirma.html">← Araştırma listesine dön</a>
+  </p>
+
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  </div>
+</footer>
+
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/tts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

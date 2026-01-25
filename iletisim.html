@@ -7,53 +7,61 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* İletişim Kanalları Listesi */
     .contact-list {
       list-style: none;
       padding: 0;
       margin: 20px 0;
     }
     .contact-item {
-      padding: 18px;
-      border-bottom: 1px solid #eee;
+      padding: 20px;
+      border-bottom: 1px solid #f0f0f0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.3s;
-      text-decoration: none; /* Link alt çizgisini kaldırır */
+      transition: all 0.2s ease;
+      text-decoration: none;
     }
-    .contact-item:hover { background: #f9f9f9; }
+    .contact-item:hover { background: #fafafa; }
     .contact-item:last-child { border-bottom: none; }
     
     .contact-info { display: flex; align-items: center; gap: 15px; }
-    .contact-info i { font-size: 1.5rem; width: 30px; text-align: center; color: #2c3e50; }
+    .contact-info i { font-size: 1.4rem; width: 30px; color: #1a1a1a; }
     
-    .contact-label { font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
-    .contact-value { color: #2980b9; font-weight: 600; }
+    .contact-label { font-weight: 700; color: #444; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; }
+    .contact-value { color: #2c3e50; font-weight: 500; }
 
-    /* Önemli Uyarı Bölümü */
-    .warning-box {
-      background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
-      border: 2px dashed #d9534f;
-      padding: 25px;
-      margin: 30px 0;
-      border-radius: 8px;
-      text-align: center;
+    /* Resmi Bildiri Alanı - Daha Ciddi ve Vakur Stil */
+    .formal-notice {
+      background: #ffffff;
+      border: 1px solid #d1d1d1;
+      border-left: 4px solid #1a1a1a; /* Kırmızı yerine siyah otoriteyi temsil eder */
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
-    .warning-box h3 {
-      color: #d9534f;
-      margin-top: 0;
-      text-transform: uppercase;
-      font-size: 1.2rem;
+    .notice-header {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: #b02a37; /* Sadece başlıkta ciddi bir kırmızı tonu */
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
     }
-    .warning-box p {
-      margin-bottom: 0;
-      font-weight: bold;
+    .notice-body {
       color: #333;
-      line-height: 1.6;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+    .notice-footer {
+      margin-top: 15px;
+      font-style: italic;
+      color: #777;
+      font-size: 0.85rem;
     }
   </style>
 </head>
@@ -86,8 +94,8 @@
 
 <main class="container">
   <section class="hero">
-    <h1>İletişim Kanalları</h1>
-    <p class="hint">Tıklayarak doğrudan bağlantı kurabilirsiniz.</p>
+    <h1>Resmi İletişim Hattı</h1>
+    <p class="hint">Bilgi edinme ve kurumsal yazışmalar için ilgili kanalları kullanınız.</p>
   </section>
 
   <section class="card">
@@ -95,34 +103,39 @@
       <a href="https://instagram.com/avyusuf95" target="_blank" class="contact-item">
         <div class="contact-info">
           <i class="fa-brands fa-instagram"></i>
-          <span class="contact-label">INSTAGRAM</span>
+          <span class="contact-label">Instagram</span>
         </div>
-        <span class="contact-value">@avyusuf95</span>
+        <span class="contact-value">avyusuf95</span>
       </a>
 
       <a href="https://t.me/Yusufavsarofficial" target="_blank" class="contact-item">
         <div class="contact-info">
           <i class="fa-brands fa-telegram"></i>
-          <span class="contact-label">TELEGRAM</span>
+          <span class="contact-label">Telegram</span>
         </div>
-        <span class="contact-value">@Yusufavsarofficial</span>
+        <span class="contact-value">Yusufavsarofficial</span>
       </a>
 
       <a href="mailto:yusufavsarofficial@proton.me" class="contact-item">
         <div class="contact-info">
           <i class="fa-regular fa-envelope"></i>
-          <span class="contact-label">E-POSTA</span>
+          <span class="contact-label">E-Posta</span>
         </div>
         <span class="contact-value">yusufavsarofficial@proton.me</span>
       </a>
     </div>
   </section>
 
-  <section class="warning-box">
-    <h3><i class="fa-solid fa-triangle-exclamation"></i> ÖNEMLİ BİLDİRİM</h3>
-    <p>
-      YASADIŞI VEYA EĞİTİM TEKLİFLERİNE KESİNLİKLE CEVAP VERİLMEYECEKTİR.
-    </p>
+  <section class="formal-notice">
+    <div class="notice-header">
+      <i class="fa-solid fa-gavel"></i> Yasal Uyarı ve Kısıtlamalar
+    </div>
+    <div class="notice-body">
+      Yürütülen faaliyetlerin etik çerçevesi ve hukuki standartları gereği; <strong>yasadişı faaliyetlere ilişkin her türlü talep, teklif veya eğitim içerikli iş birliği başvuruları</strong> kesinlikle değerlendirmeye alınmamaktadır. Bu kapsamdaki iletiler sistem tarafından filtrelenmekte ve yanıtlanmamaktadır. 
+    </div>
+    <div class="notice-footer">
+      * İlkelerimiz doğrultusunda yalnızca meşru ve akademik/stratejik çerçevedeki başvurular dikkate alınır.
+    </div>
   </section>
 </main>
 

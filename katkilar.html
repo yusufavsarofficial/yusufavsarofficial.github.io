@@ -1,250 +1,94 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Katkılar</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .page{ max-width:1100px; margin:auto; }
-    .lead{ margin-top:14px; line-height:1.9; opacity:.92; }
-    .section{ margin-top:26px; }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:16px;
-      margin-top:14px;
-    }
-    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
-    .card{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:18px;
-    }
-    .card h3{ margin:0; font-size:18px; letter-spacing:.2px; }
-    .card p{ margin-top:10px; line-height:1.85; opacity:.9; text-align:justify; }
-    .badge{
-      display:inline-block;
-      margin-top:10px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      font-size:12px;
-      opacity:.85;
-    }
-    .callout{
-      margin-top:18px;
-      padding:16px 16px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      line-height:1.9;
-    }
-    .callout strong{ letter-spacing:.3px; }
-    ul{ margin-top:10px; line-height:1.9; }
-    li{ margin-top:6px; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katkılar | Yusuf Avşar</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
 <header>
   <div class="container navbar">
     <div class="brand">YUSUF AVŞAR</div>
 
     <nav class="nav">
       <a href="index.html">ANASAYFA</a>
-      <a href="pages/hakkimda.html">HAKKIMDA</a>
-      <a href="pages/faaliyet.html">FAALİYET</a>
-      <a href="pages/yayinlar.html">YAYINLAR</a>
-      <a href="pages/katkilar.html">KATKILAR</a>
-      <a href="pages/iletisim.html">İLETİŞİM</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html">YAYINLAR</a>
+      <a href="katkilar.html" class="active">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
 
       <div class="dropdown">
         <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
         <div class="dropdown-menu">
-          <a href="pages/ataturk/ataturk.html">Atatürk</a>
-          <a href="pages/ataturk/ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
-          <a href="pages/ataturk/milli-mucadele.html">Milli Mücadele</a>
-          <a href="pages/ataturk/turk-kulturu.html">Türk Kültürü</a>
-          <a href="pages/ataturk/belgeler.html">Belgeler</a>
-          <a href="pages/ataturk/ilkeler-miras.html">İlkeler & Miras</a>
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
         </div>
       </div>
     </nav>
   </div>
 </header>
 
-<main class="container page">
+<main class="container">
+
   <section class="hero">
-    <h1>KATKILAR</h1>
-    <p class="hint">Güvenliği “tekil müdahale” değil, sürdürülebilir bir yapı olarak ele alan çalışmalar.</p>
+    <h1>Katkılar</h1>
+    <p class="hint">Bilgi paylaşımı, destek ve kolektif üretim</p>
   </section>
 
-  <p class="lead">
-    Siber güvenlik alanındaki katkılarım; yalnızca teknik bilgiye değil, sahada edinilmiş deneyime,
-    kriz anlarında alınan kararlara ve farklı ölçeklerde yürütülen operasyonel süreçlere dayanır.
-    Yaklaşımım, “bir olayı çözmek” ile sınırlı değildir; aynı olayın tekrar etmesini engelleyecek
-    kurumsal refleksi, ölçülebilir süreçleri ve ekip davranışını inşa etmeyi hedefler.
-  </p>
-
-  <div class="callout">
-    <strong>Gizlilik Notu:</strong> Bu sayfada anlatılan katkılar, etik ve gizlilik ilkeleri kapsamında paylaşılmaktadır.
-    Kurum isimleri, operasyonel ayrıntılar ve tanımlayıcı bilgiler bilinçli olarak yer verilmeden aktarılmıştır.
-  </div>
-
-  <section class="section">
-    <h2>Kurumsal Düzeyde Katkı Alanları</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Operasyon ve Süreç Tasarımı</h3>
-        <p>
-          Güvenlik operasyonlarında en sık görülen problem, “araç var ama süreç yok” durumudur.
-          Katkılarımın önemli bir kısmı, operasyonların tekrar edilebilir hale gelmesini sağlayan
-          iş akışlarının oluşturulmasına odaklanır: olay sınıflandırma, önceliklendirme, eskalasyon,
-          vardiya devri, kayıt standardı, kapanış kriterleri ve post-incident değerlendirme.
-        </p>
-        <span class="badge">SOC Süreçleri · IR Playbook</span>
-      </div>
-
-      <div class="card">
-        <h3>Risk ve Zafiyet Yönetimi</h3>
-        <p>
-          Zafiyet yönetimi yalnızca tarama çıktısı üretmek değildir; çıktıların iş değeriyle
-          eşleştirilmesi ve gerçekçi bir takvime oturtulması gerekir. Bu kapsamda katkılarım,
-          kritik varlık envanteriyle başlayan, risk skorlaması ve iş etkisi analiziyle ilerleyen,
-          düzeltme planı (remediation) ve doğrulama adımlarıyla tamamlanan bir yönetim modeli kurmaya yöneliktir.
-        </p>
-        <span class="badge">Envanter · Önceliklendirme · Doğrulama</span>
-      </div>
-
-      <div class="card">
-        <h3>Olay Müdahale ve Kriz Koordinasyonu</h3>
-        <p>
-          Kriz anlarında teknik doğrular kadar, karar mekanizmasının sağlıklı işlemesi belirleyicidir.
-          Olay müdahale süreçlerinde; ilk tespit, hızlı izolasyon, kanıt bütünlüğü, iletişim disiplinleri,
-          kayıt altına alma ve geri dönüş (recovery) adımlarının netleştirilmesi üzerine çalışmalar yürüttüm.
-          Amaç “panikle kapatmak” değil, kontrollü müdahale ile iş sürekliliğini korumaktır.
-        </p>
-        <span class="badge">Containment · Communication · Recovery</span>
-      </div>
-
-      <div class="card">
-        <h3>Teknik–Yönetim Köprüsü</h3>
-        <p>
-          Kurumsal yapılarda güvenlik çoğu zaman “teknik birim işi” gibi görülür. Oysa yönetim seviyesinde
-          doğru anlaşılmayan her risk, sahada yanlış karara dönüşür. Bu nedenle katkılarım; teknik çıktıları,
-          yönetimin karar verebileceği sade, anlaşılır ve ölçülebilir bir dile çevirmeyi; raporlamayı bir vitrin değil
-          karar destek mekanizması haline getirmeyi hedefler.
-        </p>
-        <span class="badge">Raporlama · Karar Destek · Yönetişim</span>
-      </div>
-    </div>
+  <section class="card">
+    <h2>Bilgi Paylaşımı</h2>
+    <p>
+      Güvenlik ve etik alanlarında yapılan bilgi paylaşımları; hızlı tüketim
+      yerine kalıcı değer üretmeyi hedefler. Bu kapsamda notlar, analizler ve
+      deneyim aktarımı ön plandadır.
+    </p>
   </section>
 
-  <section class="section">
-    <h2>Kamu ve Resmî Yapılarda Yaklaşım</h2>
-    <div class="card">
-      <p>
-        Resmî kurumlarla ilişkili süreçlerde katkılarım, güvenliğin yalnızca teknik bir gereklilik değil,
-        kurumsal bir refleks hâline gelmesi üzerine konumlanır. Bu çerçevede; risk değerlendirme yaklaşımları,
-        güvenlik farkındalığı, operasyonel disiplin, erişim kontrolü pratikleri ve olay anı koordinasyon kabiliyeti
-        gibi başlıklarda iyileştirme katkıları sunuldu.
-      </p>
-      <p>
-        Bu çalışmalarda temel prensip; prosedür üretmekten ziyade, prosedürün saha karşılığını inşa etmektir.
-        “Yazılı kural” ile “uygulanan kural” arasındaki fark kapatılmadığı sürece güvenlik sürdürülebilir hale gelmez.
-      </p>
-      <span class="badge">Disiplin · Farkındalık · Saha Uygulaması</span>
-    </div>
+  <section class="card">
+    <h2>Danışmanlık ve Geri Bildirim</h2>
+    <p>
+      Kurum ve ekiplerin güvenlik süreçlerine yönelik geri bildirimler;
+      gizlilik esasına uygun, yapılandırılmış ve sürdürülebilir çözümler
+      sunmayı amaçlar.
+    </p>
   </section>
 
-  <section class="section">
-    <h2>Özel Sektörde Odaklandığım Çalışmalar</h2>
-    <div class="card">
-      <p>
-        Özel sektör tarafında katkılarım daha geniş bir yelpazeye yayılır: operasyonların yeniden yapılandırılması,
-        ekiplerin doğru şekilde konumlandırılması, rol ve sorumlulukların netleştirilmesi, olay müdahale süreçlerinin
-        standardize edilmesi ve karar alma mekanizmalarının sağlıklı işlemesi üzerine çalışmalar yürüttüm.
-      </p>
-      <p>
-        Teknik katkılarım; sistem ve ağ güvenliği değerlendirmeleri, mimari bakış, zafiyet analizi, erişim kontrol
-        iyileştirmeleri, log yönetimi ve korelasyon, dokümantasyon standardı ve yönetim raporlaması gibi başlıkları kapsar.
-        Odak noktam, karmaşık teknik detayları sadeleştirerek uygulanabilir hâle getirmektir.
-      </p>
-
-      <ul>
-        <li><strong>Güvenlik mimarisi:</strong> saldırı yüzeyini daraltma, segmentasyon ve minimum ayrıcalık ilkeleri.</li>
-        <li><strong>İzleme & tespit:</strong> gürültüyü azaltma, anlamlı alarmlar üretme, temel olay korelasyonu.</li>
-        <li><strong>Dokümantasyon:</strong> ekip devri, prosedür netliği, olay sonrası öğrenme kültürü.</li>
-        <li><strong>Ölçümleme:</strong> MTTD/MTTR gibi metriklerle “hissetmek” yerine “görmek”.</li>
-      </ul>
-
-      <span class="badge">Mimari · İzleme · Dokümantasyon · Ölçüm</span>
-    </div>
+  <section class="card">
+    <h2>Topluluk Katkıları</h2>
+    <p>
+      Açık kaynak yaklaşımlar, gönüllü katkılar ve topluluk temelli üretimler;
+      bireysel kazanımdan çok ortak faydayı önceleyen bir anlayışla
+      desteklenmektedir.
+    </p>
   </section>
 
-  <section class="section">
-    <h2>Uzaktan Ekip Çalışmaları ve Süreklilik</h2>
-    <div class="card">
-      <p>
-        Uzaktan yürütülen çalışmalarda ekiplerle birlikte hareket ederek yalnızca teknik çözüm üretmekle kalmadım;
-        süreçlerin takibini, önceliklendirilmesini, aksiyonların kapanmasını ve sürekliliğin korunmasını sağladım.
-        Bu yaklaşım, “bir defa toparlayıp bırakmak” yerine, sistemin ve ekibin zaman içinde olgunlaşmasını hedefler.
-      </p>
-      <p>
-        Uygulamada en kritik konu; sorumluluğun dağılmasını engellemektir. Bu nedenle katkılarım; net görev dağılımı,
-        kontrol listeleri, düzenli gözden geçirme ritimleri ve sade raporlama çerçeveleri ile desteklenmiştir.
-      </p>
-      <span class="badge">Koordinasyon · Öncelik · Süreç Takibi</span>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Topluluk ve Proje Düzeyinde Katkılar</h2>
-    <div class="card">
-      <p>
-        Proje ve topluluk çalışmalarında bilgi paylaşımı, rehberlik ve deneyim aktarımı ön planda oldu.
-        Bu katkılar; görünürlükten çok fayda üretmeye odaklanan bir anlayışla ilerledi.
-        Doğru bilginin doğru zamanda paylaşılması, güvenlik kültürünün oluşması için kritik bir etkendir.
-      </p>
-      <span class="badge">Rehberlik · Deneyim Aktarımı · Kültür</span>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Perspektif</h2>
-    <div class="card">
-      <p>
-        Tüm bu katkıların arka planında, geçmişten gelen saldırı tarafı deneyiminin kazandırdığı bir perspektif bulunur.
-        Ancak bu perspektif, bugün yürütülen çalışmalarda agresif değil; savunmayı güçlendiren bir avantaj olarak değerlendirilir.
-        Amaç “göstermek” değil; sessiz ve sürdürülebilir bir güvenlik kapasitesi oluşturmaktır.
-      </p>
-      <p>
-        Katkılarımın ortak paydası; güvenliği geçici çözümlerle değil, kalıcı ve yönetilebilir yapılarla ele almaktır.
-        Güvenliği bir proje bitişi değil; kurumun işleyişine yerleşmiş bir davranış standardı olarak konumlandırmayı hedeflerim.
-      </p>
-      <span class="badge">Sürdürülebilirlik · Netlik · Disiplin</span>
-    </div>
+  <section class="card">
+    <h2>Mentorluk</h2>
+    <p>
+      Alanla ilgilenen kişilere yönelik mentorluk; hazır reçeteler vermek
+      yerine, doğru soruları sormayı ve düşünce disiplinini geliştirmeyi
+      hedefler.
+    </p>
   </section>
 
 </main>
 
-<footer><div class="container"><small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small></div></footer>
+<footer>
+  <div class="container">
+    <small class="copyright">
+      © 2010 – yusufavsarofficial Tüm hakları saklıdır
+    </small>
+  </div>
+</footer>
+
 <script src="app.js"></script>
 <script src="tts.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

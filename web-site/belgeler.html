@@ -1,0 +1,825 @@
+﻿<!doctype html>
+<html lang='tr'>
+<head>
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<title>Belgeler</title>
+<link rel='stylesheet' href='style.css' />
+
+<style>
+.belge-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.belge {
+  background:#111;
+  border:1px solid #333;
+  padding:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+.belge:hover {
+  border-color:#cfa24a;
+  box-shadow:0 0 15px rgba(207,162,74,.3);
+}
+.belge h3 { margin:0 0 8px }
+.belge small { color:#aaa }
+.detay {
+  display:none;
+  margin-top:12px;
+  font-size:14px;
+  line-height:1.6;
+  color:#ddd;
+  border-top:1px dashed #444;
+  padding-top:10px;
+}
+.belge.active .detay { display:block }
+.etiket {
+  display:inline-block;
+  background:#cfa24a;
+  color:#000;
+  padding:2px 8px;
+  font-size:12px;
+  margin-bottom:6px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class='container navbar'>
+    <div class='brand'>WEB SİTEM</div>
+    <nav class='nav'>
+      <a href='index.html'>ANASAYFA</a>
+      <a href='hakkimda.html'>HAKKIMDA</a>
+      <a href='faaliyet.html'>FAALİYET</a>
+      <a href='yayinlar.html'>YAYINLAR</a>
+      <a href='katkilar.html'>KATKILAR</a>
+      <a href='iletisim.html'>İLETİŞİM</a>
+      <div class='dropdown'>
+        <button class='btn' data-dropdown-btn>ATATÜRK ▾</button>
+        <div class='dropdown-menu'>
+          <a href='ataturk.html'>Atatürk</a>
+          <a href='ataturk-milliyetciligi.html'>Atatürk Milliyetçiliği</a>
+          <a href='milli-mucadele.html'>Milli Mücadele</a>
+          <a href='turk-kulturu.html'>Türk Kültürü</a>
+          <a href='belgeler.html'>Belgeler</a>
+          <a href='ilkeler-miras.html'>İlkeler & Miras</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class='container'>
+  <section class='hero'>
+    <h1>Belgeler</h1>
+    <p class='hint'>Cumhuriyetin kurucu belgeleri – yaşayan arşiv</p>
+  </section>
+
+  <section class='belge-grid'>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Erzurum Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Vatanın bölünmezliği kabul edilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Kongre</span>
+  <h3>Sivas Kongresi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli cemiyetler birleştirilmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Meclis</span>
+  <h3>TBMM Açılışı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Devlet</span>
+  <h3>Cumhuriyetin İlanı</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Türkiye Cumhuriyeti kurulmuştur.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Halifeliğin Kaldırılması</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Laik devlet yapısı güçlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Eğitim</span>
+  <h3>Tevhid-i Tedrisat</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Eğitim birliği sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Hukuk</span>
+  <h3>Medeni Kanun</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Toplumsal eşitlik sağlanmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Dil</span>
+  <h3>Harf Devrimi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Okuryazarlık oranı artmıştır.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>İlke</span>
+  <h3>Altı Ok</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+</div>
+<div class='belge' onclick='this.classList.toggle("active")'>
+  <span class='etiket'>Genelge</span>
+  <h3>Amasya Genelgesi</h3>
+  <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  <div class='detay'>Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+</div>
+
+  </section>
+</main>
+
+<footer>
+  <div class='container'>
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+  </div>
+</footer>
+
+<script src='app.js'></script>
+<script src="tts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

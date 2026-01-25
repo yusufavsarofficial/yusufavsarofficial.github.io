@@ -6,17 +6,46 @@
   <title>İletişim | Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* İletişim sayfasına özel form düzeni */
-    .form-group { margin-bottom: 15px; text-align: left; }
-    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .form-control { 
-      width: 100%; 
-      padding: 10px; 
-      border: 1px solid #ddd; 
-      border-radius: 4px; 
-      font-family: inherit;
+    /* İletişim Sayfası Özel Stilleri */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
     }
-    textarea.form-control { resize: vertical; min-height: 120px; }
+    .contact-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-label { font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+    .contact-value { color: #000; font-weight: 500; }
+
+    /* Dikkat Çeken Uyarı Kutusu */
+    .warning-box {
+      background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+      border-left: 5px solid #d9534f;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .warning-box h3 {
+      color: #d9534f;
+      margin-top: 0;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    .warning-box p {
+      margin-bottom: 0;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -51,42 +80,32 @@
 <main class="container">
 
   <section class="hero">
-    <h1>İletişim</h1>
-    <p class="hint">Görüş, öneri veya iş birliği talepleriniz için aşağıdaki kanalları kullanabilirsiniz.</p>
+    <h1>İletişim Kanalları</h1>
+    <p class="hint">Resmi iletişim ve sosyal ağ bağlantıları</p>
   </section>
 
   <section class="card">
-    <h2>Mesaj Gönderin</h2>
-    <form action="#" method="post">
-      <div class="form-group">
-        <label for="name">Adınız Soyadınız</label>
-        <input type="text" id="name" name="name" class="form-control" required placeholder="Örn: Ahmet Yılmaz">
+    <div class="contact-list">
+      <div class="contact-item">
+        <span class="contact-label">INSTAGRAM</span>
+        <span class="contact-value">avyusuf95</span>
       </div>
-      
-      <div class="form-group">
-        <label for="email">E-posta Adresiniz</label>
-        <input type="email" id="email" name="email" class="form-control" required placeholder="Örn: ahmet@mail.com">
+      <div class="contact-item">
+        <span class="contact-label">TELEGRAM</span>
+        <span class="contact-value">Yusufavsarofficial</span>
       </div>
-
-      <div class="form-group">
-        <label for="subject">Konu</label>
-        <input type="text" id="subject" name="subject" class="form-control" placeholder="Mesajınızın konusu">
+      <div class="contact-item">
+        <span class="contact-label">E-POSTA</span>
+        <span class="contact-value">yusufavsarofficial@proton.me</span>
       </div>
-
-      <div class="form-group">
-        <label for="message">Mesajınız</label>
-        <textarea id="message" name="message" class="form-control" required></textarea>
-      </div>
-
-      <button type="submit" class="btn">Gönder</button>
-    </form>
+    </div>
   </section>
 
-  <section class="card">
-    <h2>Doğrudan İletişim</h2>
-    <p>E-posta üzerinden doğrudan ulaşmak isterseniz:</p>
-    <p><strong>E-posta:</strong> iletisim@yusufavsar.com</p>
-    <p>Hafta içi 09:00 - 18:00 saatleri arasında iletilen mesajlara 24 saat içerisinde dönüş sağlanmaktadır.</p>
+  <section class="warning-box">
+    <h3>Önemli Bildirim</h3>
+    <p>
+      YASADIŞI VEYA EĞİTİM TEKLİFLERİNE KESİNLİKLE CEVAP VERİLMEYECEKTİR.
+    </p>
   </section>
 
 </main>

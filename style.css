@@ -1,4 +1,4 @@
-﻿*{box-sizing:border-box}
+*{box-sizing:border-box}
 :root{
   --bg:#0b0f17;
   --card:rgba(255,255,255,.06);
@@ -678,5 +678,52 @@ html, body {
   .nav.open {
     height: auto;
     min-height: unset;
+  }
+}
+
+/* === MOBİL HAMBURGER MENÜ FINAL DÜZELTME === */
+@media (max-width: 768px) {
+
+  /* Header referans olsun */
+  .site-header {
+    position: relative;
+    z-index: 100;
+  }
+
+  /* Menü kapalıyken */
+  .nav {
+    position: absolute;
+    top: 100%;        /* header altı */
+    left: 0;
+    right: 0;
+
+    background: #0b0b0b;
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px 0;
+    height: auto;
+    min-height: unset;
+  }
+
+  /* Menü açıkken */
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+  }
+
+  /* TAM EKRAN DAVRANIŞI ENGELLE */
+  .nav,
+  .nav.open {
+    max-height: none;
+    overflow: visible;
   }
 }

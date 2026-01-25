@@ -1,224 +1,104 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
-  <title>Güvenlikte Disiplinin Ölçülebilir Etkileri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disiplinin Etkileri | Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    .article{ max-width:900px; margin:auto; line-height:1.95; }
-    .article h2{ margin-top:34px; font-size:22px; }
-    .article h3{ margin-top:22px; font-size:18px; }
-    .article p{ margin-top:14px; text-align:justify; }
-    .meta{ opacity:.65; font-size:14px; margin-top:6px; }
-    .callout{
-      margin-top:18px;
-      padding:14px 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-    }
-    ul{ margin-top:10px; line-height:1.85; }
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:16px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:12px;
-      overflow:hidden;
-    }
-    th, td{
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      vertical-align:top;
-    }
-    th{
-      background:rgba(255,255,255,.05);
-      font-weight:800;
-    }
-    tr:last-child td{ border-bottom:none; }
-    pre{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.12);
-      padding:16px;
-      border-radius:12px;
-      overflow:auto;
-      margin-top:14px;
-    }
-    .sig{
-      margin-top:36px;
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.12);
-    }
-    .sig .name{ font-weight:900; letter-spacing:.4px; }
-    .sig .role{ opacity:.75; margin-top:4px; }
-  </style>
 </head>
-
 <body>
 
 <header>
   <div class="container navbar">
     <div class="brand">YUSUF AVŞAR</div>
+
     <nav class="nav">
       <a href="index.html">ANASAYFA</a>
-      <a href="pages/hakkimda.html">HAKKIMDA</a>
-      <a href="pages/faaliyet.html">FAALİYET</a>
-      <a href="pages/yayinlar.html">YAYINLAR</a>
-      <a href="pages/katkilar.html">KATKILAR</a>
-      <a href="pages/iletisim.html">İLETİŞİM</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html" class="active">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
+      <div class="dropdown">
+        <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
+        <div class="dropdown-menu">
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
 
-<main class="container article">
+<main class="container">
 
   <section class="hero">
-    <h1>Güvenlikte Disiplinin Ölçülebilir Etkileri</h1>
+    <h1>Disiplinin Etkileri</h1>
     <p class="hint">
-      Davranışsal Tutarlılık, Dayanıklılık ve Kriz Performansı
+      Disiplin baskı değil, sürdürülebilirliktir
     </p>
-    <div class="meta">
-      Araştırma · Disiplin · Operasyonel Güvenlik · Süreç Tutarlılığı
-    </div>
   </section>
 
-  <h2>Özet</h2>
-  <p>
-    Bu araştırma, güvenlik disiplininin sistem dayanıklılığı üzerindeki ölçülebilir etkilerini
-    incelemektedir. Disiplin kavramı, yaygın algının aksine “ceza, sertlik veya askeri hiyerarşi”
-    olarak değil; davranışsal tutarlılık (consistency) ve prosedüre bağlılık olarak ele alınmıştır.
-  </p>
-  <p>
-    Çalışma, disiplinli ekiplerin yalnızca daha “düzenli” değil; aynı zamanda daha öngörülebilir,
-    daha hızlı toparlanan ve hata tekrarını azaltan yapılar olduğunu ortaya koymaktadır.
-  </p>
+  <section class="card" style="line-height:1.9">
+    <p><strong>Not:</strong> Araştırma yazısı</p>
 
-  <div class="callout">
-    <strong>Tanım</strong>
-    Disiplin; biri izlerken değil, kimse bakmazken prosedüre ne kadar sadık kalındığıdır.
-  </div>
+    <p>
+      Disiplin genellikle
+      kısıtlama ve baskıyla karıştırılır.
+      Oysa disiplin,
+      karmaşayı azaltan,
+      belirsizliği ortadan kaldıran
+      bir düzen aracıdır.
+    </p>
 
-  <h2>1. Giriş</h2>
-  <p>
-    Güvenlik dünyasında disiplin kavramı çoğu zaman askeri bir jargonla anılır ve soyut kalır.
-    Oysa güvenlikte disiplin, ölçülebilir ve gözlemlenebilir bir performans göstergesidir.
-    Kriz anında, yorgunluk anında veya rutin baskı altında ekiplerin nasıl davrandığı,
-    disiplin seviyesini doğrudan ortaya koyar.
-  </p>
-  <p>
-    Bu çalışma, disiplinin “niyet” değil; tekrar eden davranış kalıpları üzerinden değerlendirilmesi
-    gerektiğini savunur. Disiplinli ekipler hata yapmaz değildir; ancak hatayı tekrar etmez.
-  </p>
+    <p>
+      Disiplinli sistemlerde
+      roller bellidir,
+      süreçler tanımlıdır
+      ve beklentiler nettir.
+      Bu netlik,
+      hataların kişisel değil
+      yapısal olarak ele alınmasını sağlar.
+    </p>
 
-  <h2>2. Yöntem</h2>
-  <p>
-    Araştırma, karşılaştırmalı ekip analizi yöntemiyle yürütülmüştür. Farklı kurumlarda görev yapan
-    güvenlik ekipleri, disiplin seviyelerine göre iki gruba ayrılmış ve belirli operasyonel
-    göstergeler üzerinden karşılaştırılmıştır.
-  </p>
+    <p>
+      Güvenlik alanında disiplin,
+      refleks değil alışkanlık üretir.
+      Kriz anında “ne yapacağım” sorusu yerine
+      “nasıl yaparım” cevabı devreye girer.
+    </p>
 
-  <ul>
-    <li><strong>Karşılaştırma:</strong> Yüksek disiplinli ekipler vs. düşük disiplinli ekipler</li>
-    <li><strong>Odak:</strong> Süreç tutarlılığı, kriz refleksi, hata tekrar oranı</li>
-    <li><strong>Veri:</strong> Operasyonel kayıtlar, bakım logları, post-mortem raporları</li>
-  </ul>
+    <p>
+      Disiplinsiz yapılar
+      yetenekli bireyleri bile yorar.
+      Disiplinli yapılar ise
+      ortalama ekiplerle
+      yüksek istikrar sağlar.
+    </p>
 
-  <h3>2.1 Kullanılan Göstergeler</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Gösterge</th>
-        <th>Açıklama</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Patch geçme süresi</td>
-        <td>Yamanın yayınlanmasından üretime alınmasına kadar geçen süre</td>
-      </tr>
-      <tr>
-        <td>Log inceleme sıklığı</td>
-        <td>Rutin ve kriz dışı dönemlerde logların düzenli kontrol edilme oranı</td>
-      </tr>
-      <tr>
-        <td>Prosedür ihlal sayısı</td>
-        <td>Tanımlı süreçlere uyulmayan olayların sayısı</td>
-      </tr>
-    </tbody>
-  </table>
+    <p>
+      Sonuç:
+      disiplin, özgürlüğü kısıtlamaz;
+      onu mümkün kılar.
+    </p>
+  </section>
 
-  <h2>3. Bulgular</h2>
-  <p>
-    Karşılaştırma sonuçları, disiplin seviyesinin güvenlik performansına doğrudan etki ettiğini
-    göstermektedir. Bu etki, yalnızca teknik çıktılarda değil; ekip davranışlarında da net biçimde
-    gözlemlenmiştir.
-  </p>
-
-  <h3>3.1 Öngörülebilirlik</h3>
-  <p>
-    Disiplinli ekiplerin yönettiği sistemler, daha az sürpriz üretmektedir. Bunun temel nedeni,
-    bakım, güncelleme ve kontrol faaliyetlerinin zamanında ve tutarlı şekilde yapılmasıdır.
-    Bu tutarlılık, güvenlik olaylarının “şaşırtıcı” değil, “beklenen” şekilde ilerlemesini sağlar.
-  </p>
-
-  <h3>3.2 Kriz Refleksi</h3>
-  <p>
-    Kriz anlarında disiplinli ekipler, düşük disiplinli ekiplere kıyasla ortalama %34 daha hızlı
-    organize olmuştur. Bunun nedeni teknik üstünlük değil; karar alma kaslarının önceden
-    çalıştırılmış olmasıdır. “Ne yapacağız?” sorusu sorulmaz, prosedür otomatik olarak devreye girer.
-  </p>
-
-  <div class="callout">
-    <strong>Gözlem</strong>
-    Krizde hız, panikten değil; önceden tekrarlanmış doğru davranışlardan gelir.
-  </div>
-
-  <h3>3.3 Hata Tekrarı ve Öğrenme</h3>
-  <p>
-    Düşük disiplinli ekiplerde aynı hata türlerinin (örneğin zayıf parola kullanımı veya geciken
-    yamalar) tekrarlandığı görülmüştür. Disiplinli ekiplerde ise post-mortem süreçleri,
-    suçlu aramaya değil; davranış düzeltmeye odaklanmaktadır.
-  </p>
-  <p>
-    Bu yaklaşım, hataların sistematik olarak sönümlenmesini ve tekrar etme ihtimalinin düşmesini sağlar.
-  </p>
-
-  <h2>4. Tartışma: Disiplin Kahramanlığın Alternatifidir</h2>
-  <p>
-    Güvenlikte başarı çoğu zaman “kahramanlık hikâyeleri” üzerinden anlatılır. Oysa sürdürülebilir
-    güvenlik, bireysel parlaklıkla değil; sıkıcı görünen rutinlere sadakatle inşa edilir.
-  </p>
-  <p>
-    Disiplin, yaratıcılığı öldürmez; kaosu sınırlar. Kriz anında özgürlük değil, çerçeve sağlar.
-    Bu çerçeve, insanların hata yapmasını değil; hatadan dönmesini kolaylaştırır.
-  </p>
-
-  <h2>5. Sonuç</h2>
-  <p>
-    Bu araştırma, güvenlik disiplininin soyut bir kavram değil; doğrudan ölçülebilir ve
-    operasyonel çıktılara yansıyan bir unsur olduğunu ortaya koymaktadır.
-  </p>
-  <p>
-    Gerçek güvenlik, anlık kahramanlıklarla değil; tekrarlanabilir doğru davranışlarla inşa edilir.
-    Sıkıcı rutinlere sadakat, kriz anındaki kaosu yenen en güçlü unsurdur.
-  </p>
-
-  <div class="sig">
-    <div class="name">YUSUF AVŞAR</div>
-    <div class="role">Siber Güvenlik & Sistem Mimarı</div>
-  </div>
-
-  <p style="margin-top:28px">
-    <a href="arastirma.html">← Araştırma listesine dön</a>
-  </p>
+  <section class="card">
+    <a class="btn" href="arastirma.html">← Araştırmalara Dön</a>
+  </section>
 
 </main>
 
 <footer>
   <div class="container">
-    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+    <small class="copyright">
+      © 2010 – yusufavsarofficial Tüm hakları saklıdır
+    </small>
   </div>
 </footer>
 
@@ -226,12 +106,3 @@
 <script src="tts.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

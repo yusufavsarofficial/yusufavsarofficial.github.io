@@ -5,40 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>İletişim | Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* İletişim Sayfası Özel Stilleri */
     .contact-list {
       list-style: none;
       padding: 0;
       margin: 20px 0;
     }
     .contact-item {
-      padding: 15px;
+      padding: 18px;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.3s;
+      text-decoration: none; /* Link alt çizgisini kaldırır */
     }
+    .contact-item:hover { background: #f9f9f9; }
     .contact-item:last-child { border-bottom: none; }
-    .contact-label { font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; }
-    .contact-value { color: #000; font-weight: 500; }
+    
+    .contact-info { display: flex; align-items: center; gap: 15px; }
+    .contact-info i { font-size: 1.5rem; width: 30px; text-align: center; color: #2c3e50; }
+    
+    .contact-label { font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+    .contact-value { color: #2980b9; font-weight: 600; }
 
-    /* Dikkat Çeken Uyarı Kutusu */
+    /* Önemli Uyarı Bölümü */
     .warning-box {
       background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
-      border-left: 5px solid #d9534f;
+      border: 2px dashed #d9534f;
       padding: 25px;
       margin: 30px 0;
-      border-radius: 4px;
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
     .warning-box h3 {
       color: #d9534f;
       margin-top: 0;
       text-transform: uppercase;
       font-size: 1.2rem;
-      letter-spacing: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
     .warning-box p {
       margin-bottom: 0;
@@ -53,7 +62,6 @@
 <header>
   <div class="container navbar">
     <div class="brand">YUSUF AVŞAR</div>
-
     <nav class="nav">
       <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
@@ -61,7 +69,6 @@
       <a href="yayinlar.html">YAYINLAR</a>
       <a href="katkilar.html">KATKILAR</a>
       <a href="iletisim.html" class="active">İLETİŞİM</a>
-
       <div class="dropdown">
         <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
         <div class="dropdown-menu">
@@ -78,43 +85,50 @@
 </header>
 
 <main class="container">
-
   <section class="hero">
     <h1>İletişim Kanalları</h1>
-    <p class="hint">Resmi iletişim ve sosyal ağ bağlantıları</p>
+    <p class="hint">Tıklayarak doğrudan bağlantı kurabilirsiniz.</p>
   </section>
 
   <section class="card">
     <div class="contact-list">
-      <div class="contact-item">
-        <span class="contact-label">INSTAGRAM</span>
-        <span class="contact-value">avyusuf95</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-label">TELEGRAM</span>
-        <span class="contact-value">Yusufavsarofficial</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-label">E-POSTA</span>
+      <a href="https://instagram.com/avyusuf95" target="_blank" class="contact-item">
+        <div class="contact-info">
+          <i class="fa-brands fa-instagram"></i>
+          <span class="contact-label">INSTAGRAM</span>
+        </div>
+        <span class="contact-value">@avyusuf95</span>
+      </a>
+
+      <a href="https://t.me/Yusufavsarofficial" target="_blank" class="contact-item">
+        <div class="contact-info">
+          <i class="fa-brands fa-telegram"></i>
+          <span class="contact-label">TELEGRAM</span>
+        </div>
+        <span class="contact-value">@Yusufavsarofficial</span>
+      </a>
+
+      <a href="mailto:yusufavsarofficial@proton.me" class="contact-item">
+        <div class="contact-info">
+          <i class="fa-regular fa-envelope"></i>
+          <span class="contact-label">E-POSTA</span>
+        </div>
         <span class="contact-value">yusufavsarofficial@proton.me</span>
-      </div>
+      </a>
     </div>
   </section>
 
   <section class="warning-box">
-    <h3>Önemli Bildirim</h3>
+    <h3><i class="fa-solid fa-triangle-exclamation"></i> ÖNEMLİ BİLDİRİM</h3>
     <p>
       YASADIŞI VEYA EĞİTİM TEKLİFLERİNE KESİNLİKLE CEVAP VERİLMEYECEKTİR.
     </p>
   </section>
-
 </main>
 
 <footer>
   <div class="container">
-    <small class="copyright">
-      © 2010 – yusufavsarofficial Tüm hakları saklıdır
-    </small>
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
   </div>
 </footer>
 

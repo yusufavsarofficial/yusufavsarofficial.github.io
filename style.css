@@ -641,3 +641,42 @@ html, body {
     margin-top: 20px;
   }
 }
+
+/* === MOBİL HAMBURGER MENÜ DÜZELTMESİ === */
+
+/* Mobilde nav varsayılan kapalı */
+@media (max-width: 768px) {
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: #0b0b0b;
+    padding: 20px 0;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1000;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 14px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Sayfanın tamamını kaplamasını engelle */
+  .nav,
+  .nav.open {
+    height: auto;
+    min-height: unset;
+  }
+}

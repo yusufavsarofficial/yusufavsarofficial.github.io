@@ -1,4 +1,4 @@
-﻿let utterance;
+let utterance;
 let speaking = false;
 
 function getReadableText() {
@@ -15,7 +15,8 @@ function toggleRead() {
   }
   utterance = new SpeechSynthesisUtterance(getReadableText());
   utterance.lang = 'tr-TR';
-  utterance.rate = 0.95;
+  // Hız 0.95'ten 1.15'e çıkarıldı (Daha seri ve akıcı okuma için)
+  utterance.rate = 1.15; 
   utterance.onend = () => {
     speaking = false;
     btn.innerText = '🔊 Oku';
@@ -41,10 +42,10 @@ Object.assign(btn.style, {
   background: '#cfa24a',
   color: '#000',
   fontWeight: '600',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  boxShadow: '0 4px 12px rgba(0,0,0,0.1)' // Hafif bir gölge ile daha belirgin hale getirildi
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(btn);
 });
-

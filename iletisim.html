@@ -3,8 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Savunma Odaklı Yaklaşım | Yusuf Avşar</title>
+  <title>İletişim | Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* İletişim sayfasına özel form düzeni */
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+    .form-control { 
+      width: 100%; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 4px; 
+      font-family: inherit;
+    }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+  </style>
 </head>
 <body>
 
@@ -16,9 +29,9 @@
       <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
       <a href="faaliyet.html">FAALİYET</a>
-      <a href="yayinlar.html" class="active">YAYINLAR</a>
+      <a href="yayinlar.html">YAYINLAR</a>
       <a href="katkilar.html">KATKILAR</a>
-      <a href="iletisim.html">İLETİŞİM</a>
+      <a href="iletisim.html" class="active">İLETİŞİM</a>
 
       <div class="dropdown">
         <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
@@ -38,52 +51,42 @@
 <main class="container">
 
   <section class="hero">
-    <h1>Savunma Odaklı Yaklaşım</h1>
-    <p class="hint">Güvenliğin saldırıyla değil, akılla kazanılması</p>
-  </section>
-
-  <section class="card" style="line-height:1.9">
-
-    <p><strong>Yayın Tarihi:</strong> 2024</p>
-
-    <p>
-      Güvenlik alanında yaygın bir yanılgı vardır:
-      güçlü olmanın saldırgan olmakla eşdeğer olduğu düşünülür.
-      Oysa gerçek güç, kriz çıkmadan önce kurulan savunma
-      mekanizmalarında saklıdır.
-    </p>
-
-    <p>
-      Savunma odaklı yaklaşım; reflekslere değil,
-      analizlere dayalıdır. Sistemler ancak
-      sakin ve tutarlı biçimde ele alındığında
-      sürdürülebilir hâle gelir.
-    </p>
-
-    <p>
-      Saldırı merkezli düşünce kısa vadeli başarılar sağlayabilir;
-      ancak uzun vadede yapıyı yorar.
-      Savunma ise sessizdir, görünmezdir
-      ve bu nedenle çoğu zaman küçümsenir.
-    </p>
-
-    <p>
-      Oysa gerçek güvenlik;
-      riskleri önceden görmek,
-      insan faktörünü hesaba katmak
-      ve acele kararlar almamaktır.
-    </p>
-
-    <p>
-      Bu yaklaşım, yalnızca teknik bir tercih değil;
-      aynı zamanda bir disiplin ve zihniyet meselesidir.
-      Savunma aklı, kontrolü elinde tutar.
-    </p>
-
+    <h1>İletişim</h1>
+    <p class="hint">Görüş, öneri veya iş birliği talepleriniz için aşağıdaki kanalları kullanabilirsiniz.</p>
   </section>
 
   <section class="card">
-    <a class="btn" href="makale.html">← Makalelere Dön</a>
+    <h2>Mesaj Gönderin</h2>
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="name">Adınız Soyadınız</label>
+        <input type="text" id="name" name="name" class="form-control" required placeholder="Örn: Ahmet Yılmaz">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">E-posta Adresiniz</label>
+        <input type="email" id="email" name="email" class="form-control" required placeholder="Örn: ahmet@mail.com">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Konu</label>
+        <input type="text" id="subject" name="subject" class="form-control" placeholder="Mesajınızın konusu">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Mesajınız</label>
+        <textarea id="message" name="message" class="form-control" required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Gönder</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Doğrudan İletişim</h2>
+    <p>E-posta üzerinden doğrudan ulaşmak isterseniz:</p>
+    <p><strong>E-posta:</strong> iletisim@yusufavsar.com</p>
+    <p>Hafta içi 09:00 - 18:00 saatleri arasında iletilen mesajlara 24 saat içerisinde dönüş sağlanmaktadır.</p>
   </section>
 
 </main>
@@ -97,6 +100,5 @@
 </footer>
 
 <script src="app.js"></script>
-<script src="tts.js"></script>
 </body>
 </html>

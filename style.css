@@ -1,5 +1,5 @@
 /* =========================
-   GENEL AYARLAR
+   RESET & GENEL
 ========================= */
 
 * {
@@ -104,7 +104,7 @@ a {
 }
 
 /* =========================
-   HERO (ANASAYFA)
+   HERO – ANASAYFA
 ========================= */
 
 .hero {
@@ -116,7 +116,7 @@ a {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   align-items: center;
 }
@@ -150,13 +150,32 @@ a {
 .hero-right img {
   width: 100%;
   max-width: 300px;
-  height: auto;
   border-radius: 14px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+  box-shadow: 0 20px 45px rgba(0,0,0,.45);
 }
 
 /* =========================
-   KARTLAR
+   HAKKIMDA SAYFASI
+========================= */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,.45);
+  justify-self: end;
+}
+
+/* =========================
+   KARTLAR / İÇERİK
 ========================= */
 
 .grid-3 {
@@ -183,7 +202,7 @@ a {
 }
 
 /* =========================
-   MOBİL AYARLAR
+   MOBİL
 ========================= */
 
 @media (max-width: 768px) {
@@ -215,7 +234,7 @@ a {
     text-align: center;
   }
 
-  /* Hero */
+  /* Hero mobil sıralama */
   .hero {
     padding: 30px 20px;
   }
@@ -227,7 +246,6 @@ a {
     text-align: center;
   }
 
-  /* SIRALAMA */
   .hero-right {
     order: 1;
     margin-bottom: 20px;
@@ -247,6 +265,17 @@ a {
 
   .hero-right img {
     max-width: 220px;
+  }
+
+  /* Hakkımda mobil */
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    max-width: 220px;
+    margin: 20px auto 0;
+    justify-self: center;
   }
 
   /* Kartlar */

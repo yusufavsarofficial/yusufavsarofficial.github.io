@@ -1,45 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yayınlar</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    .publish-nav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:40px;
-      margin-top:24px;
-      font-size:28px;
-      font-weight:800;
-      letter-spacing:1px;
-      flex-wrap:wrap;
-    }
-    .publish-nav a{
-      color:inherit;
-      text-decoration:none;
-      opacity:.9;
-    }
-    .publish-nav a:hover{
-      opacity:1;
-      text-decoration:underline;
-    }
-    .publish-sep{
-      opacity:.4;
-      font-weight:400;
-    }
-    .example-link{
-      color:inherit;
-      text-decoration:none;
-      font-weight:700;
-    }
-    .example-link:hover{
-      text-decoration:underline;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yayınlar | Yusuf Avşar</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -49,21 +14,21 @@
 
     <nav class="nav">
       <a href="index.html">ANASAYFA</a>
-      <a href="pages/hakkimda.html">HAKKIMDA</a>
-      <a href="pages/faaliyet.html">FAALİYET</a>
-      <a href="pages/yayinlar.html">YAYINLAR</a>
-      <a href="pages/katkilar.html">KATKILAR</a>
-      <a href="pages/iletisim.html">İLETİŞİM</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html" class="active">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
 
       <div class="dropdown">
         <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
         <div class="dropdown-menu">
-          <a href="pages/ataturk/ataturk.html">Atatürk</a>
-          <a href="pages/ataturk/ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
-          <a href="pages/ataturk/milli-mucadele.html">Milli Mücadele</a>
-          <a href="pages/ataturk/turk-kulturu.html">Türk Kültürü</a>
-          <a href="pages/ataturk/belgeler.html">Belgeler</a>
-          <a href="pages/ataturk/ilkeler-miras.html">İlkeler & Miras</a>
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
         </div>
       </div>
     </nav>
@@ -72,60 +37,66 @@
 
 <main class="container">
 
-  <section class="hero" style="text-align:center">
+  <section class="hero">
     <h1>Yayınlar</h1>
-    <p class="hint">
-      Buradaki metinler; siber güvenlik odağında notlar, değerlendirmeler ve süreç deneyimlerinden oluşur.
-      Amaç kesin hüküm vermek değil, güvenliğe dair düşünme biçimini sade şekilde kayıt altına almaktır.
-    </p>
-
-    <div class="publish-nav">
-      <a href="yayinlar/blog.html">BLOG</a>
-      <span class="publish-sep">|</span>
-      <a href="yayinlar/makale.html">MAKALE</a>
-      <span class="publish-sep">|</span>
-      <a href="yayinlar/arastirma.html">ARAŞTIRMA</a>
-    </div>
+    <p class="hint">Araştırma, blog ve makaleler</p>
   </section>
 
-  <!-- BLOG ÖRNEK -->
-  <section class="card" style="margin-top:24px">
-    <a class="example-link" href="yayinlar/blog/01-gorunmeyen-sistemler.html">
-      Görünmeyen Sistemler Neden Daha Uzun Yaşar?
-    </a>
-    <p style="margin-top:8px">
-      Sessiz çalışan, dikkat çekmeyen ve gösteriden uzak sistemler genellikle
-      daha uzun ömürlüdür. Görünmezlik, çoğu zaman bilinçli bir tercihtir.
+  <section class="card">
+    <h2>Araştırmalar</h2>
+    <p>
+      Güvenlik, etik ve insan faktörü üzerine hazırlanan araştırmalar;
+      teorik çerçeveden çok sahadaki karşılıkları merkeze alır.
     </p>
+
+    <ul>
+      <li><a href="01-etik-kirilma.html">Etik Kırılma</a></li>
+      <li><a href="02-osint-etkisi.html">OSINT’in Etkisi</a></li>
+      <li><a href="03-insan-faktoru.html">İnsan Faktörü</a></li>
+      <li><a href="04-sessiz-sistemler.html">Sessiz Sistemler</a></li>
+      <li><a href="05-karar-yorgunlugu.html">Karar Yorgunluğu</a></li>
+    </ul>
   </section>
 
-  <!-- MAKALE ÖRNEK -->
-  <section class="card" style="margin-top:14px">
-    <a class="example-link" href="yayinlar/makale/01-savunma-odakli.html">
-      Savunma Odaklı Yaklaşım
-    </a>
-    <p style="margin-top:8px">
-      Güvenliği saldırı refleksiyle değil, süreç ve sürdürülebilirlik
-      perspektifiyle ele almak; kurumsal güvenliğin temelidir.
+  <section class="card">
+    <h2>Blog Yazıları</h2>
+    <p>
+      Gündelik olaylar, güvenlik perspektifiyle kısa ve net biçimde ele alınır.
+      Amaç; hızlı tüketilen içerik değil, düşünmeye sevk eden metinlerdir.
     </p>
+
+    <ul>
+      <li><a href="01-gorunmeyen-sistemler.html">Görünmeyen Sistemler</a></li>
+      <li><a href="02-bozulmayan-sistemler.html">Bozulmayan Sistemler</a></li>
+      <li><a href="03-sahada-ogrenilmeyen.html">Sahada Öğrenilmeyenler</a></li>
+      <li><a href="04-disiplin-sessizdir.html">Disiplin Sessizdir</a></li>
+      <li><a href="05-bilginin-karanlik-tarafi.html">Bilginin Karanlık Tarafı</a></li>
+    </ul>
   </section>
 
-  <!-- ARAŞTIRMA ÖRNEK -->
-  <section class="card" style="margin-top:14px">
-    <a class="example-link" href="yayinlar/arastirma/01-etik-kirilma.html">
-      Etik Kırılma Noktaları
-    </a>
-    <p style="margin-top:8px">
-      Teknik imkânların arttığı her noktada etik sınırlar daha fazla zorlanır.
-      Bu çalışma, karar anlarında bu çizginin nerede kırıldığını inceler.
+  <section class="card">
+    <h2>Makaleler</h2>
+    <p>
+      Kurumsal güvenlik, karar alma ve sürdürülebilir savunma yaklaşımı üzerine
+      daha derinlikli analizler içerir.
     </p>
+
+    <ul>
+      <li><a href="01-savunma-odakli.html">Savunma Odaklı Yaklaşım</a></li>
+      <li><a href="02-etik-sinirlar.html">Etik Sınırlar</a></li>
+      <li><a href="03-kriz-anlari.html">Kriz Anları</a></li>
+      <li><a href="04-sessiz-savunma-teorisi.html">Sessiz Savunma Teorisi</a></li>
+      <li><a href="05-antifragile.html">Antifragile Güvenlik</a></li>
+    </ul>
   </section>
 
 </main>
 
 <footer>
   <div class="container">
-    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
+    <small class="copyright">
+      © 2010 – yusufavsarofficial Tüm hakları saklıdır
+    </small>
   </div>
 </footer>
 
@@ -133,12 +104,3 @@
 <script src="tts.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

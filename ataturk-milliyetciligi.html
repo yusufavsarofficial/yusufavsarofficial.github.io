@@ -1,18 +1,20 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atatürk Milliyetçiliği | Yusuf Avşar</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk Milliyetçiliği</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="container navbar">
+<header class="site-header">
+  <div class="navbar container">
     <div class="brand">YUSUF AVŞAR</div>
 
-    <nav class="nav">
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
       <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
       <a href="faaliyet.html">FAALİYET</a>
@@ -21,10 +23,10 @@
       <a href="iletisim.html">İLETİŞİM</a>
 
       <div class="dropdown">
-        <button class="btn active" data-dropdown-btn>ATATÜRK ▾</button>
+        <button class="dropdown-btn">ATATÜRK ▾</button>
         <div class="dropdown-menu">
           <a href="ataturk.html">Atatürk</a>
-          <a href="ataturk-milliyetciligi.html" class="active">Atatürk Milliyetçiliği</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
           <a href="milli-mucadele.html">Milli Mücadele</a>
           <a href="turk-kulturu.html">Türk Kültürü</a>
           <a href="belgeler.html">Belgeler</a>
@@ -36,73 +38,46 @@
 </header>
 
 <main class="container">
-
   <section class="hero">
     <h1>Atatürk Milliyetçiliği</h1>
-    <p class="hint">
-      Irka değil, bilince ve ortak kader anlayışına dayalı bir millet tanımı
-    </p>
-  </section>
-
-  <section class="card" style="line-height:1.9">
-
-    <p>
-      Atatürk milliyetçiliği, etnik köken, din veya mezhep temelli bir anlayış
-      değildir. Bu milliyetçilik; ortak tarih, ortak kader, ortak kültür ve
-      ortak gelecek bilinci etrafında şekillenen kapsayıcı bir devlet anlayışıdır.
-    </p>
-
-    <p>
-      Mustafa Kemal Atatürk’e göre millet, yalnızca aynı soydan gelen insanların
-      oluşturduğu bir topluluk değildir. Millet; aynı topraklarda yaşayan,
-      aynı acıları paylaşmış ve ortak bir siyasi irade etrafında birleşmiş
-      insanlardan oluşur.
-    </p>
-
-    <p>
-      “Türkiye Cumhuriyeti’ni kuran Türkiye halkına Türk milleti denir”
-      ifadesi, bu anlayışın en açık tanımıdır. Buradaki “Türk” kavramı,
-      etnik değil anayasal bir vatandaşlık kimliğini ifade eder.
-    </p>
-
-    <p>
-      Atatürk milliyetçiliği, bağımsızlık ilkesine dayanır.
-      Siyasi, ekonomik ve kültürel bağımsızlık olmadan
-      milli kimliğin korunamayacağını savunur.
-    </p>
-
-    <p>
-      Bu anlayış çağdaşlaşma ile çelişmez; aksine onu zorunlu görür.
-      Atatürk’e göre milli kimlik, geçmişe saplanarak değil;
-      bilimi, hukuku ve eğitimi rehber edinerek korunabilir.
-    </p>
-
-    <p>
-      Atatürk milliyetçiliği saldırgan değil; savunmacıdır.
-      “Yurtta sulh, cihanda sulh” ilkesi,
-      bu anlayışın dış politikadaki yansımasıdır.
-    </p>
-
+    <p class="hint">Birleştirici, kapsayıcı ve çağdaş bir milli kimlik anlayışı</p>
   </section>
 
   <section class="card">
-    <h2>Özetle Atatürk Milliyetçiliği</h2>
-    <ul>
-      <li>Irkçı değildir</li>
-      <li>Dışlayıcı değildir</li>
-      <li>Akla ve bilime dayanır</li>
-      <li>Bağımsızlığı esas alır</li>
-      <li>Çağdaşlaşmayı zorunlu görür</li>
-    </ul>
-  </section>
+    <p><strong>Atatürk milliyetçiliği</strong>, etnik köken, din veya mezhep temelli bir anlayış değildir. Bu milliyetçilik; ortak tarih, ortak kader, ortak kültür ve ortak gelecek bilinci etrafında şekillenen birleştirici ve kapsayıcı bir devlet anlayışıdır. Temelinde akıl, hukuk ve vatandaşlık bağı yer alır.</p>
 
+    <p>Mustafa Kemal Atatürk’e göre millet, yalnızca aynı soydan gelen insanların topluluğu değildir. Millet; aynı topraklarda yaşayan, aynı acıları paylaşmış, aynı hedeflere yönelmiş ve ortak bir siyasi irade etrafında birleşmiş insanlardan oluşur. Bu nedenle Atatürk milliyetçiliği, ırkçı ya da dışlayıcı bir anlayıştan bilinçli olarak ayrılır.</p>
+
+    <p>Atatürk’ün “Türkiye Cumhuriyeti’ni kuran Türkiye halkına Türk milleti denir” ifadesi, bu anlayışın en net tanımıdır. Bu tanımda “Türk” kavramı bir etnik kimlikten çok, anayasal vatandaşlık anlamı taşır. Devlete bağlılık, ortak hukuk düzenine saygı ve Cumhuriyet değerlerini benimseme, bu milliyetçiliğin temel ölçütleridir.</p>
+
+    <p>Atatürk milliyetçiliği, bağımsızlık ilkesine dayanır. Siyasi, ekonomik ve kültürel bağımsızlık bu anlayışın vazgeçilmez unsurlarıdır. Atatürk’e göre bağımsız olmayan bir milletin milliyetçiliğinden söz edilemez. Bu nedenle milli egemenlik, halkın kendi geleceğini kendisinin belirlemesi esasına dayanır.</p>
+
+    <p>Bu milliyetçilik anlayışı, çağdaşlaşma ile çelişmez; aksine onu zorunlu görür. Atatürk, milli kimliğin korunmasını geçmişe saplanmakta değil, çağın gereklerini yakalamakta görmüştür. Bilim, eğitim ve hukuk alanındaki reformlar, milli kimliği güçlendirmek amacıyla gerçekleştirilmiştir. Ona göre güçlü bir millet, ancak çağdaş kurumlar üzerine inşa edilebilir.</p>
+
+    <p>Atatürk milliyetçiliği aynı zamanda barışçıdır. “Yurtta sulh, cihanda sulh” ilkesi, bu anlayışın dış politikadaki yansımasıdır. Milliyetçilik, başka milletlere üstünlük kurma aracı değil; kendi milletinin onurunu ve bağımsızlığını koruma sorumluluğudur. Bu yönüyle saldırgan değil, savunmacı ve dengelidir.</p>
+
+    <p>Bu anlayışta devletin görevi, milletin tamamını kapsamak ve eşitlik ilkesini korumaktır. Dil, din, mezhep ya da etnik farklılıklar, ayrıştırıcı unsurlar olarak değil; ortak üst kimlik altında varlığını sürdüren zenginlikler olarak değerlendirilir. Hukuk önünde eşitlik, Atatürk milliyetçiliğinin vazgeçilmez şartıdır.</p>
+
+    <p><strong>Sonuç olarak Atatürk milliyetçiliği;</strong><br>
+    ırkçı olmayan,<br>
+    dışlayıcı olmayan,<br>
+    akla ve bilime dayalı,<br>
+    bağımsızlığı esas alan,<br>
+    çağdaşlaşmayı hedefleyen<br>
+    bir milli devlet anlayışıdır.</p>
+
+    <p>Bu milliyetçilik, geçmişten güç alır; ancak yönünü geleceğe çevirir.<br>
+    Ezbere değil bilince,<br>
+    duyguya değil ilkeye,<br>
+    ayrıcalığa değil eşitliğe dayanır.</p>
+
+    <p><strong>Ve Türkiye Cumhuriyeti’nin kurucu felsefesini oluşturur.</strong></p>
+  </section>
 </main>
 
 <footer>
   <div class="container">
-    <small class="copyright">
-      © 2010 – yusufavsarofficial Tüm hakları saklıdır
-    </small>
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
   </div>
 </footer>
 
@@ -110,3 +85,13 @@
 <script src="tts.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

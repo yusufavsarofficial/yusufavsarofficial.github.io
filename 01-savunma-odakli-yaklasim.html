@@ -1,27 +1,56 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
+  <title>Siber Güvenlikte Savunma Odaklı Yaklaşım</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Savunma Odaklı Yaklaşım | Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .article{ max-width:980px; margin:auto; line-height:1.95; }
+    .meta{ opacity:.65; font-size:14px; margin-top:6px; }
+    .article p{ margin-top:12px; text-align:justify; }
+    .summary{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .summary strong{ letter-spacing:.3px; }
+    h2{ margin-top:26px; font-size:22px; }
+    ol{ margin-top:10px; line-height:1.85; }
+    ul{ margin-top:10px; line-height:1.85; }
+    .refs{
+      margin-top:26px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+    .sig{ margin-top:34px; padding-top:18px; border-top:1px solid rgba(255,255,255,.12); }
+    .sig .name{ font-weight:900; letter-spacing:.4px; }
+    .sig .role{ opacity:.75; margin-top:4px; }
+    .back{ margin-top:22px; }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="container navbar">
+<header class="site-header">
+  <div class="navbar container">
     <div class="brand">YUSUF AVŞAR</div>
 
-    <nav class="nav">
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
       <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
       <a href="faaliyet.html">FAALİYET</a>
-      <a href="yayinlar.html" class="active">YAYINLAR</a>
+      <a href="yayinlar.html">YAYINLAR</a>
       <a href="katkilar.html">KATKILAR</a>
       <a href="iletisim.html">İLETİŞİM</a>
 
       <div class="dropdown">
-        <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
+        <button class="dropdown-btn">ATATÜRK ▾</button>
         <div class="dropdown-menu">
           <a href="ataturk.html">Atatürk</a>
           <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
@@ -35,68 +64,68 @@
   </div>
 </header>
 
-<main class="container">
-
+<main class="container article">
   <section class="hero">
-    <h1>Savunma Odaklı Yaklaşım</h1>
-    <p class="hint">Güvenliğin saldırıyla değil, akılla kazanılması</p>
+    <h1>Siber Güvenlikte Savunma Odaklı Yaklaşım</h1>
+    <p class="hint">YUSUF AVŞAR · Siber Güvenlik & Sistem Mimarı</p>
+    <div class="meta">Makale · Siber Güvenlik</div>
   </section>
 
-  <section class="card" style="line-height:1.9">
+  <div class="summary"><strong>ÖZET:</strong> Bu makale, siber güvenlik paradigmasının saldırı odaklı yapıdan savunma odaklı yapıya evrilmesi gerektiğini tartışır; savunmanın teknik bir zorunluluktan öte stratejik ve etik bir duruş olduğunu savunur.</div>
 
-    <p><strong>Yayın Tarihi:</strong> 2024</p>
+  <h2>1. GİRİŞ: GÜVENLİK ALGISININ DÖNÜŞÜMÜ</h2>
+<p>Dijital çağ, insanlık tarihindeki en hızlı yapısal dönüşümlerden birini üretmiştir. Bilgi sistemleri yalnızca destekleyici araçlar olmaktan çıkmış, ekonomik, toplumsal ve siyasal süreçlerin merkezine yerleşmiştir. Bankacılık sistemleri, enerji altyapıları, sağlık kayıtları ve ulusal güvenlik; tamamı dijital sistemlere bağımlı hale gelmiştir. Bu bağımlılık, siber güvenliği tali bir teknik uzmanlık alanı olmaktan çıkararak toplumsal sürekliliğin temel koşullarından biri haline getirmiştir.</p>
+<p>Siber güvenlik tartışmaları uzun yıllar boyunca “nasıl kırılır?”, “nereden sızılır?”, “hangi zafiyet istismar edilebilir?” soruları etrafında şekillenmiştir. Bu yaklaşım, erken dönemlerde sistemlerin zayıflıklarını görünür kılması açısından faydalı olmuş; ancak zamanla güvenliği saldırı merkezli (offensive) bir rekabet alanına indirgemiştir. Oysa modern dijital ekosistemler, bu dar bakış açısının ötesinde, çok katmanlı, dayanıklı (resilient) ve savunma odaklı (defensive) bir güvenlik anlayışını zorunlu kılmaktadır.</p>
 
-    <p>
-      Güvenlik alanında yaygın bir yanılgı vardır:
-      güçlü olmanın saldırgan olmakla eşdeğer olduğu düşünülür.
-      Oysa gerçek güç, kriz çıkmadan önce kurulan savunma
-      mekanizmalarında saklıdır.
-    </p>
+<h2>2. SALDIRI MERKEZLİ PARADİGMANIN ÇIKMAZI</h2>
+<p>Saldırı teknikleri doğası gereği asimetriktir ve sürekli evrilir. Saldırganın tek bir açık bulması yeterliyken, savunmacının tüm açıkları kapatması gerekir. Bu "Defender's Dilemma" (Savunmacının İkilemi), saldırı odaklı bakış açısıyla çözülemez. Sürekli olarak "nasıl saldırılır"ı düşünmek, savunmayı reaktif (tepkisel) bir konuma iter.</p>
+<p>Yani savunma, ancak bir saldırı tekniği bulunduğunda ona karşı geliştirilen bir "yama" olur. Bu yaklaşım, güvenliği bitmeyen bir “yama döngüsüne” hapseder. Sistemler hiçbir zaman “tamamlanmış” olmaz; sürekli eksik ve açık hissi üretir.</p>
 
-    <p>
-      Savunma odaklı yaklaşım; reflekslere değil,
-      analizlere dayalıdır. Sistemler ancak
-      sakin ve tutarlı biçimde ele alındığında
-      sürdürülebilir hâle gelir.
-    </p>
+<h2>3. SAVUNMA ODAKLI YAKLAŞIMIN TEMELLERİ</h2>
+<p>Savunma, saldırının karşıtı değildir. Savunma, saldırıyı aşan bir bilinç düzeyidir. Saldırı çoğu zaman refleksiftir, fırsatçıdır. Savunma ise mimaridir, tasarımdır ve stratejidir. Savunma odaklı yaklaşım (Defense-in-Depth), saldırganın yeteneklerinden bağımsız olarak, sistemin dayanıklılığını esas alır.</p>
+<p>"Saldırı gelecek mi?" diye sormaz; "Saldırı geldiğinde sistem nasıl ayakta kalacak?" diye sorar. Bu yaklaşım, şu üç temel üzerine kuruludur:</p>
+<ol>
+  <li><strong>Önleme (Prevention):</strong> Saldırı yüzeyini daraltmak.</li>
+  <li><strong>Tespit (Detection):</strong> İhlali anında fark etmek.</li>
+  <li><strong>Müdahale ve İyileştirme (Response & Recovery):</strong> Hasarı izole edip sistemi geri döndürmek.</li>
+</ol>
 
-    <p>
-      Saldırı merkezli düşünce kısa vadeli başarılar sağlayabilir;
-      ancak uzun vadede yapıyı yorar.
-      Savunma ise sessizdir, görünmezdir
-      ve bu nedenle çoğu zaman küçümsenir.
-    </p>
+<h2>4. SOSYOTEKNİK BOYUT VE İNSAN</h2>
+<p>Savunma, yalnızca teknik sistemlere (firewall, IPS, EDR) indirgenemez. İnsanlar, süreçler ve kurum kültürü güvenliğin ayrılmaz parçalarıdır. Sosyoteknik sistemler yaklaşımı, güvenliği bu bütünlük içinde ele alır. En güçlü şifreleme algoritması bile, şifresini post-it kağıdına yazan bir çalışanı koruyamaz.</p>
+<p>Dolayısıyla savunma odaklı yaklaşım, insanı "eğitilmesi gereken bir zafiyet" olarak değil, "sistemin bir parçası" olarak görür ve süreçleri insan doğasına uygun tasarlar.</p>
 
-    <p>
-      Oysa gerçek güvenlik;
-      riskleri önceden görmek,
-      insan faktörünü hesaba katmak
-      ve acele kararlar almamaktır.
-    </p>
+<h2>5. SONUÇ</h2>
+<p>Bu makale, siber güvenlikte savunma odaklı yaklaşımın teknik bir gereklilikten çok daha fazlası olduğunu ortaya koymuştur. Savunma, bilgiye hakim olmanın değil; bilgiye sınır koyabilmenin adıdır. Gerçek güç, her şeyi yapabilmekte değil; nerede duracağını, neyi koruyacağını ve kriz anında nasıl ayakta kalacağını bilmektedir. Sürdürülebilir güvenlik, ancak bu savunma bilinciyle mümkündür.</p>
 
-    <p>
-      Bu yaklaşım, yalnızca teknik bir tercih değil;
-      aynı zamanda bir disiplin ve zihniyet meselesidir.
-      Savunma aklı, kontrolü elinde tutar.
-    </p>
+  <div class="refs">
+    <strong>KAYNAKÇA</strong>
+    <ul>
+  <li>Anderson, R. (2001). <em>Security Engineering: A Guide to Building Dependable Distributed Systems</em>. Wiley.</li>
+  <li>Schneier, B. (2015). <em>Data and Goliath</em>. W. W. Norton & Company.</li>
+  <li>Mitnick, K. D., & Simon, W. L. (2002). <em>The Art of Deception</em>. Wiley.</li>
+</ul>
+  </div>
 
-  </section>
+  <div class="sig">
+    <div class="name">YUSUF AVŞAR</div>
+    <div class="role">Siber Güvenlik & Sistem Mimarı</div>
+  </div>
 
-  <section class="card">
-    <a class="btn" href="makale.html">← Makalelere Dön</a>
-  </section>
-
+  <p class="back"><a href="makale.html">← Makale listesine dön</a></p>
 </main>
 
-<footer>
-  <div class="container">
-    <small class="copyright">
-      © 2010 – yusufavsarofficial Tüm hakları saklıdır
-    </small>
-  </div>
-</footer>
-
+<footer><div class="container"><small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small></div></footer>
 <script src="app.js"></script>
 <script src="tts.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

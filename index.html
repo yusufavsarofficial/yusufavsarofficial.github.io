@@ -1,45 +1,23 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yusuf Avşar</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Canlı Bildirim Çubuğu Stili */
-    .update-banner {
-      background: linear-gradient(90deg, #2c3e50, #2980b9);
-      color: white;
-      text-align: center;
-      padding: 12px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-      animation: fadeIn 1s ease-in;
-    }
-    .update-banner span {
-      background: #e74c3c;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-right: 10px;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="container navbar">
+
+<header class="site-header">
+  <div class="navbar container">
     <div class="brand">YUSUF AVŞAR</div>
 
-    <nav class="nav">
-      <a href="index.html" class="active">ANASAYFA</a>
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
       <a href="faaliyet.html">FAALİYET</a>
       <a href="yayinlar.html">YAYINLAR</a>
@@ -47,7 +25,7 @@
       <a href="iletisim.html">İLETİŞİM</a>
 
       <div class="dropdown">
-        <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
+        <button class="dropdown-btn">ATATÜRK ▾</button>
         <div class="dropdown-menu">
           <a href="ataturk.html">Atatürk</a>
           <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
@@ -61,65 +39,74 @@
   </div>
 </header>
 
-<div class="update-banner">
-  <span>Güncelleme</span> DEVAM ETMEKTEDİR. ♥️🇹🇷
-</div>
+<main>
 
-<main class="container">
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero container hero-layout">
+  <div class="hero-left">
     <h1>Akıl, Disiplin ve Sorumluluk</h1>
-    <p class="hint">Güvenlik, strateji ve insan faktörü ekseninde bir duruş</p>
 
-    <div style="margin-top:18px">
-      <audio controls preload="metadata" style="width:100%">
-        <source src="manifesto.mp3" type="audio/mpeg">
-        Tarayıcınız ses etiketini desteklemiyor.
-      </audio>
-    </div>
-  </section>
+    <audio controls preload="metadata">
+      <source src="manifesto.mp3" type="audio/mpeg">
+      Tarayıcınız ses etiketini desteklemiyor.
+    </audio>
 
-  <section class="card">
-    <h2>Bu site ne anlatır?</h2>
-
-    <p>
-      Burası bir vitrin değil; bir kayıt alanı. Disiplinin, sorumluluğun ve
-      sakin karar almanın pratikte neye karşılık geldiğini; güvenlik, etik ve
-      insan faktörü üzerinden anlatan bir arşiv.
+    <p class="hint">
+      Bu site; güvenlik, insan faktörü, strateji, tarih ve bilinç üzerine
+      üretilmiş metinleri ve çalışmaları bir araya getirir.
     </p>
+  </div>
 
+  <div class="hero-right">
+    <img src="bayrak.jpg" alt="Türk Bayrağı">
+  </div>
+</section>
+
+  <!-- ANA BLOKLAR -->
+  <section class="container grid-3">
+
+    <div class="card">
+      <h2>Atatürk</h2>
+      <p>
+        Cumhuriyetin düşünsel temelleri, milli mücadele süreci ve kurucu
+        ilkeler; ezbere değil, anlamaya dayalı bir yaklaşımla ele alınır.
+      </p>
+      <a href="pages/ataturk/ataturk.html" class="link">Devamını Gör →</a>
+    </div>
+
+    <div class="card">
+      <h2>Yayınlar</h2>
+      <p>
+        Güvenlik, insan davranışı, etik, sistem düşüncesi ve kriz yönetimi
+        üzerine yazılar; araştırma, blog ve makale başlıkları altında sunulur.
+      </p>
+      <a href="pages/yayinlar.html" class="link">Tüm Yayınlar →</a>
+    </div>
+
+    <div class="card">
+      <h2>Katkılar</h2>
+      <p>
+        Gönüllü çalışmalar, sahadan edinilmiş deneyimler ve kolektif üretime
+        dayalı katkılar bu bölümde yer alır.
+      </p>
+      <a href="pages/katkilar.html" class="link">İncele →</a></div></section>
+
+  <!-- ALT VURGU -->
+  <section class="container focus">
+    <h2>Bu site ne değildir?</h2>
     <p>
-      Yazılar; gösteriş için değil, iz bırakmak için. Hedef; “çok şey söylemek”
-      değil, doğru şeyleri net söylemek.
+      Popüler söylemler, yüzeysel analizler ve hızlı tüketilen içerikler
+      üretmez. Amaç; kalıcı, düşünmeye zorlayan ve sorumluluk taşıyan
+      bir dijital arşiv oluşturmaktır.
     </p>
-
-    <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap">
-      <a class="btn" href="hakkimda.html">Hakkımda</a>
-      <a class="btn" href="yayinlar.html">Yayınlara Git</a>
-      <a class="btn" href="belgeler.html">Atatürk Belgeler</a>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Hızlı erişim</h2>
-    <p style="margin-bottom:14px">En çok okunan başlıklara kısa yol:</p>
-
-    <div style="display:flex; flex-wrap:wrap; gap:10px">
-      <a href="ataturk.html">Atatürk</a>
-      <a href="milli-mucadele.html">Milli Mücadele</a>
-      <a href="ilkeler-miras.html">İlkeler & Miras</a>
-      <a href="yayinlar.html">Yayınlar</a>
-      <a href="iletisim.html">İletişim</a>
-    </div>
   </section>
 
 </main>
 
 <footer>
   <div class="container">
-    <small class="copyright">
-      © 2010 – yusufavsarofficial Tüm hakları saklıdır
-    </small>
+    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
   </div>
 </footer>
 
@@ -127,5 +114,22 @@
 <script src="tts.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

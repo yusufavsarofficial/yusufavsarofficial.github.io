@@ -1,84 +1,92 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>İletişim | Yusuf Avşar</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İletişim</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* İletişim Kanalları Listesi */
-    .contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
+    .page{ max-width:1100px; margin:auto; }
+    .policy{
+      margin-top:14px;
+      line-height:1.9;
+      opacity:.92;
+      padding:18px 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
     }
-    .contact-item {
-      padding: 20px;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .contact-item:hover { background: #fafafa; }
-    .contact-item:last-child { border-bottom: none; }
-    
-    .contact-info { display: flex; align-items: center; gap: 15px; }
-    .contact-info i { font-size: 1.4rem; width: 30px; color: #1a1a1a; }
-    
-    .contact-label { font-weight: 700; color: #444; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; }
-    .contact-value { color: #2c3e50; font-weight: 500; }
+    .policy p{ margin-top:10px; text-align:justify; }
+    .policy .note{ margin-top:12px; opacity:.9; }
 
-    /* Resmi Bildiri Alanı - Daha Ciddi ve Vakur Stil */
-    .formal-notice {
-      background: #ffffff;
-      border: 1px solid #d1d1d1;
-      border-left: 4px solid #1a1a1a; /* Kırmızı yerine siyah otoriteyi temsil eder */
-      padding: 30px;
-      margin: 40px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:18px;
     }
-    .notice-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #b02a37; /* Sadece başlıkta ciddi bir kırmızı tonu */
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
+    @media (max-width: 950px){ .grid{ grid-template-columns: 1fr; } }
+
+    .contact-card{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:18px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:inherit;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-    .notice-body {
-      color: #333;
-      line-height: 1.8;
-      font-size: 0.95rem;
-      text-align: justify;
+    .contact-card:hover{
+      transform: translateY(-2px);
+      background:rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.18);
     }
-    .notice-footer {
-      margin-top: 15px;
-      font-style: italic;
-      color: #777;
-      font-size: 0.85rem;
+
+    .icon{
+      width:46px; height:46px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+    .icon svg{ width:22px; height:22px; opacity:.92; }
+
+    .meta{ flex:1; }
+    .meta .label{ font-size:13px; opacity:.7; letter-spacing:.3px; }
+    .meta .title{ margin-top:3px; font-size:18px; font-weight:900; letter-spacing:.2px; }
+    .meta .value{ margin-top:6px; font-size:14px; opacity:.85; }
+    .meta .hint{ margin-top:10px; font-size:12px; opacity:.7; }
+
+    .footerhint{
+      margin-top:18px;
+      font-size:12px;
+      opacity:.7;
+      line-height:1.7;
     }
   </style>
 </head>
-<body>
 
-<header>
-  <div class="container navbar">
+<body>
+<header class="site-header">
+  <div class="navbar container">
     <div class="brand">YUSUF AVŞAR</div>
-    <nav class="nav">
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
       <a href="index.html">ANASAYFA</a>
       <a href="hakkimda.html">HAKKIMDA</a>
       <a href="faaliyet.html">FAALİYET</a>
       <a href="yayinlar.html">YAYINLAR</a>
       <a href="katkilar.html">KATKILAR</a>
-      <a href="iletisim.html" class="active">İLETİŞİM</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
       <div class="dropdown">
-        <button class="btn" data-dropdown-btn>ATATÜRK ▾</button>
+        <button class="dropdown-btn">ATATÜRK ▾</button>
         <div class="dropdown-menu">
           <a href="ataturk.html">Atatürk</a>
           <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
@@ -92,59 +100,117 @@
   </div>
 </header>
 
-<main class="container">
+<main class="container page">
   <section class="hero">
-    <h1>Resmi İletişim Hattı</h1>
-    <p class="hint">Bilgi edinme ve kurumsal yazışmalar için ilgili kanalları kullanınız.</p>
+    <h1>İLETİŞİM</h1>
+    <p class="hint">Profesyonel iletişim ve iş odaklı geri bildirimler için.</p>
   </section>
 
-  <section class="card">
-    <div class="contact-list">
-      <a href="https://instagram.com/avyusuf95" target="_blank" class="contact-item">
-        <div class="contact-info">
-          <i class="fa-brands fa-instagram"></i>
-          <span class="contact-label">Instagram</span>
+  <div class="policy">
+    <p>
+      Bu sayfa yalnızca profesyonel iletişim ve iş odaklı geri bildirimler için hazırlanmıştır.
+      Mesajınızın konu başlığını net yazmanız ve talebinizi kısa/öz ifade etmeniz,
+      değerlendirme sürecini kolaylaştırır.
+    </p>
+    <p>
+      İletişim, karşılıklı netlik ve saygı üzerine kuruludur. Uygun görülen mesajlara dönüş yapılır;
+      her mesaja geri dönüş garantisi verilmez.
+    </p>
+    <p class="note">
+      <strong>Kısa not:</strong> Kurum/operasyon/proje detayları ve hassas bilgiler paylaşılmaması rica edilir.
+      Yasa dışı içerikli talepler değerlendirilmez.
+    </p>
+  </div>
+
+  <section style="margin-top:18px;">
+    <h2>İletişim Kanalları</h2>
+
+    <div class="grid">
+      <!-- Instagram -->
+      <a class="contact-card" href="https://instagram.com/avyusuf95" target="_blank" rel="noopener">
+        <div class="icon" aria-hidden="true">
+          <!-- Instagram icon (simple) -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M17.5 6.7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
         </div>
-        <span class="contact-value">avyusuf95</span>
+        <div class="meta">
+          <div class="label">İNSTAGRAM</div>
+          <div class="title">avyusuf95</div>
+          <div class="value">DM üzerinden kısa ve net başlıkla yazabilirsiniz.</div>
+          
+        </div>
       </a>
 
-      <a href="https://t.me/Yusufavsarofficial" target="_blank" class="contact-item">
-        <div class="contact-info">
-          <i class="fa-brands fa-telegram"></i>
-          <span class="contact-label">Telegram</span>
+      <!-- Telegram -->
+      <a class="contact-card" href="https://t.me/Yusufavsarofficial" target="_blank" rel="noopener">
+        <div class="icon" aria-hidden="true">
+          <!-- Telegram icon -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21.5 4.8 3.2 11.9c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.4c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.3 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.6-1.4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M7.7 14.4 19.3 7.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
         </div>
-        <span class="contact-value">Yusufavsarofficial</span>
+        <div class="meta">
+          <div class="label">TELEGRAM</div>
+          <div class="title">Yusufavsarofficial</div>
+          <div class="value">İş odaklı talepler için en hızlı kanal.</div>
+          
+        </div>
       </a>
 
-      <a href="mailto:yusufavsarofficial@proton.me" class="contact-item">
-        <div class="contact-info">
-          <i class="fa-regular fa-envelope"></i>
-          <span class="contact-label">E-Posta</span>
+      <!-- Email -->
+      <a class="contact-card" href="mailto:yusufavsarofficial@proton.me?subject=Profesyonel%20İletişim&body=Konu%3A%20%0A%0ATalep%3A%20%0A%0Aİlgili%20Detaylar%3A%20%0A">
+        <div class="icon" aria-hidden="true">
+          <!-- Mail icon -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="m4 8 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <span class="contact-value">yusufavsarofficial@proton.me</span>
+        <div class="meta">
+          <div class="label">E-POSTA</div>
+          <div class="title">yusufavsarofficial@proton.me</div>
+          <div class="value">Kurumsal ve detaylı talepler için önerilir.</div>
+          
+        </div>
       </a>
     </div>
-  </section>
 
-  <section class="formal-notice">
-    <div class="notice-header">
-      <i class="fa-solid fa-gavel"></i> Yasal Uyarı ve Kısıtlamalar
-    </div>
-    <div class="notice-body">
-      Yürütülen faaliyetlerin etik çerçevesi ve hukuki standartları gereği; <strong>yasadişı faaliyetlere ilişkin her türlü talep, teklif veya eğitim içerikli iş birliği başvuruları</strong> kesinlikle değerlendirmeye alınmamaktadır. Bu kapsamdaki iletiler sistem tarafından filtrelenmekte ve yanıtlanmamaktadır. 
-    </div>
-    <div class="notice-footer">
-      * İlkelerimiz doğrultusunda yalnızca meşru ve akademik/stratejik çerçevedeki başvurular dikkate alınır.
-    </div>
+    <div class="footerhint" style="
+  margin-top:22px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,120,120,.45);
+  background:rgba(255,80,80,.08);
+  color:#ff9a9a;
+  font-size:14px;
+  line-height:1.8;
+">
+<strong>Önemli Not:</strong> Güvenlik ve etik sınırları aşan talepler değerlendirilmez.
+Paylaşımınızın kapsamı belirsizse, değerlendirme süresi uzayabilir veya geri dönüş yapılmayabilir.
+</div>
   </section>
 </main>
 
-<footer>
-  <div class="container">
-    <small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small>
-  </div>
-</footer>
-
+<footer><div class="container"><small class="copyright">© 2010 – yusufavsarofficial Tüm hakları saklıdır</small></div></footer>
 <script src="app.js"></script>
+<script src="tts.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

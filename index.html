@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yusuf Avşar</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Canlı Bildirim Çubuğu Stili */
+    .update-banner {
+      background: linear-gradient(90deg, #2c3e50, #2980b9);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      animation: fadeIn 1s ease-in;
+    }
+    .update-banner span {
+      background: #e74c3c;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 10px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
@@ -34,6 +60,10 @@
     </nav>
   </div>
 </header>
+
+<div class="update-banner">
+  <span>Güncelleme</span> İndex sayfamıza içerik eklemeleri ve güncellemeleri devam etmektedir.
+</div>
 
 <main class="container">
 

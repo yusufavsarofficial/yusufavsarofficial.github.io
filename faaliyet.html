@@ -1,0 +1,251 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faaliyetler</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-wrap{
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .intro{
+      margin-top:18px;
+      line-height:1.9;
+      opacity:.92;
+    }
+
+    .section{
+      margin-top:26px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+
+    @media (max-width: 900px){
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .soft-card{
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .soft-card h3{
+      margin:0;
+      font-size:20px;
+      letter-spacing:.2px;
+    }
+
+    .soft-card p{
+      margin-top:12px;
+      line-height:1.85;
+      opacity:.9;
+      text-align:justify;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-top:14px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      font-size:12px;
+      opacity:.85;
+    }
+
+    .focus-box{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      line-height:1.9;
+    }
+
+    .focus-box strong{
+      letter-spacing:.3px;
+    }
+
+    ul.clean{
+      margin-top:12px;
+      padding-left:18px;
+      line-height:1.9;
+    }
+
+    ul.clean li{
+      margin-top:6px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="navbar container">
+    <div class="brand">YUSUF AVŞAR</div>
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html">ANASAYFA</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">ATATÜRK ▾</button>
+        <div class="dropdown-menu">
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-wrap">
+  <section class="hero">
+    <h1>FAALİYETLER</h1>
+    <p class="hint">
+      Güvenliği teknik müdahalenin ötesinde; süreç, koordinasyon ve kurumsal dayanıklılık temelinde ele alan profesyonel çalışma alanları.
+    </p>
+  </section>
+
+  <p class="intro">
+    Faaliyet alanlarım; yalnızca tekil güvenlik olaylarına müdahale etmekten ibaret değildir.
+    Esas odak, kurumların güvenlik olgunluğunu artıran, riskleri yönetilebilir hâle getiren
+    ve karar mekanizmalarını güçlendiren sürdürülebilir yapılar kurmaktır.
+    Bu yaklaşım; teknik değerlendirme, operasyonel düzen, insan faktörü ve yönetsel netliği birlikte ele alır.
+  </p>
+
+  <div class="focus-box">
+    <strong>Temel yaklaşım:</strong>
+    Güvenlik; araç kurmakla değil, doğru süreçleri tanımlamak, doğru öncelikleri belirlemek
+    ve kritik anlarda kontrollü hareket edebilmekle sürdürülebilir hâle gelir.
+  </div>
+
+  <section class="section">
+    <h2>Ana Faaliyet Alanları</h2>
+
+    <div class="grid">
+      <div class="soft-card">
+        <h3>Siber Güvenlik Operasyon Yönetimi</h3>
+        <p>
+          Güvenlik operasyonlarının günlük işleyişini daha düzenli, ölçülebilir ve sürdürülebilir hâle getirmeye yönelik çalışmalar yürütürüm.
+          Alarm akışları, önceliklendirme mantığı, olay sınıflandırma düzeni ve müdahale disiplininin sağlıklı işlemesi;
+          operasyonel güvenliğin en temel parçalarıdır.
+        </p>
+        <span class="badge">SOC · Süreç Disiplini · Operasyonel Netlik</span>
+      </div>
+
+      <div class="soft-card">
+        <h3>Olay Müdahale ve Kriz Koordinasyonu</h3>
+        <p>
+          Güvenlik olaylarında amaç yalnızca hızlı davranmak değil, doğru sırayla ve doğru öncelikle hareket etmektir.
+          İlk tespit, izolasyon, kayıt altına alma, iletişim düzeni ve toparlanma süreci; kontrollü kriz yönetiminin temel başlıklarıdır.
+        </p>
+        <span class="badge">Incident Response · Containment · Recovery</span>
+      </div>
+
+      <div class="soft-card">
+        <h3>Risk ve Zafiyet Değerlendirme</h3>
+        <p>
+          Güvenlik açıklarını yalnızca teknik önemine göre değil, iş etkisi ve operasyonel sonuçlarına göre değerlendiririm.
+          Böylece kurumlar, her bulguya aynı tepkiyi vermek yerine, gerçekten kritik olan alanlara odaklanabilir.
+        </p>
+        <span class="badge">Risk Skorlama · Önceliklendirme · Etki Analizi</span>
+      </div>
+
+      <div class="soft-card">
+        <h3>Güvenlik Süreçlerinin Kurumsallaştırılması</h3>
+        <p>
+          Güvenliğin kişilere bağlı geçici reflekslerden çıkıp kurumsal bir standarda dönüşmesi için süreç geliştirme çalışmaları yürütürüm.
+          Politika, prosedür, kontrol listesi ve operasyonel kayıt düzeni; uzun vadeli dayanıklılığın temelidir.
+        </p>
+        <span class="badge">Politika · Prosedür · Kurumsal Standart</span>
+      </div>
+
+      <div class="soft-card">
+        <h3>Teknik ve Yönetim Arasında Köprü Kurma</h3>
+        <p>
+          Teknik ekiplerin ürettiği güvenlik çıktılarının, yönetim seviyesinde anlaşılabilir ve karar verilebilir bir çerçeveye taşınması kritik önemdedir.
+          Çalışmalarımda teknik dili sadeleştirerek yönetsel karşılık üreten bir yapı kurmaya önem veririm.
+        </p>
+        <span class="badge">Raporlama · Karar Destek · Yönetim İletişimi</span>
+      </div>
+
+      <div class="soft-card">
+        <h3>Operasyonel Disiplin ve Ekip Düzeni</h3>
+        <p>
+          Güçlü güvenlik yapıları yalnızca teknolojiyle değil, tutarlı ekip davranışıyla kurulur.
+          Görev dağılımı, sorumluluk netliği, vardiya düzeni, kontrol adımları ve takip mekanizmaları;
+          ekiplerin kriz anında dağılmadan hareket etmesini sağlar.
+        </p>
+        <span class="badge">Koordinasyon · Görev Netliği · Takip Mekanizması</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Çalışma Çerçevesi</h2>
+    <div class="soft-card">
+      <p>
+        Faaliyetlerimi şekillendiren temel anlayış; gösterişli güvenlik algısı üretmek değil,
+        kurum içinde gerçekten çalışan ve sürdürülebilir olan güvenlik yapıları kurmaktır.
+        Bu nedenle değerlendirmelerimde kısa vadeli çözümlerden çok uzun vadeli istikrarı,
+        anlık etki yerine kurumsal dayanıklılığı esas alırım.
+      </p>
+
+      <ul class="clean">
+        <li>Operasyonel gerçekliğe uygun güvenlik yaklaşımı</li>
+        <li>İnsan faktörünü hesaba katan süreç tasarımı</li>
+        <li>Ölçülebilir ve izlenebilir güvenlik adımları</li>
+        <li>Kriz anında sade ve uygulanabilir hareket planları</li>
+        <li>Gizlilik, etik sınırlar ve profesyonel sorumluluk odaklı çalışma biçimi</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Perspektif</h2>
+    <div class="soft-card">
+      <p>
+        Benim için faaliyet alanı, yalnızca yapılan işlerin listesi değildir.
+        Asıl mesele; bu çalışmaların kurumların güvenlik duruşuna, karar kalitesine ve uzun vadeli istikrarına nasıl katkı sağladığıdır.
+        Bu site içinde yer alan faaliyet başlıkları da tam olarak bu anlayışın özetidir:
+        güvenliği geçici değil, kalıcı bir kapasiteye dönüştürmek.
+      </p>
+      <span class="badge">Sürdürülebilirlik · Netlik · Profesyonel Duruş</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">
+      © 2010–2026 Yusuf Avşar. Tüm hakları saklıdır. İstanbul, Türkiye.
+    </small>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yusuf Avşar</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .site-update{
+      background:#ffcc00;
+      color:#000;
+      text-align:center;
+      padding:10px;
+      font-weight:700;
+      position:sticky;
+      top:0;
+      z-index:9999;
+    }
+
+    .hero-layout{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:36px;
+      align-items:center;
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:36px;
+      line-height:1.2;
+    }
+
+    .hero-sub{
+      margin-top:14px;
+      line-height:1.8;
+      opacity:.88;
+      max-width:720px;
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      font-size:13px;
+      opacity:.88;
+    }
+
+    .audio-wrap{
+      margin-top:18px;
+    }
+
+    .audio-wrap audio{
+      width:100%;
+      max-width:430px;
+    }
+
+    .hero-right img{
+      width:100%;
+      max-width:340px;
+      border-radius:16px;
+      box-shadow:0 20px 45px rgba(0,0,0,.45);
+    }
+
+    .women-box{
+      max-width:1100px;
+      margin:18px auto 0 auto;
+      overflow:hidden;
+      margin-top:18px;
+      background:linear-gradient(180deg,#141a22,#10161d);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px;
+      padding:22px;
+      overflow:hidden;
+    }
+
+    .women-kicker{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      opacity:.7;
+    }
+
+    .women-box h2{
+      margin:10px 0 0 0;
+      font-size:26px;
+    }
+
+    .women-box p{
+      margin-top:14px;
+      line-height:1.9;
+      opacity:.92;
+      text-align:justify;
+    }
+
+    .social-bar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:16px;
+      font-size:14px;
+      opacity:.82;
+    }
+
+    .ticker-wrap{
+      width:100%;
+      overflow:hidden;
+      margin-top:18px;
+      overflow:hidden;
+      border-top:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+    }
+
+    .ticker{
+      display:flex;
+      width:max-content;
+      animation:scrollComments 42s linear infinite;
+      padding:14px 0;
+    }
+
+    .ticker-item{
+      flex:0 0 auto;
+      margin-right:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      padding:10px 16px;
+      white-space:nowrap;
+      font-size:14px;
+      opacity:.92;
+    }
+
+    @keyframes scrollComments{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(-50%); }
+    }
+
+    .comment-form{
+      margin-top:18px;
+      display:grid;
+      gap:12px;
+    }
+
+    .comment-form textarea{
+      width:100%;
+      max-width:100%;
+      width:100%;
+      min-height:110px;
+      resize:vertical;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#0b0f14;
+      color:#fff;
+      padding:14px;
+      font:inherit;
+      outline:none;
+    }
+
+    .comment-form button{
+      width:max-content;
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      background:#ffffff;
+      color:#000;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .comment-form button:hover{
+      opacity:.92;
+    }
+
+    .muted-note{
+      font-size:13px;
+      opacity:.65;
+    }
+
+    .section-title{
+      margin:0 0 14px 0;
+      font-size:28px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-top:24px;
+    }
+
+    .pro-card{
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .pro-card h2{
+      margin:0;
+      font-size:22px;
+    }
+
+    .pro-card p{
+      margin-top:12px;
+      line-height:1.8;
+      opacity:.9;
+      text-align:justify;
+    }
+
+    .pro-link{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:700;
+      opacity:.95;
+    }
+
+    .pro-link:hover{
+      text-decoration:underline;
+    }
+
+    .focus-box{
+      margin-top:26px;
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:24px;
+      line-height:1.9;
+    }
+
+    @media (max-width: 980px){
+      .hero-layout{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+
+      .hero-right{
+        display:flex;
+        justify-content:center;
+      }
+
+      .hero-badges{
+        justify-content:center;
+      }
+
+      .audio-wrap audio{
+        margin:0 auto;
+      }
+
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-update">
+  Site içeriğinde güncelleme ve geliştirme çalışmaları devam etmektedir. Bu süreçte bazı bölümlerde geçici değişiklikler yaşanabilir. Anlayışınız için teşekkür ederiz.
+</div>
+
+<header class="site-header">
+  <div class="navbar container">
+    <div class="brand">YUSUF AVŞAR</div>
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html">ANASAYFA</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">ATATÜRK ▾</button>
+        <div class="dropdown-menu">
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero hero-layout">
+    <div class="hero-left">
+      <h1 class="hero-title">Akıl, Disiplin ve Sorumluluk</h1>
+
+      <p class="hero-sub">
+        Bu site; güvenlik, insan faktörü, strateji, tarih ve bilinç ekseninde üretilmiş metinleri,
+        değerlendirmeleri ve profesyonel içerikleri bir araya getiren dijital bir arşiv niteliği taşır.
+        Amaç; hızlı tüketilen içerik üretmek değil, daha kalıcı ve daha net bir bakış açısı sunmaktır.
+      </p>
+
+      <div class="hero-badges">
+        <span class="hero-badge">Siber Güvenlik</span>
+        <span class="hero-badge">İnsan Faktörü</span>
+        <span class="hero-badge">Strateji</span>
+        <span class="hero-badge">Tarih</span>
+        <span class="hero-badge">Kurumsal Yaklaşım</span>
+      </div>
+
+      <div class="audio-wrap">
+        <audio controls preload="metadata">
+          <source src="manifesto.mp3" type="audio/mpeg">
+          Tarayıcınız ses etiketini desteklemiyor.
+        </audio>
+      </div>
+
+      
+    </div>
+
+    <div class="hero-right">
+      <img src="bayrak.jpg" alt="Türk Bayrağı">
+    </div>
+  </section>
+
+<section class="women-box">
+        <div class="women-kicker">8 Mart</div>
+        <h2>Dünya Kadınlar Günü</h2>
+        <p>
+          8 Mart Dünya Kadınlar Günü vesilesiyle; emeği, üretimi, fedakârlığı, kararlılığı ve hayatın her alanındaki görünür ya da görünmez katkılarıyla topluma güç katan tüm kadınların gününü saygıyla kutluyorum.
+
+Kadınların hak ettiği değeri gördüğü, güven içinde yaşadığı ve fırsatlara eşit biçimde erişebildiği bir toplum; yalnızca daha adil değil, aynı zamanda daha güçlü ve daha sürdürülebilir bir geleceğin temelidir.
+
+Bu anlamlı gün; kadınların toplumsal hayattaki değerini, emeğini ve insanlık için taşıdığı vazgeçilmez rolü bir kez daha hatırlamak ve saygıyla anmak için önemli bir vesiledir.</p>
+
+        <div class="social-bar">
+          <span id="likes">184 Beğeni</span>
+          <span id="comments">137 Yorum</span>
+          <span id="shares">41 Paylaşım</span>
+        </div>
+
+        <div class="ticker-wrap">
+          <div class="ticker">
+            <div class="ticker-item">Zeynep: Teşekkür ederim, çok ince düşünülmüş.</div>
+            <div class="ticker-item">Merve: Güzel ve saygılı bir mesaj olmuş.</div>
+            <div class="ticker-item">Elif: Teşekkür ederim, çok nazik bir paylaşım.</div>
+            <div class="ticker-item">Ayşe: Değerli bir mesaj, teşekkürler.</div>
+            <div class="ticker-item">Sena: Saygılı ve yerinde bir ifade olmuş.</div>
+            <div class="ticker-item">Buse: İnceliğiniz için teşekkür ederim.</div>
+            <div class="ticker-item">Melisa: Çok güzel düşünülmüş, teşekkürler.</div>
+            <div class="ticker-item">Tuğba: Anlamlı ve zarif bir paylaşım olmuş.</div>
+            <div class="ticker-item">İrem: Teşekkür ederim, çok kıymetli.</div>
+            <div class="ticker-item">Ceren: Düşünceniz için teşekkür ederim.</div>
+            <div class="ticker-item">Ebru: Güzel bir mesaj olmuş, teşekkürler.</div>
+            <div class="ticker-item">Gamze: Saygılı duruşunuz için teşekkür ederim.</div>
+            <div class="ticker-item">Zeynep: Teşekkür ederim, çok ince düşünülmüş.</div>
+            <div class="ticker-item">Merve: Güzel ve saygılı bir mesaj olmuş.</div>
+            <div class="ticker-item">Elif: Teşekkür ederim, çok nazik bir paylaşım.</div>
+            <div class="ticker-item">Ayşe: Değerli bir mesaj, teşekkürler.</div>
+            <div class="ticker-item">Sena: Saygılı ve yerinde bir ifade olmuş.</div>
+            <div class="ticker-item">Buse: İnceliğiniz için teşekkür ederim.</div>
+            <div class="ticker-item">Melisa: Çok güzel düşünülmüş, teşekkürler.</div>
+            <div class="ticker-item">Tuğba: Anlamlı ve zarif bir paylaşım olmuş.</div>
+            <div class="ticker-item">İrem: Teşekkür ederim, çok kıymetli.</div>
+            <div class="ticker-item">Ceren: Düşünceniz için teşekkür ederim.</div>
+            <div class="ticker-item">Ebru: Güzel bir mesaj olmuş, teşekkürler.</div>
+            <div class="ticker-item">Gamze: Saygılı duruşunuz için teşekkür ederim.</div>
+          </div>
+        </div>
+
+        <div class="comment-form">
+          <textarea id="commentBox" placeholder="Yorum yaz..."></textarea>
+          <button type="button" id="commentBtn">Yorum Gönder</button>
+          <div class="muted-note">Yorum alanı yalnızca görüntüleme amaçlıdır.</div>
+        </div>
+      </section>
+
+  <section class="grid-3">
+    <div class="pro-card">
+      <h2>Atatürk</h2>
+      <p>
+        Cumhuriyetin düşünsel temelleri, Millî Mücadele süreci, kurucu ilkeler ve tarihsel miras;
+        sade ama ciddi bir çerçevede sunulmaktadır.
+      </p>
+      <a href="ataturk.html" class="pro-link">Devamını Gör →</a>
+    </div>
+
+    <div class="pro-card">
+      <h2>Yayınlar</h2>
+      <p>
+        Blog, makale ve araştırma başlıkları altında; güvenlik, etik, sistem düşüncesi, kriz yönetimi
+        ve insan davranışı üzerine hazırlanmış içerikler yer alır.
+      </p>
+      <a href="yayinlar.html" class="pro-link">Tüm Yayınlar →</a>
+    </div>
+
+    <div class="pro-card">
+      <h2>Katkılar</h2>
+      <p>
+        Kurumsal süreçler, operasyonel düzen, karar kalitesi ve güvenlik yaklaşımına yönelik sağlanan
+        katkı alanları bu bölümde genel çerçevede sunulmaktadır.
+      </p>
+      <a href="katkilar.html" class="pro-link">İncele →</a>
+    </div>
+  </section>
+
+  <section class="focus-box">
+    <h2 class="section-title">Bu site ne değildir?</h2>
+    <div>
+      Popüler söylemler, yüzeysel analizler ve yalnızca görünürlük üretmeye dönük içerikler sunmaz.
+      Bu alan; daha sakin, daha disiplinli ve daha kalıcı bir dijital yapı kurmak amacıyla hazırlanmıştır.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">
+      © 2010–2026 Yusuf Avşar. Tüm hakları saklıdır. İstanbul, Türkiye.
+    </small>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const btn = document.getElementById("commentBtn");
+  const box = document.getElementById("commentBox");
+
+  function denyAction(){
+    alert("Portal üyemiz dışında yorum ve etkileşim işlemleri kapalıdır. Yetkili kullanıcı girişi gereklidir.");
+    if(box){ box.value = ""; }
+  }
+
+  if(btn){
+    btn.addEventListener("click", denyAction);
+  }
+
+  if(box){
+    box.addEventListener("focus", function(){
+      box.blur();
+    });
+    box.addEventListener("click", function(){
+      alert("Portal üyemiz dışında yorum ve etkileşim işlemleri kapalıdır. Yetkili kullanıcı girişi gereklidir.");
+    });
+  }
+});
+</script>
+<script>
+
+let likes = 184
+let comments = 137
+let shares = 41
+
+function updateStats(){
+
+likes += Math.floor(Math.random()*3)+1
+comments += Math.floor(Math.random()*2)+1
+shares += Math.floor(Math.random()*2)+1
+
+document.getElementById("likes").innerText = likes + " Beğeni"
+document.getElementById("comments").innerText = comments + " Yorum"
+document.getElementById("shares").innerText = shares + " Paylaşım"
+
+}
+
+setInterval(updateStats,3600000)
+
+</script>
+<script>
+
+let likes = 184
+let comments = 137
+let shares = 41
+
+function updateStats(){
+
+likes += Math.floor(Math.random()*3)+1
+comments += Math.floor(Math.random()*2)+1
+shares += Math.floor(Math.random()*2)+1
+
+document.getElementById("likes").innerText = likes + " Beğeni"
+document.getElementById("comments").innerText = comments + " Yorum"
+document.getElementById("shares").innerText = shares + " Paylaşım"
+
+}
+
+setInterval(updateStats,3600000)
+
+</script>
+</body>
+</html>

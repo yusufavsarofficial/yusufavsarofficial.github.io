@@ -1,0 +1,292 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belgeler</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .docs-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .doc-card{
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:20px;
+    }
+
+    .doc-tag{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      opacity:.7;
+      margin-bottom:10px;
+    }
+
+    .doc-title{
+      font-size:20px;
+      font-weight:800;
+      line-height:1.4;
+      margin:0;
+    }
+
+    .doc-desc{
+      margin-top:10px;
+      line-height:1.8;
+      opacity:.88;
+    }
+  </style>
+
+<style>
+#gateOverlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0b0f14;
+}
+#gateCard{
+  width:min(92vw,420px);
+  background:#121821;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+  text-align:center;
+}
+#gateCard h1{
+  margin:0;
+  font-size:26px;
+}
+#gateCard p{
+  margin-top:12px;
+  line-height:1.8;
+  opacity:.88;
+}
+#gateInput{
+  width:100%;
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#0b0f14;
+  color:#fff;
+  font-size:15px;
+  outline:none;
+}
+#gateInput:focus{
+  border-color:rgba(255,255,255,.24);
+}
+#gateActions{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+.gateBtn{
+  flex:1;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  cursor:pointer;
+  font-size:14px;
+}
+.gateBtn:hover{
+  background:rgba(255,255,255,.08);
+}
+#gateError{
+  min-height:22px;
+  margin-top:10px;
+  font-size:13px;
+  color:#ff8f8f;
+}
+body.locked{
+  overflow:hidden;
+}
+</style>
+</head>
+<body>
+<div id="gateOverlay">
+  <div id="gateCard">
+    <h1>Belgeler</h1>
+    <p>Bu bölüme erişmek için şifre girmeniz gerekir.</p>
+    <input id="gateInput" type="password" placeholder="Şifre" autocomplete="off" />
+    <div id="gateActions">
+      <button class="gateBtn" id="gateSubmit">Giriş Yap</button>
+      <button class="gateBtn" id="gateCancel">Vazgeç</button>
+    </div>
+    <div id="gateError"></div>
+  </div>
+</div>
+
+</div>
+
+<header class="site-header">
+  <div class="navbar container">
+    <div class="brand">YUSUF AVŞAR</div>
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html">ANASAYFA</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">ATATÜRK ▾</button>
+        <div class="dropdown-menu">
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Belgeler</h1>
+    <p class="hint">Cumhuriyetin kurucu belgeleri ve temel tarihsel dönüm noktaları.</p>
+  </section>
+
+  <section class="docs-grid">
+
+    <div class="doc-card">
+      <div class="doc-tag">Genelge</div>
+      <h2 class="doc-title">Amasya Genelgesi</h2>
+      <div class="doc-desc">Milli Mücadele’nin gerekçesi ve yöntemi ilan edilmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Kongre</div>
+      <h2 class="doc-title">Erzurum Kongresi</h2>
+      <div class="doc-desc">Vatanın bölünmezliği kabul edilmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Kongre</div>
+      <h2 class="doc-title">Sivas Kongresi</h2>
+      <div class="doc-desc">Milli cemiyetler birleştirilmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Meclis</div>
+      <h2 class="doc-title">TBMM Açılışı</h2>
+      <div class="doc-desc">Egemenlik kayıtsız şartsız millete geçmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Devlet</div>
+      <h2 class="doc-title">Cumhuriyetin İlanı</h2>
+      <div class="doc-desc">Türkiye Cumhuriyeti kurulmuştur.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Hukuk</div>
+      <h2 class="doc-title">Halifeliğin Kaldırılması</h2>
+      <div class="doc-desc">Laik devlet yapısı güçlenmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Eğitim</div>
+      <h2 class="doc-title">Tevhid-i Tedrisat</h2>
+      <div class="doc-desc">Eğitim birliği sağlanmıştır.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Hukuk</div>
+      <h2 class="doc-title">Medeni Kanun</h2>
+      <div class="doc-desc">Toplumsal eşitlik güçlendirilmiştir.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Dil</div>
+      <h2 class="doc-title">Harf Devrimi</h2>
+      <div class="doc-desc">Okuryazarlığın yaygınlaşmasına önemli katkı sağlamıştır.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">İlke</div>
+      <h2 class="doc-title">Altı Ok</h2>
+      <div class="doc-desc">Cumhuriyetin temel ilkeleri belirlenmiştir.</div>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">
+      © 2010–2026 Yusuf Avşar. Tüm hakları saklıdır. İstanbul, Türkiye.
+    </small>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+
+
+<script>
+(function(){
+  const PASSWORD = "ATATÜRK1938";
+  document.body.classList.add("locked");
+
+  const overlay = document.getElementById("gateOverlay");
+  const input = document.getElementById("gateInput");
+  const submit = document.getElementById("gateSubmit");
+  const cancel = document.getElementById("gateCancel");
+  const error = document.getElementById("gateError");
+
+  function unlock(){
+    overlay.remove();
+    document.body.classList.remove("locked");
+  }
+
+  function fail(){
+    error.textContent = "Şifre hatalı. Erişim sağlanamadı.";
+    input.value = "";
+    input.focus();
+  }
+
+  submit.addEventListener("click", function(){
+    if(input.value === PASSWORD){
+      unlock();
+    } else {
+      fail();
+    }
+  });
+
+  input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      submit.click();
+    }
+  });
+
+  cancel.addEventListener("click", function(){
+    if(document.referrer){
+      history.back();
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+
+  input.focus();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İletişim</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-wrap{max-width:1100px;margin:0 auto}
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+      margin-top:24px;
+    }
+    @media (max-width:900px){
+      .info-grid{grid-template-columns:1fr}
+    }
+    .info-card{
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:22px;
+    }
+    .info-card h2{
+      margin:0 0 10px 0;
+      font-size:20px;
+    }
+    .info-card p{
+      margin:0;
+      line-height:1.8;
+      opacity:.9;
+    }
+    .note{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      line-height:1.8;
+    }
+    .map-box{
+      margin-top:24px;
+      background:#121821;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:22px;
+    }
+    .map-box h2{
+      margin-top:0;
+    }
+    iframe{
+      width:100%;
+      height:320px;
+      border:0;
+      border-radius:14px;
+      margin-top:12px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="navbar container">
+    <div class="brand">YUSUF AVŞAR</div>
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="index.html">ANASAYFA</a>
+      <a href="hakkimda.html">HAKKIMDA</a>
+      <a href="faaliyet.html">FAALİYET</a>
+      <a href="yayinlar.html">YAYINLAR</a>
+      <a href="katkilar.html">KATKILAR</a>
+      <a href="iletisim.html">İLETİŞİM</a>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">ATATÜRK ▾</button>
+        <div class="dropdown-menu">
+          <a href="ataturk.html">Atatürk</a>
+          <a href="ataturk-milliyetciligi.html">Atatürk Milliyetçiliği</a>
+          <a href="milli-mucadele.html">Milli Mücadele</a>
+          <a href="turk-kulturu.html">Türk Kültürü</a>
+          <a href="belgeler.html">Belgeler</a>
+          <a href="ilkeler-miras.html">İlkeler & Miras</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-wrap">
+  <section class="hero">
+    <h1>İLETİŞİM</h1>
+    <p class="hint">Resmî iletişim, iş birliği ve destek talepleri için iletişim bilgileri.</p>
+  </section>
+
+  <div class="note">
+    İletişim taleplerinde konu başlığının açık yazılması ve mesajın kısa, net şekilde iletilmesi rica olunur.
+    Hassas kurum, operasyon ve üçüncü taraf bilgileri açık kanallar üzerinden paylaşılmamalıdır.
+  </div>
+
+  <section class="info-grid">
+    <div class="info-card">
+      <h2>Resmî İletişim</h2>
+      <p>E-posta: yusufavsarofficial@proton.me</p>
+      <p>Resmî yazışmalar, iş birliği teklifleri ve profesyonel iletişim için kullanılır.</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Destek</h2>
+      <p>Telegram: @Yusufavsarofficial</p>
+      <p>Kısa destek talepleri ve hızlı iletişim için kullanılabilir.</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Sosyal Medya</h2>
+      <p>Instagram: @avyusuf95</p>
+      <p>Genel paylaşımlar ve sosyal iletişim için kullanılır.</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Konum ve Çalışma Modeli</h2>
+      <p>İstanbul, Türkiye</p>
+      <p>Çalışma modeli: Uzaktan</p>
+    </div>
+
+    <div class="info-card">
+      <h2>Çalışma Saatleri</h2>
+      <p>Pazartesi · Çarşamba · Cuma</p>
+      <p>22:00 – 06:00</p>
+    </div>
+  </section>
+
+  <section class="map-box">
+    <h2>Harita</h2>
+    <p>İstanbul, Türkiye</p>
+    <iframe
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Istanbul,Turkey&output=embed"></iframe>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <small class="copyright">
+      © 2010–2026 Yusuf Avşar. Tüm hakları saklıdır. İstanbul, Türkiye.
+    </small>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

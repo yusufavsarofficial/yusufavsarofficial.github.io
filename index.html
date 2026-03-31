@@ -1,10 +1,79 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang='tr'>
 <head>
-  <title>Benim Sitem</title>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Anasayfa</title>
+<link rel='stylesheet' href='stil.css'>
 </head>
 <body>
-  <h1>Merhaba Dünya 🌍</h1>
-  <p>İlk web sitem yayında!</p>
+<header>
+<nav class='navbar'>
+<h2 class='logo'>YUSUF</h2>
+<div class='menu-toggle' id='menu-toggle'>☰</div>
+<ul class='menu' id='menu'>
+<li><a href='anasayfa.html' class='active'>Anasayfa</a></li>
+<li><a href='hakkimda.html'>Hakkımda</a></li>
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>
+<li><a href='urunler.html'>Ürünler</a></li>
+<li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='iletisim.html'>İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<main class='container'>
+<div class='alert-box'>
+<strong>UYARI:</strong> Sitemiz güncelleme altındadır! Tahmini bitiş: <span id='countdown'>36:00:00</span> saat. Lütfen sayfayı yenilemeyin, geri sayım otomatik devam eder.
+</div>
+
+<section class='content'>
+<h1>Hoşgeldiniz</h1>
+<p>Bu site, tüm kurumsal çözümler ve bilgiler için sürekli güncellenmektedir. 
+Hiçbir şekilde yasadışı faaliyet veya uygunsuz talepler kabul edilmez. 
+Gerekli durumlarda yasal birimler bilgilendirilecektir.</p>
+
+<p style='color:red; font-weight:bold;'>Ciddi ve yasal olarak güvenli bir iletişim için yalnızca belirtilen kanalları kullanın.</p>
+</section>
+</main>
+
+<footer>
+<p>© 2026 Yusuf Avsar Official. Tüm hakları saklıdır.</p>
+</footer>
+
+<script>
+// Hamburger menü
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+menuToggle.addEventListener('click', ()=> {
+menu.classList.toggle('active');
+menu.style.display = menu.classList.contains('active') ? 'flex' : 'none';
+});
+
+// 36 saat geri sayım – gerçek zamanlı
+const countdownEl = document.getElementById('countdown');
+let endTime = localStorage.getItem('countdownEndTime');
+
+if(!endTime){
+    // Eğer yoksa 36 saat sonrası
+    endTime = Date.now() + 36*60*60*1000;
+    localStorage.setItem('countdownEndTime', endTime);
+} else {
+    endTime = parseInt(endTime);
+}
+
+function updateCountdown(){
+    let now = Date.now();
+    let remaining = Math.floor((endTime - now)/1000); // saniye
+    if(remaining<0){ remaining=0; }
+    let hours = Math.floor(remaining/3600);
+    let minutes = Math.floor((remaining%3600)/60);
+    let seconds = remaining % 60;
+    countdownEl.textContent = 
+        ${hours.toString().padStart(2,'0')}::;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
 </body>
 </html>

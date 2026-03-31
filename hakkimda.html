@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang='tr'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Hakkımda</title>
+<style>
+/* Genel Stil */
+body {margin:0; font-family:'Segoe UI',sans-serif; background:#0f172a; color:#e0e0e0;}
+header {background:#1e293b; padding:1rem 2rem;}
+header h2 {color:#38bdf8; font-size:1.8rem; margin:0;}
+.navbar ul {display:flex; list-style:none; gap:1rem; padding:0;}
+.navbar li a {color:#e0e0e0; text-decoration:none; padding:0.5rem;}
+.navbar li a.active, .navbar li a:hover {color:#38bdf8;}
+.menu-toggle {display:none; font-size:1.8rem; cursor:pointer; color:#38bdf8;}
+@media(max-width:768px){.navbar ul{display:none; flex-direction:column; gap:0.5rem;}.menu-toggle{display:block;}}
+
+/* Hakkımda Bölümü */
+.about-container {display:grid; grid-template-columns:1fr 2fr; max-width:1100px; margin:3rem auto; gap:3rem; align-items:start;}
+.profile-pic {width:100%; max-width:320px; border-radius:50%; border:4px solid #38bdf8; box-shadow:0 0 30px #0f172a; transition:0.5s;}
+.profile-pic:hover {transform:scale(1.05) rotate(2deg); box-shadow:0 0 40px #38bdf8;}
+.about-text h1 {color:#38bdf8; font-size:2.8rem; margin-bottom:1rem; text-shadow:0 0 10px #38bdf8;}
+.about-text p {line-height:1.8; margin-bottom:1.2rem; font-size:1.15rem; color:#e0e0e0; text-align:justify;}
+.skills {display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem;}
+.skill {background:#1e293b; padding:0.6rem 1.2rem; border-radius:10px; box-shadow:0 0 12px #0f172a; transition:0.3s;}
+.skill:hover {background:#38bdf8; color:#0f172a; transform:scale(1.05);}
+
+/* Responsive */
+@media(max-width:768px){.about-container{grid-template-columns:1fr; text-align:center;}}
+</style>
+</head>
+<body>
+
+<header>
+<nav class='navbar'>
+<h2>YUSUF</h2>
+<div class='menu-toggle'>☰</div>
+<ul>
+<li><a href='anasayfa.html'>Anasayfa</a></li>
+<li><a href='hakkimda.html' class='active'>Hakkımda</a></li>
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>
+<li><a href='urunler.html'>Ürünler</a></li>
+<li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='iletisim.html'>İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<main class='about-container'>
+<img src='profil.jpg' alt='Yusuf Profil' class='profile-pic'>
+<div class='about-text'>
+<h1>Hakkımda</h1>
+
+<p>Merhaba! Ben Yusuf, yazılım geliştirme, siber güvenlik, veri analizi ve kurumsal otomasyon alanlarında profesyonel çözümler üreten bir teknoloji danışmanıyım. Kariyerimde farklı sektörlerde projeler geliştirerek, şirketlerin dijital dönüşüm süreçlerini optimize ettim. Her projede kalite, güvenlik ve sürdürülebilirlik önceliğim oldu.</p>
+
+<p>İş yaklaşımım, teknoloji ve inovasyonu birleştirerek şirketlerin iş süreçlerini daha verimli ve güvenli hale getirmektir. Kurumsal yazılım geliştirme, veri analizi, ağ güvenliği ve entegrasyon konularında derin bir bilgi birikimim bulunmakta. Yaratıcı ve çözüm odaklı yöntemlerle projeleri en etkin şekilde hayata geçiriyorum.</p>
+
+<p>Profesyonel yolculuğum boyunca, teknolojiye yatırım yapan şirketlerle çalışarak, hem operasyonel verimliliği artırdım hem de iş süreçlerini güvence altına aldım. Kurumsal partnerlik anlayışıyla, her zaman etik, şeffaf ve etkili bir şekilde danışmanlık hizmeti sunarım. Amacım, şirketlerin teknolojiyi iş hedeflerine en iyi şekilde entegre etmesini sağlamaktır.</p>
+
+<p>Projelerimde kullandığım başlıca teknolojiler arasında modern programlama dilleri, bulut altyapılar, otomasyon sistemleri, veri görselleştirme araçları ve siber güvenlik çözümleri yer alıyor. Süreçleri daha verimli hale getirmek ve riskleri en aza indirmek için sürekli araştırma ve geliştirme yapıyorum.</p>
+
+<div class='skills'>
+<div class='skill'>Kurumsal Yazılım Geliştirme</div>
+<div class='skill'>Otomasyon & Entegrasyon</div>
+<div class='skill'>Veri Analizi & Raporlama</div>
+<div class='skill'>Siber Güvenlik</div>
+<div class='skill'>Danışmanlık</div>
+<div class='skill'>Stratejik Planlama</div>
+<div class='skill'>Proje Yönetimi</div>
+<div class='skill'>Teknoloji Danışmanlığı</div>
+</div>
+</div>
+</main>
+
+<script>
+// Hamburger Menü
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.navbar ul');
+menuToggle.addEventListener('click', ()=>{
+    menu.classList.toggle('active');
+    menu.style.display = menu.classList.contains('active') ? 'flex' : 'none';
+});
+</script>
+
+</body>
+</html>

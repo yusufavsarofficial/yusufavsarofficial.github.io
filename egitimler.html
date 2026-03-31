@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang='tr'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Eğitimler</title>
+<link rel='stylesheet' href='stil.css'>
+<style>
+/* Eğitimler sayfası özel stil */
+.trainings {display:flex; justify-content:center; align-items:center; flex-direction:column; min-height:70vh; padding:2rem;}
+.training-ended h1 {font-size:2.5rem; color:#38bdf8; margin-bottom:1rem; text-align:center; text-shadow:0 0 10px #38bdf8;}
+.training-ended p {text-align:center; font-size:1.2rem; margin-bottom:2rem; max-width:600px; line-height:1.5;}
+#access-btn {background:#38bdf8; color:#0f172a; border:none; padding:0.75rem 1.5rem; border-radius:8px; font-size:1rem; cursor:pointer; transition:0.3s; box-shadow:0 0 15px #38bdf8;}
+#access-btn:hover {background:#22d3ee; transform:scale(1.05); box-shadow:0 0 25px #22d3ee;}
+#error-msg {color:#f87171; font-weight:bold; margin-top:1rem; text-align:center; display:none;}
+@media(max-width:768px) { .training-ended h1 {font-size:2rem;} .training-ended p {font-size:1rem;} }
+</style>
+</head>
+<body>
+
+<header>
+<nav class='navbar'>
+<h2 class='logo'>YUSUF</h2>
+<div class='menu-toggle' id='menu-toggle'>☰</div>
+<ul class='menu' id='menu'>
+<li><a href='anasayfa.html'>Anasayfa</a></li>
+<li><a href='hakkimda.html'>Hakkımda</a></li>
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>
+<li><a href='urunler.html'>Ürünler</a></li>
+<li><a href='egitimler.html' class='active'>Eğitimler</a></li>
+<li><a href='iletisim.html'>İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<main class='container trainings'>
+<div class='training-ended'>
+<h1>Eğitimler Sona Ermiştir</h1>
+<p>Mevcut eğitimler artık aktif değildir. Geçmiş eğitim materyallerine erişmek için aşağıdaki butonu kullanabilirsiniz.</p>
+<button id='access-btn'>Geçmiş Eğitimlere Eriş</button>
+<p id='error-msg'>Şifre yanlış! Erişim sağlanamadı.</p>
+</div>
+</main>
+
+<script>
+// Hamburger Menü
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+menuToggle.addEventListener('click', ()=>{menu.classList.toggle('active'); menu.style.display = menu.classList.contains('active') ? 'flex' : 'none';});
+
+// Şifre korumalı erişim
+document.getElementById('access-btn').addEventListener('click', function() {
+    const password = prompt("Geçmiş eğitimlere erişim için şifreyi girin:");
+    const errorMsg = document.getElementById('error-msg');
+    if(password === "Guc1234!") {
+        window.location.href = "gecmis-egitimler.html";
+    } else {
+        errorMsg.style.display = "block";
+        setTimeout(()=>{ errorMsg.style.display = "none"; }, 4000);
+    }
+});
+</script>
+
+</body>
+</html>

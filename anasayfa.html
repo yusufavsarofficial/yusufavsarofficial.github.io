@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang='tr'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Anasayfa</title>
+<link rel='stylesheet' href='stil.css'>
+</head>
+<body>
+<header>
+<nav class='navbar'>
+<h2 class='logo'>YUSUF</h2>
+<div class='menu-toggle' id='menu-toggle'>☰</div>
+<ul class='menu' id='menu'>
+<li><a href='anasayfa.html' class='active'>Anasayfa</a></li>
+<li><a href='hakkimda.html'>Hakkımda</a></li>
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>
+<li><a href='urunler.html'>Ürünler</a></li>
+<li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='iletisim.html'>İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<div class='update-note' style='text-align:center; background:#b91c1c; color:#fff; padding:1rem; font-weight:bold;'>
+⚠️ Sitemiz güncelleme altındadır. Tahmini bitiş süresi: <span id='countdown'></span>
+</div>
+
+<main class='container'>
+<h1>Hoşgeldiniz</h1>
+<p>Profesyonel yazılım ve kurumsal çözümler sunan platformumuza hoşgeldiniz.</p>
+
+</main>
+
+<footer>
+<p>© 2026 Yusuf Avsar Official. Tüm hakları saklıdır.</p>
+</footer>
+
+<script src='script.js'></script>
+<script>
+const countdownEl = document.getElementById('countdown');
+// 36 saat geri sayım
+const countdownKey = 'anasayfa_countdown';
+let endTime = localStorage.getItem(countdownKey);
+if(!endTime){
+    endTime = new Date().getTime() + 36*60*60*1000;
+    localStorage.setItem(countdownKey,endTime);
+} else {
+    endTime = parseInt(endTime);
+}
+function updateCountdown(){
+    const now = new Date().getTime();
+    let distance = endTime - now;
+    if(distance<0){distance=0;}
+    const hours=Math.floor((distance/(1000*60*60))%24);
+    const minutes=Math.floor((distance/(1000*60))%60);
+    const seconds=Math.floor((distance/1000)%60);
+    countdownEl.innerText=hours+'h '+minutes+'m '+seconds+'s';
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// Hamburger Menü
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+menuToggle.addEventListener('click',()=>{
+menu.classList.toggle('active');
+menu.style.display = menu.classList.contains('active')?'flex':'none';
+});
+</script>
+</body>
+</html>
